@@ -1,0 +1,8 @@
+assets/
+protected/runtime/
+protected/config/setting.php
+*.htaccess
+.htaccess
+*.swp
+*.php~
+*.log
