@@ -18,3 +18,11 @@ $this->pageTitle=Yii::app()->name;
 the <a href="http://www.yiiframework.com/doc/">documentation</a>.
 Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
 should you have any questions.</p>
+
+<div class="container">
+    <div class="span-24">the header</div>
+    <div class="span-4">first</div>
+    <div class="span-16">center</div>
+    <div class="span-4 last">last</div>
+    <div class="span-24">the footer</div>
+</div>

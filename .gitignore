@@ -6,3 +6,4 @@ protected/config/setting.php
 *.swp
 *.php~
 *.log
+*.bak
