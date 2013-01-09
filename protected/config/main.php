@@ -9,7 +9,8 @@ return CMap::mergeArray(
     require(dirname(__FILE__).'/setting.php'),
     array(
         'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-        'name'=>'yuxuan',
+        'name'=>'星位管理系统',
+        'defaultController'=>'site',
 
         // preloading 'log' component
         'preload'=>array('log'),
@@ -25,24 +26,18 @@ return CMap::mergeArray(
             'user'=>array(
                 // enable cookie-based authentication
                 'allowAutoLogin'=>true,
+                'loginUrl' => array('site/login')
             ),
             // uncomment the following to enable URLs in path-format
-        /*
-        'urlManager'=>array(
-            'urlFormat'=>'path',
-            'rules'=>array(
-                '<controller:\w+>/<id:\d+>'=>'<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+            'urlManager'=>array(
+                'urlFormat'=>'path',
+                'showScriptName'=>false,
+                'rules'=>array(
+                    '<controller:\w+>/<id:\d+>'=>'<controller>/view',
+                    '<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                    '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                ),
             ),
-        ),
-         */
-        /*
-        'db'=>array(
-            'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-        ),
-        // uncomment the following to use a MySQL database
-         */
             'errorHandler'=>array(
                 // use 'site/error' action to display errors
                 'errorAction'=>'site/error',
@@ -54,12 +49,6 @@ return CMap::mergeArray(
                         'class'=>'CFileLogRoute',
                         'levels'=>'error, warning',
                     ),
-                    // uncomment the following to show log messages on web pages
-                /*
-                array(
-                    'class'=>'CWebLogRoute',
-                ),
-                 */
                 ),
             ),
         ),
@@ -69,6 +58,7 @@ return CMap::mergeArray(
         'params'=>array(
             // this is used in contact page
             'adminEmail'=>'casatwy@msn.com',
+            'companyName'=>'上海星位针织有限公司',
         ),
     )
 );

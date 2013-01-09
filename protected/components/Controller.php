@@ -14,10 +14,35 @@ class Controller extends CController
 	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
 	 */
 	public $menu=array();
-	/**
-	 * @var array the breadcrumbs of the current page. The value of this property will
-	 * be assigned to {@link CBreadcrumbs::links}. Please refer to {@link CBreadcrumbs::links}
-	 * for more details on how to specify this property.
-	 */
-	public $breadcrumbs=array();
+
+    public $cs = null;
+
+    public $baseUrl = null;
+
+    public $jsUrl = null;
+
+    public function init(){
+        parent::init();
+        $this->baseUrl = Yii::app()->request->getBaseUrl(true);
+        $this->cs = Yii::app()->clientScript;
+
+        $this->cs->packages = array(
+            'jquery'=>array(
+                'basePath' => 'webroot.js.libs',
+                'baseUrl' => $this->baseUrl.'/js/libs/',
+                'js' => array('jquery-1.8.3.min.js')
+            ),
+            'jqueryPlugins' => array(
+                'basePath' => 'webroot.js.libs.plugins',
+                'baseUrl' => $this->baseUrl.'/js/libs/plugins',
+                'js' => array('colorbox/jquery.colorbox-min.js'),
+                'css' => array('colorbox/colorbox.css'),
+                'depends' => array('jquery')
+            )
+        );
+        $this->cs->registerPackage('jquery');
+        $this->cs->registerPackage('jqueryPlugins');
+
+        $this->jsUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.app.'.$this->id)).'/';
+    }
 }
