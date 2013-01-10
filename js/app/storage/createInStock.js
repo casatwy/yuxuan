@@ -27,7 +27,7 @@ function CreateInStock(baseUrl){
     }
 
     function clickSaveRecord(actionItem){
-        alert("here i am");
+        var data = "";
     }
 
     function clickAddRecord(actionItem){
