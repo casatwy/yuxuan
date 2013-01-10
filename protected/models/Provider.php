@@ -1,19 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "product_provider".
+ * This is the model class for table "provider".
  *
- * The followings are the available columns in table 'product_provider':
+ * The followings are the available columns in table 'provider':
  * @property integer $id
  * @property string $name
  * @property string $location
  */
-class ProductProvider extends CActiveRecord
+class Provider extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ProductProvider the static model class
+	 * @return Provider the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -25,7 +25,7 @@ class ProductProvider extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'product_provider';
+		return 'provider';
 	}
 
 	/**
