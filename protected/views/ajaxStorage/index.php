@@ -1,9 +1,6 @@
 <?php
 /* @var $this AjaxStorageController */
 
-$this->breadcrumbs=array(
-	'Ajax Storage',
-);
 ?>
 <h1><?php echo $this->id . '/' . $this->action->id; ?></h1>
 

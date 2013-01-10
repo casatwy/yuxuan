@@ -9,13 +9,13 @@
             <?php endforeach;?>
         </select>
         <span class="J_content">
-            <span>货号:<input type="text"></input></span>
-            <span>色号:<input type="text"></input></span>
-            <span>颜色:<input type="text"></input></span>
+            <span>货号:<input type="text" class="J_goodsNumber"></input></span>
+            <span>色号:<input type="text" class="J_colorNumber"></input></span>
+            <span>颜色:<input type="text" class="J_colorName"></input></span>
+            <span>支数:<input type="text" class="J_zhiCount"></input></span>
             <br />
-            <span>支数:<input type="text"></input></span>
-            <span>缸号:<input type="text"></input></span>
-            <span>重量(kg):<input type="text"></input></span>
+            <span>缸号:<input type="text" class="J_gangNumber"></input></span>
+            <span>重量(kg):<input type="text" class="J_weight"></input></span>
             <button class="J_deleteRecord">删除</button>
         </span>
     </div>
@@ -26,26 +26,26 @@
 </div>
 
 <span type="hidden" id="J_maosha" style="display:none;">
-    <span>货号:<input type="text"></input></span>
-    <span>色号:<input type="text"></input></span>
-    <span>颜色:<input type="text"></input></span>
-    <span>支数:<input type="text"></input></span>
+    <span>货号:<input type="text" class="J_goodsNumber"></input></span>
+    <span>色号:<input type="text" class="J_colorNumber"></input></span>
+    <span>颜色:<input type="text" class="J_colorName"></input></span>
+    <span>支数:<input type="text" class="J_zhiCount"></input></span>
     <br />
-    <span>缸号:<input type="text"></input></span>
-    <span>重量(kg):<input type="text"></input></span>
+    <span>缸号:<input type="text" class="J_gangNumber"></input></span>
+    <span>重量(kg):<input type="text" class="J_weight"></input></span>
     <button class="J_deleteRecord">删除</button>
 </span>
 
 <span type="hidden" id="J_other" style="display:none;">
-    <span>货号:<input type="text"></input></span>
-    <span>色号:<input type="text"></input></span>
-    <span>颜色:<input type="text"></input></span>
-    <span>支数:<input type="text"></input></span>
+    <span>货号:<input type="text" class="J_goodsNumber"></input></span>
+    <span>色号:<input type="text" class="J_colorNumber"></input></span>
+    <span>颜色:<input type="text" class="J_colorName"></input></span>
+    <span>支数:<input type="text" class="J_zhiCount"></input></span>
     <br />
-    <span>缸号:<input type="text"></input></span>
-    <span>重量(kg):<input type="text"></input></span>
-    <span>针型:<input type="text"></input></span>
-    <span>尺码:<input type="text"></input></span>
-    <span>数量:<input type="text"></input></span>
+    <span>缸号:<input type="text" class="J_gangNumber"></input></span>
+    <span>重量(kg):<input type="text" class="J_weight"></input></span>
+    <span>针型:<input type="text" class="J_needleType"></input></span>
+    <span>尺码:<input type="text" class="J_size"></input></span>
+    <span>数量:<input type="text" class="J_quentity"></input></span>
     <button class="J_deleteRecord">删除</button>
 </span>

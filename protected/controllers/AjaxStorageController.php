@@ -7,7 +7,7 @@ class AjaxStorageController extends Controller
 		$this->render('index');
 	}
 
-    public function actionAjaxsaveinstock(){
-        var_dump($_POST);
+    public function actionSaveinstock(){
+        echo 1;
     }
 }

@@ -32,25 +32,31 @@ class Controller extends CController
                 'baseUrl' => $this->baseUrl.'/js/libs/',
                 'js' => array('jquery-1.8.3.min.js')
             ),
+
+            'jqueryPlugins' => array(
+                'basePath' => 'webroot.js.libs.plugins',
+                'baseUrl' => $this->baseUrl.'/js/libs/plugins',
+                'js' => array(
+                    'jquery.json-2.4.min.js',
+                    'jgrowl/jquery.jgrowl_minimized.js',
+                ),
+                'css' => array(
+                    'jgrowl/jquery.jgrowl.css'
+                ),
+                'depends' => array('jquery')
+            ),
+
             'underscore'=>array(
                 'basePath' => 'webroot.js.libs',
                 'baseUrl' => $this->baseUrl.'/js/libs/',
                 'js' => array('underscore-min.js')
             ),
-            'jqueryPlugins' => array(
-                'basePath' => 'webroot.js.libs.plugins',
-                'baseUrl' => $this->baseUrl.'/js/libs/plugins',
-                'js' => array('colorbox/jquery.colorbox-min.js'),
-                'css' => array('colorbox/colorbox.css'),
-                'depends' => array('jquery')
-            )
         );
         $this->cs->registerPackage('jquery');
         $this->cs->registerPackage('jqueryPlugins');
         $this->cs->registerPackage('underscore');
 
         $this->jsUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.app.'.$this->id)).'/';
-        //$this->jsUrl = $this->baseUrl.Yii::app()->assetManager->getPublishedUrl(Yii::getPathOfAlias('webroot.js.app.'.$this->id), true).'/';
         Yii::app()->user->setReturnUrl('/storage/resource');
     }
 }

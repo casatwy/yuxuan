@@ -27,7 +27,39 @@ function CreateInStock(baseUrl){
     }
 
     function clickSaveRecord(actionItem){
-        var data = "";
+        var data = new Array();
+
+        $(".J_row").each(function(index, value){
+            var item = new Object();
+            item["type"] = $(value).find(".J_type").val();
+            item["goods_number"] =$(value).find(".J_goodsNumber").val();
+            item["color_number"] =$(value).find(".J_colorNumber").val();
+            item["color_name"] =$(value).find(".J_colorName").val();
+            item["zhi_count"] =$(value).find(".J_zhiCount").val();
+            item["gang_number"] =$(value).find(".J_gangNumber").val();
+            item["weight"] =$(value).find(".J_weight").val();
+            if(item["type"] !== "1"){
+                item["needle_type"] =$(value).find(".J_needleType").val();
+                item["size"] =$(value).find(".J_size").val();
+                item["quantity"] =$(value).find(".J_quentity").val();
+            }
+            data.push(item);
+        });
+        data = $.toJSON(data);
+
+        $.post(baseUrl+'/ajaxStorage/saveinstock', function(data){
+            if(data == "1"){
+                $.jGrowl("保存成功！2秒后跳转。", {
+                    header:"保存成功",
+                    life:2000,
+                    close:function(){
+                        window.location.href = baseUrl + "/storage/instock";
+                    }
+                });
+            }else{
+                $.jGrowl("保存失败，请检查数据。", {header:"保存失败"});
+            }
+        });
     }
 
     function clickAddRecord(actionItem){
@@ -54,6 +86,5 @@ function CreateInStock(baseUrl){
             html = $("#J_other").html();
         }
         actionItem.siblings(".J_content").html(html);
-        //actionItem.siblings(".J_content").html(html);
     }
 }
