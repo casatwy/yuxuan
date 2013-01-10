@@ -44,6 +44,11 @@ class SiteController extends Controller
      */
     public function actionLogin()
     {
+        if(!Yii::app()->user->isGuest){
+            $this->redirect(Yii::app()->user->returnUrl);
+            Yii::app()->end();
+        }
+
         $loginForm=new LoginForm;
 
         // if it is ajax validation request
@@ -58,8 +63,9 @@ class SiteController extends Controller
         {
             $loginForm->attributes=$_POST['LoginForm'];
             // validate user input and redirect to the previous page if valid
-            if($loginForm->validate() && $loginForm->login())
+            if($loginForm->validate() && $loginForm->login()){
                 $this->redirect(Yii::app()->user->returnUrl);
+            }
         }
 
         //fetch names from database

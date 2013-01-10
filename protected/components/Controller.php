@@ -44,5 +44,7 @@ class Controller extends CController
         $this->cs->registerPackage('jqueryPlugins');
 
         $this->jsUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.app.'.$this->id)).'/';
+        //$this->jsUrl = $this->baseUrl.Yii::app()->assetManager->getPublishedUrl(Yii::getPathOfAlias('webroot.js.app.'.$this->id), true).'/';
+        Yii::app()->user->setReturnUrl('/storage/resource');
     }
 }
