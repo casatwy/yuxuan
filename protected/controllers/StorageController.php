@@ -46,6 +46,7 @@ class StorageController extends Controller
 
     public function actionCreateinstock(){
         $type = Type::model()->findAll();
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
         $this->render("createInStock", array(
             'type' => $type,
@@ -54,6 +55,7 @@ class StorageController extends Controller
 
     public function actionCreateoutstock(){
         $type = Type::model()->findAll();
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."createOutStock.js");
         $this->render("createOutStock",array(
             'type' => $type,
