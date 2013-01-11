@@ -45,21 +45,21 @@ function CreateInStock(baseUrl){
             }
             data.push(item);
         });
-        data = $.toJSON(data);
 
-        $.post(baseUrl+'/ajaxStorage/saveinstock', function(data){
-            if(data == "1"){
-                $.jGrowl("保存成功！2秒后跳转。", {
+        data = $.toJSON(data);
+        $.post(baseUrl+'/ajaxStorage/saveinstock', {data:data}, function(result){
+            if(result['success'] == "1"){
+                $.jGrowl("保存成功！", {
                     header:"保存成功",
                     life:2000,
-                    close:function(){
-                        window.location.href = baseUrl + "/storage/instock";
+                    beforeOpen:function(){
+                        $("#J_container").html(result["content"]);
                     }
                 });
             }else{
                 $.jGrowl("保存失败，请检查数据。", {header:"保存失败"});
             }
-        });
+        }, 'json');
     }
 
     function clickAddRecord(actionItem){

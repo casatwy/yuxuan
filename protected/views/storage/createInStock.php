@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="J_container">
     <h5>客户：<a href="javascript:void(0);" id="J_selectProvider">点击选择客户</a></h5>
     <div class="J_row">
         <br />

@@ -8,6 +8,14 @@ class AjaxStorageController extends Controller
 	}
 
     public function actionSaveinstock(){
-        echo 1;
+
+        var_dump($_POST);die();
+
+        $result = array(
+            "success" => 1,
+            "content" => "here i am"
+        );
+
+        echo CJSON::encode($result);
     }
 }
