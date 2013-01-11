@@ -16,7 +16,7 @@ class StorageController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('resource', 'instock', 'createinstock'),
+                'actions' => array('index', 'resource', 'instock', 'createinstock'),
                 'users' => array('@')
             ),
             array(
@@ -24,6 +24,10 @@ class StorageController extends Controller
                 'users' => array('*')
             ),
         );
+    }
+
+    public function actionIndex(){
+        echo time();
     }
 
     public function actionResource()
