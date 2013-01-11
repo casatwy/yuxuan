@@ -39,10 +39,10 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('silk_id, needle_type, size, goods_number, diaoxian', 'required'),
+			array('silk_id, needle_type, size, goods_number', 'required'),
 			array('silk_id, goods_number', 'numerical', 'integerOnly'=>true),
-			array('id, size, diaoxian', 'length', 'max'=>20),
 			array('needle_type', 'length', 'max'=>10),
+			array('size, diaoxian', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, silk_id, needle_type, size, goods_number, diaoxian', 'safe', 'on'=>'search'),
