@@ -15,7 +15,7 @@ class AjaxStorageController extends Controller
         //    "content" => "可打印表单"
         //);
         //echo CJSON::encode($result);
-        Yii::app()->end();
+        //Yii::app()->end();
 
         $receiveRecord = new ReceiveRecord;
         $receiveRecord->record_time = time();
@@ -40,6 +40,7 @@ class AjaxStorageController extends Controller
 
         $result = array(
             "success" => 1,
+            //@todo render partial
             "content" => "here i am"
         );
 

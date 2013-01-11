@@ -26,6 +26,10 @@ class StorageController extends Controller
         );
     }
 
+    public function actionIndex(){
+        echo time();
+    }
+
     public function actionResource()
     {
         $this->render("resource");
