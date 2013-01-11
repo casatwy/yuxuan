@@ -7,8 +7,7 @@
  * @property string $id
  * @property string $record_time
  * @property string $record_maker
- * @property integer $silk_provider_id
- * @property integer $deliver_produce_id
+ * @property integer $provider_id
  */
 class DeliverRecord extends CActiveRecord
 {
@@ -38,12 +37,12 @@ class DeliverRecord extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('record_time, record_maker, silk_provider_id', 'required'),
-			array('silk_provider_id, deliver_produce_id', 'numerical', 'integerOnly'=>true),
+			array('record_time, record_maker', 'required'),
+			array('provider_id', 'numerical', 'integerOnly'=>true),
 			array('id, record_maker', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, record_time, record_maker, silk_provider_id, deliver_produce_id', 'safe', 'on'=>'search'),
+			array('id, record_time, record_maker, provider_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,8 +66,7 @@ class DeliverRecord extends CActiveRecord
 			'id' => 'ID',
 			'record_time' => 'Record Time',
 			'record_maker' => 'Record Maker',
-			'silk_provider_id' => 'Silk Provider',
-			'deliver_produce_id' => 'Deliver Produce',
+			'provider_id' => 'Provider',
 		);
 	}
 
@@ -86,8 +84,7 @@ class DeliverRecord extends CActiveRecord
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('record_time',$this->record_time,true);
 		$criteria->compare('record_maker',$this->record_maker,true);
-		$criteria->compare('silk_provider_id',$this->silk_provider_id);
-		$criteria->compare('deliver_produce_id',$this->deliver_produce_id);
+		$criteria->compare('provider_id',$this->provider_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

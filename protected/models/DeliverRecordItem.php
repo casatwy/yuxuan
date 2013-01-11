@@ -43,8 +43,8 @@ class DeliverRecordItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, type, item_id, weight, quantity, goods_number, record_id, record_time, record_maker, provider_id', 'required'),
-			array('id, type, quantity, goods_number, provider_id', 'numerical', 'integerOnly'=>true),
+			array('type, item_id, weight, quantity, goods_number, record_id, record_time, record_maker, provider_id', 'required'),
+			array('type, quantity, goods_number, provider_id', 'numerical', 'integerOnly'=>true),
 			array('weight', 'numerical'),
 			array('item_id, record_id, record_maker', 'length', 'max'=>20),
 			// The following rule is used by search().
