@@ -51,14 +51,14 @@ function CreateInStock(baseUrl){
         $.post(baseUrl+'/ajaxStorage/saveinstock', {data:data}, function(result){
             if(result['success'] == "1"){
                 $.jGrowl("保存成功！", {
-                    header:"保存成功",
+                    header:"反馈",
                     life:2000,
                     beforeOpen:function(){
                         $("#J_container").html(result["content"]);
                     }
                 });
             }else{
-                $.jGrowl("保存失败，请检查数据。", {header:"保存失败"});
+                $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
             }
         }, 'json');
     }
@@ -73,7 +73,7 @@ function CreateInStock(baseUrl){
 
     function clickDeleteRecord(actionItem){
         if(parseInt($(".J_row").length) == 1){
-            alert("至少要保留一行。");
+            $.jGrowl("至少要保留一行。", {header:"提示"});
         }else{
             actionItem.closest(".J_row").remove();
         }
