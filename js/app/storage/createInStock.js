@@ -27,7 +27,8 @@ function CreateInStock(baseUrl){
     }
 
     function clickSaveRecord(actionItem){
-        //emptyElements = $("input:empty");
+        //emptyElements = $("input");
+        //console.log(emptyElements);
         //if(emptyElements.length > 0){
         //    $.jGrowl("请填写空白处！", {
         //        header:"提示",
@@ -36,6 +37,8 @@ function CreateInStock(baseUrl){
         //    //emptyElements.addClass("error");
         //    return 0;
         //}
+        //return 0;
+
         var data = new Array();
 
         $(".J_row").each(function(index, value){

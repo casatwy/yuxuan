@@ -14,23 +14,12 @@ class m130111_083313_create_order_list_table extends CDbMigration
         `receivable` bigint(20) DEFAULT NULL,
         PRIMARY KEY (`id`)
         ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;";
-        Yii::app()->db->createCommand($sql)->execute();
+        return Yii::app()->db->createCommand($sql)->execute();
 	}
 
 	public function down()
 	{
-		echo "m130111_083313_create_order_list_table does not support migration down.\n";
-		return false;
+        $sql = "DROP TABLE IF EXISTS `order_list`;";
+        return Yii::app()->db->createCommand($sql)->execute();
 	}
-
-	/*
-	// Use safeUp/safeDown to do migration with transaction
-	public function safeUp()
-	{
-	}
-
-	public function safeDown()
-	{
-	}
-	*/
 }
