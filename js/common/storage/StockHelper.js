@@ -25,7 +25,33 @@ function StockHelper(baseUrl){
         actionItem.siblings(".J_content").html(html);
     };
 
+    //@todo
     this.checkEmptyInput = function(){
         return true;
+    };
+
+    this.clickLocation = function(actionItem){
+        var providerLocation = actionItem.text();
+        $(".J_providerList[location!="+providerLocation+"]").hide();
+        $(".J_providerList[location="+providerLocation+"]").show();
+    };
+
+    this.selectProvider = function(actionItem){
+        $("#J_selectProvider").attr("provider", actionItem.attr("provider-id"));
+        $("#J_selectProvider").text(actionItem.text());
+        $.fancybox.close();
+    };
+
+    this.submitProvider = function(actionItem){
+        var providerName = $("#J_providerName").val();
+        var data = {
+            "providerName":providerName,
+            "providerLocation":$("#J_providerLocation").val(),
+        };
+        $.post(baseUrl+"/ajaxStorage/saveprovider", {data:data}, function(result){
+            $("#J_selectProvider").attr("provider", result["id"]);
+            $("#J_selectProvider").text(result["name"]);
+            $.fancybox.close();
+        },'json');
     };
 }

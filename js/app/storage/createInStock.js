@@ -37,6 +37,18 @@ function CreateInStock(baseUrl){
         $(".J_type").live('change', function(){
             stockHelper.changeType($(this));
         });
+
+        $(".J_location").bind('click', function(){
+            stockHelper.clickLocation($(this));
+        });
+
+        $(".J_provider").bind('click', function(){
+            stockHelper.selectProvider($(this));
+        });
+
+        $("#J_submitProvider").bind('click', function(){
+            stockHelper.submitProvider($(this));
+        });
     }
 
     function clickSaveRecord(actionItem){

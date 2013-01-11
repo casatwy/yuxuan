@@ -122,4 +122,26 @@ class AjaxStorageController extends Controller
         }
         return $product->id;
     }
+
+    public function actionSaveprovider(){
+        $condition = "name=:name and location=:location;";
+        $params = array(
+            ":name" => htmlspecialchars($_POST["data"]["providerName"]),
+            ":location" => htmlspecialchars($_POST["data"]["providerLocation"]),
+        );
+        $provider = Provider::model()->find($condition, $params);
+
+        if(is_null($provider)){
+            $provider = new Provider;
+            $provider->name = htmlspecialchars($_POST["data"]["providerName"]);
+            $provider->location = htmlspecialchars($_POST["data"]["providerLocation"]);
+            $provider->save();
+        }
+
+        echo CJSON::encode(array(
+            'id' => $provider->id,
+            'name' => $provider->name,
+        ));
+        Yii::app()->end();
+    }
 }
