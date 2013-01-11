@@ -9,15 +9,15 @@ class AjaxStorageController extends Controller
 
     public function actionSaveoutstock(){
         $data = CJSON::decode($_POST['data']);
+
         $deliverRecord = new DeliverRecord;
         $deliverRecord->record_time = time();
         $deliverRecord->record_maker = Yii::app()->user->getState('name');
         $deliverRecord->provider_id = $data[0]['provider_id'];
         $deliverRecord->save();
-        
-        $deliverRecordItem = new DeliverRecordItem;
 
         foreach($data as $item){
+            $deliverRecordItem = new DeliverRecordItem;
             $deliverRecordItem->item_id = $this->getItemId($item);
             $deliverRecordItem->type = $item['type'];
             $deliverRecordItem->weight = $item['weight'];
