@@ -33,6 +33,7 @@ class AjaxStorageController extends Controller
             $receiveRecordItem->record_id = $receiveRecord->id;
             $receiveRecordItem->record_time = $receiveRecord->record_time;
             $receiveRecordItem->record_maker = $receiveRecord->record_maker;
+            $receiveRecordItem->provider_id = $receiveRecord->provider_id;
 
             //storage is also saved in the afterSave() of ReceiveRecordItem.
             $receiveRecordItem->save();
@@ -65,17 +66,16 @@ class AjaxStorageController extends Controller
             $silk->color_name = $item['color_name'];
             $silk->gang_number = $item['gang_number'];
             $silk->goods_number = $item['goods_number'];
-            $sile->save();
+            $silk->save();
         }
         if($item["type"] == 1){
             return $silk->id;
         }
 
         $condition = 'goods_number=:goods_number and '
-            .'silk_id=:silk_id and '
-            .'needle_type=:needle_type and'
-            .'size=:size and '
-            .'goods_number=:goods_number';
+                    .'silk_id=:silk_id and '
+                    .'needle_type=:needle_type and '
+                    .'size=:size';
         $params = array(
             ":silk_id" => $silk->id,
             ":needle_type" => $item["needle_type"],

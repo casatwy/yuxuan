@@ -7,12 +7,13 @@
  * @property integer $id
  * @property string $item_id
  * @property integer $type
- * @property integer $quantity
  * @property integer $goods_number
  * @property double $total_weight
  * @property integer $total_count
  * @property double $delivered_weight
  * @property integer $delivered_count
+ * @property double $received_weight
+ * @property integer $received_count
  */
 class Storage extends CActiveRecord
 {
@@ -42,13 +43,13 @@ class Storage extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('item_id, type, quantity, goods_number, total_weight, total_count, delivered_weight, delivered_count', 'required'),
-			array('type, quantity, goods_number, total_count, delivered_count', 'numerical', 'integerOnly'=>true),
-			array('total_weight, delivered_weight', 'numerical'),
+			array('item_id, type, goods_number, total_weight, total_count, delivered_weight, delivered_count, received_weight, received_count', 'required'),
+			array('type, goods_number, total_count, delivered_count, received_count', 'numerical', 'integerOnly'=>true),
+			array('total_weight, delivered_weight, received_weight', 'numerical'),
 			array('item_id', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, item_id, type, quantity, goods_number, total_weight, total_count, delivered_weight, delivered_count', 'safe', 'on'=>'search'),
+			array('id, item_id, type, goods_number, total_weight, total_count, delivered_weight, delivered_count, received_weight, received_count', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,12 +73,13 @@ class Storage extends CActiveRecord
 			'id' => 'ID',
 			'item_id' => 'Item',
 			'type' => 'Type',
-			'quantity' => 'Quantity',
 			'goods_number' => 'Goods Number',
 			'total_weight' => 'Total Weight',
 			'total_count' => 'Total Count',
 			'delivered_weight' => 'Delivered Weight',
 			'delivered_count' => 'Delivered Count',
+			'received_weight' => 'Received Weight',
+			'received_count' => 'Received Count',
 		);
 	}
 
@@ -95,12 +97,13 @@ class Storage extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('item_id',$this->item_id,true);
 		$criteria->compare('type',$this->type);
-		$criteria->compare('quantity',$this->quantity);
 		$criteria->compare('goods_number',$this->goods_number);
 		$criteria->compare('total_weight',$this->total_weight);
 		$criteria->compare('total_count',$this->total_count);
 		$criteria->compare('delivered_weight',$this->delivered_weight);
 		$criteria->compare('delivered_count',$this->delivered_count);
+		$criteria->compare('received_weight',$this->received_weight);
+		$criteria->compare('received_count',$this->received_count);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

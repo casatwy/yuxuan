@@ -27,16 +27,15 @@ function CreateInStock(baseUrl){
     }
 
     function clickSaveRecord(actionItem){
-        emptyElements = $("input:empty");
-        console.log(emptyElements);
-        if(emptyElements.length > 0){
-            $.jGrowl("请填写空白处！", {
-                header:"提示",
-                life:2000
-            });
-            //emptyElements.addClass("error");
-            return 0;
-        }
+        //emptyElements = $("input:empty");
+        //if(emptyElements.length > 0){
+        //    $.jGrowl("请填写空白处！", {
+        //        header:"提示",
+        //        life:2000
+        //    });
+        //    //emptyElements.addClass("error");
+        //    return 0;
+        //}
         var data = new Array();
 
         $(".J_row").each(function(index, value){
