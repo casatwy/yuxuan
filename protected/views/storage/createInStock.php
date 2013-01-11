@@ -1,5 +1,5 @@
 <div class="container" id="J_container">
-    <h5>客户：<a href="javascript:void(0);" id="J_selectProvider" privider="123">点击选择客户</a></h5>
+    <h5>客户：<a href="#J_pageForSelectProvider" id="J_selectProvider" privider="123">点击选择客户</a></h5>
     <div class="J_row">
         <br />
         类型:
@@ -48,4 +48,8 @@
     <span>尺码:<input type="text" class="J_size"></input></span>
     <span>数量:<input type="text" class="J_quentity"></input></span>
     <button class="J_deleteRecord">删除</button>
+</span>
+
+<span id="J_pageForSelectProvider" style="display:none;">
+    this is a test.
 </span>

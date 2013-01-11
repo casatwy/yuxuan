@@ -1,6 +1,15 @@
 $(document).ready(function(){
     var page = new CreateInStock($("#J_baseUrl").val());
     page.init();
+    $("#J_selectProvider").fancybox({
+        //centerOnScroll      :   true,
+        //hideOnOverlayClick  :   false,
+        //showNavArrows       :   false,
+        //enableEscapeButton  :   false,
+        //showCloseButton     :   false,
+        //onCleanup           :   function(){alert("here i am");},
+        //onStart             :   function(){alert("here i am");},
+    });
 });
 
 function CreateInStock(baseUrl){
@@ -12,6 +21,7 @@ function CreateInStock(baseUrl){
     };
 
     function bindEvent(){
+
         $("#J_saveRecord").bind('click', function(){
             clickSaveRecord($(this));
         });
@@ -26,10 +36,6 @@ function CreateInStock(baseUrl){
 
         $(".J_type").live('change', function(){
             stockHelper.changeType($(this));
-        });
-
-        $("#J_selectProvider").click(function(){
-            stockHelper.clickSelectProvider($(this));
         });
     }
 

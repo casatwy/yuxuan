@@ -52,8 +52,8 @@ class AjaxStorageController extends Controller
         $receiveRecord->provider_id = $data[0]["provider_id"];
         $receiveRecord->save();
 
-        $receiveRecordItem = new ReceiveRecordItem;
         foreach($data as $item){
+            $receiveRecordItem = new ReceiveRecordItem;
             $receiveRecordItem->item_id = $this->getItemId($item);
             $receiveRecordItem->type = $item['type'];
             $receiveRecordItem->weight = $item['weight'];
