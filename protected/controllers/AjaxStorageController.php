@@ -10,7 +10,12 @@ class AjaxStorageController extends Controller
     public function actionSaveinstock(){
         $data = CJSON::decode($_POST['data']);
 
-        var_dump($data);die();
+        //$result = array(
+        //    "success" => 1,
+        //    "content" => "可打印表单"
+        //);
+        //echo CJSON::encode($result);
+        //Yii::app()->end();
 
         $receiveRecord = new ReceiveRecord;
         $receiveRecord->record_time = time();
@@ -28,9 +33,11 @@ class AjaxStorageController extends Controller
             $receiveRecordItem->record_id = $receiveRecord->id;
             $receiveRecordItem->record_time = $receiveRecord->record_time;
             $receiveRecordItem->record_maker = $receiveRecord->record_maker;
+
+            //storage is also saved in the afterSave() of ReceiveRecordItem.
             $receiveRecordItem->save();
         }
-//@todo need to save to storage and figure out the diaoxian
+
         $result = array(
             "success" => 1,
             "content" => "here i am"

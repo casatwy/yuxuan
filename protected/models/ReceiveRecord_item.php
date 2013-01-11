@@ -109,4 +109,24 @@ class ReceiveRecord_item extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function afterSave(){
+        $condition = "type=:type and item_id=:item_id";
+        $params = array(
+            ":type" => $this->type,
+            ":item_id" => $this->item_id
+        );
+        $storage = Storage::model()->find($condition, $params);
+        if(is_null($storage)){
+            $storage = new Storage;
+            $storage->item_id = $this->item_id;
+            $storage->type = $this->type;
+            $storage->goods_number = $this->goods_number;
+            $storage->total_weight = $this->weight;
+            $storage->total_count = $this->quantity;
+        }
+        $storage->received_weight += $this->weight;
+        $storage->received_count += $this->quantity;
+        $storage->save();
+    }
 }
