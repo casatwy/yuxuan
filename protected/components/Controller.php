@@ -52,10 +52,28 @@ class Controller extends CController
                 'baseUrl' => $this->baseUrl.'/js/libs/',
                 'js' => array('underscore-min.js')
             ),
+
+            'fancybox'=>array(
+                'basePath' => 'webroot.js.libs.plugins.fancybox',
+                'baseUrl' => $this->baseUrl.'/js/libs/plugins/fancybox',
+                'js' => array(
+                    'jquery.fancybox.pack.js',
+                    'helpers/jquery.fancybox-buttons.js',
+                    'helpers/jquery.fancybox-media.js',
+                    'helpers/jquery.fancybox-thumbs.js',
+                ),
+                'css' => array(
+                    'jquery.fancybox.css',
+                    'helpers/jquery.fancybox-buttons.css',
+                    'helpers/jquery.fancybox-thumbs.css',
+                ),
+                'depends' => array('jquery')
+            ),
         );
         $this->cs->registerPackage('jquery');
         $this->cs->registerPackage('jqueryPlugins');
         $this->cs->registerPackage('underscore');
+        $this->cs->registerPackage('fancybox');
 
         $this->jsUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.app.'.$this->id)).'/';
         $this->jsCommon = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.common.'.$this->id)).'/';

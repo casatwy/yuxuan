@@ -28,4 +28,8 @@ function StockHelper(baseUrl){
     this.checkEmptyInput = function(){
         return true;
     };
+
+    this.clickSelectProvider = function(actionItem){
+        $("#J_selectProvider").fancybox();
+    };
 }

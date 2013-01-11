@@ -9,7 +9,7 @@ function CreateInStock(baseUrl){
     this.init = function(){
         $("a[href='/storage/instock']").closest("li").addClass("active");
         bindEvent();
-    }
+    };
 
     function bindEvent(){
         $("#J_saveRecord").bind('click', function(){
@@ -26,6 +26,10 @@ function CreateInStock(baseUrl){
 
         $(".J_type").live('change', function(){
             stockHelper.changeType($(this));
+        });
+
+        $("#J_selectProvider").click(function(){
+            stockHelper.clickSelectProvider($(this));
         });
     }
 
