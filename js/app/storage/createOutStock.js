@@ -7,7 +7,6 @@ function CreateInStock(baseUrl){
     stockHelper = new StockHelper(baseUrl);
 
     this.init = function(){
-        $("a[href='/storage/instock']").closest("li").addClass("active");
         $("a[href='/storage/outstock']").closest("li").addClass("active");
         bindEvent();
     }
