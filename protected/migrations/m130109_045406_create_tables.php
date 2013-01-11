@@ -6,7 +6,7 @@ class m130109_045406_create_tables extends CDbMigration
 	{
         $sql = "DROP TABLE IF EXISTS `deliver_record`;
                 CREATE TABLE IF NOT EXISTS `deliver_record` (
-                    `id` bigint(20) NOT NULL DEFAULT '10000000',
+                    `id` bigint(20) NOT NULL AUTO_INCREMENT,
                     `record_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                     `record_maker` varchar(20) COLLATE utf8_bin NOT NULL,
                     `silk_provider_id` int(11) NOT NULL,
@@ -15,16 +15,16 @@ class m130109_045406_create_tables extends CDbMigration
                     KEY `record_time` (`record_time`),
                     KEY `deliver_produce_id` (`deliver_produce_id`),
                     KEY `silk_provider_id` (`silk_provider_id`)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1000000 ;";
         Yii::app()->db->createCommand($sql)->execute();
 
         $sql = "DROP TABLE IF EXISTS `deliver_record_item`;
                 CREATE TABLE IF NOT EXISTS `deliver_record_item` (
-                    `id` int(11) NOT NULL,
+                    `id` int(11) NOT NULL AUTO_INCREMENT,
                     `type` tinyint(4) NOT NULL,
                     `item_id` bigint(20) NOT NULL,
                     `weight` float NOT NULL,
-                    `quantity` int(11) NOT NULL COMMENT '产品是数量，毛纱是支数',
+                    `quantity` int(11) NOT NULL,
                     `goods_number` int(11) NOT NULL,
                     `record_id` bigint(20) NOT NULL,
                     `record_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -33,12 +33,12 @@ class m130109_045406_create_tables extends CDbMigration
                     PRIMARY KEY (`id`),
                     KEY `goods_number` (`goods_number`),
                     KEY `item` (`type`,`item_id`)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;";
         Yii::app()->db->createCommand($sql)->execute();
 
         $sql = "DROP TABLE IF EXISTS `history_product`;
                 CREATE TABLE IF NOT EXISTS `history_product` (
-                    `id` bigint(20) NOT NULL DEFAULT '1000000',
+                    `id` bigint(20) NOT NULL AUTO_INCREMENT,
                     `silk_id` int(11) NOT NULL,
                     `needle_type` varchar(10) COLLATE utf8_bin NOT NULL,
                     `size` varchar(20) COLLATE utf8_bin NOT NULL,
@@ -46,19 +46,19 @@ class m130109_045406_create_tables extends CDbMigration
                     `diaoxian` varchar(20) COLLATE utf8_bin NOT NULL,
                     PRIMARY KEY (`id`),
                     KEY `goods_number` (`goods_number`)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1000000 ;";
         Yii::app()->db->createCommand($sql)->execute();
 
         $sql = "DROP TABLE IF EXISTS `history_silk`;
                 CREATE TABLE IF NOT EXISTS `history_silk` (
-                    `id` bigint(20) NOT NULL DEFAULT '1000000',
+                    `id` bigint(20) NOT NULL AUTO_INCREMENT,
                     `color_number` int(11) NOT NULL,
                     `color_name` varchar(20) COLLATE utf8_bin NOT NULL,
                     `gang_number` varchar(20) COLLATE utf8_bin NOT NULL,
                     `goods_number` int(11) NOT NULL,
                     PRIMARY KEY (`id`),
                     KEY `goods_number` (`goods_number`) USING BTREE
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1000000 ;";
         Yii::app()->db->createCommand($sql)->execute();
 
         $sql = "DROP TABLE IF EXISTS `history_storage`;
@@ -80,7 +80,7 @@ class m130109_045406_create_tables extends CDbMigration
 
         $sql = "DROP TABLE IF EXISTS `product`;
                 CREATE TABLE IF NOT EXISTS `product` (
-                    `id` bigint(20) NOT NULL DEFAULT '1000000',
+                    `id` bigint(20) NOT NULL AUTO_INCREMENT,
                     `silk_id` int(11) NOT NULL,
                     `needle_type` varchar(10) COLLATE utf8_bin NOT NULL,
                     `size` varchar(20) COLLATE utf8_bin NOT NULL,
@@ -88,7 +88,7 @@ class m130109_045406_create_tables extends CDbMigration
                     `diaoxian` varchar(20) COLLATE utf8_bin NOT NULL,
                     PRIMARY KEY (`id`),
                     KEY `goods_number` (`goods_number`)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1000000 ;";
         Yii::app()->db->createCommand($sql)->execute();
 
         $sql = "DROP TABLE IF EXISTS `product_provider`;
@@ -102,23 +102,23 @@ class m130109_045406_create_tables extends CDbMigration
 
         $sql = "DROP TABLE IF EXISTS `receive_record`;
                 CREATE TABLE IF NOT EXISTS `receive_record` (
-                    `id` bigint(20) NOT NULL DEFAULT '10000000',
+                    `id` bigint(20) NOT NULL AUTO_INCREMENT,
                     `record_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
                     `record_maker` varchar(20) COLLATE utf8_bin NOT NULL,
                     `provider_id` int(11) NOT NULL,
                     PRIMARY KEY (`id`),
                     KEY `record_time` (`record_time`),
                     KEY `provider_id` (`provider_id`)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1000000 ;";
         Yii::app()->db->createCommand($sql)->execute();
 
         $sql = "DROP TABLE IF EXISTS `receive_record_item`;
                 CREATE TABLE IF NOT EXISTS `receive_record_item` (
-                    `id` int(11) NOT NULL,
+                    `id` int(11) NOT NULL AUTO_INCREMENT,
                     `type` tinyint(4) NOT NULL,
                     `item_id` bigint(20) NOT NULL,
                     `weight` float NOT NULL,
-                    `quantity` int(11) NOT NULL COMMENT '产品是数量，毛纱是支数',
+                    `quantity` int(11) NOT NULL,
                     `goods_number` int(11) NOT NULL,
                     `record_id` bigint(20) NOT NULL,
                     `record_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -127,12 +127,12 @@ class m130109_045406_create_tables extends CDbMigration
                     PRIMARY KEY (`id`),
                     KEY `goods_number` (`goods_number`),
                     KEY `item` (`type`,`item_id`)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;";
         Yii::app()->db->createCommand($sql)->execute();
 
         $sql = "DROP TABLE IF EXISTS `silk`;
                 CREATE TABLE IF NOT EXISTS `silk` (
-                    `id` bigint(20) NOT NULL DEFAULT '1000000',
+                    `id` bigint(20) NOT NULL AUTO_INCREMENT,
                     `color_number` int(11) NOT NULL,
                     `color_name` varchar(20) COLLATE utf8_bin NOT NULL,
                     `gang_number` varchar(20) COLLATE utf8_bin NOT NULL,
@@ -140,7 +140,7 @@ class m130109_045406_create_tables extends CDbMigration
                     `product_id` bigint(20) DEFAULT NULL,
                     PRIMARY KEY (`id`),
                     KEY `goods_number` (`goods_number`) USING BTREE
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1000000 ;";
         Yii::app()->db->createCommand($sql)->execute();
 
         $sql = "DROP TABLE IF EXISTS `silk_provider`;
@@ -177,7 +177,12 @@ class m130109_045406_create_tables extends CDbMigration
                     `password` varchar(45) COLLATE utf8_bin NOT NULL,
                     `authority` varchar(45) COLLATE utf8_bin NOT NULL,
                     PRIMARY KEY (`id`)
-                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;";
+                ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+                INSERT INTO `users` (`id`, `name`, `telephone`, `password`, `authority`) VALUES
+                (1, 'casa', '13636495946', '6752324b14fe3c3c8df0d973e5ae32ed', 'authority'),
+                (2, 'twy', '13636495946', '6752324b14fe3c3c8df0d973e5ae32ed', 'authority');
+                ";
         Yii::app()->db->createCommand($sql)->execute();
 
         return true;
