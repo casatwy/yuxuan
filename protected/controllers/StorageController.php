@@ -16,7 +16,7 @@ class StorageController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('resource', 'instock', 'createinstock'),
+                'actions' => array('resource', 'instock', 'outstock', 'createinstock', 'createoutstock'),
                 'users' => array('@')
             ),
             array(
@@ -31,6 +31,10 @@ class StorageController extends Controller
         $this->render("resource");
     }
 
+    public function actionOutstock(){
+        $this->render("outstock");
+    }
+
     public function actionInstock(){
         $this->cs->registerScriptFile($this->jsUrl."instock.js");
         $this->render("instock");
@@ -40,6 +44,14 @@ class StorageController extends Controller
         $type = Type::model()->findAll();
         $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
         $this->render("createInStock", array(
+            'type' => $type,
+        ));
+    }
+
+    public function actionCreateoutstock(){
+        $type = Type::model()->findAll();
+        $this->cs->registerScriptFile($this->jsUrl."createOutStock.js");
+        $this->render("createOutStock",array(
             'type' => $type,
         ));
     }
