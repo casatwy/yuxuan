@@ -141,6 +141,7 @@ class AjaxStorageController extends Controller
         echo CJSON::encode(array(
             'id' => $provider->id,
             'name' => $provider->name,
+            'location' => $provider->location,
         ));
         Yii::app()->end();
     }

@@ -21,11 +21,11 @@ function CreateInStock(baseUrl){
     }
 
     function bindEvent(){
-        $("#J_saveRecord").bind('click', function(){
+        $("#J_saveRecord").live('click', function(){
             clickSaveRecord($(this));
         });
         
-        $("#J_addRecord").bind('click', function(){
+        $("#J_addRecord").live('click', function(){
             stockHelper.clickAddRecord($(this));
         });
 
@@ -37,15 +37,15 @@ function CreateInStock(baseUrl){
             stockHelper.changeType($(this));
         });
 
-        $(".J_location").bind('click', function(){
+        $(".J_location").live('click', function(){
             stockHelper.clickLocation($(this));
         });
 
-        $(".J_provider").bind('click', function(){
+        $(".J_provider").live('click', function(){
             stockHelper.selectProvider($(this));
         });
 
-        $("#J_submitProvider").bind('click', function(){
+        $("#J_submitProvider").live('click', function(){
             stockHelper.submitProvider($(this));
         });
     }
