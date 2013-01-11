@@ -20,6 +20,7 @@ class Controller extends CController
     public $baseUrl = null;
 
     public $jsUrl = null;
+    public $jsCommon = null;
 
     public function init(){
         parent::init();
@@ -57,6 +58,7 @@ class Controller extends CController
         $this->cs->registerPackage('underscore');
 
         $this->jsUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.app.'.$this->id)).'/';
+        $this->jsCommon = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.common.'.$this->id)).'/';
         Yii::app()->user->setReturnUrl('/storage/resource');
     }
 }

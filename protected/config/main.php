@@ -27,7 +27,6 @@ return CMap::mergeArray(
                 // enable cookie-based authentication
                 'allowAutoLogin'=>true,
                 'loginUrl' => array('site/login'),
-                'returnUrl' => 'storage/resource',
                 'authTimeout' => 60*10,
             ),
             // uncomment the following to enable URLs in path-format

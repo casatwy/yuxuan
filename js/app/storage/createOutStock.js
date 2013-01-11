@@ -4,8 +4,11 @@ $(document).ready(function(){
 });
 
 function CreateInStock(baseUrl){
+    stockHelper = new StockHelper(baseUrl);
+
     this.init = function(){
         $("a[href='/storage/instock']").closest("li").addClass("active");
+        $("a[href='/storage/outstock']").closest("li").addClass("active");
         bindEvent();
     }
 
@@ -15,15 +18,15 @@ function CreateInStock(baseUrl){
         });
         
         $("#J_addRecord").bind('click', function(){
-            clickAddRecord($(this));
+            stockHelper.clickAddRecord($(this));
         });
 
         $(".J_deleteRecord").live('click', function(){
-            clickDeleteRecord($(this));
+            stockHelper.clickDeleteRecord($(this));
         });
 
         $(".J_type").live('change', function(){
-            changeType($(this));
+            stockHelper.changeType($(this));
         });
     }
 
@@ -39,6 +42,9 @@ function CreateInStock(baseUrl){
         //    return 0;
         //}
         //return 0;
+        if(!this.stockHelper.checkEmptyInput()){
+            return false;
+        }
 
         var data = new Array();
 
@@ -74,31 +80,5 @@ function CreateInStock(baseUrl){
                 $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
             }
         }, 'json');
-    }
-
-    function clickAddRecord(actionItem){
-        var html = $(".J_row:last").html();
-        $(".J_row:last").after("<div class=\"J_row\"></div>");
-        $(".J_row:last").html(html);
-        html = $("#J_maosha").html();
-        $(".J_row:last .J_content").html(html);
-    }
-
-    function clickDeleteRecord(actionItem){
-        if(parseInt($(".J_row").length) == 1){
-            $.jGrowl("至少要保留一行。", {header:"提示"});
-        }else{
-            actionItem.closest(".J_row").remove();
-        }
-    }
-
-    function changeType(actionItem){
-        var html = "";
-        if(parseInt(actionItem.val()) == 1){
-            html = $("#J_maosha").html();
-        }else{
-            html = $("#J_other").html();
-        }
-        actionItem.siblings(".J_content").html(html);
     }
 }
