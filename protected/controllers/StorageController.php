@@ -45,20 +45,41 @@ class StorageController extends Controller
     }
 
     public function actionCreateinstock(){
+        $providerArray = $this->generateProviderArray();
         $type = Type::model()->findAll();
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
         $this->render("createInStock", array(
             'type' => $type,
+            'providerArray' => $providerArray,
         ));
     }
 
     public function actionCreateoutstock(){
+        $providerArray = $this->generateProviderArray();
         $type = Type::model()->findAll();
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."createOutStock.js");
         $this->render("createOutStock",array(
             'type' => $type,
+            'providerArray' => $providerArray,
         ));
+    }
+
+    private function generateProviderArray(){
+        $providerArray = array();
+        $providerList = Provider::model()->findAll();
+
+        foreach($providerList as $provider){
+            $providerArray[$provider->location] = array();
+        }
+        foreach($providerList as $provider){
+            array_push($providerArray[$provider->location], array(
+                'id' => $provider->id,
+                'name' => $provider->name,
+            ));
+        }
+
+        return $providerArray;
     }
 }

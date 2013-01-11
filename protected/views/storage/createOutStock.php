@@ -51,31 +51,20 @@
 </span>
 
 <span id="J_pageForSelectProvider" class="hide">
-    地址:
-    <a href="javascript:void(0);" class="J_location">A</a>
-    <a href="javascript:void(0);" class="J_location">B</a>
-    <a href="javascript:void(0);" class="J_location">C</a>
-
-    <div class="J_providerList" location="A">
-        <span provider-id="1" class="J_provider">providerA1</span>
-        <span provider-id="2" class="J_provider">providerA2</span>
-        <span provider-id="3" class="J_provider">providerA3</span>
-        <span provider-id="4" class="J_provider">providerA4</span>
+    <div>
+        <span>客户地址:</span>
+        <?php foreach($providerArray as $key => $provider): ?>
+        <a href="javascript:void(0);" class="J_location"><?php echo $key; ?></a>
+        <?php endforeach;?>
     </div>
 
-    <div class="J_providerList" location="B">
-        <span provider-id="5" class="J_provider">providerB1</span>
-        <span provider-id="6" class="J_provider">providerB2</span>
-        <span provider-id="7" class="J_provider">providerB3</span>
-        <span provider-id="8" class="J_provider">providerB4</span>
+    <?php foreach($providerArray as $key=>$providerList): ?>
+    <div class="J_providerList" location="<?php echo $key; ?>">
+        <?php foreach($providerList as $provider): ?>
+        <span provider-id="<?php echo $provider["id"]; ?>" class="J_provider"><?php echo $provider["name"]; ?></span>
+        <?php endforeach; ?>
     </div>
-
-    <div class="J_providerList" location="C">
-        <span provider-id="9" class="J_provider">providerC1</span>
-        <span provider-id="10" class="J_provider">providerC2</span>
-        <span provider-id="11" class="J_provider">providerC3</span>
-        <span provider-id="12" class="J_provider">providerC4</span>
-    </div>
+    <?php endforeach; ?>
 
     <br />
 
