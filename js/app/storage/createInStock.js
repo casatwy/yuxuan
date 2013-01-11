@@ -31,6 +31,7 @@ function CreateInStock(baseUrl){
 
         $(".J_row").each(function(index, value){
             var item = new Object();
+            item["provider_id"] = $("#J_selectProvider").attr("privider");
             item["type"] = $(value).find(".J_type").val();
             item["goods_number"] =$(value).find(".J_goodsNumber").val();
             item["color_number"] =$(value).find(".J_colorNumber").val();
