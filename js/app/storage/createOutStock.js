@@ -5,6 +5,7 @@ $(document).ready(function(){
 
 function CreateInStock(baseUrl){
     this.init = function(){
+        $("a[href='/storage/instock']").closest("li").addClass("active");
         bindEvent();
     }
 
@@ -27,16 +28,18 @@ function CreateInStock(baseUrl){
     }
 
     function clickSaveRecord(actionItem){
-        emptyElements = $("input:empty");
-        console.log(emptyElements);
-        if(emptyElements.length > 0){
-            $.jGrowl("请填写空白处！", {
-                header:"提示",
-                life:2000
-            });
-            //emptyElements.addClass("error");
-            return 0;
-        }
+        //emptyElements = $("input");
+        //console.log(emptyElements);
+        //if(emptyElements.length > 0){
+        //    $.jGrowl("请填写空白处！", {
+        //        header:"提示",
+        //        life:2000
+        //    });
+        //    //emptyElements.addClass("error");
+        //    return 0;
+        //}
+        //return 0;
+
         var data = new Array();
 
         $(".J_row").each(function(index, value){
@@ -58,7 +61,7 @@ function CreateInStock(baseUrl){
         });
 
         data = $.toJSON(data);
-        $.post(baseUrl+'/ajaxStorage/saveinstock', {data:data}, function(result){
+        $.post(baseUrl+'/ajaxStorage/saveoutstock', {data:data}, function(result){
             if(result['success'] == "1"){
                 $.jGrowl("保存成功！", {
                     header:"反馈",
