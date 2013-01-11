@@ -66,7 +66,7 @@ function CreateInStock(baseUrl){
         });
 
         data = $.toJSON(data);
-        $.post(baseUrl+'/ajaxStorage/saveinstock', {data:data}, function(result){
+        $.post(baseUrl+'/ajaxStorage/saveoutstock', {data:data}, function(result){
             if(result['success'] == "1"){
                 $.jGrowl("保存成功！", {
                     header:"反馈",

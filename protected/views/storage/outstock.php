@@ -24,4 +24,4 @@
     </tbody>
 </table>
 
-<a href="<?php echo $this->baseUrl.'/storage/createOutStock' ?>" >创建记录</a>
+<a href="<?php echo $this->baseUrl.'/storage/createoutstock' ?>" >创建记录</a>
