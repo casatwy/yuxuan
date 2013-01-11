@@ -7,7 +7,7 @@ class m130109_045406_create_tables extends CDbMigration
         $sql = "DROP TABLE IF EXISTS `deliver_record`;
                 CREATE TABLE IF NOT EXISTS `deliver_record` (
                     `id` bigint(20) NOT NULL AUTO_INCREMENT,
-                    `record_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    `record_time` int(11) NOT NULL,
                     `record_maker` varchar(20) COLLATE utf8_bin NOT NULL,
                     `silk_provider_id` int(11) NOT NULL,
                     `deliver_produce_id` int(11) DEFAULT NULL,
@@ -27,7 +27,7 @@ class m130109_045406_create_tables extends CDbMigration
                     `quantity` int(11) NOT NULL,
                     `goods_number` int(11) NOT NULL,
                     `record_id` bigint(20) NOT NULL,
-                    `record_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    `record_time` int(11) NOT NULL,
                     `record_maker` varchar(20) COLLATE utf8_bin NOT NULL,
                     `provider_id` int(11) NOT NULL,
                     PRIMARY KEY (`id`),
@@ -103,7 +103,7 @@ class m130109_045406_create_tables extends CDbMigration
         $sql = "DROP TABLE IF EXISTS `receive_record`;
                 CREATE TABLE IF NOT EXISTS `receive_record` (
                     `id` bigint(20) NOT NULL AUTO_INCREMENT,
-                    `record_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    `record_time` int(11) NOT NULL,
                     `record_maker` varchar(20) COLLATE utf8_bin NOT NULL,
                     `provider_id` int(11) NOT NULL,
                     PRIMARY KEY (`id`),
@@ -121,7 +121,7 @@ class m130109_045406_create_tables extends CDbMigration
                     `quantity` int(11) NOT NULL,
                     `goods_number` int(11) NOT NULL,
                     `record_id` bigint(20) NOT NULL,
-                    `record_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                    `record_time` int(11) NOT NULL,
                     `record_maker` varchar(20) COLLATE utf8_bin NOT NULL,
                     `provider_id` int(11) NOT NULL,
                     PRIMARY KEY (`id`),

@@ -9,7 +9,6 @@
  * @property string $color_name
  * @property string $gang_number
  * @property integer $goods_number
- * @property string $product_id
  */
 class Silk extends CActiveRecord
 {
@@ -41,10 +40,10 @@ class Silk extends CActiveRecord
 		return array(
 			array('color_number, color_name, gang_number, goods_number', 'required'),
 			array('color_number, goods_number', 'numerical', 'integerOnly'=>true),
-			array('id, color_name, gang_number, product_id', 'length', 'max'=>20),
+			array('color_name, gang_number', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, color_number, color_name, gang_number, goods_number, product_id', 'safe', 'on'=>'search'),
+			array('id, color_number, color_name, gang_number, goods_number', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,7 +69,6 @@ class Silk extends CActiveRecord
 			'color_name' => 'Color Name',
 			'gang_number' => 'Gang Number',
 			'goods_number' => 'Goods Number',
-			'product_id' => 'Product',
 		);
 	}
 
@@ -90,7 +88,6 @@ class Silk extends CActiveRecord
 		$criteria->compare('color_name',$this->color_name,true);
 		$criteria->compare('gang_number',$this->gang_number,true);
 		$criteria->compare('goods_number',$this->goods_number);
-		$criteria->compare('product_id',$this->product_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

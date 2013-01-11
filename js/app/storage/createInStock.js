@@ -5,6 +5,7 @@ $(document).ready(function(){
 
 function CreateInStock(baseUrl){
     this.init = function(){
+        $("a[href='/storage/instock']").closest("li").addClass("active");
         bindEvent();
     }
 
