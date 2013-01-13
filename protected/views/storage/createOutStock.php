@@ -1,53 +1,70 @@
 <div class="container" id="J_container">
-    <h5>客户：
+    <h5>
+        客户：
         <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>
     </h5>
-    <div class="J_row">
-        <br />
-        类型:
-        <select name="type" class="J_type">
-            <?php foreach($type as $item):?>
-            <option value="<?php echo $item->id; ?>"><?php echo $item->name; ?></option>
-            <?php endforeach;?>
-        </select>
-        <span class="J_content">
-            <span>货号:<input type="text" class="J_goodsNumber"></input></span>
-            <span>色号:<input type="text" class="J_colorNumber"></input></span>
-            <span>颜色:<input type="text" class="J_colorName"></input></span>
-            <span>支数:<input type="text" class="J_zhiCount"></input></span>
-            <br />
-            <span>缸号:<input type="text" class="J_gangNumber"></input></span>
-            <span>重量(kg):<input type="text" class="J_weight"></input></span>
-            <button class="J_deleteRecord">删除</button>
-        </span>
-    </div>
 
-    <br />
-    <button id="J_addRecord" rowcount="1">添加一条</button>
-    <button id="J_saveRecord">保存全部</button>
+    <table>
+        <tbody>
+            <tr>
+                <td>类型</td>
+                <td>货号</td>
+                <td>色号</td>
+                <td>颜色</td>
+                <td>支数</td>
+                <td>缸号</td>
+                <td>重量</td>
+                <td>针型</td>
+                <td>尺码</td>
+                <td>数量</td>
+            </tr>
+            <tr class="J_recordItem">
+                <td>
+                    <select name="type" class="J_type">
+                        <?php foreach($type as $item):?>
+                        <option value="<?php echo $item->id; ?>"><?php echo $item->name; ?></option>
+                        <?php endforeach;?>
+                    </select>
+                </td>
+                <td><input type="text" class="J_goodsNumber"></input></td>
+                <span class="J_ajaxRecordContent">
+                    <td>待填充</td>
+                    <td>待填充</td>
+                    <td>待填充</td>
+                    <td>待填充</td>
+                    <td>待填充</td>
+                    <td>待填充</td>
+                    <td>待填充</td>
+                    <td>待填充</td>
+                </span>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
-<span type="hidden" id="J_maosha" class="hide">
-    <span>货号:<input type="text" class="J_goodsNumber"></input></span>
-    <span>色号:<input type="text" class="J_colorNumber"></input></span>
-    <span>颜色:<input type="text" class="J_colorName"></input></span>
-    <span>支数:<input type="text" class="J_zhiCount"></input></span>
-    <br />
-    <span>缸号:<input type="text" class="J_gangNumber"></input></span>
-    <span>重量(kg):<input type="text" class="J_weight"></input></span>
-    <button class="J_deleteRecord">删除</button>
-</span>
-
-<span type="hidden" id="J_other" class="hide">
-    <span>货号:<input type="text" class="J_goodsNumber"></input></span>
-    <span>色号:<input type="text" class="J_colorNumber"></input></span>
-    <span>颜色:<input type="text" class="J_colorName"></input></span>
-    <span>支数:<input type="text" class="J_zhiCount"></input></span>
-    <br />
-    <span>缸号:<input type="text" class="J_gangNumber"></input></span>
-    <span>重量(kg):<input type="text" class="J_weight"></input></span>
-    <span>针型:<input type="text" class="J_needleType"></input></span>
-    <span>尺码:<input type="text" class="J_size"></input></span>
-    <span>数量:<input type="text" class="J_quentity"></input></span>
-    <button class="J_deleteRecord">删除</button>
+<span id="J_ajaxRecordTemplate">
+    <td>
+        <select class="J_colorNumber"></select>
+    </td>
+    <td>
+        <select class="J_colorName"></select>
+    </td>
+    <td>
+        <select class="J_zhishu"></select>
+    </td>
+    <td>
+        <select class="J_ganghao"></select>
+    </td>
+    <td>
+        <select class="J_weight"></select>
+    </td>
+    <td>
+        <select class="J_needleType"></select>
+    </td>
+    <td>
+        <select class="J_size"></select>
+    </td>
+    <td>
+        <select class="J_quantity"></select>
+    </td>
 </span>

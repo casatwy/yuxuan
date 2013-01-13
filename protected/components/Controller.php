@@ -39,10 +39,12 @@ class Controller extends CController
                 'baseUrl' => $this->baseUrl.'/js/libs/plugins',
                 'js' => array(
                     //'jquery.json-2.4.min.js',
+                    'autoSuggest/jquery.autoSuggest.packed.js',
                     'jgrowl/jquery.jgrowl_minimized.js',
                 ),
                 'css' => array(
-                    'jgrowl/jquery.jgrowl.css'
+                    'autoSuggest/autoSuggest.css',
+                    'jgrowl/jquery.jgrowl.css',
                 ),
                 'depends' => array('jquery')
             ),

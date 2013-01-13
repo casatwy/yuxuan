@@ -1,6 +1,7 @@
 function StockHelper(baseUrl){
     this.init = function(){
         bindEvent();
+        setAutoSuggest();
     };
 
     function bindEvent(){
@@ -36,6 +37,9 @@ function StockHelper(baseUrl){
         $(".J_createProvider").live('keypress', function(){
             validateProvider($(this));
         });
+    }
+
+    function setAutoSuggest(){
     }
 
     function clickAddRecord(actionItem){
