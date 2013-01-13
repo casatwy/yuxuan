@@ -20,6 +20,6 @@
         <p>创建客户:</p>
         <p>客户名：<input id="J_providerName" type="text" class="J_createProvider"></input></p>
         <p>客户地址：<input id="J_providerLocation" type="text" class="J_createProvider"></input></p>
-        <button id="J_submitProvider" disabled="true">选择并创建</button>
+        <button id="J_submitProvider" disabled="true">使用</button>
     </div>
 </span>
