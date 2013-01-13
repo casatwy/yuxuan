@@ -67,19 +67,6 @@ class StorageController extends Controller
     }
 
     private function generateProviderArray(){
-        $providerArray = array();
-        $providerList = Provider::model()->findAll();
-
-        foreach($providerList as $provider){
-            $providerArray[$provider->location] = array();
-        }
-        foreach($providerList as $provider){
-            array_push($providerArray[$provider->location], array(
-                'id' => $provider->id,
-                'name' => $provider->name,
-            ));
-        }
-
-        return $providerArray;
+        return array();
     }
 }

@@ -2,90 +2,55 @@
 
 class AjaxStorageController extends Controller
 {
+    const SAVE_IN_STOCK = 1;
+    const SAVE_OUT_STOCK = 2;
+
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
 
     public function actionSaveoutstock(){
-        $data = CJSON::decode($_POST['data']);
-
-        $deliverRecord = new DeliverRecord;
-        $deliverRecord->record_time = time();
-        $deliverRecord->record_maker = Yii::app()->user->getState('name');
-        $deliverRecord->provider_id = $data[0]['provider_id'];
-        $deliverRecord->save();
-
-        foreach($data as $item){
-            $deliverRecordItem = new DeliverRecordItem;
-            $deliverRecordItem->item_id = $this->getItemId($item);
-            $deliverRecordItem->type = $item['type'];
-            $deliverRecordItem->weight = $item['weight'];
-            $deliverRecordItem->quantity = $item['type'];
-            $deliverRecordItem->goods_number = $item['goods_number'];
-            $deliverRecordItem->record_id = $deliverRecord->id;
-            $deliverRecordItem->record_time = $deliverRecord->record_time;
-            $deliverRecordItem->record_maker = $deliverRecord->record_maker;
-            $deliverRecordItem->provider_id = $deliverRecord->provider_id;
-        }
-
-        $result = array(
-            "success" => 1,
-            'content' => 'out stock success',
-        );
-        echo CJSON::encode($result);
+        $this->saveRecord(self::SAVE_OUT_STOCK);
+        Yii::app()->end();
     } 
 
     public function actionSaveinstock(){
-        $data = CJSON::decode($_POST['data']);
+        $this->saveRecord(self::SAVE_IN_STOCK);
+        Yii::app()->end();
+    }
 
-        //$result = array(
-        //    "success" => 1,
-        //    "content" => "可打印表单"
-        //);
-        //echo CJSON::encode($result);
-        //Yii::app()->end();
+    public function actionselectprovider(){
+        $providerArray = array();
+        $providerList = Provider::model()->findAll();
 
-        $receiveRecord = new ReceiveRecord;
-        $receiveRecord->record_time = time();
-        $receiveRecord->record_maker = Yii::app()->user->getState('name');
-        $receiveRecord->provider_id = $data[0]["provider_id"];
-        $receiveRecord->save();
-
-        foreach($data as $item){
-            $receiveRecordItem = new ReceiveRecordItem;
-            $receiveRecordItem->item_id = $this->getItemId($item);
-            $receiveRecordItem->type = $item['type'];
-            $receiveRecordItem->weight = $item['weight'];
-            $receiveRecordItem->quantity = $item['type'];
-            $receiveRecordItem->goods_number = $item['goods_number'];
-            $receiveRecordItem->record_id = $receiveRecord->id;
-            $receiveRecordItem->record_time = $receiveRecord->record_time;
-            $receiveRecordItem->record_maker = $receiveRecord->record_maker;
-            $receiveRecordItem->provider_id = $receiveRecord->provider_id;
-
-            //storage is also saved in the afterSave() of ReceiveRecordItem.
-            $receiveRecordItem->save();
+        foreach($providerList as $provider){
+            $providerArray[$provider->location] = array();
         }
-
-        $result = array(
-            "success" => 1,
-            //@todo render partial
-            "content" => "here i am"
-        );
-
-        echo CJSON::encode($result);
+        foreach($providerList as $provider){
+            array_push($providerArray[$provider->location], array(
+                'id' => $provider->id,
+                'name' => $provider->name,
+            ));
+        }
+        $html = $this->renderPartial("selectProvider", array(
+            'providerArray' => $providerArray,
+        ));
+        echo $html;
+        Yii::app()->end();
     }
 
     private function getItemId($item){
         $condition = 'color_number=:color_number and '
-            .'color_name=:color_name and '
             .'gang_number=:gang_number and '
-            .'goods_number=:goods_number';
+            .'color_name=:color_name and '
+            .'goods_number=:goods_number and '
+            .'zhi_count=:zhi_count';
         $params = array(
             ":color_number" => $item['color_number'],
             ":color_name" => $item['color_name'],
             ":gang_number" => $item['gang_number'],
+            ":zhi_count" => $item['zhi_count'],
             ":goods_number" => $item['goods_number'],
         );
         $silk = Silk::model()->find($condition, $params);
@@ -95,6 +60,7 @@ class AjaxStorageController extends Controller
             $silk->color_name = $item['color_name'];
             $silk->gang_number = $item['gang_number'];
             $silk->goods_number = $item['goods_number'];
+            $silk->zhi_count = $item['zhi_count'];
             $silk->save();
         }
         if($item["type"] == 1){
@@ -144,5 +110,49 @@ class AjaxStorageController extends Controller
             'location' => $provider->location,
         ));
         Yii::app()->end();
+    }
+
+    private function saveRecord($saveType){
+        $record = null;
+        if($saveType == self::SAVE_IN_STOCK){
+            $record = new ReceiveRecord;
+        }
+        if($saveType == self::SAVE_OUT_STOCK){
+            $record = new DeliverRecord;
+        }
+
+        $record->record_time = time();
+        $record->record_maker = Yii::app()->user->getState('name');
+        $record->provider_id = $_POST['data'][0]['provider_id'];
+        $record->save();
+
+        foreach($_POST['data'] as $item){
+            $recordItem = null;
+            if($saveType == self::SAVE_IN_STOCK){
+                $recordItem = new ReceiveRecordItem;
+            }
+            if($saveType == self::SAVE_OUT_STOCK){
+                $recordItem = new DeliverRecordItem;
+            }
+
+            $recordItem->item_id = $this->getItemId($item);
+            $recordItem->type = $item['type'];
+            $recordItem->weight = $item['weight'];
+            $recordItem->quantity = $item['type'];
+            $recordItem->goods_number = $item['goods_number'];
+            $recordItem->record_id = $record->id;
+            $recordItem->record_time = $record->record_time;
+            $recordItem->record_maker = $record->record_maker;
+            $recordItem->provider_id = $record->provider_id;
+
+            //storage is also saved in the afterSave() of ReceiveRecordItem.
+            $recordItem->save();
+        }
+
+        $result = array(
+            "success" => 1,
+            'content' => '可打印的回执单',
+        );
+        echo CJSON::encode($result);
     }
 }

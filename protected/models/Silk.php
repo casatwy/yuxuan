@@ -9,6 +9,7 @@
  * @property string $color_name
  * @property string $gang_number
  * @property integer $goods_number
+ * @property integer $zhi_count
  */
 class Silk extends CActiveRecord
 {
@@ -38,12 +39,12 @@ class Silk extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('color_number, color_name, gang_number, goods_number', 'required'),
-			array('color_number, goods_number', 'numerical', 'integerOnly'=>true),
+			array('color_number, color_name, gang_number, goods_number, zhi_count', 'required'),
+			array('color_number, goods_number, zhi_count', 'numerical', 'integerOnly'=>true),
 			array('color_name, gang_number', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, color_number, color_name, gang_number, goods_number', 'safe', 'on'=>'search'),
+			array('id, color_number, color_name, gang_number, goods_number, zhi_count', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +70,7 @@ class Silk extends CActiveRecord
 			'color_name' => 'Color Name',
 			'gang_number' => 'Gang Number',
 			'goods_number' => 'Goods Number',
+			'zhi_count' => 'Zhi Count',
 		);
 	}
 
@@ -88,6 +90,7 @@ class Silk extends CActiveRecord
 		$criteria->compare('color_name',$this->color_name,true);
 		$criteria->compare('gang_number',$this->gang_number,true);
 		$criteria->compare('goods_number',$this->goods_number);
+		$criteria->compare('zhi_count',$this->zhi_count);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

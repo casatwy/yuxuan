@@ -1,5 +1,7 @@
 <div class="container" id="J_container">
-    <h5>客户：<a href="#J_pageForSelectProvider" id="J_selectProvider" provider="123">点击选择客户</a></h5>
+    <h5>客户：
+        <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>
+    </h5>
     <div class="J_row">
         <br />
         类型:
@@ -48,30 +50,4 @@
     <span>尺码:<input type="text" class="J_size"></input></span>
     <span>数量:<input type="text" class="J_quentity"></input></span>
     <button class="J_deleteRecord">删除</button>
-</span>
-
-<span id="J_pageForSelectProvider" class="hide">
-    <div>
-        <span>客户地址:</span>
-        <?php foreach($providerArray as $key => $provider): ?>
-        <a href="javascript:void(0);" class="J_location"><?php echo $key; ?></a>
-        <?php endforeach;?>
-    </div>
-
-    <?php foreach($providerArray as $key=>$providerList): ?>
-    <div class="J_providerList" location="<?php echo $key; ?>">
-        <?php foreach($providerList as $provider): ?>
-        <span provider-id="<?php echo $provider["id"]; ?>" class="J_provider"><?php echo $provider["name"]; ?></span>
-        <?php endforeach; ?>
-    </div>
-    <?php endforeach; ?>
-
-    <br />
-
-    <div>
-        <p>创建客户:</p>
-        <p>客户名：<input id="J_providerName" type="text"></input></p>
-        <p>客户地址：<input id="J_providerLocation" type="text"></input></p>
-        <button id="J_submitProvider">提交</button>
-    </div>
 </span>
