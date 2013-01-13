@@ -155,4 +155,9 @@ class AjaxStorageController extends Controller
         );
         echo CJSON::encode($result);
     }
+
+    public function actionGetRecordContent(){
+        $goodsNumber = htmlspecialchars($_GET['goodsNumber']);
+        $type = htmlspecialchars($_GET['type']);
+    }
 }

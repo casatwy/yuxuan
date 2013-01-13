@@ -42,29 +42,23 @@
     </table>
 </div>
 
-<span id="J_ajaxRecordTemplate">
-    <td>
-        <select class="J_colorNumber"></select>
+<span id="J_recordItemTemplate">
+     <td>
+        <select name="type" class="J_type">
+            <?php foreach($type as $item):?>
+            <option value="<?php echo $item->id; ?>"><?php echo $item->name; ?></option>
+            <?php endforeach;?>
+        </select>
     </td>
-    <td>
-        <select class="J_colorName"></select>
-    </td>
-    <td>
-        <select class="J_zhishu"></select>
-    </td>
-    <td>
-        <select class="J_ganghao"></select>
-    </td>
-    <td>
-        <select class="J_weight"></select>
-    </td>
-    <td>
-        <select class="J_needleType"></select>
-    </td>
-    <td>
-        <select class="J_size"></select>
-    </td>
-    <td>
-        <select class="J_quantity"></select>
-    </td>
+    <td><input type="text" class="J_goodsNumber"></input></td>
+    <span class="J_ajaxRecordContent">
+        <td>待填充</td>
+        <td>待填充</td>
+        <td>待填充</td>
+        <td>待填充</td>
+        <td>待填充</td>
+        <td>待填充</td>
+        <td>待填充</td>
+        <td>待填充</td>
+    </span>   
 </span>

@@ -58,7 +58,6 @@ class StorageController extends Controller
     public function actionCreateoutstock(){
         $providerArray = $this->generateProviderArray();
         $type = Type::model()->findAll();
-        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."createOutStock.js");
         $this->render("createOutStock",array(
             'type' => $type,

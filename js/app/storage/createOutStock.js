@@ -4,8 +4,6 @@ $(document).ready(function(){
 });
 
 function CreateInStock(baseUrl){
-    stockHelper = new StockHelper(baseUrl);
-    stockHelper.init();
 
     this.init = function(){
         $("a[href='/storage/outstock']").closest("li").addClass("active");
@@ -15,6 +13,22 @@ function CreateInStock(baseUrl){
     function bindEvent(){
         $("#J_saveRecord").live('click', function(){
             clickSaveRecord($(this));
+        });
+
+        $(".J_goodsNumber").live('change', function(){
+            checkGoodsNumber($(this));
+        });
+
+        $(".J_type").live('change', function(){
+            checkGoodsNumber($(this));
+        });
+    }
+
+    function checkGoodsNumber(actionItem){
+        $.get(baseUrl+'/ajaxStorage/getRecordContent?type='
+                +actionItem.closest('tr').find(".J_type").val()
+                +'&goodsNumber='+actionItem.val(),
+            function(html){
         });
     }
 
