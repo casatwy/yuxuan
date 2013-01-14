@@ -38,12 +38,9 @@ class Controller extends CController
                 'basePath' => 'webroot.js.libs.plugins',
                 'baseUrl' => $this->baseUrl.'/js/libs/plugins',
                 'js' => array(
-                    //'jquery.json-2.4.min.js',
-                    'autoSuggest/jquery.autoSuggest.packed.js',
                     'jgrowl/jquery.jgrowl_minimized.js',
                 ),
                 'css' => array(
-                    'autoSuggest/autoSuggest.css',
                     'jgrowl/jquery.jgrowl.css',
                 ),
                 'depends' => array('jquery')
@@ -63,9 +60,13 @@ class Controller extends CController
         $this->jsUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.app.'.$this->id)).'/';
         $this->jsCommon = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.common.'.$this->id)).'/';
         $nyroModalUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.nyroModal')).'/';
+        $jqueryUiUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.jquery-ui')).'/';
 
         $this->cs->registerCssFile($nyroModalUrl."styles/nyroModal.css");
         $this->cs->registerScriptFile($nyroModalUrl."js/jquery.nyroModal.custom.min.js");
+
+        $this->cs->registerCssFile($jqueryUiUrl."css/smoothness/jquery-ui-1.9.2.custom.min.css");
+        $this->cs->registerScriptFile($jqueryUiUrl."js/jquery-ui-min.js");
 
         Yii::app()->user->setReturnUrl('/storage/resource');
     }

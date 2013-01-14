@@ -7,3 +7,5 @@ protected/config/setting.php
 *.php~
 *.log
 *.bak
+*.zip
+*.tar.gz

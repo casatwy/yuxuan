@@ -36,12 +36,21 @@ class StorageController extends Controller
     }
 
     public function actionOutstock(){
-        $this->render("outstock");
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        $this->cs->registerScriptFile($this->jsUrl."instock.js");
+        $this->render("instock", array(
+            'type' => "out"
+        ));
     }
 
     public function actionInstock(){
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."instock.js");
-        $this->render("instock");
+        $this->render("instock", array(
+            'type' => "in"
+        ));
     }
 
     public function actionCreateinstock(){

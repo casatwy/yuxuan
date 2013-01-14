@@ -4,18 +4,17 @@ $(document).ready(function(){
 });
 
 function InstockPage(baseUrl){
-    this.baseUrl = baseUrl;
+
+    var stockHelper = new StockHelper(baseUrl);
+    stockHelper.init();
+
+    var recordHelper = new RecordHelper(baseUrl);
+    recordHelper.init();
+
     this.init = function(){
         bindEvent();
     }
 
     function bindEvent(){
-        $("#J_createRecord").bind('click', function(){
-            createRecord($(this));
-        });
-    }
-
-    function createRecord(actionItem){
-        $.colorbox({overlayClose:false, escKey:false, arrowKey:false, href:baseUrl+"/storage/ajaxcreateinstock"});
     }
 }
