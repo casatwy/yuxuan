@@ -16,7 +16,7 @@ class StorageController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('resource', 'instock', 'outstock', 'createinstock', 'createoutstock'),
+                'actions' => array('resource', 'instock', 'outstock', 'createinstock', 'createoutstock','product'),
                 'users' => array('@')
             ),
             array(
@@ -31,6 +31,11 @@ class StorageController extends Controller
     }
 
     public function actionResource()
+    {
+        $this->render("resource");
+    }
+
+    public function actionProduct()
     {
         $this->render("resource");
     }
