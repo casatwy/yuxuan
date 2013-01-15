@@ -63,7 +63,7 @@ class StorageController extends Controller
         $count = ReceiveRecord::model()->count($criteria);
         $pages = new CPagination($count);
 
-        $pages->pageSize = 1;
+        $pages->pageSize = 3;
         $pages->applyLimit($criteria);
         $recordList = ReceiveRecord::model()->findAll($criteria);
 
