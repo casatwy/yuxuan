@@ -1,4 +1,4 @@
-<div class="container" id="J_container">
+<div class="contant-container" id="J_container">
     <h5>
         客户：
         <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>
@@ -11,15 +11,16 @@
             <option value="<?php echo $item->id; ?>"><?php echo $item->name; ?></option>
             <?php endforeach;?>
         </select>
+	<br />
+	<br />
         <span class="J_content">
-            <span>货号:<input type="text" class="J_goodsNumber"></input></span>
-            <span>色号:<input type="text" class="J_colorNumber"></input></span>
-            <span>颜色:<input type="text" class="J_colorName"></input></span>
-            <span>支数:<input type="text" class="J_zhiCount"></input></span>
-            <br />
-            <span>缸号:<input type="text" class="J_gangNumber"></input></span>
-            <span>重量(kg):<input type="text" class="J_weight"></input></span>
-            <button class="J_deleteRecord">删除</button>
+            <span class="span-7">货号:<input type="text" class="J_goodsNumber"></input></span>
+            <span class="span-7">色号:<input type="text" class="J_colorNumber"></input></span>
+            <span class="span-7 last" >颜色:<input type="text" class="J_colorName"></input></span>
+            <span class="span-7">支数:<input type="text" class="J_zhiCount"></input></span>
+            <span class="span-7">缸号:<input type="text" class="J_gangNumber"></input></span>
+            <span class="span-7 last">重量:<input type="text" class="J_weight"></input>(kg)</span>
+            <span class="prepend-19 last"><button class="J_deleteRecord">删除</button></span>
         </span>
     </div>
 
@@ -29,26 +30,24 @@
 </div>
 
 <span type="hidden" id="J_maosha" class="hide">
-    <span>货号:<input type="text" class="J_goodsNumber"></input></span>
-    <span>色号:<input type="text" class="J_colorNumber"></input></span>
-    <span>颜色:<input type="text" class="J_colorName"></input></span>
-    <span>支数:<input type="text" class="J_zhiCount"></input></span>
-    <br />
-    <span>缸号:<input type="text" class="J_gangNumber"></input></span>
-    <span>重量(kg):<input type="text" class="J_weight"></input></span>
-    <button class="J_deleteRecord">删除</button>
+    <span class="span-7">货号:<input type="text" class="J_goodsNumber"></input></span>
+    <span class="span-7">色号:<input type="text" class="J_colorNumber"></input></span>
+    <span class="span-7 last">颜色:<input type="text" class="J_colorName"></input></span>
+    <span class="span-7">支数:<input type="text" class="J_zhiCount"></input></span>
+    <span class="span-7">缸号:<input type="text" class="J_gangNumber"></input></span>
+    <span class="span-7 last">重量:<input type="text" class="J_weight"></input>(kg)</span>
+    <span class="prepend-19 last"><button class="J_deleteRecord">删除</button></span>
 </span>
 
 <span type="hidden" id="J_other" class="hide">
-    <span>货号:<input type="text" class="J_goodsNumber"></input></span>
-    <span>色号:<input type="text" class="J_colorNumber"></input></span>
-    <span>颜色:<input type="text" class="J_colorName"></input></span>
-    <span>支数:<input type="text" class="J_zhiCount"></input></span>
-    <br />
-    <span>缸号:<input type="text" class="J_gangNumber"></input></span>
-    <span>重量(kg):<input type="text" class="J_weight"></input></span>
-    <span>针型:<input type="text" class="J_needleType"></input></span>
-    <span>尺码:<input type="text" class="J_size"></input></span>
-    <span>数量:<input type="text" class="J_quentity"></input></span>
-    <button class="J_deleteRecord">删除</button>
+    <span class="span-7">货号:<input type="text" class="J_goodsNumber"></input></span>
+    <span class="span-7">色号:<input type="text" class="J_colorNumber"></input></span>
+    <span class="span-7 last">颜色:<input type="text" class="J_colorName"></input></span>
+    <span class="span-7">支数:<input type="text" class="J_zhiCount"></input></span>
+    <span class="span-7">缸号:<input type="text" class="J_gangNumber"></input></span>
+    <span class="span-7 last">重量:<input type="text" class="J_weight"></input>(kg)</span>
+    <span class="span-7">针型:<input type="text" class="J_needleType"></input></span>
+    <span class="span-7">尺码:<input type="text" class="J_size"></input></span>
+    <span class="span-7 last">数量:<input type="text" class="J_quentity"></input></span>
+    <span class="prepend-19 last"><button class="J_deleteRecord">删除</button></span>
 </span>
