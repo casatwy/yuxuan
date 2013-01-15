@@ -20,7 +20,7 @@ class AjaxStorageController extends Controller
         Yii::app()->end();
     }
 
-    public function actionselectprovider(){
+    public function actionSelectprovider(){
         $providerArray = array();
         $providerList = Provider::model()->findAll();
 
@@ -156,8 +156,22 @@ class AjaxStorageController extends Controller
         echo CJSON::encode($result);
     }
 
+    //based on the record id
     public function actionGetRecordContent(){
-        $goodsNumber = htmlspecialchars($_GET['goodsNumber']);
-        $type = htmlspecialchars($_GET['type']);
+        if(isset($_GET['record_id'])){
+            $condition = "record_id=:record_id";
+            $params = array(
+                ":record_id" => htmlspecialchars($_GET['record_id'])
+            );
+            $recordList = ReceiveRecordItem::model()->findAll($condition, $params);
+            echo "record id is ".htmlspecialchars($_GET['record_id']);
+            //echo $this->renderPartial("recordContent", array(
+            //    "recordList" => $recordList
+            //));
+        }
+    }
+
+    public function actionSearchRecord(){
+        var_dump($_GET);die();
     }
 }

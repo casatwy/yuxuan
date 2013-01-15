@@ -19,9 +19,7 @@ function RecordHelper(baseUrl){
         setAccordion(false);
 
         $("#J_searchButton").bind("click", function(){
-            $("#J_fetchedRecords").html("<img src=\""+baseUrl+"/images/bigloading.gif"+"\"></img>");
-            $("#J_fetchedRecords").html("<J_HEADER>a</J_HEADER><div>aaa</div><J_HEADER>b</J_HEADER><div>bbb</div><J_HEADER>c</J_HEADER><div>ccc</div>");
-            setAccordion(true);
+            searchRecords($(this));
         })
     }
 
@@ -34,7 +32,33 @@ function RecordHelper(baseUrl){
             collapsible:true,
             header:"J_HEADER",
             heightStyle:"content",
-            icons:{"header":"ui-icon-plus", "headerSelected":"ui-icon-minus"}
+            icons:{"header":"ui-icon-plus", "headerSelected":"ui-icon-minus"},
+            activate:function(event, ui){getRecordContent(event, ui)},
+        });
+    }
+
+    function searchRecords(actionItem){
+        $("#J_fetchedRecords").html("<img src=\""+baseUrl+"/images/bigloading.gif"+"\"></img>");
+
+        var data = {
+            goodsNumber:$("#J_goodsNumber").val(),
+            recordId:$("#J_recordId").val(),
+            providerId:$("#J_selectProvider").attr("provider"),
+            start_time:$("#J_startTime").val(),
+            end_time:$("#J_endTime").val()
+        };
+
+        console.log(data);return false;
+
+        $.get(baseUrl+"/ajaxStorage/searchRecords",{data:data, type:actionItem.attr("type")},function(html){
+            $("#J_fetchedRecords").html(html);
+            setAccordion(true);
+        });
+    }
+
+    function getRecordContent(event, ui){
+        $.get(baseUrl+"/ajaxStorage/getRecordContent", {record_id:ui.newHeader.attr("data-record-id")},function(html){
+            ui.newPanel.html(html);
         });
     }
 }

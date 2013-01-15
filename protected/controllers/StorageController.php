@@ -2,6 +2,9 @@
 
 class StorageController extends Controller
 {
+    const OUT_RECORD = 1;
+    const IN_RECORD = 2;
+
     public function init(){
         parent::init();
         $this->layout = "//layouts/storage";
@@ -16,7 +19,7 @@ class StorageController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('resource', 'instock', 'outstock', 'createinstock', 'createoutstock','product'),
+                'actions' => array('index', 'resource', 'instock', 'outstock', 'createinstock', 'createoutstock','product'),
                 'users' => array('@')
             ),
             array(
@@ -27,7 +30,8 @@ class StorageController extends Controller
     }
 
     public function actionIndex(){
-        echo time();
+        $record = ReceiveRecord::model()->findByPk(1000000);
+        echo $record->provider->name;
     }
 
     public function actionResource()
@@ -45,7 +49,7 @@ class StorageController extends Controller
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."instock.js");
         $this->render("instock", array(
-            'type' => "out"
+            'type' => self::OUT_RECORD
         ));
     }
 
@@ -53,8 +57,20 @@ class StorageController extends Controller
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."instock.js");
+
+        $criteria = new CDbCriteria();
+
+        $count = ReceiveRecord::model()->count($criteria);
+        $pages = new CPagination($count);
+
+        $pages->pageSize = 1;
+        $pages->applyLimit($criteria);
+        $recordList = ReceiveRecord::model()->findAll($criteria);
+
         $this->render("instock", array(
-            'type' => "in"
+            'type' => self::IN_RECORD,
+            'recordList' => $recordList,
+            'pages' => $pages,
         ));
     }
 
