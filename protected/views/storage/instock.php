@@ -1,4 +1,11 @@
-<h3>入库记录</h3>
+<?php 
+    if($type == StorageController::IN_RECORD){
+        echo '<h3>入库记录</h3>';
+    }
+    if($type == StorageController::OUT_RECORD){
+        echo '<h3>出库记录</h3>';
+    }
+?> 
 货号:<input type="text" id="J_goodsNumber"></input>
 入库单号:<input type="text" id="J_recordId"></input>
 客户：<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>
