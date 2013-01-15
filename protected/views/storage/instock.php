@@ -8,7 +8,14 @@
 结束：<input type="text" class="J_selectTime" id="J_endTime"></input>
 
 <button id="J_searchButton" data-type="<?php echo $type; ?>">搜索</button>
-<a href="<?php echo $this->baseUrl.'/storage/createInStock' ?>" >创建记录</a>
+<a href="<?php 
+    if($type == StorageController::IN_RECORD){
+        echo $this->baseUrl.'/storage/createInStock';
+    }
+    if($type == StorageController::OUT_RECORD){
+        echo $this->baseUrl.'/storage/createOutStock'; 
+    }
+?>" >创建记录</a>
 
 <br />===<br/>
 <div id="J_fetchedRecords">

@@ -45,57 +45,67 @@ class StorageController extends Controller
     }
 
     public function actionOutstock(){
-        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
-        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
-        $this->cs->registerScriptFile($this->jsUrl."instock.js");
-        $this->render("instock", array(
-            'type' => self::OUT_RECORD
-        ));
+        $this->getRecordList(self::OUT_RECORD);
     }
 
     public function actionInstock(){
-        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
-        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
-        $this->cs->registerScriptFile($this->jsUrl."instock.js");
+        $this->getRecordList(self::IN_RECORD);
+    }
+
+    private function getRecordList($type){
+        $model = null;
+        if($type == self::OUT_RECORD){
+            $model = "ReceiveRecord";
+        }
+        if($type == self::IN_RECORD){
+            $model = "DeliverRecord";
+        }
 
         $criteria = new CDbCriteria();
 
-        $count = ReceiveRecord::model()->count($criteria);
+        $count = ($type == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
         $pages = new CPagination($count);
 
         $pages->pageSize = 3;
         $pages->applyLimit($criteria);
-        $recordList = ReceiveRecord::model()->findAll($criteria);
+        $recordList = ($type == self::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
+
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        $this->cs->registerScriptFile($this->jsUrl."instock.js");
 
         $this->render("instock", array(
-            'type' => self::IN_RECORD,
+            'type' => $type,
             'recordList' => $recordList,
             'pages' => $pages,
         ));
+
     }
 
     public function actionCreateinstock(){
-        $providerArray = $this->generateProviderArray();
         $type = Type::model()->findAll();
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
         $this->render("createInStock", array(
             'type' => $type,
-            'providerArray' => $providerArray,
         ));
     }
 
     public function actionCreateoutstock(){
-        $providerArray = $this->generateProviderArray();
         $type = Type::model()->findAll();
-        $this->cs->registerScriptFile($this->jsUrl."createOutStock.js");
-        $this->render("createOutStock",array(
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
+        $this->render("createInStock",array(
             'type' => $type,
-            'providerArray' => $providerArray,
         ));
     }
 
-    private function generateProviderArray(){
-        return array();
+    private function createRecord($actionType){
+        $type = Type::model()->findAll();
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
+        $this->render("createInStock",array(
+            'type' => $type,
+        ));
     }
 }
