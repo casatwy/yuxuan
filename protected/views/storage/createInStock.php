@@ -27,6 +27,7 @@
     <br />
     <button id="J_addRecord" rowcount="1">添加一条</button>
     <button id="J_saveRecord">保存全部</button>
+	<input type="hidden" value="<?php echo $sort?>" id="sort">
 </div>
 
 <span type="hidden" id="J_maosha" class="hide">

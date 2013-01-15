@@ -87,6 +87,7 @@ class StorageController extends Controller
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
         $this->render("createInStock", array(
+			'sort' => 'instock',	
             'type' => $type,
         ));
     }
@@ -96,6 +97,7 @@ class StorageController extends Controller
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
         $this->render("createInStock",array(
+			'sort' => 'outstock',	
             'type' => $type,
         ));
     }

@@ -24,7 +24,14 @@ function CreateInStock(baseUrl){
         }
 
         var data = stockHelper.getPostData();
-        $.post(baseUrl+'/ajaxStorage/saveinstock', {data:data}, function(result){
+		var sort = $('#sort').val();
+		if(sort == 'instock'){
+			var appendUrl = '/ajaxStorage/saveinstock';		
+		}else if(sort == 'outstock'){
+			var appendUrl = '/ajaxStorage/saveoutstock';		
+		}
+
+        $.post(baseUrl+appendUrl, {data:data}, function(result){
             if(result['success'] == "1"){
                 $.jGrowl("保存成功！", {
                     header:"反馈",
