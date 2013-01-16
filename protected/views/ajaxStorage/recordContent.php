@@ -1,4 +1,4 @@
-<table>
+<table class="record">
     <tr>
         <th>类型</th>
         <th>货号</th>

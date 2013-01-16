@@ -1,4 +1,4 @@
-/*    */
+/* contant-container   */
 .contant-container {
 	margin: 0 auto;
 	width:830px;
@@ -6,4 +6,38 @@
 
 .contant-container span {
 	margin:0 0 1.5em;
+}
+/*    instock      */
+#plus{
+	display:block;
+	width:20px;
+	height:20px;
+	margin:0 auto;
+	background:url(../images/plus.png) no-repeat;
+}	
+#plus:hover{
+	display:block;
+	width:25px;
+	height:25px;
+	margin:-2px auto;
+	background:url(../images/plus-big.png) no-repeat;
+}
+
+/*  record  记录表格  */
+
+.record, .record td, .record th {
+	border:1px solid black;
+	border-collapse:collapse;
+	text-align:center;
+}
+
+/*  文字样式  */
+.left {
+		text-align:left;
+}	
+.center {
+		text-align:center;
+}	
+.right {
+		text-align:right;
 }

@@ -1,40 +1,41 @@
+<div class="contant-container">
 <span id="J_baseUrl" value="<?php echo $this->baseUrl; ?>"></span>
 <?php 
     if($type == StorageController::IN_RECORD){
-        echo '<h3>入库记录</h3>';
+        echo '<h1 class="span-3">入库记录</h1>';
     }
     if($type == StorageController::OUT_RECORD){
-        echo '<h3>出库记录</h3>';
+        echo '<h1 class="span-3">出库记录</h1>';
     }
 ?> 
-货号:<input type="text" id="J_goodsNumber"></input>
-入库单号:<input type="text" id="J_recordId"></input>
-<br />
-客户：<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>
-<br />
-<br />
-日期范围<br />
-开始：<input type="text" class="J_selectTime" id="J_startTime"></input>
-结束：<input type="text" class="J_selectTime" id="J_endTime"></input>
-<br />
-<br />
-单日记录<br />
-选择日期：<input type="text" class="J_selectTime" id="J_recordTime"></input>
-<br />
-<br />
 
-<button id="J_searchButton" data-type="<?php echo $type; ?>">搜索</button>
-<a href="<?php 
+<a id="plus" class="span-18 last" href="<?php 
     if($type == StorageController::IN_RECORD){
         echo $this->baseUrl.'/storage/createInStock';
     }
     if($type == StorageController::OUT_RECORD){
         echo $this->baseUrl.'/storage/createOutStock'; 
     }
-?>" ><button>创建记录</button></a>
+?>" > </a>
+<br />
 
-<br />===<br/>
-<div id="J_fetchedRecords">
+
+<span class="span-21 last">客户：<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
+<span class="span-7">货号:<input type="text" id="J_goodsNumber"></input></span>
+<span class="span-14 last">入库单号:<input type="text" id="J_recordId"></input></span>
+
+<span class="span-10">日期范围<br />
+开始：<input type="text" class="J_selectTime" id="J_startTime"></input>
+结束：<input type="text" class="J_selectTime" id="J_endTime"></input></span>
+<span class="span-6" >
+单日记录<br />
+选择日期：<input type="text" class="J_selectTime" id="J_recordTime"></input></span>
+
+<span class="span-5 last"><br /><button id="J_searchButton" data-type="<?php echo $type; ?>">搜索</button></span>
+
+
+
+<div class="span-21 last" id="J_fetchedRecords">
     <?php foreach($recordList as $record): ?>
 
     <J_HEADER data-record-id="<?php echo $record->id; ?>" data-record-type="<?php echo $type; ?>">
@@ -52,4 +53,5 @@
             'pages' => $pages,
         ));
     ?>
+</div>
 </div>
