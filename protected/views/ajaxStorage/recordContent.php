@@ -23,4 +23,6 @@
         <td><?php echo $record['quantity'];?></td>
     </tr>
     <?php endforeach; ?>
+
+	<a href="" target="_blank">打印表单</a>
 </table>
