@@ -5,10 +5,13 @@ class AjaxStorageController extends Controller
     const SAVE_IN_STOCK = 1;
     const SAVE_OUT_STOCK = 2;
 
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
+    const OUT_RECORD = 1;
+    const IN_RECORD = 2;
+
+    public function actionIndex()
+    {
+        $this->render('index');
+    }
 
     public function actionSaveoutstock(){
         $this->saveRecord(self::SAVE_OUT_STOCK);
@@ -198,6 +201,94 @@ class AjaxStorageController extends Controller
     }
 
     public function actionSearchRecord(){
-        var_dump($_GET);
+        /*
+            data:
+                goods_number
+                recordId
+                providerId
+                start_time
+                end_time
+                record_time
+            type:
+        */
+        $criteria = null;
+        if(empty($_GET['data']['recordId'])){
+            $criteria = $this->setupCriteria($_GET['data'], $_GET['type']);
+        }else{
+            $criteria = new CDbCriteria();
+            $criteria->condition = "id=".$_GET['data']['recordId'];
+        }
+        $count = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
+        $pages = new CPagination($count);
+
+        $pages->pageSize = 1;
+        $pages->applyLimit($criteria);
+        $recordList = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
+
+
+        $html = $this->renderPartial("recordList", array(
+            "recordList" => $recordList,
+            "pages" => $pages,
+        ), true);
+        echo $html;
+    }
+
+    private function setupCriteria($data, $type){
+        $criteria = new CDbCriteria();
+        $searchCriteria = new CDbCriteria();
+        $searchCriteria->distinct = true;
+        $searchCriteria->select = "record_id";
+        $searchCriteria->condition = "1=1";
+
+
+        $recordIdList = array();
+        if(!empty($data['goods_number'])){
+            $searchCriteria->condition .= " and goods_numer=".$data['goods_number'];
+        }
+
+        if($data['providerId'] != 'none'){
+            $searchCriteria->condition .= " and provider_id=".$data['providerId'];
+        }
+
+        if(!empty($data["record_time"])){
+            $searchCriteria->condition .= " and record_time>";
+            $searchCriteria->condition .= $this->getTime($data['record_time']);
+            $searchCriteria->condition .= " and record_time<";
+            $searchCriteria->condition .= $this->getTime($data['record_time']) + 60*60*24;
+
+        }else if(!empty($data["start_time"]) && !empty($data["end_time"])){
+            $searchCriteria->condition .= " and record_time>";
+            $searchCriteria->condition .= $this->getTime($data['start_time']);
+            $searchCriteria->condition .= " and record_time<";
+            $searchCriteria->condition .= $this->getTime($data['end_time']) + 60*60*24;
+        }
+
+        $searchedRecordList = null;
+        if($type == self::OUT_RECORD){
+            $searchedRecordList = DeliverRecordItem::model()->findAll($searchCriteria); 
+        }
+        if($type == self::IN_RECORD){
+            $searchedRecordList = ReceiveRecordItem::model()->findAll($searchCriteria); 
+        }
+
+        foreach($searchedRecordList as $searchedRecord){
+            array_push($recordIdList, $searchedRecord->record_id);
+        }
+        $recordIdList = implode(",", $recordIdList);
+
+        if(empty($recordIdList)){
+            $criteria->condition = "1=2";
+        }else{
+            $criteria->condition = "id in (".$recordIdList.")";
+        }
+
+        return $criteria;
+    }
+
+    private function getTime($date){
+        $year=((int)substr($date,0,4));
+        $month=((int)substr($date,5,2));
+        $day=((int)substr($date,8,2));
+        return (string)mktime(0,0,0,$month,$day,$year);
     }
 }

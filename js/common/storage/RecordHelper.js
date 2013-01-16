@@ -25,6 +25,12 @@ function RecordHelper(baseUrl){
         $("#J_searchButton").bind("click", function(){
             searchRecords($(this));
         })
+
+        $("#J_ajaxPageItem li a").live("click", function(){
+            ajaxGetRecords($(this));
+            return false;
+        });
+
     }
 
     function setAccordion(rebuild){
@@ -43,17 +49,10 @@ function RecordHelper(baseUrl){
 
     function searchRecords(actionItem){
         $("#J_fetchedRecords").html("<img src=\""+baseUrl+"/images/bigloading.gif"+"\"></img>");
-
-        var data = {
-            goodsNumber:$("#J_goodsNumber").val(),
-            recordId:$("#J_recordId").val(),
-            providerId:$("#J_selectProvider").attr("provider"),
-            start_time:$("#J_startTime").val(),
-            end_time:$("#J_endTime").val()
-        };
-
+        var data = getSearchCondition();
         $.get(baseUrl+"/ajaxStorage/searchRecord",{data:data, type:actionItem.attr("data-type")},function(html){
             $("#J_fetchedRecords").html(html);
+
             setAccordion(true);
         });
     }
@@ -62,5 +61,28 @@ function RecordHelper(baseUrl){
         $.get(baseUrl+"/ajaxStorage/getRecordContent", {record_id:ui.newHeader.attr("data-record-id")},function(html){
             ui.newPanel.html(html);
         });
+    }
+
+    function getSearchCondition(){
+        return {
+            goodsNumber:$("#J_goodsNumber").val(),
+            recordId:$("#J_recordId").val(),
+            providerId:$("#J_selectProvider").attr("provider"),
+            start_time:$("#J_startTime").val(),
+            end_time:$("#J_endTime").val(),
+            record_time:$("#J_recordTime").val(),
+        };
+    }
+
+    function ajaxGetRecords(actionItem){
+        $("#J_fetchedRecords").html("<img src=\""+baseUrl+"/images/bigloading.gif"+"\"></img>");
+        var data = getSearchCondition();
+        $.get(
+            baseUrl+actionItem.attr("href"),
+            function(html){
+                $("#J_fetchedRecords").html(html);
+                setAccordion(true);
+            }
+        );
     }
 }

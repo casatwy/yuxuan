@@ -49,7 +49,7 @@
 
     <?php
         $this->widget('CLinkPager', array(
-            'pages' => $pages
+            'pages' => $pages,
         ));
     ?>
 </div>

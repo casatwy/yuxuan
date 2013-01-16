@@ -53,14 +53,6 @@ class StorageController extends Controller
     }
 
     private function getRecordList($type){
-        $model = null;
-        if($type == self::OUT_RECORD){
-            $model = "ReceiveRecord";
-        }
-        if($type == self::IN_RECORD){
-            $model = "DeliverRecord";
-        }
-
         $criteria = new CDbCriteria();
 
         $count = ($type == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
