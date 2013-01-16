@@ -1,7 +1,12 @@
+$(document).ready(function(){
+    stockHelper = new StockHelper($("#J_baseUrl").val());
+    stockHelper.init();
+});
+
 function StockHelper(baseUrl){
     this.init = function(){
         bindEvent();
-        setAutoSuggest();
+        $("a[href='/storage/"+$("#J_sort").val()+"']").closest("li").addClass("active");
     };
 
     function bindEvent(){
@@ -37,9 +42,38 @@ function StockHelper(baseUrl){
         $(".J_createProvider").live('keypress', function(){
             validateProvider($(this));
         });
+
+        $("#J_saveRecord").live('click', function(){
+            clickSaveRecord($(this));
+        });
     }
 
-    function setAutoSuggest(){
+    function clickSaveRecord(actionItem){
+        if(!stockHelper.inputAvailable()){
+            return false;
+        }
+
+        var data = stockHelper.getPostData();
+		var sort = $('#J_sort').val();
+		if(sort == 'instock'){
+			var appendUrl = '/ajaxStorage/saveinstock';		
+		}else if(sort == 'outstock'){
+			var appendUrl = '/ajaxStorage/saveoutstock';		
+		}
+
+        $.post(baseUrl+appendUrl, {data:data}, function(result){
+            if(result['success'] == "1"){
+                $.jGrowl("保存成功！", {
+                    header:"反馈",
+                    life:2000,
+                    beforeOpen:function(){
+                        $("#J_container").html(result["content"]);
+                    }
+                });
+            }else{
+                $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
+            }
+        }, 'json');
     }
 
     function clickAddRecord(actionItem){

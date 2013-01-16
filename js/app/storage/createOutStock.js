@@ -14,22 +14,6 @@ function CreateInStock(baseUrl){
         $("#J_saveRecord").live('click', function(){
             clickSaveRecord($(this));
         });
-
-        $(".J_goodsNumber").live('change', function(){
-            checkGoodsNumber($(this));
-        });
-
-        $(".J_type").live('change', function(){
-            checkGoodsNumber($(this));
-        });
-    }
-
-    function checkGoodsNumber(actionItem){
-        $.get(baseUrl+'/ajaxStorage/getRecordContent?type='
-                +actionItem.closest('tr').find(".J_type").val()
-                +'&goodsNumber='+actionItem.val(),
-            function(html){
-        });
     }
 
     function clickSaveRecord(actionItem){

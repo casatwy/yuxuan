@@ -1,3 +1,4 @@
+<span id="J_baseUrl" value="<?php echo $this->baseUrl; ?>"></span>
 <?php 
     if($type == StorageController::IN_RECORD){
         echo '<h3>入库记录</h3>';

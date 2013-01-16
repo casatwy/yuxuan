@@ -83,30 +83,18 @@ class StorageController extends Controller
     }
 
     public function actionCreateinstock(){
-        $type = Type::model()->findAll();
-        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
-        $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
-        $this->render("createInStock", array(
-			'sort' => 'instock',	
-            'type' => $type,
-        ));
+        $this->createRecord("instock");
     }
 
     public function actionCreateoutstock(){
-        $type = Type::model()->findAll();
-        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
-        $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
-        $this->render("createInStock",array(
-			'sort' => 'outstock',	
-            'type' => $type,
-        ));
+        $this->createRecord("outstock");
     }
 
     private function createRecord($actionType){
         $type = Type::model()->findAll();
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
-        $this->cs->registerScriptFile($this->jsUrl."createInStock.js");
-        $this->render("createOutStock",array(
+        $this->render("createInStock",array(
+            'sort' => $actionType,
             'type' => $type,
         ));
     }
