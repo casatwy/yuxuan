@@ -198,6 +198,6 @@ class AjaxStorageController extends Controller
     }
 
     public function actionSearchRecord(){
-        var_dump($_GET);die();
+        var_dump($_GET);
     }
 }

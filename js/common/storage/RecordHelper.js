@@ -52,9 +52,7 @@ function RecordHelper(baseUrl){
             end_time:$("#J_endTime").val()
         };
 
-        console.log(data);return false;
-
-        $.get(baseUrl+"/ajaxStorage/searchRecords",{data:data, type:actionItem.attr("type")},function(html){
+        $.get(baseUrl+"/ajaxStorage/searchRecord",{data:data, type:actionItem.attr("data-type")},function(html){
             $("#J_fetchedRecords").html(html);
             setAccordion(true);
         });
