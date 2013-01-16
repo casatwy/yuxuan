@@ -162,40 +162,14 @@ class AjaxStorageController extends Controller
     //based on the record id
     public function actionGetRecordContent(){
         if(isset($_GET['record_id'])){
-            $recordList = array();
-            $condition = "record_id=:record_id";
-            $params = array(
-                ":record_id" => htmlspecialchars($_GET['record_id'])
-            );
-            $recordData = ReceiveRecordItem::model()->findAll($condition, $params);
-
-            $product = null;
-            $silk = null;
-            foreach($recordData as $recordItem){
-                if($recordItem->type == 1){//silk
-                    $silk = Silk::model()->findByPk($recordItem->item_id);
-                }else{//product
-                    $product = Product::model()->findByPk($recordItem->item_id);
-                    $silk = Silk::model()->findByPk($product->silk_id);
-                }
-                $record = array(
-                    'type' => Type::model()->findByPk($recordItem->type)->name,
-                    'goods_number' => $recordItem->goods_number, 
-                    'color_number' => $silk->color_number, 
-                    'color_name' => $silk->color_name,
-                    'gang_number' => $silk->gang_number,
-                    'zhi_count' => $silk->zhi_count,
-                    'needle_type' => isset($product->needle_type)?$product->needle_type:"无",
-                    'size' => isset($product->size)?$product->size:"无",
-                    'weight' => $recordItem->weight,
-                    'quantity' => $recordItem->quantity
-                );
-                array_push($recordList, $record);
-            }
+			$recordContent = new RecordContent();
+        	$recordList = $recordContent->getRecordContent($_GET['record_id'],$_GET['record_type']);
 
             //echo "record id is ".htmlspecialchars($_GET['record_id']);
             echo $this->renderPartial("recordContent", array(
-                "recordList" => $recordList
+                "recordList" => $recordList,
+				"record_id" => $_GET['record_id'],
+				"record_type" => $_GET['record_type']
             ));
         }
     }

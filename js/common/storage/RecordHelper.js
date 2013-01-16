@@ -58,7 +58,9 @@ function RecordHelper(baseUrl){
     }
 
     function getRecordContent(event, ui){
-        $.get(baseUrl+"/ajaxStorage/getRecordContent", {record_id:ui.newHeader.attr("data-record-id")},function(html){
+        $.get(baseUrl+"/ajaxStorage/getRecordContent"
+			, {record_id:ui.newHeader.attr("data-record-id"), record_type:ui.newHeader.attr("data-record-type")}
+			, function(html){
             ui.newPanel.html(html);
         });
     }

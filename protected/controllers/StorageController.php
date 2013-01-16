@@ -19,7 +19,8 @@ class StorageController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('index', 'resource', 'instock', 'outstock', 'createinstock', 'createoutstock','product'),
+                'actions' => array('index', 'resource', 'instock', 'outstock', 'createinstock', 
+									'createoutstock', 'product', 'printrecordlist'),
                 'users' => array('@')
             ),
             array(
@@ -90,4 +91,17 @@ class StorageController extends Controller
             'type' => $type,
         ));
     }
+
+	public function actionPrintRecordList(){
+        $this->layout = "//layouts/blank";
+        if(isset($_GET)){
+			$recordContent = new RecordContent();
+        	$recordList = $recordContent->getRecordContent($_GET['id'],$_GET['type']);
+
+            $this->render("printRecordContent", array(
+                "recordList" => $recordList,
+				"type" => $_GET['type']
+            ));
+        }
+	}
 }

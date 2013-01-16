@@ -1,4 +1,12 @@
 <table>
+<?php 
+    if($type == StorageController::IN_RECORD){
+        echo '<h3>入库记录</h3>';
+    }
+    if($type == StorageController::OUT_RECORD){
+        echo '<h3>出库记录</h3>';
+    }
+?> 
     <tr>
         <th>类型</th>
         <th>货号</th>
@@ -23,7 +31,4 @@
         <td><?php echo $record['quantity'];?></td>
     </tr>
     <?php endforeach; ?>
-
-	<a href="<?php echo $this->baseUrl; ?>/storage/printRecordList/<?php echo 'type/'.$record_type.'/id/'.$record_id; ?>" 
-		target="_blank">打印表单</a>
 </table>
