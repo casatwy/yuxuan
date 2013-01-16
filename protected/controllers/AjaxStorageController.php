@@ -165,7 +165,8 @@ class AjaxStorageController extends Controller
             //echo "record id is ".htmlspecialchars($_GET['record_id']);
             echo $this->renderPartial("recordContent", array(
                 "recordList" => $recordList,
-				"record_id" => $_GET['record_id']
+				"record_id" => $_GET['record_id'],
+				"record_type" => $_GET['record_type']
             ));
         }
     }
