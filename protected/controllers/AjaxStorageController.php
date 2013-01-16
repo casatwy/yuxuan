@@ -203,6 +203,7 @@ class AjaxStorageController extends Controller
         $html = $this->renderPartial("recordList", array(
             "recordList" => $recordList,
             "pages" => $pages,
+			"type" => $_GET['type']	
         ), true);
         echo $html;
     }
