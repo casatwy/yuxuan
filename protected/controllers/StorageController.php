@@ -108,6 +108,7 @@ class StorageController extends Controller
 
             $this->render("printRecordContent", array(
                 "recordList" => $recordList,
+				"type" => $_GET['type']
             ));
         }
 	}

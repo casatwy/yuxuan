@@ -1,4 +1,12 @@
 <table>
+<?php 
+    if($type == StorageController::IN_RECORD){
+        echo '<h3>入库记录</h3>';
+    }
+    if($type == StorageController::OUT_RECORD){
+        echo '<h3>出库记录</h3>';
+    }
+?> 
     <tr>
         <th>类型</th>
         <th>货号</th>
