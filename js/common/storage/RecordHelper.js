@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    recordHelper = new RecordHelper($("#J_baseUrl").val());
+    recordHelper.init();
+});
 function RecordHelper(baseUrl){
     var type = $("#J_recordType").val();
     this.init = function(){
