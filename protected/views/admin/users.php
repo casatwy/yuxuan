@@ -7,12 +7,14 @@
         <th>姓名</th>
         <th>电话</th>
         <th>权限</th>
+        <th>操作</th>
     </tr>
 	<?php foreach($users as $user): ?>
 	<tr>
 		<td><?php echo  $user->name;?></td>
 		<td><?php echo  $user->telephone;?></td>
 		<td><?php echo  $user->authority;?></td>
+		<td><?php echo  $user->id;?></td>
 	</tr>
 	<?php endforeach; ?>
 </table>
