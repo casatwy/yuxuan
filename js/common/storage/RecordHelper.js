@@ -72,7 +72,6 @@ function RecordHelper(baseUrl){
             providerId:$("#J_selectProvider").attr("provider"),
             start_time:$("#J_startTime").val(),
             end_time:$("#J_endTime").val(),
-            record_time:$("#J_recordTime").val(),
         };
     }
 

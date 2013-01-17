@@ -27,9 +27,6 @@
 <span class="span-10">日期范围<br />
 开始：<input type="text" class="J_selectTime" id="J_startTime"></input>
 结束：<input type="text" class="J_selectTime" id="J_endTime"></input></span>
-<span class="span-6" >
-单日记录<br />
-选择日期：<input type="text" class="J_selectTime" id="J_recordTime"></input></span>
 
 <span class="span-5 last"><br /><button id="J_searchButton" data-type="<?php echo $type; ?>">搜索</button></span>
 

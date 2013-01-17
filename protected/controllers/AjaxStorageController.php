@@ -182,7 +182,6 @@ class AjaxStorageController extends Controller
                 providerId
                 start_time
                 end_time
-                record_time
             type:
         */
         $criteria = null;
@@ -225,13 +224,7 @@ class AjaxStorageController extends Controller
             $searchCriteria->condition .= " and provider_id=".$data['providerId'];
         }
 
-        if(!empty($data["record_time"])){
-            $searchCriteria->condition .= " and record_time>";
-            $searchCriteria->condition .= $this->getTime($data['record_time']);
-            $searchCriteria->condition .= " and record_time<";
-            $searchCriteria->condition .= $this->getTime($data['record_time']) + 60*60*24;
-
-        }else if(!empty($data["start_time"]) && !empty($data["end_time"])){
+        if(!empty($data["start_time"]) && !empty($data["end_time"])){
             $searchCriteria->condition .= " and record_time>";
             $searchCriteria->condition .= $this->getTime($data['start_time']);
             $searchCriteria->condition .= " and record_time<";
