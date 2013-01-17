@@ -8,7 +8,7 @@ class StorageController extends Controller
     public function init(){
         parent::init();
         $this->layout = "//layouts/storage";
-        $this->defaultAction = "resource";
+        $this->defaultAction = "instock";
     }
 
     public function filters(){

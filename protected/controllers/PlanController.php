@@ -3,6 +3,12 @@
 class PlanController extends Controller
 {
 
+    public function init(){
+        parent::init();
+        $this->layout = "//layouts/plan";
+        $this->defaultAction = "list";
+    }
+
     public function filters(){
         return array('accessControl');
     }
@@ -11,7 +17,7 @@ class PlanController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('index'),
+                'actions' => array('index', 'list', 'historyList'),
                 'users' => array('@')
             ),
             array(
@@ -23,6 +29,16 @@ class PlanController extends Controller
 
     public function actionIndex()
     {
-        echo "need to build";
+        $this->render("index");
+    }
+
+    public function actionList()
+    {
+        $this->render("index");
+    }
+
+    public function actionHistoryList()
+    {
+        $this->render("index");
     }
 }
