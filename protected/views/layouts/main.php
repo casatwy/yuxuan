@@ -32,9 +32,9 @@
     <div id="mainmenu">
         <?php $this->widget('zii.widgets.CMenu',array(
             'items'=>array(
-                array('label'=>'信息管理', 'url'=>array('/admin')),
                 array('label'=>'仓库', 'url'=>array('/storage')),
                 array('label'=>'生产计划', 'url'=>array('/plan')),
+                array('label'=>'信息管理', 'url'=>array('/admin')),
                 array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
             ),
