@@ -210,11 +210,12 @@ class AjaxStorageController extends Controller
 
     private function setupCriteria($data, $type){
         $criteria = new CDbCriteria();
+        $criteria->order = "id desc";
+
         $searchCriteria = new CDbCriteria();
         $searchCriteria->distinct = true;
         $searchCriteria->select = "record_id";
         $searchCriteria->condition = "1=1";
-
 
         $recordIdList = array();
         if(!empty($data['goodsNumber'])){
