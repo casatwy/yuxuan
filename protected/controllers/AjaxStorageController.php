@@ -216,12 +216,14 @@ class AjaxStorageController extends Controller
 
 
         $recordIdList = array();
-        if(!empty($data['goods_number'])){
-            $searchCriteria->condition .= " and goods_numer=".$data['goods_number'];
+        if(!empty($data['goodsNumber'])){
+            $searchCriteria->condition .= " and goods_number=";
+            $searchCriteria->condition .= $data['goodsNumber'];
         }
 
         if($data['providerId'] != 'none'){
-            $searchCriteria->condition .= " and provider_id=".$data['providerId'];
+            $searchCriteria->condition .= " and provider_id=";
+            $searchCriteria->condition .= $data['providerId'];
         }
 
         if(!empty($data["start_time"]) && !empty($data["end_time"])){
