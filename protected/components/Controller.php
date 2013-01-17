@@ -68,6 +68,6 @@ class Controller extends CController
         $this->cs->registerCssFile($jqueryUiUrl."css/smoothness/jquery-ui-1.9.2.custom.min.css");
         $this->cs->registerScriptFile($jqueryUiUrl."js/jquery-ui-min.js");
 
-        Yii::app()->user->setReturnUrl('/storage/resource');
+        Yii::app()->user->setReturnUrl('/storage/instock');
     }
 }
