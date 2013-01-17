@@ -169,6 +169,34 @@ function StockHelper(baseUrl){
             });
             result = false;
         }
+		if(isNaN($('.J_colorNumber').val())){
+            $.jGrowl("色号为数字！", {
+                header:"提示",
+                life:2000
+            });
+            result = false;
+		}
+		if(isNaN($('.J_goodsNumber').val())){
+            $.jGrowl("货号为数字！", {
+                header:"提示",
+                life:2000
+            });
+            result = false;
+		}
+		if(isNaN($('.J_zhiCount').val())){
+            $.jGrowl("支数为数字！", {
+                header:"提示",
+                life:2000
+            });
+            result = false;
+		}
+		if(isNaN($('.J_weight').val())){
+            $.jGrowl("重量为数字！", {
+                header:"提示",
+                life:2000
+            });
+            result = false;
+		}
         return result;
     };
 
