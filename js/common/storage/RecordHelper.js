@@ -58,11 +58,14 @@ function RecordHelper(baseUrl){
     }
 
     function getRecordContent(event, ui){
-        $.get(baseUrl+"/ajaxStorage/getRecordContent"
-			, {record_id:ui.newHeader.attr("data-record-id"), record_type:ui.newHeader.attr("data-record-type")}
-			, function(html){
-            ui.newPanel.html(html);
-        });
+        var count = ui.newPanel.find("img").length;
+        if(count == 1){
+            $.get(baseUrl+"/ajaxStorage/getRecordContent"
+		    	, {record_id:ui.newHeader.attr("data-record-id"), record_type:ui.newHeader.attr("data-record-type")}
+		    	, function(html){
+                ui.newPanel.html(html);
+            });
+        }
     }
 
     function getSearchCondition(){
