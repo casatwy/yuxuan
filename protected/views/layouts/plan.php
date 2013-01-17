@@ -3,7 +3,8 @@
 <div id="mainmenu">
     <?php $this->widget('zii.widgets.CMenu',array(
         'items'=>array(
-            array('label'=>'生产计划', 'url'=>array('/plan/list')),
+            array('label'=>'本厂生产计划', 'url'=>array('/plan/list')),
+            array('label'=>'外发生产计划', 'url'=>array('/plan/deliveredList')),
             array('label'=>'历史生产计划', 'url'=>array('/plan/historyList')),
         ),
     )); ?>

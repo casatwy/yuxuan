@@ -17,7 +17,7 @@ class PlanController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('index', 'list', 'historyList'),
+                'actions' => array('index', 'list', 'historyList', 'deliveredList'),
                 'users' => array('@')
             ),
             array(
@@ -39,6 +39,10 @@ class PlanController extends Controller
 
     public function actionHistoryList()
     {
+        $this->render("index");
+    }
+
+    public function actionDeliveredList(){
         $this->render("index");
     }
 }
