@@ -30,8 +30,14 @@
 	border-collapse:collapse;
 	text-align:center;
 }
+/*  printRecordList 打印出入库记录  */
 
 /*  文字样式  */
+.big {
+	font-size:3em;
+	font-weight: bold;
+	line-height:1.7em;
+}
 .left {
 		text-align:left;
 }	

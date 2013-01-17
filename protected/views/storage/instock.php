@@ -28,7 +28,7 @@
 开始：<input type="text" class="J_selectTime" id="J_startTime"></input>
 结束：<input type="text" class="J_selectTime" id="J_endTime"></input></span>
 
-<span class="span-5 last"><br /><button id="J_searchButton" data-type="<?php echo $type; ?>">搜索</button></span>
+<span class="span-11 last"><br /><button id="J_searchButton" data-type="<?php echo $type; ?>">搜索</button></span>
 
 
 
