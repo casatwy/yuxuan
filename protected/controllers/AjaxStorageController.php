@@ -191,6 +191,7 @@ class AjaxStorageController extends Controller
             $criteria = new CDbCriteria();
             $criteria->condition = "id=".$_GET['data']['recordId'];
         }
+        $criteria->order = "id desc";
         $count = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
         $pages = new CPagination($count);
 

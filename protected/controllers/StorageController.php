@@ -55,6 +55,7 @@ class StorageController extends Controller
 
     private function getRecordList($type){
         $criteria = new CDbCriteria();
+        $criteria->order = "id desc";
 
         $count = ($type == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
         $pages = new CPagination($count);
