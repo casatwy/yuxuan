@@ -69,7 +69,7 @@ class SiteController extends Controller
         }
 
         //fetch names from database
-        $nameRecord = Users::model()->findAllBySql("select name from users;");
+        $nameRecord = Users::model()->findAllBySql("select name from users where available = 0;");
         $nameList = array();
         foreach($nameRecord as $item){
             $nameList = array_merge($nameList, array("$item->name" => $item->name));
