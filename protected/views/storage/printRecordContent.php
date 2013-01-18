@@ -1,5 +1,5 @@
 <div class="container">
-<h1 class="center big">有限有限有限有限公司<h1>
+<h1 class="center big">上海星位针织服装有限公司<h1>
 <?php 
     if($type == StorageController::IN_RECORD){
         echo '<h2 class="center">入库单</h2>';
@@ -52,7 +52,7 @@
     <?php endforeach; ?>
 </table>
 	<span class="span-23 last prepend-1">如有疑问，请你回传给我们！
-		<span><?php echo $re_cord->record_maker; ?></span>&nbsp;或&nbsp;
+		<span><?php echo $re_cord->record_maker; ?></span>&nbsp;:&nbsp;
 		<span><?php echo $user->telephone; ?></span>
 	</span>
 
