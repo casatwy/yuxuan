@@ -50,6 +50,6 @@ class PlanController extends Controller
     }
 
     public function actionDeliveredList(){
-        $this->render("index");
+        $this->render("deliveredPlan");
     }
 }
