@@ -1,7 +1,4 @@
-<button>
-    <a href="<?php echo $this->baseUrl;?>/admin/addUser">创建用户</a>
-</button>
-
+<a href="<?php echo $this->baseUrl;?>/admin/addUser">创建用户</a>
 <table class="record">
     <tr>
         <th>姓名</th>

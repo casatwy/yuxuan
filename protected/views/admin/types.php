@@ -1,7 +1,4 @@
-<button>
-    <a href="<?php echo $this->baseUrl;?>/admin/addType">添加类型</a>
-</button>
-
+<a href="<?php echo $this->baseUrl;?>/admin/addType">添加类型</a>
 <table class="record">
     <tr>
         <th>名称</th>
