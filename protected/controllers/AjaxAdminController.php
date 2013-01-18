@@ -44,4 +44,17 @@ class AjaxAdminController extends Controller
         }
         echo CJSON::encode($result);
     }
+
+    public function actionUpdateProvider(){
+        $result = array( "success" => '0');
+        $attributes = array(
+            'name' => htmlspecialchars($_POST['data']['name']),
+            'location' => htmlspecialchars($_POST['data']['address'])
+        );
+        $res = Provider::model()->updateByPk($_POST['data']['id'],$attributes);
+        if($res){
+            $result['success'] = '1';
+        }
+        echo CJSON::encode($result);
+    }
 }

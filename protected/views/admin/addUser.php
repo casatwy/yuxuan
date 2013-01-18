@@ -5,7 +5,7 @@
     <tr><td>输入密码:</td><td><input type="password" id="J_pwd1" ></input></td></tr>
         <tr><td>再次输入密码:</td><td><input type="password" id="J_pwd2"></input></td></tr>
         <tr><td>手机号码:</td><td><input type="text" id="J_tel" value="<?php echo $user->telephone; ?>"></input></td></tr>
-		<tr><td><input type="button" value="保存" id="J_submit"></input></td></tr>
+		<tr><td><input type="button" value="保存" id="J_usersubmit"></input></td></tr>
     </table>
     <input type="hidden" id="J_userId" value="<?php echo $user->id;?>">
     <?php endif; ?>
@@ -15,7 +15,7 @@
     <tr><td>输入密码:</td><td><input type="password" id="J_pwd1" ></input></td></tr>
         <tr><td>再次输入密码:</td><td><input type="password" id="J_pwd2"></input></td></tr>
         <tr><td>手机号码:</td><td><input type="text" id="J_tel"></input></td></tr>
-		<tr><td><input type="button" value="保存" id="J_submit"></input></td></tr>
+		<tr><td><input type="button" value="保存" id="J_usersubmit"></input></td></tr>
     </table>
     <?php endif; ?>
 </div>

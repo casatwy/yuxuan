@@ -17,7 +17,7 @@ class AdminController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('users', 'clients', 'types', 'adduser', 'updateuser', 'deleteuser'),
+                'actions' => array('users', 'clients', 'types', 'adduser', 'updateuser', 'deleteuser', 'updateClient'),
                 'users' => array('@')
             ),
             array(
@@ -63,10 +63,21 @@ class AdminController extends Controller
 
     public function actionClients()
     {
+        $this->cs->registerScriptFile($this->jsCommon."admin.js");
 		$clients = Provider::model()->findall();
         $this->render('clients', array(
 			'clients' => $clients,
 		));
+    }
+
+    public function actionUpdateClient(){
+        $this->cs->registerScriptFile($this->jsCommon."admin.js");
+        $user = Users::model()->findByPk($_GET['id']);
+        $client = Provider::model()->findByPk($_GET['id']);
+        echo $this->renderPartial('addClient',array(
+            'client' => $client,
+        ));
+        Yii::app()->end();
     }
 
     public function actionTypes()

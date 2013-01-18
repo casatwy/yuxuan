@@ -8,18 +8,25 @@ function Admin(baseUrl){
     }
 
     function bindEvent(){
-       $('#J_updateUser').nyroModal({
+       $('#J_update').nyroModal({
            closeOnEscapse:false,
            closeOnClick:false
        });
 
-       $('#J_submit').live('click', function(){
-           register();
-           submitData();
+       $('#J_usersubmit').live('click', function(){
+           if(register()){
+               submitUserData();
+           }
        }); 
+
+       $('#J_providersubmit').live('click',function(){
+           if(isblank()){
+               submitProviderData();
+           }
+       });
     }
 
-    function register(){
+    function isblank(){
        var result = true;
        $(".J_content input").each(function(index, value){
            if($(value).val().length == 0){
@@ -31,7 +38,11 @@ function Admin(baseUrl){
                return false;
            }
        });
+       return result;
+    }
 
+    function register(){
+       var result = isblank();
        if($('#J_pwd1').val() != $('#J_pwd2').val()){
            $.jGrowl("两次密码输入不同！", {
                header:"提示",
@@ -42,8 +53,8 @@ function Admin(baseUrl){
        return result;
     }
 
-    function submitData(){
-       var data = admin.getData();
+    function submitUserData(){
+       var data = admin.getUserData();
        var type = $('#J_type').val();
        if(type == 'add'){
             var appendUrl = '/ajaxAdmin/saveUser';
@@ -60,12 +71,32 @@ function Admin(baseUrl){
        },'json');
     }
 
-    this.getData = function(){
+    function submitProviderData(){
+        var data = admin.getProviderData();
+        $.post(baseUrl+'/ajaxAdmin/updateProvider', {data:data}, function(result){
+           if(result['success'] == '1'){
+                window.location.href = baseUrl+'/admin/clients';
+           }else{
+                $.jGrowl("保存失败", {header:"反馈"});
+           }
+        },'json');
+    }
+
+    this.getUserData = function(){
        var data = {
             name : $('#J_name').val(),
             pwd : $('#J_pwd1').val(),
             tel : $('#J_tel').val()
        } 
        return data;
+    }
+
+    this.getProviderData = function(){
+        var data = {
+            id : $('#J_providerId').val(),
+            name : $('#J_providerName').val(),
+            address : $('#J_providerLocation').val(),
+        }
+        return data;
     }
 }
