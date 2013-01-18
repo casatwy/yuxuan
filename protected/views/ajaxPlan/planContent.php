@@ -1,0 +1,25 @@
+<table>
+    <tbody>
+        <tr>
+            <th>货号</th>
+            <th>色号</th>
+            <th>针型</th>
+            <th>颜色</th>
+            <th>尺寸</th>
+            <th>任务数</th>
+            <th>已完成</th>
+            <th>未完成</th>
+        </tr>
+        <tr>
+            <td>12345</td>
+            <td>12345</td>
+            <td>12345</td>
+            <td>12345</td>
+            <td>12345</td>
+            <td>12345</td>
+            <td>12345</td>
+            <td>12345</td>
+        </tr>
+    </tbody>
+</table>
+<a href="javascript:void(0);">查看相关出货记录</a>

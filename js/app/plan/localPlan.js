@@ -45,7 +45,7 @@ function LocalPlan(baseUrl){
         }
 
         function clickOnEvent(){
-            alert("event clicked");
+            $.nmManual(baseUrl+"/ajaxPlan/getPlanContent");
             return false;
         }
     }
