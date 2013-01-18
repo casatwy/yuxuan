@@ -1,5 +1,5 @@
 <button>
-<a href="<?php echo $this->baseUrl;?>/admin/addUser">创建用户</a>
+    <a href="<?php echo $this->baseUrl;?>/admin/addUser">创建用户</a>
 </button>
 
 <table class="record">
@@ -14,7 +14,7 @@
 		<td><?php echo  $user->name;?></td>
 		<td><?php echo  $user->telephone;?></td>
 		<td><?php echo  $user->authority;?></td>
-        <td><a href="<?php echo $this->baseUrl.'/admin/updateUser/id/'.$user->id;?>">修改信息</a>
+        <td><a href="<?php echo $this->baseUrl.'/admin/updateUser/id/'.$user->id;?>" id="J_updateUser">修改信息</a>
         &nbsp;<a href="<?php echo $this->baseUrl.'/admin/deleteUser/id/'.$user->id;?>" >删除</a></td>
 	</tr>
 	<?php endforeach; ?>

@@ -29,6 +29,7 @@ class AdminController extends Controller
 
     public function actionUsers()
     {
+        $this->cs->registerScriptFile($this->jsCommon."admin.js");
         $condition = "available=:available";
         $params = array(':available' => '0');
 		$users = Users::model()->findAll($condition,$params);
@@ -39,18 +40,20 @@ class AdminController extends Controller
 	
 	public function actionAddUser(){
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
-        $this->render('addUser', array(
+        echo $this->renderPartial('addUser', array(
             'type' => 'add'
         ));
+        Yii::app()->end();
 	}
 
     public function actionUpdateUser(){
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
         $user = Users::model()->findByPk($_GET['id']);
-        $this->render('addUser', array(
+        echo $this->renderPartial('addUser', array(
             'user' => $user,
             'type' => 'update'
         ));
+        Yii::app()->end();
     }
     
     public function actionDeleteUser(){

@@ -8,6 +8,11 @@ function Admin(baseUrl){
     }
 
     function bindEvent(){
+       $('#J_updateUser').nyroModal({
+           closeOnEscapse:false,
+           closeOnClick:false
+       });
+
        $('#J_submit').live('click', function(){
            register();
            submitData();
