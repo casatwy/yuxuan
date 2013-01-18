@@ -99,9 +99,24 @@ class StorageController extends Controller
 			$recordContent = new RecordContent();
         	$recordList = $recordContent->getRecordContent($_GET['id'],$_GET['type']);
 
+			if($_GET['type'] == self::IN_RECORD){
+				$record = ReceiveRecord::model()->findByPk($_GET['id']);
+			}elseif($_GET['type'] == self::OUT_RECORD){
+				$record = DeliverRecord::model()->findByPk($_GET['id']);
+			} 
+			$provider = Provider::model()->findByPk($record->provider_id);
+
+        	$condition = "name=:name";
+        	$params = array(
+        	    ":name" => $record->record_maker,
+        	);
+        	$user = Users::model()->find($condition, $params);
             $this->render("printRecordContent", array(
                 "recordList" => $recordList,
-				"type" => $_GET['type']
+				"type" => $_GET['type'],
+				"re_cord" => $record,
+				"provider" => $provider,
+				"user" => $user
             ));
         }
 	}

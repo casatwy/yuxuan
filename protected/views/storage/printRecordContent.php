@@ -9,8 +9,15 @@
     }
 ?> 
 
-	<span class="span-16 prepend-1" >客户：<span></span></span>
-	<span class="span-7 last">单据号：<span></span></span>
+	<span class="span-16 prepend-1" >客户：<span><?php echo $provider->name;?></span></span>
+	<span class="span-7 last">单据号：<span></span>
+	<?php 
+    	if($type == StorageController::IN_RECORD){
+    	    echo 'RC'.$re_cord->id;
+    	}elseif($type == StorageController::OUT_RECORD){
+    	    echo 'DL'.$re_cord->id;
+    	}
+	?></span>
 	<span class="span-16 prepend-1">摘要：<span></span></span>
 	<span class="span-7 last"><span></span></span>
 	<span class="span-16 prepend-1"><span></span></span>
@@ -45,16 +52,16 @@
     <?php endforeach; ?>
 </table>
 	<span class="span-23 last prepend-1">如有疑问，请你回传给我们！
-		<span><?php echo Yii::app()->user->getState('name'); ?></span>&nbsp;或&nbsp;
-		<span><?php echo Yii::app()->user->getState('telephone'); ?></span>
+		<span><?php echo $re_cord->record_maker; ?></span>&nbsp;或&nbsp;
+		<span><?php echo $user->telephone; ?></span>
 	</span>
 
-<span class="span-5">制单人：<span><?php echo Yii::app()->user->getState('name'); ?></span></span>
+<span class="span-5">制单人：<span><?php echo $re_cord->record_maker; ?></span></span>
 <span class="span-5">发货人：<span></span></span>
 <span class="span-5">审核人：<span></span></span>
 <span class="span-5">进货人：<span></span></span>
 <span class="span-4 last">客户签收：<span></span></span>
-<span class="span-5">制单日期：<span><?php echo date('Y-m-d'); ?></span></span>
+<span class="span-5">制单日期：<span><?php echo date('Y-m-d', $re_cord->record_time); ?></span></span>
 <span class="span-5">发货日期：<span></span></span>
 <span class="span-5">审核日期：<span></span></span>
 <span class="span-5">进货日期：<span></span></span>
