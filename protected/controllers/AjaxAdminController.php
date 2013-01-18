@@ -9,8 +9,11 @@ class AjaxAdminController extends Controller
 
 	public function actionSaveUser(){
         $result = array( "success" => '0');
-        $condition = "name=:name";
-        $params = array(':name' => htmlspecialchars($_POST['data']['name']));
+        $condition = "name=:name and available=:available";
+        $params = array(
+            ':name' => htmlspecialchars($_POST['data']['name']),
+            ':available' => '0', 
+        );
         $user = Users::model()->find($condition,$params);
 
         if(is_null($user)){
@@ -27,4 +30,18 @@ class AjaxAdminController extends Controller
         echo CJSON::encode($result);
 	}
 
+    public function actionUpdateUser(){
+        $result = array( "success" => '0');
+        $attributes = array(
+            'name' => htmlspecialchars($_POST["data"]["name"]),
+            'telephone' => htmlspecialchars($_POST["data"]["tel"]),
+            'password' => md5(htmlspecialchars($_POST["data"]["pwd"])),
+            'authority' => 'authority'
+        );
+        $res = Users::model()->updateByPk($_POST['data']['id'],$attributes);
+        if($res){
+            $result['success'] = '1';
+        }
+        echo CJSON::encode($result);
+    }
 }

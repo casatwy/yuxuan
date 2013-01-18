@@ -39,7 +39,14 @@ function Admin(baseUrl){
 
     function submitData(){
        var data = admin.getData();
-       $.post(baseUrl+'/ajaxAdmin/saveUser', {data:data},function(result){
+       var type = $('#J_type').val();
+       if(type == 'add'){
+            var appendUrl = '/ajaxAdmin/saveUser';
+       }else if(type == 'update'){
+            var appendUrl = '/ajaxAdmin/updateUser';  
+            data['id'] = $('#J_userId').val();
+       }
+       $.post(baseUrl+appendUrl, {data:data},function(result){
            if(result['success'] == '1'){
                 window.location.href = baseUrl+'/admin/users';
            }else{
