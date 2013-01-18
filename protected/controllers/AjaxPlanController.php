@@ -32,4 +32,7 @@ class AjaxPlanController extends Controller
         echo CJSON::encode($events);
     }
 
+    public function actionGetPlanContent(){
+        echo $this->renderPartial("planContent");
+    }
 }
