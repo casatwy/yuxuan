@@ -2,19 +2,19 @@
 <h1 class="center big">有限有限有限有限公司<h1>
 <?php 
     if($type == StorageController::IN_RECORD){
-        echo '<h2 class="center">入库记录</h2>';
+        echo '<h2 class="center">入库单</h2>';
     }
     if($type == StorageController::OUT_RECORD){
-        echo '<h2  class="center">出库记录</h2>';
+        echo '<h2  class="center">出库单</h2>';
     }
 ?> 
 
-	<span class="span-16 prepend-1" >客户：<span>xxxxx</span></span>
-	<span class="span-7 last">单据日期：<span>xxxxxx</span></span>
-	<span class="span-16 prepend-1">发货仓库：<span>xxxxxx</span></span>
-	<span class="span-7 last">单据号：<span>xxxxxx</span></span>
-	<span class="span-16 prepend-1">摘要：<span> xxxxxx</span></span>
-	<span class="span-7 last small">第1页/共1页</span>
+	<span class="span-16 prepend-1" >客户：<span></span></span>
+	<span class="span-7 last">单据号：<span></span></span>
+	<span class="span-16 prepend-1">摘要：<span></span></span>
+	<span class="span-7 last"><span></span></span>
+	<span class="span-16 prepend-1"><span></span></span>
+	<span class="span-7 last small"></span>
 
 
 <table class="record">
@@ -45,18 +45,19 @@
     <?php endforeach; ?>
 </table>
 	<span class="span-23 last prepend-1">如有疑问，请你回传给我们！
-		<span>xxxxxx</span>或<span>xxxxxx</span>
+		<span><?php echo Yii::app()->user->getState('name'); ?></span>&nbsp;或&nbsp;
+		<span><?php echo Yii::app()->user->getState('telephone'); ?></span>
 	</span>
 
-<span class="span-5">制单人：<span>xxxxxx</span></span>
-<span class="span-5">发货人：<span>xxxxxx</span></span>
-<span class="span-5">审核人：<span>xxxxxx</span></span>
-<span class="span-5">进货人：<span>xxxxxx</span></span>
-<span class="span-4 last">客户签收：<span>xxxxxx</span></span>
-<span class="span-5">制单日期：<span>xxxxxx</span></span>
-<span class="span-5">发货日期：<span>xxxxxx</span></span>
-<span class="span-5">审核日期：<span>xxxxxx</span></span>
-<span class="span-5">进货日期：<span>xxxxxx</span></span>
-<span class="span-4 last">签收日期：<span>xxxxxx</span></span>
+<span class="span-5">制单人：<span><?php echo Yii::app()->user->getState('name'); ?></span></span>
+<span class="span-5">发货人：<span></span></span>
+<span class="span-5">审核人：<span></span></span>
+<span class="span-5">进货人：<span></span></span>
+<span class="span-4 last">客户签收：<span></span></span>
+<span class="span-5">制单日期：<span><?php echo date('Y-m-d'); ?></span></span>
+<span class="span-5">发货日期：<span></span></span>
+<span class="span-5">审核日期：<span></span></span>
+<span class="span-5">进货日期：<span></span></span>
+<span class="span-4 last">签收日期：<span></span></span>
 
 </div>
