@@ -40,10 +40,9 @@ class AdminController extends Controller
 	
 	public function actionAddUser(){
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
-        echo $this->renderPartial('addUser', array(
+        $this->render('addUser', array(
             'type' => 'add'
         ));
-        Yii::app()->end();
 	}
 
     public function actionUpdateUser(){
