@@ -34,7 +34,14 @@ class PlanController extends Controller
 
     public function actionList()
     {
-        $this->render("index");
+        $fullCalendarUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.fullcalendar')).'/';
+        $this->cs->registerCssFile($fullCalendarUrl."fullcalendar.css");
+        $this->cs->registerCssFile($fullCalendarUrl."fullcalendar.print.css");
+        $this->cs->registerScriptFile($fullCalendarUrl."fullcalendar.min.js");
+
+        $this->cs->registerScriptFile($this->jsUrl."localPlan.js");
+
+        $this->render("localPlan");
     }
 
     public function actionHistoryList()
