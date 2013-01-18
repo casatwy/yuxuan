@@ -24,6 +24,12 @@ function Admin(baseUrl){
                submitProviderData();
            }
        });
+
+       $('#J_typesubmit').live('click',function(){
+            if(isblank){
+                submitTypeData(); 
+            }
+       });
     }
 
     function isblank(){
@@ -82,6 +88,23 @@ function Admin(baseUrl){
         },'json');
     }
 
+    function submitTypeData(){
+        var data = admin.getTypeData();
+        if($('#J_kind').val() == 'add'){
+            var appendUrl = '/ajaxAdmin/saveType';
+        }else if($('#J_kind').val() == 'update'){
+            var appendUrl = '/ajaxAdmin/updateType';
+            data['id'] = $('#J_typeId').val();
+        }
+        $.post(baseUrl+appendUrl, {data:data}, function(result){
+           if(result['success'] == '1'){
+                window.location.href = baseUrl+'/admin/types';
+           }else{
+                $.jGrowl("保存失败，名称已存在。", {header:"反馈"});
+           }
+        },'json');
+    }
+
     this.getUserData = function(){
        var data = {
             name : $('#J_name').val(),
@@ -96,6 +119,13 @@ function Admin(baseUrl){
             id : $('#J_providerId').val(),
             name : $('#J_providerName').val(),
             address : $('#J_providerLocation').val(),
+        }
+        return data;
+    }
+
+    this.getTypeData = function(){
+        var data = {
+            name : $('#J_typeName').val(),
         }
         return data;
     }

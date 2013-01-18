@@ -17,7 +17,8 @@ class AdminController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('users', 'clients', 'types', 'adduser', 'updateuser', 'deleteuser', 'updateClient'),
+                'actions' => array('users', 'clients', 'types', 'adduser', 'updateuser', 'deleteuser', 
+                                    'updateClient', 'addType', 'updateType'),
                 'users' => array('@')
             ),
             array(
@@ -82,10 +83,28 @@ class AdminController extends Controller
 
     public function actionTypes()
     {
+        $this->cs->registerScriptFile($this->jsCommon."admin.js");
 		$types = Type::model()->findall();
         $this->render('types', array(
 			'types' => $types,
 		));
+    }
+
+    public function actionAddType(){
+        $this->cs->registerScriptFile($this->jsCommon."admin.js");
+        $this->render('addType', array(
+            'kind' => 'add',
+        ));
+    }
+
+    public function actionUpdateType(){
+        $this->cs->registerScriptFile($this->jsCommon."admin.js");
+        $type = Type::model()->findByPk($_GET['id']);
+        echo $this->renderPartial('addType', array(
+            'type' => $type,
+            'kind' => 'update', 
+        ));
+        Yii::app()->end();
     }
 }
 

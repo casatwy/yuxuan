@@ -57,4 +57,33 @@ class AjaxAdminController extends Controller
         }
         echo CJSON::encode($result);
     }
+
+    public function actionSaveType(){
+        $result = array('success' => '0');
+        $condition = "name=:name";
+        $params = array(':name' => $_POST['data']['name']);
+        $type = Type::model()->find($condition,$params);
+
+        if(is_null($type)){
+            $type = new Type();
+            $type->name = htmlspecialchars($_POST["data"]["name"]);
+            $type->save();
+            $result['success'] = '1';
+        }
+
+        echo CJSON::encode($result);
+    }
+
+    public function actionUpdateType(){
+        $result = array('success' => '0');
+        $attributes = array(
+            'name' => htmlspecialchars($_POST["data"]["name"]),
+        );
+        $res = Type::model()->updateByPk($_POST['data']['id'],$attributes);
+        if($res){
+            $result['success'] = '1';
+        }
+
+        echo CJSON::encode($result);
+    }
 }
