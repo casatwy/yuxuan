@@ -95,7 +95,7 @@ class StorageController extends Controller
 
 	public function actionPrintRecordList(){
         $this->layout = "//layouts/blank";
-        if(isset($_GET)){
+        if(isset($_GET['id']) && isset($_GET['type'])){
 			$recordContent = new RecordContent();
         	$recordList = $recordContent->getRecordContent($_GET['id'],$_GET['type']);
 
