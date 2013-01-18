@@ -5,6 +5,9 @@ class RecordContent extends CController
     const SAVE_IN_STOCK = 1;
     const SAVE_OUT_STOCK = 2;
 
+    const OUT_RECORD = 1;
+    const IN_RECORD = 2;
+
 	public function __construct(){
 	}
 	
@@ -44,6 +47,26 @@ class RecordContent extends CController
             array_push($recordList, $record);
         }
         return $recordList;
+    }
+
+    public function printInfomation($id,$type){
+		if($type == self::IN_RECORD){
+			$record = ReceiveRecord::model()->findByPk($id);
+		}elseif($type == self::OUT_RECORD){
+			$record = DeliverRecord::model()->findByPk($id);
+		} 
+
+        $condition = "name=:name";
+        $params = array(
+            ":name" => $record->record_maker,
+        );
+        $user = Users::model()->find($condition, $params);
+		$info = array(
+			"type" => $type,
+			"record" => $record,
+			"user" => $user
+		);
+        return $info;
     }
 }
 ?>
