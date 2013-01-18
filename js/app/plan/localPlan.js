@@ -45,7 +45,18 @@ function LocalPlan(baseUrl){
         }
 
         function clickOnEvent(){
-            $.nmManual(baseUrl+"/ajaxPlan/getPlanContent");
+            $(".J_event").hide();
+            $.nmManual(baseUrl+"/ajaxPlan/getPlanContent",{
+                closeOnClick:true,
+                closeOnEscape:true,
+                showCloseButton:false,
+                domCopy:true,
+                callbacks:{
+                    afterHideBg:function(){
+                        $(".J_event").show();
+                    }
+                },
+            });
             return false;
         }
     }
