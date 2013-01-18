@@ -8,11 +8,9 @@ function Admin(baseUrl){
     }
 
     function bindEvent(){
-       $('.record  #J_update').each(function(index,value){
-           $(value).nyroModal({
-               closeOnEscapse:false,
-               closeOnClick:false
-           });
+       $('.J_update').nyroModal({
+           closeOnEscapse:false,
+           closeOnClick:false
        });
 
        $('#J_usersubmit').live('click', function(){
