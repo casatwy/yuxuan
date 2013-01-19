@@ -8,22 +8,132 @@ class AjaxPlanController extends Controller
 	}
 
     public function actionGetPlanEvents(){
+        $record = ReceiveRecordItem::model()->findByPk("1");
+        $record2 = ReceiveRecordItem::model()->findByPk("2");
         $events = array(
             array(
-                'id' => 'event_id_1',
                 'title' => 'event_title_1',
-                'allDay' => true,
-                'start' => time()-(60*60*24),
-                'end' => time(),
+                'start' => $record->record_time,
+                'end' => $record->record_time,
                 'className' => 'J_event',
                 'editable' => false,
             ),
             array(
-                'id' => 'event_id_2',
                 'title' => 'event_title_2',
-                'allDay' => false,
-                'start' => time()-(60*60*24*2),
-                'end' => time()-(60*60*24),
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
+                'className' => 'J_event',
+                'editable' => false,
+            ),
+            array(
+                'title' => 'event_title_2',
+                'start' => $record2->record_time,
+                'end' => $record2->record_time,
                 'className' => 'J_event',
                 'editable' => false,
             ),
@@ -34,5 +144,9 @@ class AjaxPlanController extends Controller
 
     public function actionGetPlanContent(){
         echo $this->renderPartial("planContent");
+    }
+
+    public function actionGetDayContent(){
+        echo $this->renderPartial("dayContent");
     }
 }
