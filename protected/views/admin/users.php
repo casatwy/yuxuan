@@ -8,7 +8,7 @@
     </tr>
 	<?php foreach($users as $user): ?>
 	<tr>
-		<td><?php echo  $user->name;?></td>
+        <td><?php echo $user->name;?></td>
 		<td><?php echo  $user->telephone;?></td>
 		<td><?php echo  $user->authority;?></td>
         <td><a href="<?php echo $this->baseUrl.'/admin/updateUser/id/'.$user->id;?>" class="J_update">修改信息</a>

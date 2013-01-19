@@ -9,22 +9,19 @@ class AjaxAdminController extends Controller
 
 	public function actionSaveUser(){
         $result = array( "success" => '0');
-        $condition = "name=:name and available=:available";
-        $params = array(
-            ':name' => htmlspecialchars($_POST['data']['name']),
-            ':available' => '0', 
-        );
-        $user = Users::model()->find($condition,$params);
-
-        if(is_null($user)){
+        foreach($_POST['data'] as $data){
             $user = new Users();
-            $user->name = htmlspecialchars($_POST["data"]["name"]);
-		    $user->telephone = htmlspecialchars($_POST["data"]["tel"]);
-		    $user->password = md5(htmlspecialchars($_POST["data"]["pwd"]));
+            $user->name = htmlspecialchars($data["name"]);
+		    $user->telephone = htmlspecialchars($data["tel"]);
+		    $user->password = md5(htmlspecialchars($data["pwd"]));
 		    $user->authority = "authority";
 		    //$user->authority = htmlspecialchars($_POST["authority"]);
-            $user->save();
-            $result['success'] = '1';
+            if($user->save()){
+                $result['success'] = '1';
+            }else{
+                $result['success'] = '0';
+                break;
+            }
         }
 
         echo CJSON::encode($result);

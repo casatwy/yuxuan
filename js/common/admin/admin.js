@@ -4,6 +4,9 @@ $(document).ready(function(){
 });
 function Admin(baseUrl){
     this.init = function(){
+        if($('#J_type').val() == 'addUser'){
+            window.names = eval('('+$('#J_allUser').text()+')');
+        }
         bindEvent();
     }
 
@@ -14,8 +17,16 @@ function Admin(baseUrl){
        });
 
        $('#J_usersubmit').live('click', function(){
-           if(register()){
-               submitUserData();
+           if($('#J_type').val() == 'addUser'){
+               var data = admin.getUserData();
+               if(data){
+                   submitUserData(data);
+               }
+           }else{
+                if(register()){
+                    var data = admin.getUpdateUserData();
+                    submitUserData(data);
+                }
            }
        }); 
 
@@ -29,6 +40,19 @@ function Admin(baseUrl){
             if(isblank){
                 submitTypeData(); 
             }
+       });
+
+       $('#J_addOneUser').live('click',function(){
+            var html = $('#J_exOne').html();
+            $('.J_content').append(html);
+       });
+
+       $('.J_deleUser').live('click',function(){
+           if($('.J_content table').length == 1){
+                $.jGrowl("至少要保留一行。", {header:"提示"});
+           }else{
+                $(this).closest('table').remove();
+           }
        });
     }
 
@@ -48,25 +72,24 @@ function Admin(baseUrl){
     }
 
     function register(){
-       var result = isblank();
-       if($('#J_pwd1').val() != $('#J_pwd2').val()){
-           $.jGrowl("两次密码输入不同！", {
-               header:"提示",
-               life:2000
-           });
-           result = false;
-       }
-       return result;
+        var result = isblank();
+        if($('#J_pwd1').val() != $('#J_pwd2').val()){
+            $.jGrowl("两次密码输入不同！", {
+                header:"提示",
+                life:2000
+            });
+            result = false;
+            return false;
+        }
+        return result;
     }
 
-    function submitUserData(){
-       var data = admin.getUserData();
+    function submitUserData(data){
        var type = $('#J_type').val();
-       if(type == 'add'){
+       if(type == 'addUser'){
             var appendUrl = '/ajaxAdmin/saveUser';
-       }else if(type == 'update'){
+       }else if(type == 'updateUser'){
             var appendUrl = '/ajaxAdmin/updateUser';  
-            data['id'] = $('#J_userId').val();
        }
        $.post(baseUrl+appendUrl, {data:data},function(result){
            if(result['success'] == '1'){
@@ -94,7 +117,7 @@ function Admin(baseUrl){
             var appendUrl = '/ajaxAdmin/saveType';
         }else if($('#J_kind').val() == 'update'){
             var appendUrl = '/ajaxAdmin/updateType';
-            data['id'] = $('#J_typeId').val();
+            data['id'] = $('#J_userId').val();
         }
         $.post(baseUrl+appendUrl, {data:data}, function(result){
            if(result['success'] == '1'){
@@ -106,12 +129,67 @@ function Admin(baseUrl){
     }
 
     this.getUserData = function(){
-       var data = {
-            name : $('#J_name').val(),
-            pwd : $('#J_pwd1').val(),
-            tel : $('#J_tel').val()
-       } 
-       return data;
+       var result = isblank();
+       var item = new Array(); 
+       var tempName = new Array();
+       var dbNames = window.names;
+       var name,pwd1,pwd2;
+       $('.J_content table').each(function(index,value){
+            index++ ;
+            name = $(value).find('#J_name').val();
+            pwd1 = $(value).find('#J_pwd1').val();
+            pwd2 = $(value).find('#J_pwd2').val();
+            if(isSet(tempName,name) < tempName.length){
+                $.jGrowl("第"+index+"组用户名相同！", {
+                    header:"提示",
+                    life:2000
+                });
+                result = false;
+                return false;
+            }else{
+                tempName.push(name);
+            }
+
+            if(isSet(dbNames,name) < dbNames.length){
+                $.jGrowl("第"+index+"组用户名已存在！", {
+                    header:"提示",
+                    life:2000
+                });
+                result = false;
+                return false;
+            }
+
+            if(pwd1 != pwd2){
+                $.jGrowl("第"+index+"组两次密码输入不同！", {
+                    header:"提示",
+                    life:2000
+                });
+                result = false;
+                return false;
+            }
+
+            var data = {
+                 name : name,
+                 pwd : pwd1,
+                 tel : $(value).find('#J_tel').val()
+            } 
+            item.push(data); 
+       });
+       if(result == false){
+            return false; 
+       }else{
+            return item;
+       }
+    }
+
+    this.getUpdateUserData = function(){
+        var data = {
+           id : $('#J_userId').val(), 
+           name : $('#J_name').val(),
+           pwd : $('#J_pwd1').val(),
+           tel : $('#J_tel').val(),
+        }
+        return data;
     }
 
     this.getProviderData = function(){
@@ -128,5 +206,15 @@ function Admin(baseUrl){
             name : $('#J_typeName').val(),
         }
         return data;
+    }
+
+    function isSet(arr,name){
+        var i = 0;
+        for(i ; i<arr.length ; i++){
+            if(arr[i] == name){
+                break;
+            }
+        }
+        return i;
     }
 }

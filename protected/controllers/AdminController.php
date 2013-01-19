@@ -41,8 +41,17 @@ class AdminController extends Controller
 	
 	public function actionAddUser(){
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
+        $condition = "available=:available";
+        $params = array(':available' => '0');
+		$users = Users::model()->findAll($condition,$params);
+        $user = array();
+        foreach($users as $u){
+            $user[] = $u->name;
+        }
+
         $this->render('addUser', array(
-            'type' => 'add'
+            'type' => 'addUser',
+            'user' => CJSON::encode($user)
         ));
 	}
 
@@ -51,7 +60,7 @@ class AdminController extends Controller
         $user = Users::model()->findByPk($_GET['id']);
         echo $this->renderPartial('addUser', array(
             'user' => $user,
-            'type' => 'update'
+            'type' => 'updateUser'
         ));
         Yii::app()->end();
     }
