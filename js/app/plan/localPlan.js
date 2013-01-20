@@ -24,7 +24,6 @@ function LocalPlan(baseUrl){
             },
             weekMode:'variable',
             timeFormat:'yyyy-MM-dd HH:mm:ss',
-            titleFormat:'yyyy-MM-dd HH:mm:ss',
 
             monthNames:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
             monthNamesShort:['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
