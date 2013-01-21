@@ -1,4 +1,7 @@
-<a href="<?php echo $this->baseUrl;?>/admin/addType">添加类型</a>
+<div >
+	<h2 class="prepend-1 span-3">物料类型</h2>
+	<a id="plus" class="span-17 last" href="<?php echo $this->baseUrl;?>/admin/addType"></a>
+	<hr>
 <table class="record">
     <tr>
         <th>名称</th>
@@ -12,3 +15,4 @@
 	<?php endforeach; ?>
 </table>
     <input type="hidden" id="J_baseUrl" value="<?php $this->baseUrl; ?>">
+</div>

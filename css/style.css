@@ -82,6 +82,14 @@ a.prepend {
 	margin:0;
 	float:left;
 }
+/*  adduser 用户信息  修改创建用户  */
+.addU {
+	width:300px;
+}
+.addU span {
+	margin:0 0 1.5em;
+	font-size:1.1em;
+}
 /*  文字样式  */
 .big {
 	font-size:3em;
@@ -96,4 +104,7 @@ a.prepend {
 }	
 .right {
 		text-align:right;
+}
+.pad-8 {
+	padding-left:8px;
 }

@@ -1,4 +1,6 @@
 <div class="container" id="J_container">
+	<h2 class="prepend-1">新增出库记录</h2>
+	<hr>
     <h5>
         客户：
         <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>

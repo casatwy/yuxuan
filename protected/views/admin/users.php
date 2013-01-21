@@ -1,4 +1,8 @@
-<a href="<?php echo $this->baseUrl;?>/admin/addUser">创建用户</a>
+<div class="contant-container">
+	<h2 class="span-3 prepend-1">用户信息</h2>
+	<a class="span-17 last" id="plus" href="<?php echo $this->baseUrl;?>/admin/addUser"></a>
+	<hr>
+
 <table class="record">
     <tr>
         <th>姓名</th>

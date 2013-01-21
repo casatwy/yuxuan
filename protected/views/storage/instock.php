@@ -2,14 +2,13 @@
 <span id="J_baseUrl" value="<?php echo $this->baseUrl; ?>"></span>
 <?php 
     if($type == StorageController::IN_RECORD){
-        echo '<h1 class="span-3">入库记录</h1>';
+        echo '<h2 class="span-3 prepend-1">入库记录</h2>';
     }
     if($type == StorageController::OUT_RECORD){
-        echo '<h1 class="span-3">出库记录</h1>';
+        echo '<h2 class="span-3 prepend-1">出库记录</h2>';
     }
 ?> 
-
-<a id="plus" class="span-18 last" href="<?php 
+<a id="plus" class="span-17 last" href="<?php 
     if($type == StorageController::IN_RECORD){
         echo $this->baseUrl.'/storage/createInStock';
     }
@@ -17,18 +16,18 @@
         echo $this->baseUrl.'/storage/createOutStock'; 
     }
 ?>" > </a>
-<br />
+<hr>
 
 
-<span class="span-21 last">客户：<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
-<span class="span-7">货号:<input type="text" id="J_goodsNumber"></input></span>
-<span class="span-14 last">入库单号:<input type="text" id="J_recordId"></input></span>
+<span class="prepend-3 span-18 last">客户：<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
+<span class="prepend-3 span-7">货号:<input type="text" id="J_goodsNumber"></input></span>
+<span class="span-11 last">入库单号:<input type="text" id="J_recordId"></input></span>
 
-<span class="span-10">日期范围<br />
+<span class="prepend-3 span-10">日期范围<br />
 开始：<input type="text" class="J_selectTime" id="J_startTime"></input>
 结束：<input type="text" class="J_selectTime" id="J_endTime"></input></span>
 
-<span class="span-11 last"><br /><button id="J_searchButton" data-type="<?php echo $type; ?>">搜索</button></span>
+<span class="span-8 last"><br /><button id="J_searchButton" data-type="<?php echo $type; ?>">搜索</button></span>
 
 
 
