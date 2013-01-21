@@ -1,23 +1,21 @@
 <?php
 
 /**
- * This is the model class for table "product".
+ * This is the model class for table "daily_product".
  *
- * The followings are the available columns in table 'product':
- * @property string $id
- * @property integer $silk_id
- * @property string $needle_type
- * @property string $size
+ * The followings are the available columns in table 'daily_product':
+ * @property integer $id
+ * @property integer $time
+ * @property integer $product_id
+ * @property integer $count
  * @property integer $goods_number
- * @property string $diaoxian
- * @property int $total_count
  */
-class Product extends CActiveRecord
+class DailyProduct extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Product the static model class
+	 * @return DailyProduct the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -29,7 +27,7 @@ class Product extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'product';
+		return 'daily_product';
 	}
 
 	/**
@@ -40,13 +38,11 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('silk_id, needle_type, size, goods_number', 'required'),
-			array('silk_id, goods_number, total_count', 'numerical', 'integerOnly'=>true),
-			array('needle_type', 'length', 'max'=>10),
-			array('size, diaoxian', 'length', 'max'=>20),
+			array('time, product_id, count, goods_number', 'required'),
+			array('time, product_id, count, goods_number', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, silk_id, needle_type, size, goods_number, diaoxian, total_count', 'safe', 'on'=>'search'),
+			array('id, time, product_id, count, goods_number', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,12 +64,10 @@ class Product extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'silk_id' => 'Silk',
-			'needle_type' => 'Needle Type',
-			'size' => 'Size',
+			'time' => 'Time',
+			'product_id' => 'Product',
+			'count' => 'Count',
 			'goods_number' => 'Goods Number',
-			'diaoxian' => 'Diaoxian',
-			'total_count' => 'Total Count',
 		);
 	}
 
@@ -88,13 +82,11 @@ class Product extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id,true);
-		$criteria->compare('silk_id',$this->silk_id);
-		$criteria->compare('needle_type',$this->needle_type,true);
-		$criteria->compare('size',$this->size,true);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('time',$this->time);
+		$criteria->compare('product_id',$this->product_id);
+		$criteria->compare('count',$this->count);
 		$criteria->compare('goods_number',$this->goods_number);
-		$criteria->compare('diaoxian',$this->diaoxian,true);
-		$criteria->compare('total_count',$this->total_count);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

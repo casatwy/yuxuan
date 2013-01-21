@@ -42,9 +42,6 @@ function LocalPlan(baseUrl){
             //date: Tue Jan 01 2013 00:00:00 GMT+0800 (CST)
             //allDay: true (boolean)
             //view: a big object
-            console.log(date);
-            console.log(allDay);
-            console.log(view);
             $(".J_event").hide();
             $.nmManual(baseUrl+"/ajaxPlan/getDayContent",{
                 closeOnClick:true,
@@ -54,10 +51,29 @@ function LocalPlan(baseUrl){
                 callbacks:{
                     beforeHideBg:function(){
                         $(".J_event").show();
-                    }
+                    },
+                    afterShowCont:function(){
+                        $("#J_addButton").live("click", function(){
+                            clickAddButton($(this));
+                        });
+                    },
                 },
             });
             return false;
+        }
+
+        function clickAddButton(actionItem){
+            var data = {
+                goods_number:$("#J_goodsNumber").val(),
+                color_number:$("#J_colorNumber").val(),
+                color_name:$("#J_colorName").val(),
+                size:$("#J_size").val(),
+                total:$("#J_total").val(),
+                finished:$("#J_finished").val(),
+            };
+
+            $.post(baseUrl+"/ajaxPlan/saveDailyRecord", data, function(result){
+            });
         }
 
         function clickOnEvent(event, jsEvent, view){

@@ -149,4 +149,15 @@ class AjaxPlanController extends Controller
     public function actionGetDayContent(){
         echo $this->renderPartial("dayContent");
     }
+
+    public function actionSaveDailyRecord(){
+        /*
+             goods_number
+             color_number
+             color_name
+             size
+             total
+             finished
+         */
+    }
 }
