@@ -28,6 +28,8 @@
 <br/>
 色号：<input type="text" id="J_colorNumber"></input>
 <br/>
+针型：<input type="text" id="J_needleType"></input>
+<br/>
 颜色：<input type="text" id="J_colorName"></input>
 <br/>
 尺寸：<input type="text" id="J_size"></input>

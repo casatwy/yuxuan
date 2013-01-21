@@ -96,4 +96,34 @@ class Silk extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    /*
+     * info is an array which includes:
+     *  goods_number color_name color_number
+     * */
+    public static function findExistSilk($info){
+        $sql = "
+            SELECT * from (
+                SELECT * from silk where goods_number=".htmlspecialchars($info['goods_number'])."
+            ) as temp
+            where color_name =".htmlspecialchars($info['color_name'])."
+            and color_number =".htmlspecialchars($info['color_number']);
+        $result = Yii::app()->db->createCommand($sql)->queryRow();
+        if(isset($result['id'])){
+            return $result['id'];
+        }else{
+            return $result;
+        }
+    }
+
+    public static function createNew($info){
+        $silk = new Silk;
+        $silk->color_number = $info['color_number'];
+        $silk->color_name = $info['color_name'];
+        $silk->gang_number = $info['gang_number'];
+        $silk->goods_number = $info['goods_number'];
+        $silk->zhi_count = $info['zhi_count'];
+        $silk->save();
+        return $silk->id;
+    } 
 }

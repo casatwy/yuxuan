@@ -77,6 +77,7 @@ function LocalPlan(baseUrl){
             var data = {
                 goods_number:$("#J_goodsNumber").val(),
                 color_number:$("#J_colorNumber").val(),
+                needle_type:$("#J_needleType").val(),
                 color_name:$("#J_colorName").val(),
                 size:$("#J_size").val(),
                 total:$("#J_total").val(),
