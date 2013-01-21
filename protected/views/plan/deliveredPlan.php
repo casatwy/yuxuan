@@ -3,10 +3,10 @@
 
     <tr>
         <th class="span-3 th-bg">
-		<span class="prepend-2">1</span>
-		<span class="prepend-1 append-1">2</span>
-		<span class="append-2">3</span>
-	</th>
+		<span class="prepend-2">尺寸</span>
+		<span class="prepend-1 append-1">数量</span>
+		<span class="append-2">色号</span>
+	    </th>
         <th>xxxxxxxxx</th>
         <th>xxxxxxxxx</th>
         <th>xxxxxxxxx</th>
