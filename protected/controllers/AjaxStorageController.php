@@ -44,52 +44,19 @@ class AjaxStorageController extends Controller
     }
 
     private function getItemId($item){
-        $condition = 'color_number=:color_number and '
-            .'gang_number=:gang_number and '
-            .'color_name=:color_name and '
-            .'goods_number=:goods_number and '
-            .'zhi_count=:zhi_count';
-        $params = array(
-            ":color_number" => $item['color_number'],
-            ":color_name" => $item['color_name'],
-            ":gang_number" => $item['gang_number'],
-            ":zhi_count" => $item['zhi_count'],
-            ":goods_number" => $item['goods_number'],
-        );
-        $silk = Silk::model()->find($condition, $params);
-        if(is_null($silk)){
-            $silk = new Silk;
-            $silk->color_number = $item['color_number'];
-            $silk->color_name = $item['color_name'];
-            $silk->gang_number = $item['gang_number'];
-            $silk->goods_number = $item['goods_number'];
-            $silk->zhi_count = $item['zhi_count'];
-            $silk->save();
+        $silk_id = Silk::findExistSilk($item);
+        if(!$silk_id){
+            $silk_id = Silk::createNew($item);
         }
         if($item["type"] == 1){
-            return $silk->id;
+            return $silk_id;
         }
 
-        $condition = 'goods_number=:goods_number and '
-                    .'silk_id=:silk_id and '
-                    .'needle_type=:needle_type and '
-                    .'size=:size';
-        $params = array(
-            ":silk_id" => $silk->id,
-            ":needle_type" => $item["needle_type"],
-            ":size" => $item["size"],
-            ":goods_number" => $item["goods_number"],
-        );
-        $product = Product::model()->find($condition, $params);
-        if(is_null($product)){
-            $product = new Product;
-            $product->silk_id = $silk->id;
-            $product->needle_type = $item["needle_type"];
-            $product->size = $item["size"];
-            $product->goods_number = $item["goods_number"];
-            $product->save();
+        $product_id = Product::findExistedProduct($item);
+        if(!$product){
+            $product_id = Product::createNew($item, $silk_id);
         }
-        return $product->id;
+        return $product_id;
     }
 
     public function actionSaveprovider(){

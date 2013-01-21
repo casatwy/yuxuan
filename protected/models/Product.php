@@ -100,4 +100,42 @@ class Product extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    /*
+     * info is a array which inculde:
+     *  goods_number color_number needle_type size
+     *
+     * */
+    public static function findExistedProduct($info){
+        $sql = "SELECT * 
+                FROM (
+                    SELECT silk.color_number, silk.color_name, product.needle_type, product.size, product.id
+                    FROM silk, product
+                    WHERE  `silk`.goods_number =  `product`.goods_number
+                    AND  `product`.goods_number =".htmlspecialchars($info["goods_number"])."
+                ) AS sb
+                WHERE color_number =".htmlspecialchars($info["color_number"])."
+                AND needle_type =".htmlspecialchars($info["needle_type"])."
+                AND size =".htmlspecialchars($info["size"]).";";
+        $result = Yii::app()->db->createCommand($sql)->queryRow();
+        if(isset($result['id'])){
+            return $result['id'];
+        }else{
+            return $result;
+        }
+    }
+
+    public static function createNew($info, $silk_id=false){
+        $product = new Product;
+        if($silk_id){
+            $product->silk_id = $silk->id;
+        }else{
+            $product->silk_id = Silk::findExistSilk($info);
+        }
+        $product->needle_type = $info["needle_type"];
+        $product->size = $info["size"];
+        $product->goods_number = $info["goods_number"];
+        $product->save();
+        return $product->id;
+    }
 }
