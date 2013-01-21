@@ -10,10 +10,12 @@ class AjaxPlanController extends Controller
     public function actionGetPlanEvents(){
         //$record = ReceiveRecordItem::model()->findByPk("1");
         //$record2 = ReceiveRecordItem::model()->findByPk("2");
-        
+
+        var_dump(strtotime($_POST['start']));
+        var_dump(strtotime($_POST['end']));
         $sql = "select p.goods_number,p.size,s.color_name from `daily_product` dp "
             ." inner join `product` p on dp.time >=".strtotime($_POST['start'])
-            ." dp.time <".strtotime($_POST['end'])." dp.product_id = p.id "
+            ." and dp.time <".strtotime($_POST['end'])." and dp.product_id = p.id "
             ." inner join `silk` s on p.silk_id = s.id ";
         $events = Yii::app()->db->createCommand($sql)->queryAll();
         
