@@ -8,18 +8,24 @@ class AjaxPlanController extends Controller
 	}
 
     public function actionGetPlanEvents(){
-        //$record = ReceiveRecordItem::model()->findByPk("1");
-        //$record2 = ReceiveRecordItem::model()->findByPk("2");
-
-        var_dump(strtotime($_POST['start']));
-        var_dump(strtotime($_POST['end']));
-        $sql = "select p.goods_number,p.size,s.color_name from `daily_product` dp "
+        $sql = "select dp.time,p.goods_number,p.size,s.color_name from `daily_product` dp "
             ." inner join `product` p on dp.time >=".strtotime($_POST['start'])
             ." and dp.time <".strtotime($_POST['end'])." and dp.product_id = p.id "
             ." inner join `silk` s on p.silk_id = s.id ";
-        $events = Yii::app()->db->createCommand($sql)->queryAll();
+        $daily_messages = Yii::app()->db->createCommand($sql)->queryAll();
         
-        var_dump($events);
+        $events = array();
+
+        foreach($daily_messages as $m){
+            $event = array(
+                'title' => $m['goods_number'].'_'.$m['color_name'].'_'.$m['size'],
+                'start' => $m['time'],
+                'end' => $m['time'],
+                'className' => 'J_event',
+                'editable' => false,
+            );
+            array_push($events,$event);
+        }
         //$events = array(
         //    array(
         //        'title' => 'event_title_1',
@@ -28,128 +34,9 @@ class AjaxPlanController extends Controller
         //        'className' => 'J_event',
         //        'editable' => false,
         //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //    array(
-        //        'title' => 'event_title_2',
-        //        'start' => $record2->record_time,
-        //        'end' => $record2->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
         //);
 
-        //echo CJSON::encode($events);
+        echo CJSON::encode($events);
     }
 
     public function actionGetPlanContent(){

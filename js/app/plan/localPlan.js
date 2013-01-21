@@ -44,9 +44,8 @@ function LocalPlan(baseUrl){
 
         function getPlanEvents(start, end, callback){
             $.post(baseUrl + "/ajaxPlan/getPlanEvents", {start:start, end:end}, function(doc){
-                console.log(doc);
-                //callback(doc);
-            });
+                callback(doc);
+            },'json');
         }
 
         function clickOnDay(date, allDay, jsEvent, view){
