@@ -16,7 +16,6 @@ function LocalPlan(baseUrl){
         $("#J_calendar").fullCalendar({
             editable:false,
             theme:true,
-            events:baseUrl + "/ajaxPlan/getPlanEvents",
             header:{
                 left:'prev title next',
                 center:'',
@@ -30,6 +29,11 @@ function LocalPlan(baseUrl){
             dayNames:["周一","周二","周三","周四","周五","周六","周日"],
             dayNamesShort:["一","二","三","四","五","六","日"],
 
+            //events:baseUrl + "/ajaxPlan/getPlanEvents",
+            events:function(start,end,callback){
+                getPlanEvents(start, end, callback);
+            },
+            
             dayClick:function(date, allDay, jsEvent, view){
                 clickOnDay(date, allDay, jsEvent, view);
             },
@@ -37,6 +41,13 @@ function LocalPlan(baseUrl){
                 clickOnEvent(event, jsEvent, view);
             }
         });
+
+        function getPlanEvents(start, end, callback){
+            $.post(baseUrl + "/ajaxPlan/getPlanEvents", {start:start, end:end}, function(doc){
+                console.log(doc);
+                //callback(doc);
+            });
+        }
 
         function clickOnDay(date, allDay, jsEvent, view){
             //date: Tue Jan 01 2013 00:00:00 GMT+0800 (CST)
