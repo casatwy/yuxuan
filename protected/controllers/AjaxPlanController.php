@@ -31,6 +31,10 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetPlanContent(){
+        echo $this->renderPartial("planContent");
+    }
+
+    public function actionShowPlanContent(){
         $planList = null;
         if(isset($_GET['record_id'])){
             $plan_id = $_GET['record_id'];
@@ -38,9 +42,10 @@ class AjaxPlanController extends Controller
             $planList = $recordContent->getPlanContent($plan_id);
         }
 
-        echo $this->renderPartial("planContent",array(
+        echo $this->renderPartial("showPlanContent",array(
             'planList' => $planList,
         ));
+        
     }
 
     public function actionGetDayContent(){
@@ -62,7 +67,7 @@ class AjaxPlanController extends Controller
             $product_id = Product::createNew($_POST);
         }
         $daily = new DailyProduct;
-        $daily->time = time();
+        $daily->time = strtotime($_POST['date']);
         $daily->product_id = $product_id;
         $daily->count = $_POST['finished'];
         $daily->goods_number = $_POST['goods_number'];

@@ -64,7 +64,7 @@ function LocalPlan(baseUrl){
                     },
                     afterShowCont:function(){
                         $("#J_addButton").live("click", function(){
-                            clickAddButton($(this));
+                            clickAddButton($(this),date);
                         });
                     },
                 },
@@ -72,7 +72,7 @@ function LocalPlan(baseUrl){
             return false;
         }
 
-        function clickAddButton(actionItem){
+        function clickAddButton(actionItem,date){
             var data = {
                 goods_number:$("#J_goodsNumber").val(),
                 color_number:$("#J_colorNumber").val(),
@@ -81,6 +81,7 @@ function LocalPlan(baseUrl){
                 size:$("#J_size").val(),
                 total:$("#J_total").val(),
                 finished:$("#J_finished").val(),
+                date:date,
             };
 
             $.post(baseUrl+"/ajaxPlan/saveDailyRecord", data, function(result){
@@ -90,8 +91,9 @@ function LocalPlan(baseUrl){
                         life:2000,
                     });
                     $.nmTop().close();
+                    $("#J_calendar").fullCalendar('refetchEvents');
                 }else{
-                    $.jGrowl("保存失败！", {
+                    $.jgrowl("保存失败！", {
                         header:"反馈",
                         life:2000,
                     });
@@ -99,13 +101,13 @@ function LocalPlan(baseUrl){
             });
         }
 
-        function clickOnEvent(event, jsEvent, view){
+        function clickonevent(event, jsevent, view){
             console.log(event);
             //view.title = time
             console.log(view);
-            console.log(jsEvent);
-            $(".J_event").hide();
-            $.nmManual(baseUrl+"/ajaxPlan/getPlanContent",{
+            console.log(jsevent);
+            $(".j_event").hide();
+            $.nmmanual(baseurl+"/ajaxplan/getPlanContent",{
                 closeOnClick:true,
                 closeOnEscape:true,
                 showCloseButton:false,
