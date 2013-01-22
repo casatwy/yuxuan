@@ -26,15 +26,6 @@ class AjaxPlanController extends Controller
             );
             array_push($events,$event);
         }
-        //$events = array(
-        //    array(
-        //        'title' => 'event_title_1',
-        //        'start' => $record->record_time,
-        //        'end' => $record->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //);
 
         echo CJSON::encode($events);
     }
