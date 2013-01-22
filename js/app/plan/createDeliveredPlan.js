@@ -5,6 +5,7 @@ $(document).ready(function(){
 
 function CreateDeliveredPlan(baseUrl){
     this.init = function(){
+        $("a[href='/plan/deliveredList']").closest("li").addClass("active");
         bindEvent();
     }
 
@@ -45,7 +46,43 @@ function CreateDeliveredPlan(baseUrl){
     }
 
     function inputAvailable(){
-        return true;
+        var result = true;
+        $(".J_content input").each(function(index, value){
+            if($(value).val().length == 0){
+                $.jGrowl("请填写空白处！", {
+                    header:"提示",
+                    life:2000
+                });
+                result = false;
+                return false;
+            }
+        });
+
+        if($("#J_selectProvider").attr("provider") === "none"){
+            $.jGrowl("请选择客户！", {
+                header:"提示",
+                life:2000
+            });
+            result = false;
+        }
+
+		if(isNaN($('.J_colorNumber').val())){
+            $.jGrowl("色号为数字！", {
+                header:"提示",
+                life:2000
+            });
+            result = false;
+		}
+
+		if(isNaN($('.J_goodsNumber').val())){
+            $.jGrowl("货号为数字！", {
+                header:"提示",
+                life:2000
+            });
+            result = false;
+		}
+
+        return result;
     }
 
     function getPostData(){
