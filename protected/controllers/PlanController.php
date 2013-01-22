@@ -2,6 +2,7 @@
 
 class PlanController extends Controller
 {
+    const DELIVER_PLAN = 3;
 
     public function init(){
         parent::init();
@@ -54,6 +55,20 @@ class PlanController extends Controller
         $this->cs->registerScriptFile($this->baseUrl.Yii::app()->assetManager->publish(
             Yii::getPathOfAlias('webroot.js.common.storage')).'/RecordHelper.js'
         );
-        $this->render("deliveredPlanList");
+        
+        $criteria = new CDbCriteria();
+        $criteria->order = "id desc";
+        $count = DeliverPlan::model()->count($criteria);
+        $pages = new CPagination($count);
+        $pages->pageSize = 10;
+        $pages->applyLimit($criteria);
+
+        $planList = DeliverPlan::model()->findAll($criteria);
+
+        $this->render("deliveredPlanList",array(
+            'planList' => $planList,
+            'type' => self::DELIVER_PLAN,
+            'pages' => $pages
+        ));
     }
 }

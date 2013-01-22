@@ -128,9 +128,16 @@ function RecordHelper(baseUrl){
 
     function getRecordContent(event, ui){
         var count = ui.newPanel.find("img").length;
+        var record_type = ui.newHeader.attr("data-record-type");
+        var appendUrl;
+        if(record_type == '1' || record_type == '2'){
+            appendUrl = "/ajaxStorage/getRecordContent";
+        }else if(record_type == '3'){
+            appendUrl = "/ajaxPlan/getPlanContent"; 
+        }
         if(count == 1){
-            $.get(baseUrl+"/ajaxStorage/getRecordContent"
-		    	, {record_id:ui.newHeader.attr("data-record-id"), record_type:ui.newHeader.attr("data-record-type")}
+            $.get(baseUrl+appendUrl
+		    	, {record_id:ui.newHeader.attr("data-record-id"), record_type:record_type}
 		    	, function(html){
                 ui.newPanel.html(html);
             });

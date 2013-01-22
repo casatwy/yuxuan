@@ -49,6 +49,32 @@ class RecordContent extends CController
         return $recordList;
     }
 
+    public function getPlanContent($plan_id){
+        $planList = array();
+        $condition = "plan_id=:plan_id";
+        $params = array(
+            ":plan_id" => htmlspecialchars($plan_id)
+        );
+        $planData = DeliverPlanItem::model()->findAll($condition,$params);
+        $product = null;
+        $silk = null;
+        foreach($planData as $planItem){
+            $product = Product::model()->findByPk($planItem->product_id);
+            $silk = Silk::model()->findByPk($product->silk_id);
+            
+            $plan = array(
+                'goods_number' => $planItem->goods_number,
+                'color_number' => $silk->color_number,
+                'color_name' => $silk->color_name,
+                'needle_type' => $product->needle_type,
+                'size' => $product->size,
+                'quantity' => $planItem->quantity
+            );
+            array_push($planList,$plan);
+        }
+        return $planList;
+    }
+
     public function printInfomation($id,$type){
 		if($type == self::IN_RECORD){
 			$record = ReceiveRecord::model()->findByPk($id);

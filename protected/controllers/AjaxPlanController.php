@@ -40,7 +40,16 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetPlanContent(){
-        echo $this->renderPartial("planContent");
+        $planList = null;
+        if(isset($_GET['record_id'])){
+            $plan_id = $_GET['record_id'];
+            $recordContent = new RecordContent();
+            $planList = $recordContent->getPlanContent($plan_id);
+        }
+
+        echo $this->renderPartial("planContent",array(
+            'planList' => $planList,
+        ));
     }
 
     public function actionGetDayContent(){

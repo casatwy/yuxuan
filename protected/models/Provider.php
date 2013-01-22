@@ -53,6 +53,7 @@ class Provider extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             "receiveRecord" => array(self::HAS_MANY, "ReceiveRecord", "id"),
+            "deliverPlan" => array(self::HAS_MANY, "DeliverPlan", "id"),
 		);
 	}
 
