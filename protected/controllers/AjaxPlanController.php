@@ -26,21 +26,25 @@ class AjaxPlanController extends Controller
             );
             array_push($events,$event);
         }
-        //$events = array(
-        //    array(
-        //        'title' => 'event_title_1',
-        //        'start' => $record->record_time,
-        //        'end' => $record->record_time,
-        //        'className' => 'J_event',
-        //        'editable' => false,
-        //    ),
-        //);
 
         echo CJSON::encode($events);
     }
 
     public function actionGetPlanContent(){
         echo $this->renderPartial("planContent");
+    }
+
+    public function actionShowPlanContent(){
+        $planList = null;
+        if(isset($_GET['record_id'])){
+            $plan_id = $_GET['record_id'];
+            $recordContent = new RecordContent();
+            $planList = $recordContent->getPlanContent($plan_id);
+        }
+
+        echo $this->renderPartial("showPlanContent",array(
+            'planList' => $planList,
+        ));
     }
 
     public function actionGetDayContent(){
@@ -62,7 +66,7 @@ class AjaxPlanController extends Controller
             $product_id = Product::createNew($_POST);
         }
         $daily = new DailyProduct;
-        $daily->time = time();
+        $daily->time = strtotime($_POST['date']);
         $daily->product_id = $product_id;
         $daily->count = $_POST['finished'];
         $daily->goods_number = $_POST['goods_number'];
@@ -107,5 +111,29 @@ class AjaxPlanController extends Controller
         ));
 
         Yii::app()->end();
+    }
+
+    public function actionSearchDeliveredPlan(){
+        $criteria = null;
+        if(empty($_GET['data']['recordId'])){
+            $criteria = RecordContent::getCriteria($_GET['data'], RecordContent::PLAN);
+        }else{
+            $criteria = new CDbCriteria();
+            $criteria->condition = "id=".$_GET['data']['recordId'];
+        }
+        $criteria->order = "id desc";
+        $count = DeliverPlan::model()->count($criteria);
+        $pages = new CPagination($count);
+
+        $pages->pageSize = 10;
+        $pages->applyLimit($criteria);
+        $recordList = DeliverPlan::model()->findAll($criteria);
+
+        $html = $this->renderPartial("searchedResult", array(
+            "planList" => $recordList,
+            "pages" => $pages,
+			"type" => RecordContent::PLAN
+        ), true);
+        echo $html;
     }
 }

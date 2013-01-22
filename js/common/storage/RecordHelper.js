@@ -119,18 +119,32 @@ function RecordHelper(baseUrl){
     function searchRecords(actionItem){
         $("#J_fetchedRecords").html("<img src=\""+baseUrl+"/images/bigloading.gif"+"\"></img>");
         var data = getSearchCondition();
-        $.get(baseUrl+"/ajaxStorage/searchRecord",{data:data, type:actionItem.attr("data-type")},function(html){
-            $("#J_fetchedRecords").html(html);
-
-            setAccordion(true);
-        });
+        if(actionItem.attr("data-type") == undefined){
+            $.get(baseUrl+actionItem.attr("href"),{data:data},function(html){
+                $("#J_fetchedRecords").html(html);
+                setAccordion(true);
+            });
+        }else{
+            $.get(baseUrl+"/ajaxStorage/searchRecord",{data:data, type:actionItem.attr("data-type")},function(html){
+                $("#J_fetchedRecords").html(html);
+                setAccordion(true);
+            });
+        }
+        return false;
     }
 
     function getRecordContent(event, ui){
         var count = ui.newPanel.find("img").length;
+        var record_type = ui.newHeader.attr("data-record-type");
+        var appendUrl;
+        if(record_type == '1' || record_type == '2'){
+            appendUrl = "/ajaxStorage/getRecordContent";
+        }else if(record_type == '3'){
+            appendUrl = "/ajaxPlan/showPlanContent"; 
+        }
         if(count == 1){
-            $.get(baseUrl+"/ajaxStorage/getRecordContent"
-		    	, {record_id:ui.newHeader.attr("data-record-id"), record_type:ui.newHeader.attr("data-record-type")}
+            $.get(baseUrl+appendUrl
+		    	, {record_id:ui.newHeader.attr("data-record-id"), record_type:record_type}
 		    	, function(html){
                 ui.newPanel.html(html);
             });
