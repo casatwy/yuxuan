@@ -66,6 +66,46 @@ class AjaxPlanController extends Controller
         $daily->product_id = $product_id;
         $daily->count = $_POST['finished'];
         $daily->goods_number = $_POST['goods_number'];
-        $daily->save();
+        if($daily->save()){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
+
+    public function actionSaveDeliveredPlan(){
+    /*
+            provider_id
+            goods_number
+            color_number
+            color_name
+            needle_type
+            size
+            quantity
+    */
+        $deliverPlan = new DeliverPlan;
+        $deliverPlan->record_time = time();
+        $deliverPlan->plan_maker = Yii::app()->user->getState("name");
+        $deliverPlan->provider_id = $_POST["data"][0]["provider_id"];
+        $deliverPlan->save();
+
+        foreach($_POST["data"] as $info){
+            $deliverPlanItem = new DeliverPlanItem;
+            $deliverPlanItem->product_id = Product::findExistedProduct($info);
+            $deliverPlanItem->quantity = $info["quantity"];
+            $deliverPlanItem->goods_number = $info["goods_number"];
+            $deliverPlanItem->plan_id = $deliverPlan->id;
+            $deliverPlanItem->record_time = $deliverPlan->record_time;
+            $deliverPlanItem->plan_maker = $deliverPlan->plan_maker;
+            $deliverPlanItem->provider_id = $deliverPlan->provider_id;
+            $deliverPlanItem->save();
+        }
+
+        echo CJSON::encode(array(
+            "success" => 1,
+            "content" => "可打印回执"
+        ));
+
+        Yii::app()->end();
     }
 }

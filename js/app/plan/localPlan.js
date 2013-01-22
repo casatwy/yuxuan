@@ -84,6 +84,18 @@ function LocalPlan(baseUrl){
             };
 
             $.post(baseUrl+"/ajaxPlan/saveDailyRecord", data, function(result){
+                if(parseInt(result) == 1){
+                    $.jGrowl("保存成功！", {
+                        header:"反馈",
+                        life:2000,
+                    });
+                    $.nmTop().close();
+                }else{
+                    $.jGrowl("保存失败！", {
+                        header:"反馈",
+                        life:2000,
+                    });
+                }
             });
         }
 
