@@ -45,7 +45,6 @@ class AjaxPlanController extends Controller
         echo $this->renderPartial("showPlanContent",array(
             'planList' => $planList,
         ));
-        
     }
 
     public function actionGetDayContent(){
@@ -115,6 +114,26 @@ class AjaxPlanController extends Controller
     }
 
     public function actionSearchDeliveredPlan(){
-        var_dump($_GET);
+        $criteria = null;
+        if(empty($_GET['data']['recordId'])){
+            $criteria = RecordContent::getCriteria($_GET['data'], RecordContent::PLAN);
+        }else{
+            $criteria = new CDbCriteria();
+            $criteria->condition = "id=".$_GET['data']['recordId'];
+        }
+        $criteria->order = "id desc";
+        $count = DeliverPlan::model()->count($criteria);
+        $pages = new CPagination($count);
+
+        $pages->pageSize = 10;
+        $pages->applyLimit($criteria);
+        $recordList = DeliverPlan::model()->findAll($criteria);
+
+        $html = $this->renderPartial("searchedResult", array(
+            "planList" => $recordList,
+            "pages" => $pages,
+			"type" => RecordContent::PLAN
+        ), true);
+        echo $html;
     }
 }

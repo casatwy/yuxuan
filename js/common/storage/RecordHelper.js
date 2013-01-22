@@ -119,7 +119,7 @@ function RecordHelper(baseUrl){
     function searchRecords(actionItem){
         $("#J_fetchedRecords").html("<img src=\""+baseUrl+"/images/bigloading.gif"+"\"></img>");
         var data = getSearchCondition();
-        if(actionItem.attr("data-type") == "undefined"){
+        if(actionItem.attr("data-type") == undefined){
             $.get(baseUrl+actionItem.attr("href"),{data:data},function(html){
                 $("#J_fetchedRecords").html(html);
                 setAccordion(true);

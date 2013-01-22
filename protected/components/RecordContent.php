@@ -7,6 +7,7 @@ class RecordContent extends CController
 
     const OUT_RECORD = 1;
     const IN_RECORD = 2;
+    const PLAN = 3;
 
 	public function __construct(){
 	}
@@ -93,6 +94,68 @@ class RecordContent extends CController
 			"user" => $user
 		);
         return $info;
+    }
+
+    public static function getCriteria($data, $type){
+        $criteria = new CDbCriteria();
+        $criteria->order = "id desc";
+
+        $searchCriteria = new CDbCriteria();
+        $searchCriteria->distinct = true;
+        $searchCriteria->select = "record_id";
+        if($type == self::PLAN){
+            $searchCriteria->select = "plan_id";
+        }
+        $searchCriteria->condition = "1=1";
+
+        $recordIdList = array();
+        if(!empty($data['goodsNumber'])){
+            $searchCriteria->condition .= " and goods_number=";
+            $searchCriteria->condition .= $data['goodsNumber'];
+        }
+
+        if($data['providerId'] != 'none'){
+            $searchCriteria->condition .= " and provider_id=";
+            $searchCriteria->condition .= $data['providerId'];
+        }
+
+        if(!empty($data["start_time"])){
+            $searchCriteria->condition .= " and record_time>";
+            $searchCriteria->condition .= $this->getTime($data['start_time']);
+        }
+
+        if(!empty($data["end_time"])){
+            $searchCriteria->condition .= " and record_time<";
+            $searchCriteria->condition .= $this->getTime($data['end_time']) + 60*60*24;
+        }
+
+        $searchedRecordList = null;
+        if($type == self::OUT_RECORD){
+            $searchedRecordList = DeliverRecordItem::model()->findAll($searchCriteria); 
+        }
+        if($type == self::IN_RECORD){
+            $searchedRecordList = ReceiveRecordItem::model()->findAll($searchCriteria); 
+        }
+        if($type == self::PLAN){
+            $searchedRecordList = DeliverPlanItem::model()->findAll($searchCriteria); 
+        }
+
+        foreach($searchedRecordList as $searchedRecord){
+            if($type == self::PLAN){
+                array_push($recordIdList, $searchedRecord->plan_id);
+            }else{
+                array_push($recordIdList, $searchedRecord->record_id);
+            }
+        }
+        $recordIdList = implode(",", $recordIdList);
+
+        if(empty($recordIdList)){
+            $criteria->condition = "1=2";
+        }else{
+            $criteria->condition = "id in (".$recordIdList.")";
+        }
+
+        return $criteria;
     }
 }
 ?>
