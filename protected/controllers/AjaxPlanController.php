@@ -70,5 +70,31 @@ class AjaxPlanController extends Controller
     }
 
     public function actionSaveDeliveredPlan(){
+    /*
+            provider_id
+            goods_number
+            color_number
+            color_name
+            needle_type
+            size
+            quantity
+    */
+        $deliverPlan = new DeliverPlan;
+        $deliverPlan->record_time = time();
+        $deliverPlan->plan_maker = Yii::app()->user->getState("name");
+        $deliverPlan->provider_id = $_POST[0]["provider_id"];
+        $deliverPlan->save();
+
+        foreach($_POST as $info){
+            $deliverPlanItem = new DeliverPlanItem;
+            $deliverPlanItem->product_id = Product::findExistedProduct($info);
+            $deliverPlanItem->quantity = $info["quantity"];
+            $deliverPlanItem->goods_number = $info["goods_number"];
+            $deliverPlanItem->plan_id = $deliverPlan->id;
+            $deliverPlanItem->record_time = $deliverPlan->record_time;
+            $deliverPlanItem->plan_maker = $deliverPlan->plan_maker;
+            $deliverPlanItem->provider_id = $deliverPlan->provider_id;
+            $deliverPlanItem->save();
+        }
     }
 }

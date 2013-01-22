@@ -21,7 +21,6 @@ class m130122_064518_create_delivered_plan_and_delivered_plan_item_table extends
                 CREATE TABLE IF NOT EXISTS `deliver_plan_item` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `product_id` bigint(20) NOT NULL,
-                `weight` float NOT NULL,
                 `quantity` int(11) NOT NULL,
                 `goods_number` int(11) NOT NULL,
                 `plan_id` bigint(20) NOT NULL,

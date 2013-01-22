@@ -24,8 +24,28 @@ function CreateDeliveredPlan(baseUrl){
     }
 
     function saveRecord(actionItem){
+        if(!inputAvailable()){
+            return false;
+        }
         var data = getPostData();
         console.log(data);
+        $.post(baseUrl+"/ajaxPlan/saveDeliveredPlan", {data:data}, function(result){
+            if(result['success'] == "1"){
+                $.jGrowl("保存成功！", {
+                    header:"反馈",
+                    life:2000,
+                    beforeOpen:function(){
+                        $("#J_container").html(result["content"]);
+                    }
+                });
+            }else{
+                $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
+            }
+        }, 'json');
+    }
+
+    function inputAvailable(){
+        return true;
     }
 
     function getPostData(){
