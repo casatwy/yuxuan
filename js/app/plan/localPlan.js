@@ -91,8 +91,9 @@ function LocalPlan(baseUrl){
                         life:2000,
                     });
                     $.nmTop().close();
+                    $("#J_calendar").fullCalendar('refetchEvents');
                 }else{
-                    $.jGrowl("保存失败！", {
+                    $.jgrowl("保存失败！", {
                         header:"反馈",
                         life:2000,
                     });
@@ -100,13 +101,13 @@ function LocalPlan(baseUrl){
             });
         }
 
-        function clickOnEvent(event, jsEvent, view){
+        function clickonevent(event, jsevent, view){
             console.log(event);
             //view.title = time
             console.log(view);
-            console.log(jsEvent);
-            $(".J_event").hide();
-            $.nmManual(baseUrl+"/ajaxPlan/getPlanContent",{
+            console.log(jsevent);
+            $(".j_event").hide();
+            $.nmmanual(baseurl+"/ajaxplan/getPlanContent",{
                 closeOnClick:true,
                 closeOnEscape:true,
                 showCloseButton:false,
