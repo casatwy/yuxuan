@@ -29,6 +29,10 @@ class PlanController extends Controller
 
     public function actionCreateDeliveredPlan(){
         $type = Type::model()->findAll();
+        $this->cs->registerScriptFile($this->baseUrl.Yii::app()->assetManager->publish(
+            Yii::getPathOfAlias('webroot.js.common.storage')).'/RecordHelper.js'
+        );
+        $this->cs->registerScriptFile($this->jsUrl."createDeliveredPlan.js");
         $this->render("createDeliveredPlan", array(
             'type' => $type,
         ));
