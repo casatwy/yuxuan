@@ -68,4 +68,7 @@ class AjaxPlanController extends Controller
         $daily->goods_number = $_POST['goods_number'];
         $daily->save();
     }
+
+    public function actionSaveDeliveredPlan(){
+    }
 }

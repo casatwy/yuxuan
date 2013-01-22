@@ -25,6 +25,7 @@ function CreateDeliveredPlan(baseUrl){
 
     function saveRecord(actionItem){
         var data = getPostData();
+        console.log(data);
     }
 
     function getPostData(){
