@@ -6,7 +6,6 @@
  * The followings are the available columns in table 'deliver_plan_item':
  * @property integer $id
  * @property string $product_id
- * @property double $weight
  * @property integer $quantity
  * @property integer $goods_number
  * @property string $plan_id
@@ -42,13 +41,12 @@ class DeliverPlanItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('product_id, weight, quantity, goods_number, plan_id, record_time, plan_maker, provider_id', 'required'),
+			array('product_id, quantity, goods_number, plan_id, record_time, plan_maker, provider_id', 'required'),
 			array('quantity, goods_number, record_time, provider_id', 'numerical', 'integerOnly'=>true),
-			array('weight', 'numerical'),
 			array('product_id, plan_id, plan_maker', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, product_id, weight, quantity, goods_number, plan_id, record_time, plan_maker, provider_id', 'safe', 'on'=>'search'),
+			array('id, product_id, quantity, goods_number, plan_id, record_time, plan_maker, provider_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,7 +69,6 @@ class DeliverPlanItem extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'product_id' => 'Product',
-			'weight' => 'Weight',
 			'quantity' => 'Quantity',
 			'goods_number' => 'Goods Number',
 			'plan_id' => 'Plan',

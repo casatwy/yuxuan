@@ -82,10 +82,10 @@ class AjaxPlanController extends Controller
         $deliverPlan = new DeliverPlan;
         $deliverPlan->record_time = time();
         $deliverPlan->plan_maker = Yii::app()->user->getState("name");
-        $deliverPlan->provider_id = $_POST[0]["provider_id"];
+        $deliverPlan->provider_id = $_POST["data"][0]["provider_id"];
         $deliverPlan->save();
 
-        foreach($_POST as $info){
+        foreach($_POST["data"] as $info){
             $deliverPlanItem = new DeliverPlanItem;
             $deliverPlanItem->product_id = Product::findExistedProduct($info);
             $deliverPlanItem->quantity = $info["quantity"];
@@ -96,5 +96,12 @@ class AjaxPlanController extends Controller
             $deliverPlanItem->provider_id = $deliverPlan->provider_id;
             $deliverPlanItem->save();
         }
+
+        echo CJSON::encode(array(
+            "success" => 1,
+            "content" => "可打印回执"
+        ));
+
+        Yii::app()->end();
     }
 }
