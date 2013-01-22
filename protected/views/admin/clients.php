@@ -1,5 +1,4 @@
-
-	<h2 class="prepend-1">客户信息</h2>
+	<img class="span-1" src="../../../images/clients.png" /><h2 class="prepend-1">客户信息</h2>
 	<hr>
 <div class="contant-container">
 <table class="record">

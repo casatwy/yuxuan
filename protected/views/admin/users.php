@@ -1,5 +1,5 @@
-
-	<h2 class="span-3 prepend-1">用户信息</h2>
+	<img class="span-1" src="../../../images/users.png" />
+	<h2 class="span-3">用户信息</h2>
 	<a class="span-17 last" id="plus" href="<?php echo $this->baseUrl;?>/admin/addUser"></a>
 	<hr>
 <div class="contant-container">

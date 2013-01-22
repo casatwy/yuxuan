@@ -1,21 +1,21 @@
-<div class="contant-container">
+
 <span id="J_baseUrl" value="<?php echo $this->baseUrl; ?>"></span>
-<h1 class="span-3">外发计划</h1>
+<h2 class="span-3 prepend-1">外发计划</h2>
 
-<a id="plus" class="span-18 last" href="<?php echo $this->baseUrl; ?>/plan/createDeliveredPlan" ></a>
-<br />
-
-<span class="span-21 last">客户：<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
+<a id="plus" class="span-17 last" href="<?php echo $this->baseUrl; ?>/plan/createDeliveredPlan" ></a>
+<hr>
+<div class="contant-container">
+<span class="span-15 last">客户：<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
 <span class="span-7">货号:<input type="text" id="J_goodsNumber"></input></span>
-<span class="span-14 last">外发单号:<input type="text" id="J_recordId"></input></span>
+<span class="span-8 last">外发单号:<input type="text" id="J_recordId"></input></span>
 
 <span class="span-10">日期范围<br />
 开始：<input type="text" class="J_selectTime" id="J_startTime"></input>
 结束：<input type="text" class="J_selectTime" id="J_endTime"></input></span>
 
-<span class="span-11 last"><br /><button id="J_searchButton">搜索</button></span>
+<span class="span-5 last"><br /><button id="J_searchButton">搜索</button></span>
 
-
+</div>
 
 <div class="span-21 last" id="J_fetchedRecords">
     <?php //foreach($recordList as $record): ?>
@@ -36,4 +36,4 @@
         //));
     ?>
 </div>
-</div>
+

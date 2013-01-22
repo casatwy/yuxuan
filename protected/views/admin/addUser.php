@@ -1,5 +1,5 @@
 <?php if($type == 'updateUser'): ?>
-<div class="J_content addU">
+<div class="J_content add">
 	<h3>修改资料</h3>
 	<hr>
 	<span class="span-3">用户名:</span>
