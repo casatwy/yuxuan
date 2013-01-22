@@ -10,6 +10,7 @@ function StockHelper(baseUrl){
     };
 
     function bindEvent(){
+
         $("#J_selectProvider").nyroModal({
             closeOnEscape:false,
             closeOnClick:false

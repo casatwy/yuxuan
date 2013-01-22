@@ -15,27 +15,31 @@
 </div>
 <?php endif; ?>
 <?php if($type == 'addUser'): ?>
-<div class="J_content contant-container">
+<div class="J_content">
 	<h2 class="prepend-1">创建用户</h2>
 	<hr>
-	<table class="prepend-3">
-        	<tr><th class="span-4">用户名:</th><th class="span-6"><input type="text" id="J_name"></input></th><th class="span-8 last"></th></tr>
+	<div class="contant-container">
+	<table>
+        	<tr><th class="span-4">用户名:</th><th class="span-6"><input type="text" id="J_name"></input></th><th class="span-5 last"></th></tr>
         	<tr><td>输入密码:</td><td><input type="password" id="J_pwd1" ></input></td></tr>
         	<tr><td>再次输入密码:</td><td><input type="password" id="J_pwd2"></input></td></tr>
         	<tr><td>手机号码:</td><td><input type="text" id="J_tel"></input></td></tr>
         	<tr><td></td><td></td><td><button class="J_deleUser">删除</button></td></tr>
-    </table>
+    	</table>
+	</div>
 </div>
     <span class="prepend-7 span-6"><input type="button" value="添加一个用户" id="J_addOneUser"></span>
-    <span class="span-7 last pad-8"><input type="button" value="保存" id="J_usersubmit"></input></span>
-<div id="J_exOne" style="display:none">
-	<table class="prepend-3">
-		<tr><th class="span-4">用户名:</th><th class="span-6"><input type="text" id="J_name"></input></th><th class="span-8 last"></th></tr>
+    <span class="span-7 last pad-6"><input type="button" value="保存" id="J_usersubmit"></input></span>
+<div id="J_exOne"  style="display:none">
+<div class="contant-container">
+	<table>
+		<tr><th class="span-4">用户名:</th><th class="span-6"><input type="text" id="J_name"></input></th><th class="span-5 last"></th></tr>
 		<tr><td>输入密码:</td><td><input type="password" id="J_pwd1" ></input></td></tr>
 		<tr><td>再次输入密码:</td><td><input type="password" id="J_pwd2"></input></td></tr>
 		<tr><td>手机号码:</td><td><input type="text" id="J_tel"></input></td></tr>
 		<tr><td></td><td></td><td class="last"><button class="J_deleUser">删除</button></td></tr>
 	</table>
+</div>
 </div>
 <div id="J_allUser" style="display:none"><?php echo $user;?></div>
 <?php endif; ?>

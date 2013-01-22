@@ -31,6 +31,11 @@ function RecordHelper(baseUrl){
             return false;
         });
 
+        $("#J_selectProvider").nyroModal({
+            closeOnEscape:false,
+            closeOnClick:false
+        });
+
     }
 
     function setAccordion(rebuild){

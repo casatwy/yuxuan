@@ -17,7 +17,7 @@ class PlanController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('index', 'list', 'historyList', 'deliveredList'),
+                'actions' => array('index', 'list', 'deliveredList', 'createDeliveredPlan'),
                 'users' => array('@')
             ),
             array(
@@ -27,9 +27,11 @@ class PlanController extends Controller
         );
     }
 
-    public function actionIndex()
-    {
-        $this->render("index");
+    public function actionCreateDeliveredPlan(){
+        $type = Type::model()->findAll();
+        $this->render("createDeliveredPlan", array(
+            'type' => $type,
+        ));
     }
 
     public function actionList()
@@ -44,12 +46,10 @@ class PlanController extends Controller
         $this->render("localPlan");
     }
 
-    public function actionHistoryList()
-    {
-        $this->render("index");
-    }
-
     public function actionDeliveredList(){
-        $this->render("deliveredPlan");
+        $this->cs->registerScriptFile($this->baseUrl.Yii::app()->assetManager->publish(
+            Yii::getPathOfAlias('webroot.js.common.storage')).'/RecordHelper.js'
+        );
+        $this->render("deliveredPlanList");
     }
 }

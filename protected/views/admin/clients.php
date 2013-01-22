@@ -1,6 +1,7 @@
-<div class="contant-container">
+
 	<h2 class="prepend-1">客户信息</h2>
 	<hr>
+<div class="contant-container">
 <table class="record">
     <tr>
         <th>客户名</th>

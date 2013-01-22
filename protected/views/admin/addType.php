@@ -1,10 +1,10 @@
 <div class="J_content ">
     <?php if($kind == 'add'):?>
-	<div class="contant-container">
 	<h2 class="prepend-1">新增物料</h2>
 	<hr>
-	<table class="prepend-3">
-	    <tr><th class="span-4">物料名称:</th><th class="span-14 last"><input type="text" id="J_typeName"></input></th></tr>
+	<div class="contant-container">
+	<table>
+	    <tr><th class="span-4">物料名称:</th><th class="span-11 last"><input type="text" id="J_typeName"></input></th></tr>
 	<tr><td></td><td><input type="button" value="保存" id="J_typesubmit"></input></td></tr>
     </table>
     	</div>

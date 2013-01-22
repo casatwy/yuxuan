@@ -1,7 +1,7 @@
 /* contant-container   */
 .contant-container {
-	margin: 0 auto;
-	width:830px;
+	margin: 0 120px;
+	width:590px;
 }
 
 .contant-container span {
@@ -105,6 +105,6 @@ a.prepend {
 .right {
 		text-align:right;
 }
-.pad-8 {
-	padding-left:8px;
+.pad-6 {
+	padding-left:6px;
 }
