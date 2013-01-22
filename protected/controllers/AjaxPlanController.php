@@ -66,7 +66,11 @@ class AjaxPlanController extends Controller
         $daily->product_id = $product_id;
         $daily->count = $_POST['finished'];
         $daily->goods_number = $_POST['goods_number'];
-        $daily->save();
+        if($daily->save()){
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
 
     public function actionSaveDeliveredPlan(){
