@@ -35,16 +35,6 @@ class StorageController extends Controller
         echo $record->provider->name;
     }
 
-    public function actionResource()
-    {
-        $this->render("resource");
-    }
-
-    public function actionProduct()
-    {
-        $this->render("resource");
-    }
-
     public function actionOutstock(){
         $this->getRecordList(self::OUT_RECORD);
     }

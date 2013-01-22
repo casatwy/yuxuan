@@ -1,5 +1,9 @@
 <div id="J_container">
+    <?php if($sort == 'outstock'): ?>
+	<h2 class="prepend-1">新增出库记录</h2>
+    <?php else: ?>
 	<h2 class="prepend-1">新增入库记录</h2>
+    <?php endif; ?>
 	<hr>
 <div class="contant-container">
     <h5>
@@ -31,8 +35,6 @@
     <span class="prepend-4 span-3"><button id="J_addRecord" rowcount="1">添加一条</button></span>
     <span class="span-8 last"><button id="J_saveRecord">保存全部</button></span>
 	<input type="hidden" value="<?php echo $sort; ?>" id="J_sort">
-
-
 
 <span type="hidden" id="J_maosha" class="hide">
     <span class="span-7">货号:<input type="text" class="J_goodsNumber"></input></span>
