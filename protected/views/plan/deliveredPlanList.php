@@ -13,7 +13,7 @@
 开始：<input type="text" class="J_selectTime" id="J_startTime"></input>
 结束：<input type="text" class="J_selectTime" id="J_endTime"></input></span>
 
-<span class="span-11 last"><br /><button id="J_searchButton">搜索</button></span>
+<span class="span-11 last"><br /><button id="J_searchButton" href="/ajaxPlan/searchDeliveredPlan">搜索</button></span>
 
 
 

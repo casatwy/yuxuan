@@ -108,4 +108,8 @@ class AjaxPlanController extends Controller
 
         Yii::app()->end();
     }
+
+    public function actionSearchDeliveredPlan(){
+        var_dump($_GET);
+    }
 }

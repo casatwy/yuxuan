@@ -119,11 +119,18 @@ function RecordHelper(baseUrl){
     function searchRecords(actionItem){
         $("#J_fetchedRecords").html("<img src=\""+baseUrl+"/images/bigloading.gif"+"\"></img>");
         var data = getSearchCondition();
-        $.get(baseUrl+"/ajaxStorage/searchRecord",{data:data, type:actionItem.attr("data-type")},function(html){
-            $("#J_fetchedRecords").html(html);
-
-            setAccordion(true);
-        });
+        if(actionItem.attr("data-type") == "undefined"){
+            $.get(baseUrl+actionItem.attr("href"),{data:data},function(html){
+                $("#J_fetchedRecords").html(html);
+                setAccordion(true);
+            });
+        }else{
+            $.get(baseUrl+"/ajaxStorage/searchRecord",{data:data, type:actionItem.attr("data-type")},function(html){
+                $("#J_fetchedRecords").html(html);
+                setAccordion(true);
+            });
+        }
+        return false;
     }
 
     function getRecordContent(event, ui){
