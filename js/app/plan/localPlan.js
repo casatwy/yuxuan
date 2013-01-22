@@ -64,7 +64,7 @@ function LocalPlan(baseUrl){
                     },
                     afterShowCont:function(){
                         $("#J_addButton").live("click", function(){
-                            clickAddButton($(this));
+                            clickAddButton($(this),date);
                         });
                     },
                 },
@@ -72,7 +72,7 @@ function LocalPlan(baseUrl){
             return false;
         }
 
-        function clickAddButton(actionItem){
+        function clickAddButton(actionItem,date){
             var data = {
                 goods_number:$("#J_goodsNumber").val(),
                 color_number:$("#J_colorNumber").val(),
@@ -81,6 +81,7 @@ function LocalPlan(baseUrl){
                 size:$("#J_size").val(),
                 total:$("#J_total").val(),
                 finished:$("#J_finished").val(),
+                date:date,
             };
 
             $.post(baseUrl+"/ajaxPlan/saveDailyRecord", data, function(result){

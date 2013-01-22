@@ -133,7 +133,7 @@ function RecordHelper(baseUrl){
         if(record_type == '1' || record_type == '2'){
             appendUrl = "/ajaxStorage/getRecordContent";
         }else if(record_type == '3'){
-            appendUrl = "/ajaxPlan/getPlanContent"; 
+            appendUrl = "/ajaxPlan/showPlanContent"; 
         }
         if(count == 1){
             $.get(baseUrl+appendUrl
