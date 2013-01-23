@@ -56,6 +56,13 @@ class RecordContent extends CController
             ":plan_id" => htmlspecialchars($plan_id)
         );
         $planData = DeliverPlanItem::model()->findAll($condition,$params);
+
+        $condition = "name=:name";
+        $params = array(
+            ":name" => $planData[0]->plan_maker
+        );
+        $user = Users::model()->find($condition, $params);
+
         $product = null;
         $silk = null;
         foreach($planData as $planItem){
@@ -63,6 +70,10 @@ class RecordContent extends CController
             $silk = Silk::model()->findByPk($product->silk_id);
             
             $plan = array(
+                'plan_id' => $plan_id,
+                'provider' => $planItem->provider->name,
+                'plan_maker' => $planItem->plan_maker,
+                'telephone' => $user->telephone,
                 'goods_number' => $planItem->goods_number,
                 'color_number' => $silk->color_number,
                 'color_name' => $silk->color_name,

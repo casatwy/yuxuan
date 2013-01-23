@@ -78,7 +78,6 @@ class PlanController extends Controller
             $recordContent = new RecordContent();
             $planList = $recordContent->getPlanContent($_GET['id']);
         }
-
         $this->layout="//layouts/blank";
         echo $this->render("printDeliveredPlan",array(
             'planList' => $planList,
