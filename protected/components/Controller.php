@@ -72,4 +72,12 @@ class Controller extends CController
 
         Yii::app()->user->setReturnUrl('/storage/instock');
     }
+
+    protected function beforeAction($action){
+        parent::beforeAction($action);
+        //var_dump(Yii::app()->user->getState("authority"));
+        //var_dump($this->getId());
+        //var_dump($action->getId());die();
+        return true;
+    }
 }

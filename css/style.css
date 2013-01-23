@@ -4,9 +4,7 @@
 	width:590px;
 }
 
-.contant-container span , .dayContent span , .add span {
-	margin:0 0 1.5em;
-}
+
 /*    instock      */
 #plus{
 	display:block;
@@ -108,4 +106,14 @@ a.prepend {
 }
 .pad-6 {
 	padding-left:6px;
+}
+.contant-container span , .dayContent span , .add span {
+	margin:0 0 1.5em;
+}
+
+.font-2 {
+	font-size:1.1em;
+}
+#J_fetchedRecords div img {
+	padding-left:300px;
 }

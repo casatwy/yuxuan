@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container font-2">
 <h1 class="center big">上海星位针织服装有限公司<h1>
 <?php 
     if($info['type'] == StorageController::IN_RECORD){
@@ -51,8 +51,8 @@
     </tr>
     <?php endforeach; ?>
 </table>
-	<span class="span-23 last prepend-1">如有疑问，请你回传给我们！
-		<span><?php echo $info['record']->record_maker; ?></span>&nbsp;或&nbsp;
+	<span class="span-23 last prepend-1">如有疑问，请您回传给我们！
+		<span><?php echo $info['record']->record_maker; ?></span>&nbsp;:&nbsp;
 		<span><?php echo $info['user']->telephone; ?></span>
 	</span>
 

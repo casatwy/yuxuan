@@ -24,5 +24,5 @@
     </tr>
     <?php endforeach; ?>
 </table>
-	<a href="<?php echo $this->baseUrl; ?>/storage/printRecordList/<?php echo 'type/'.$record_type.'/id/'.$record_id; ?>" 
+	<a class="span-19 center" href="<?php echo $this->baseUrl; ?>/storage/printRecordList/<?php echo 'type/'.$record_type.'/id/'.$record_id; ?>" 
 		target="_blank">打印表单</a>

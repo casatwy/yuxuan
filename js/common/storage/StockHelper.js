@@ -58,7 +58,7 @@ function StockHelper(baseUrl){
                 //window.open(baseUrl+"/storage/printRecordList/type/"+result["type"]+"/id/"+result["id"], '_blank');
                 window.location.href = baseUrl+"/storage/printRecordList/type/"+result["type"]+"/id/"+result["id"];
             }else{
-                $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
+                $.jGrowl("保存失败。"+result['msg'], {header:"反馈"});
             }
         }, 'json');
     }
