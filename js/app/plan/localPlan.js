@@ -63,7 +63,7 @@ function LocalPlan(baseUrl){
                         $(".J_event").show();
                     },
                     afterShowCont:function(){
-                        $("#J_addButton").live("click", function(){
+                        $("#J_addButton").bind("click", function(){
                             clickAddButton($(this),date);
                         });
                     },
