@@ -114,3 +114,6 @@ a.prepend {
 .font-2 {
 	font-size:1.1em;
 }
+#J_fetchedRecords div img {
+	padding-left:300px;
+}
