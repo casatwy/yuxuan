@@ -103,18 +103,18 @@ function LocalPlan(baseUrl){
 
         function clickOnEvent(event, jsevent, view){
             //view.title = time
-            $(".J_event").hide();
-            $.nmManual(baseUrl+"/ajaxplan/getPlanContent",{
-                closeOnClick:true,
-                closeOnEscape:true,
-                showCloseButton:false,
-                domCopy:true,
-                callbacks:{
-                    afterHideBg:function(){
-                        $(".J_event").show();
-                    }
-                },
-            });
+            //$(".J_event").hide();
+            //$.nmManual(baseUrl+"/ajaxplan/getPlanContent",{
+            //    closeOnClick:true,
+            //    closeOnEscape:true,
+            //    showCloseButton:false,
+            //    domCopy:true,
+            //    callbacks:{
+            //        afterHideBg:function(){
+            //            $(".J_event").show();
+            //        }
+            //    },
+            //});
             return false;
         }
     }

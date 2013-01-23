@@ -1,4 +1,5 @@
-	<h2 class="prepend-1 span-3">物料类型</h2>
+<img class="span-1" src="../../../images/types.png" />
+	<h2 class="span-3">物料类型</h2>
 	<a id="plus" class="span-17 last" href="<?php echo $this->baseUrl;?>/admin/addType"></a>
 	<hr>
 <div class="contant-container">
