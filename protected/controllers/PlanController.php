@@ -18,7 +18,7 @@ class PlanController extends Controller
         return array(
             array(
                 'allow',
-                'actions' => array('index', 'list', 'deliveredList', 'createDeliveredPlan'),
+                'actions' => array('index', 'list', 'deliveredList', 'createDeliveredPlan', 'printPlan'),
                 'users' => array('@')
             ),
             array(
@@ -69,6 +69,20 @@ class PlanController extends Controller
             'planList' => $planList,
             'type' => self::DELIVER_PLAN,
             'pages' => $pages
+        ));
+    }
+
+    public function actionPrintPlan(){
+        $planList = null;
+        if(isset($_GET['id'])){
+            $recordContent = new RecordContent();
+            $planList = $recordContent->getPlanContent($_GET['id']);
+        }
+
+        $this->layout="//layouts/blank";
+        echo $this->render("printDeliveredPlan",array(
+            'planList' => $planList,
+            'plan_id' => $_GET['id'],
         ));
     }
 }

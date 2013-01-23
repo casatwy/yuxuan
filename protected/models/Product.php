@@ -121,14 +121,14 @@ class Product extends CActiveRecord
         if(isset($result['id'])){
             return $result['id'];
         }else{
-            return $result;
+            return self::createNew($info);
         }
     }
 
     public static function createNew($info, $silk_id=false){
         $product = new Product;
         if($silk_id){
-            $product->silk_id = $silk->id;
+            $product->silk_id = $silk_id;
         }else{
             $product->silk_id = Silk::findExistSilk($info);
         }

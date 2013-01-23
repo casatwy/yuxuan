@@ -2,9 +2,6 @@
 
 class RecordContent extends CController
 {
-    const SAVE_IN_STOCK = 1;
-    const SAVE_OUT_STOCK = 2;
-
     const OUT_RECORD = 1;
     const IN_RECORD = 2;
     const PLAN = 3;
@@ -18,9 +15,11 @@ class RecordContent extends CController
         $params = array(
             ":record_id" => htmlspecialchars($record_id)
         );
-        if($type == self::SAVE_IN_STOCK){
+
+        $recordData = null;
+        if($type == self::OUT_RECORD){
         	$recordData = DeliverRecordItem::model()->findAll($condition, $params);
-        }else if($type == self::SAVE_OUT_STOCK){
+        }else if($type == self::IN_RECORD){
         	$recordData = ReceiveRecordItem::model()->findAll($condition, $params);
         }
 
@@ -77,6 +76,7 @@ class RecordContent extends CController
     }
 
     public function printInfomation($id,$type){
+        $record = null;
 		if($type == self::IN_RECORD){
 			$record = ReceiveRecord::model()->findByPk($id);
 		}elseif($type == self::OUT_RECORD){
@@ -114,19 +114,19 @@ class RecordContent extends CController
             $searchCriteria->condition .= $data['goodsNumber'];
         }
 
-        if($data['providerId'] != 'none'){
+        if(isset($data['providerId']) and $data['providerId'] != 'none'){
             $searchCriteria->condition .= " and provider_id=";
             $searchCriteria->condition .= $data['providerId'];
         }
 
         if(!empty($data["start_time"])){
             $searchCriteria->condition .= " and record_time>";
-            $searchCriteria->condition .= $this->getTime($data['start_time']);
+            $searchCriteria->condition .= self::getTime($data['start_time']);
         }
 
         if(!empty($data["end_time"])){
             $searchCriteria->condition .= " and record_time<";
-            $searchCriteria->condition .= $this->getTime($data['end_time']) + 60*60*24;
+            $searchCriteria->condition .= self::getTime($data['end_time']) + 60*60*24;
         }
 
         $searchedRecordList = null;
@@ -156,6 +156,13 @@ class RecordContent extends CController
         }
 
         return $criteria;
+    }
+
+    public static function getTime($date){
+        $year=((int)substr($date,0,4));
+        $month=((int)substr($date,5,2));
+        $day=((int)substr($date,8,2));
+        return (string)mktime(0,0,0,$month,$day,$year);
     }
 }
 ?>

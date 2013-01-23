@@ -2,9 +2,6 @@
 
 class AjaxStorageController extends Controller
 {
-    const SAVE_IN_STOCK = 1;
-    const SAVE_OUT_STOCK = 2;
-
     const OUT_RECORD = 1;
     const IN_RECORD = 2;
 
@@ -14,12 +11,12 @@ class AjaxStorageController extends Controller
     }
 
     public function actionSaveoutstock(){
-        $this->saveRecord(self::SAVE_OUT_STOCK);
+        $this->saveRecord(self::OUT_RECORD);
         Yii::app()->end();
     } 
 
     public function actionSaveinstock(){
-        $this->saveRecord(self::SAVE_IN_STOCK);
+        $this->saveRecord(self::IN_RECORD);
         Yii::app()->end();
     }
 
@@ -53,7 +50,7 @@ class AjaxStorageController extends Controller
         }
 
         $product_id = Product::findExistedProduct($item);
-        if(!$product){
+        if(!$product_id){
             $product_id = Product::createNew($item, $silk_id);
         }
         return $product_id;
@@ -84,10 +81,10 @@ class AjaxStorageController extends Controller
 
     private function saveRecord($saveType){
         $record = null;
-        if($saveType == self::SAVE_IN_STOCK){
+        if($saveType == self::IN_RECORD){
             $record = new ReceiveRecord;
         }
-        if($saveType == self::SAVE_OUT_STOCK){
+        if($saveType == self::OUT_RECORD){
             $record = new DeliverRecord;
         }
 
@@ -98,10 +95,10 @@ class AjaxStorageController extends Controller
 
         foreach($_POST['data'] as $item){
             $recordItem = null;
-            if($saveType == self::SAVE_IN_STOCK){
+            if($saveType == self::IN_RECORD){
                 $recordItem = new ReceiveRecordItem;
             }
-            if($saveType == self::SAVE_OUT_STOCK){
+            if($saveType == self::OUT_RECORD){
                 $recordItem = new DeliverRecordItem;
             }
 
@@ -116,12 +113,15 @@ class AjaxStorageController extends Controller
             $recordItem->provider_id = $record->provider_id;
 
             //storage is also saved in the afterSave() of ReceiveRecordItem.
-            $recordItem->save();
+            if(!$recordItem->save()){
+                $record->delete();
+            }
         }
 
         $result = array(
             "success" => 1,
-            'content' => '可打印的回执单',
+            'type' => $saveType,
+            'id' => $record->id,
         );
         echo CJSON::encode($result);
     }
@@ -175,7 +175,7 @@ class AjaxStorageController extends Controller
         echo $html;
     }
 
-    private function setupCriteria($data, $type){
+    public static function setupCriteria($data, $type){
         $criteria = new CDbCriteria();
         $criteria->order = "id desc";
 

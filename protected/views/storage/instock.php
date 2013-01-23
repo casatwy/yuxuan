@@ -1,5 +1,3 @@
-
-<span id="J_baseUrl" value="<?php echo $this->baseUrl; ?>"></span>
 <?php 
     if($type == StorageController::IN_RECORD){
         echo '	<img class="span-1" src="../../../images/instock.png" /><h2 class="span-3">入库记录</h2>';

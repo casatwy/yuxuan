@@ -112,7 +112,7 @@ class Silk extends CActiveRecord
         if(isset($result['id'])){
             return $result['id'];
         }else{
-            return $result;
+            return self::createNew($info);
         }
     }
 
@@ -120,9 +120,14 @@ class Silk extends CActiveRecord
         $silk = new Silk;
         $silk->color_number = $info['color_number'];
         $silk->color_name = $info['color_name'];
-        $silk->gang_number = $info['gang_number'];
+        if(isset($info["gang_number"])){
+            $silk->gang_number = $info['gang_number'];
+            $silk->zhi_count = $info['zhi_count'];
+        }else{
+            $silk->gang_number = "-1";
+            $silk->zhi_count = "-1";
+        }
         $silk->goods_number = $info['goods_number'];
-        $silk->zhi_count = $info['zhi_count'];
         $silk->save();
         return $silk->id;
     } 

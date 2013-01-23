@@ -48,13 +48,14 @@ function StockHelper(baseUrl){
 
         $.post(baseUrl+appendUrl, {data:data}, function(result){
             if(result['success'] == "1"){
-                $.jGrowl("保存成功！", {
-                    header:"反馈",
-                    life:2000,
-                    beforeOpen:function(){
-                        $("#J_container").html(result["content"]);
-                    }
-                });
+                //$.jGrowl("保存成功！", {
+                //    header:"反馈",
+                //    life:2000,
+                //    beforeOpen:function(){
+                //        $("#J_container").html(result["content"]);
+                //    }
+                //});
+                window.location.href = baseUrl+"/storage/printRecordList/type/"+result["type"]+"/id/"+result["id"];
             }else{
                 $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
             }

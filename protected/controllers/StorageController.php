@@ -20,7 +20,7 @@ class StorageController extends Controller
             array(
                 'allow',
                 'actions' => array('index', 'resource', 'instock', 'outstock', 'createinstock', 
-									'createoutstock', 'product', 'printrecordlist'),
+									'createoutstock', 'product', 'printrecordlist', 'search'),
                 'users' => array('@')
             ),
             array(
@@ -97,4 +97,28 @@ class StorageController extends Controller
             ));
         }
 	}
+
+    public function actionSearch(){
+        $this->cs->registerScriptFile($this->jsUrl."search.js");
+        $criteria = RecordContent::getCriteria($_GET,$_GET['type']);
+
+        $count = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
+        $pages = new CPagination($count);
+
+        $pages->pageSize = 10;
+        $pages->applyLimit($criteria);
+        $recordList = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
+
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        $this->cs->registerScriptFile($this->jsUrl."instock.js");
+
+        $this->render("instock", array(
+            'type' => $_GET['type'],
+            'recordList' => $recordList,
+            'pages' => $pages,
+        ));
+
+    }
+
 }

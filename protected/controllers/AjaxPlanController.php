@@ -44,6 +44,7 @@ class AjaxPlanController extends Controller
 
         echo $this->renderPartial("showPlanContent",array(
             'planList' => $planList,
+            'plan_id' => $_GET['record_id'],
         ));
     }
 
@@ -107,7 +108,7 @@ class AjaxPlanController extends Controller
 
         echo CJSON::encode(array(
             "success" => 1,
-            "content" => "可打印回执"
+            'id' => $deliverPlan->id,
         ));
 
         Yii::app()->end();
