@@ -1,6 +1,6 @@
 
 <span id="J_baseUrl" value="<?php echo $this->baseUrl; ?>"></span>
-<h2 class="span-3 prepend-1">外发计划</h2>
+<img class="span-1" src="../../../images/deliveredList.png" /><h2 class="span-3 ">外发计划</h2>
 
 <a id="plus" class="span-17 last" href="<?php echo $this->baseUrl; ?>/plan/createDeliveredPlan" ></a>
 <hr>

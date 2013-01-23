@@ -4,7 +4,7 @@
 	width:590px;
 }
 
-.contant-container span {
+.contant-container span , .dayContent span , .add span {
 	margin:0 0 1.5em;
 }
 /*    instock      */
@@ -23,7 +23,7 @@
 	background:url(../images/plus-big.png) no-repeat;
 }
 
-/*  record  记录表格  */
+/*  record  表格  */
 
 .record, .record td, .record th {
 	border:1px solid black;
@@ -86,11 +86,11 @@ a.prepend {
 .add {
 	width:300px;
 }
-.add span {
-	margin:0 0 1.5em;
-	font-size:1.1em;
-}
 
+/*  daycontent 日历  */
+.dayContent {
+		width:590px;
+}
 /*  文字样式  */
 .big {
 	font-size:3em;
