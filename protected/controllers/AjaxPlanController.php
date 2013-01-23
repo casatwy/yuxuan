@@ -8,25 +8,9 @@ class AjaxPlanController extends Controller
 	}
 
     public function actionGetPlanEvents(){
-        $sql = "select dp.time,p.goods_number,p.size,s.color_name from `daily_product` dp "
-            ." inner join `product` p on dp.time >=".strtotime($_POST['start'])
-            ." and dp.time <".strtotime($_POST['end'])." and dp.product_id = p.id "
-            ." inner join `silk` s on p.silk_id = s.id ";
-        $daily_messages = Yii::app()->db->createCommand($sql)->queryAll();
-        
-        $events = array();
-
-        foreach($daily_messages as $m){
-            $event = array(
-                'title' => $m['goods_number'].'_'.$m['color_name'].'_'.$m['size'],
-                'start' => $m['time'],
-                'end' => $m['time'],
-                'className' => 'J_event',
-                'editable' => false,
-            );
-            array_push($events,$event);
-        }
-
+        $start = strtotime($_POST['start']);
+        $end = strtotime($_POST['end']);
+        $events = RecordContent::getPlanList($start,$end);
         echo CJSON::encode($events);
     }
 
@@ -49,7 +33,13 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetDayContent(){
-        echo $this->renderPartial("dayContent");
+        $start = strtotime($_GET['date']);
+        $end = $start + 24*60*60; 
+        $events = RecordContent::getPlanList($start,$end);
+
+        echo $this->renderPartial("dayContent",array(
+            'events' => $events,
+        ));
     }
 
     public function actionSaveDailyRecord(){
