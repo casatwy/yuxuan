@@ -53,7 +53,13 @@ function LocalPlan(baseUrl){
             //allDay: true (boolean)
             //view: a big object
             $(".J_event").hide();
-            $.nmManual(baseUrl+"/ajaxPlan/getDayContent",{
+            $.get(baseUrl+'/ajaxPlan/getDate',{date:date},function(result){
+                showDayData(date, allDay, jsEvent, view, result);
+            });
+        }
+
+        function showDayData(date, allDay, jsEvent, view, start){
+            $.nmManual(baseUrl+"/ajaxPlan/getDayContent/start/"+start,{
                 closeOnClick:true,
                 closeOnEscape:true,
                 showCloseButton:false,

@@ -33,13 +33,23 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetDayContent(){
-        $start = strtotime($_GET['date']);
+        $start = $_GET['start'];
         $end = $start + 24*60*60; 
         $events = RecordContent::getPlanList($start,$end);
+        $dailyDatas = array();
+        foreach($events as $event){
+            $dailyData = RecordContent::getDailyData($event['product_id']);
+            array_push($dailyDatas,$dailyData);
+        }
 
         echo $this->renderPartial("dayContent",array(
-            'events' => $events,
+            'dailyDatas' => $dailyDatas,
         ));
+        //echo $this->renderPartial("dayContent");
+    }
+
+    public function actionGetDate(){
+        echo strtotime($_GET['date']);
     }
 
     public function actionSaveDailyRecord(){

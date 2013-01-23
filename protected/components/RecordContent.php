@@ -97,7 +97,7 @@ class RecordContent extends CController
     }
 
     public static function getPlanList($start,$end){
-        $sql = "select dp.time,p.goods_number,p.size,s.color_name from `daily_product` dp "
+        $sql = "select p.id,dp.time,p.goods_number,p.size,s.color_name from `daily_product` dp "
             ." inner join `product` p on dp.time >=".$start
             ." and dp.time <".$end." and dp.product_id = p.id "
             ." inner join `silk` s on p.silk_id = s.id ";
@@ -107,6 +107,7 @@ class RecordContent extends CController
 
         foreach($daily_messages as $m){
             $event = array(
+                'product_id' => $m['id'],
                 'title' => $m['goods_number'].'_'.$m['color_name'].'_'.$m['size'],
                 'start' => $m['time'],
                 'end' => $m['time'],
@@ -116,6 +117,19 @@ class RecordContent extends CController
             array_push($events,$event);
         }
         return $events;
+    }
+
+    public static function getDailyData($product_id){
+        $product = Product::model()->findByPk($product_id);
+        $silk = Silk::model()->findByPk($product->silk_id);
+        $dailyData = array(
+            'goods_number' => $product->goods_number,
+            'color_number' => $silk->color_number,
+            'needle_type' => $product->needle_type,
+            'color_name' => $silk->color_name,
+            'size' => $product->size,
+        );
+        return $dailyData;
     }
 
     public static function getCriteria($data, $type){

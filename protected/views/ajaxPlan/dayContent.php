@@ -12,18 +12,18 @@
         <td>已完成</td>
         <td>未完成</td>
     </tr>
-
+    <?php foreach($dailyDatas as $dailyData):?>
     <tr>
+        <td><?php echo $dailyData['goods_number']; ?></td>
+        <td><?php echo $dailyData['color_number']; ?></td>
+        <td><?php echo $dailyData['needle_type']; ?></td>
+        <td><?php echo $dailyData['color_name']; ?></td>
+        <td><?php echo $dailyData['size']; ?></td>
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-
     </tr>
+    <?php endforeach;?>
 </table>
 <span class="prepend-12 span-3"><a href="javascript:void(0);">查看相关出货记录</a></span>
 <span class="span-2">货号：</span><span class="span-6"><input type="text" id="J_goodsNumber"></input></span>
