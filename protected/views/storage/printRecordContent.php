@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container font-2">
 <h1 class="center big">上海星位针织服装有限公司<h1>
 <?php 
     if($info['type'] == StorageController::IN_RECORD){
