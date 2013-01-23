@@ -51,8 +51,8 @@
     </tr>
     <?php endforeach; ?>
 </table>
-	<span class="span-23 last prepend-1">如有疑问，请你回传给我们！
-		<span><?php echo $info['record']->record_maker; ?></span>&nbsp;或&nbsp;
+	<span class="span-23 last prepend-1">如有疑问，请您回传给我们！
+		<span><?php echo $info['record']->record_maker; ?></span>&nbsp;:&nbsp;
 		<span><?php echo $info['user']->telephone; ?></span>
 	</span>
 

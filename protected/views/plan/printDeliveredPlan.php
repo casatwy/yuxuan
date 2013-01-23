@@ -30,7 +30,7 @@
     <?php endforeach;?>
 </table>
 	<span class="span-23 last prepend-1">如有疑问，请你回传给我们！
-		<span>11111111111</span>&nbsp;或&nbsp;
+		<span>11111111111</span>&nbsp;:&nbsp;
 		<span>11111111111111111111</span>
 	</span>
 
