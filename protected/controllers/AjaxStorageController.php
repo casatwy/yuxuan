@@ -90,6 +90,15 @@ class AjaxStorageController extends Controller
 
         $record->record_time = time();
         $record->record_maker = Yii::app()->user->getState('name');
+        if(!isset($_POST['data']['0']['needle_type'])){
+            $result = array(
+                "success" => 0,
+                'msg' => "此页面已经过期，请刷新后重试。",
+                'id' => $record->id,
+            );
+            echo CJSON::encode($result);
+            return;
+        }
         $record->provider_id = $_POST['data'][0]['provider_id'];
         $record->save();
 
@@ -100,6 +109,17 @@ class AjaxStorageController extends Controller
             }
             if($saveType == self::OUT_RECORD){
                 $recordItem = new DeliverRecordItem;
+            }
+
+            if($item['type'] !== 1 and !isset($item['needle_type'])){
+                $record->delete();
+                $result = array(
+                    "success" => 0,
+                    'msg' => "此页面已经过期，请刷新后重试。",
+                    'id' => $record->id,
+                );
+                echo CJSON::encode($result);
+                return;
             }
 
             $recordItem->item_id = $this->getItemId($item);
