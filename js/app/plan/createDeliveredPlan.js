@@ -39,7 +39,7 @@ function CreateDeliveredPlan(baseUrl){
                 //        $("#J_container").html(result["content"]);
                 //    }
                 //});
-                window.location.href = baseUrl+"/plan/printPlan/id/"+result['id'];
+                window.open(baseUrl+"/plan/printPlan/id/"+result['id']);
             }else{
                 $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
             }

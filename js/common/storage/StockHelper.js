@@ -55,7 +55,7 @@ function StockHelper(baseUrl){
                 //        $("#J_container").html(result["content"]);
                 //    }
                 //});
-                window.location.href = baseUrl+"/storage/printRecordList/type/"+result["type"]+"/id/"+result["id"];
+                window.open(baseUrl+"/storage/printRecordList/type/"+result["type"]+"/id/"+result["id"]);
             }else{
                 $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
             }
