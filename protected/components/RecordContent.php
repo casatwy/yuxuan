@@ -137,6 +137,7 @@ class RecordContent extends CController
         $dailyData = array(
             'finished_sum' => $finished_sum['finished'],
             'total_count' => $product->total_count,
+            'type' => $product->getTypeName(),
             'diaoxian' => $product->diaoxian,
             'goods_number' => $product->goods_number,
             'color_number' => $silk->color_number,

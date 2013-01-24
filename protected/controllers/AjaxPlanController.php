@@ -43,6 +43,7 @@ class AjaxPlanController extends Controller
         }
 
         echo $this->renderPartial("dayContent",array(
+            'type' => Type::model()->findAll("id != 1"),
             'dailyDatas' => $dailyDatas,
         ));
         //echo $this->renderPartial("dayContent");
@@ -62,6 +63,7 @@ class AjaxPlanController extends Controller
              total
              finished
              diaoxian
+             type
          */
         $product_id = Product::findExistedProduct($_POST);
         if(!$product_id){//create a product based on the silk
