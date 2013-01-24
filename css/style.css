@@ -1,8 +1,68 @@
-/* login*/
-.login-bg {
-	width
+/*       login登入         */
+#login {
+	width:300px;
+	border-radius: 3px 3px 3px 3px;
+   	box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2), 0 3px 0 #FFFFFF, 0 4px 0 rgba(0, 0, 0, 0.2), 0 6px 0 #FFFFFF, 0 7px 0 rgba(0, 0, 0, 0.2);
+    	height: 200px;
+    	padding: 30px;
+	background-image: -moz-linear-gradient(center top , #FFFFFF, #EEEEEE);
+    	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+	position: relative;
+	z-index: 0;
 }
-/* contant-container   */
+
+#login:before {
+    	border: 1px dashed #CCCCCC;
+    	bottom: 5px;
+    	box-shadow: 0 0 0 1px #FFFFFF;
+    	content: "";
+    	left: 5px;
+    	position: absolute;
+    	right: 5px;
+    	top: 5px;
+	z-index: -1;
+}
+
+
+#login h1:after {
+    	background-image: -moz-linear-gradient(left center , #777777, #FFFFFF);
+    	background-image: -webkit-gradient(linear, left top, right top, from(#777), to(#fff));
+    	right: 0;
+}
+#login h1:before {
+    	background-image: -moz-linear-gradient(right center , #777777, #FFFFFF);
+	background-image: -webkit-gradient(linear, right top, left top, from(#777), to(#fff));
+    left: 0;
+}
+ #login h1:after, #login h1:before {
+    background-color: #777777;
+    content: "";
+    height: 1px;
+    position: absolute;
+    top: 15px;
+    width: 80px;
+}
+
+#login h1 {
+    color: #666666;
+    font: 26px/1 Verdana,Helvetica;
+    letter-spacing: 4px;
+    margin: 0 0 30px;
+    position: relative;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.698), 0 2px 0 rgba(0, 0, 0, 0.5);
+    text-transform: uppercase;
+}
+#login span {
+	font-size:1.2em;
+	margin-bottom:20px;
+}
+
+.log-bg {
+	height:380px;
+	background:url(../images/login-bg.png) no-repeat 80px 50px;
+}
+/* contant-container  */
 .contant-container {
 	margin: 0 120px;
 	width:590px;
@@ -92,6 +152,16 @@ a.prepend {
 /*  daycontent 日历  */
 .dayContent {
 		width:590px;
+}
+/*  button 按钮  */
+
+
+/* brackets */
+.brackets, .brackets.glossy:after, .brackets.glass:after { 
+	border-top: 			none; 
+	-webkit-border-radius: 	.5em / 1em;
+	-moz-border-radius: 	.5em / 1em;
+	border-radius: 			.5em / 1em;
 }
 /*  文字样式  */
 .big {
