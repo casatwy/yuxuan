@@ -92,4 +92,10 @@ class DailyProduct extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public static function getFinishedSum($product_id){
+        $sql = "select sum(count) as finished from `daily_product` where product_id=".$product_id;
+        $result = Yii::app()->db->createCommand($sql)->queryRow();
+        return $result;
+    }
 }

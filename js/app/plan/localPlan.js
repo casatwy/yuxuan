@@ -87,6 +87,7 @@ function LocalPlan(baseUrl){
                 size:$("#J_size").val(),
                 total:$("#J_total").val(),
                 finished:$("#J_finished").val(),
+                diaoxian:$("#J_diaoxian").val(),
                 date:date,
             };
 

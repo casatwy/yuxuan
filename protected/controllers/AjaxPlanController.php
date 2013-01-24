@@ -61,6 +61,7 @@ class AjaxPlanController extends Controller
              size
              total
              finished
+             diaoxian
          */
         $product_id = Product::findExistedProduct($_POST);
         if(!$product_id){//create a product based on the silk

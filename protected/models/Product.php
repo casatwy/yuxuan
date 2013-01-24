@@ -6,6 +6,7 @@
  * The followings are the available columns in table 'product':
  * @property string $id
  * @property integer $silk_id
+ * @property integer $type_id
  * @property string $needle_type
  * @property string $size
  * @property integer $goods_number
@@ -40,13 +41,13 @@ class Product extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('silk_id, needle_type, size, goods_number', 'required'),
-			array('silk_id, goods_number, total_count', 'numerical', 'integerOnly'=>true),
+			array('type_id, silk_id, needle_type, size, goods_number', 'required'),
+			array('type_id, silk_id, goods_number, total_count', 'numerical', 'integerOnly'=>true),
 			array('needle_type', 'length', 'max'=>10),
 			array('size, diaoxian', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, silk_id, needle_type, size, goods_number, diaoxian, total_count', 'safe', 'on'=>'search'),
+			array('id, silk_id, type_id, needle_type, size, goods_number, diaoxian, total_count', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -119,6 +120,7 @@ class Product extends CActiveRecord
                 AND size =".htmlspecialchars($info["size"]).";";
         $result = Yii::app()->db->createCommand($sql)->queryRow();
         if(isset($result['id'])){
+            self::setTotalAndDianxian($info, $result['id']);
             return $result['id'];
         }else{
             return self::createNew($info);
@@ -135,7 +137,25 @@ class Product extends CActiveRecord
         $product->needle_type = $info["needle_type"];
         $product->size = $info["size"];
         $product->goods_number = $info["goods_number"];
+        $product->type_id = $info["type"];
         $product->save();
+        self::setTotalAndDianxian($info, $product->id);
         return $product->id;
+    }
+
+    public static function setTotalAndDianxian($info, $product_id){
+        $product = self::model()->findByPk($product_id);
+        if(!empty($info['diaoxian'])){
+            $product->diaoxian = $info['diaoxian'];
+        }
+        if(!empty($info['total'])){
+            $product->total_count = $info['total'];
+        }
+        $product->save();
+    }
+
+    public function getTypeName(){
+        $type = Type::model()->findByPk($this->type_id);
+        return $type->name;
     }
 }

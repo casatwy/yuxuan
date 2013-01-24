@@ -133,7 +133,11 @@ class RecordContent extends CController
     public static function getDailyData($product_id){
         $product = Product::model()->findByPk($product_id);
         $silk = Silk::model()->findByPk($product->silk_id);
+        $finished_sum = DailyProduct::getFinishedSum($product_id);
         $dailyData = array(
+            'finished_sum' => $finished_sum['finished'],
+            'total_count' => $product->total_count,
+            'diaoxian' => $product->diaoxian,
             'goods_number' => $product->goods_number,
             'color_number' => $silk->color_number,
             'needle_type' => $product->needle_type,
