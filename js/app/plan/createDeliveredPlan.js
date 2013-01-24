@@ -29,17 +29,8 @@ function CreateDeliveredPlan(baseUrl){
             return false;
         }
         var data = getPostData();
-        console.log(data);
         $.post(baseUrl+"/ajaxPlan/saveDeliveredPlan", {data:data}, function(result){
             if(result['success'] == "1"){
-                //$.jGrowl("保存成功！", {
-                //    header:"反馈",
-                //    life:2000,
-                //    beforeOpen:function(){
-                //        $("#J_container").html(result["content"]);
-                //    }
-                //});
-                //window.open(baseUrl+"/plan/printPlan/id/"+result['id'],'_blank');
                 window.location.href = baseUrl+"/plan/printPlan/id/"+result['id'];
             }else{
                 $.jGrowl("保存失败，请检查数据。", {header:"反馈"});
@@ -98,6 +89,7 @@ function CreateDeliveredPlan(baseUrl){
                 needle_type     :   $(value).find(".J_needleType").val(),
                 size            :   $(value).find(".J_size").val(),
                 quantity        :   $(value).find(".J_quentity").val(),
+                type            :   $(value).find(".J_type").val(),
             };
             data.push(item);
         });

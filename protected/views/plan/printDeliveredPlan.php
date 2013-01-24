@@ -12,6 +12,7 @@
 
     <tr>
         <th>货号</th>
+        <th>类型</th>
         <th>色号</th>
         <th>针型</th>
         <th>颜色</th>
@@ -21,6 +22,7 @@
     <?php foreach($planList as $plan):?>
     <tr>
         <td><?php echo $plan['goods_number']?></td>
+        <td><?php echo $plan['type']?></td>
         <td><?php echo $plan['color_number']?></td>
         <td><?php echo $plan['needle_type']?></td>
         <td><?php echo $plan['color_name']?></td>

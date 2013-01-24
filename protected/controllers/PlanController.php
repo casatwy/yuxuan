@@ -35,6 +35,7 @@ class PlanController extends Controller
         );
         $this->cs->registerScriptFile($this->jsUrl."createDeliveredPlan.js");
         $this->render("createDeliveredPlan", array(
+            'productTypes' => Type::model()->findAll("id != 1"),
             'type' => $type,
         ));
     }

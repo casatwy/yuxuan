@@ -79,6 +79,7 @@ class RecordContent extends CController
                 'color_name' => $silk->color_name,
                 'needle_type' => $product->needle_type,
                 'size' => $product->size,
+                'type' => $product->getTypeName(),
                 'quantity' => $planItem->quantity
             );
             array_push($planList,$plan);
