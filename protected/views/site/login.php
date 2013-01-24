@@ -6,7 +6,7 @@
 
 $this->pageTitle=Yii::app()->name . ' - 登录';
 ?>
-
+<div class="prepend-3">
 <h1>登录</h1>
 
 <div class="form">
@@ -34,3 +34,4 @@ $this->pageTitle=Yii::app()->name . ' - 登录';
 
 <?php $this->endWidget(); ?>
 </div><!-- form -->
+</div>
