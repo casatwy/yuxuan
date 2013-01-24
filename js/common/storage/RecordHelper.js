@@ -147,6 +147,8 @@ function RecordHelper(baseUrl){
 		    	, {record_id:ui.newHeader.attr("data-record-id"), record_type:record_type}
 		    	, function(html){
                 ui.newPanel.html(html);
+                console.log($('.J_listPrinter'));
+                $(".J_listPrinter").printPreview();
             });
         }
     }

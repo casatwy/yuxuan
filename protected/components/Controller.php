@@ -78,6 +78,23 @@ class Controller extends CController
         //var_dump(Yii::app()->user->getState("authority"));
         //var_dump($this->getId());
         //var_dump($action->getId());die();
+        $action = $action->getId();
+
+        //if($action == "printPlan" or $action == "printRecordList"){
+        //    $jqueryUiUrl = $this->baseUrl
+        //                .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
+        //    $this->cs->registerCssFile($jqueryUiUrl."css/print-preview.css");
+        //    $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
+        //    //$this->cs->registerScriptFile($jqueryUiUrl."loadPrinter.js");
+        //}
+
+        if($action == "instock" or $action == "outstock" or $action == "deliveredList"){
+            $jqueryUiUrl = $this->baseUrl
+                        .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
+            $this->cs->registerCssFile($jqueryUiUrl."css/print-preview.css");
+            $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
+        }
+
         return true;
     }
 }

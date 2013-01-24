@@ -36,4 +36,4 @@
         <?php endforeach;?>
     </tbody>
 </table>
-<a class="span-5 last" href="<?php echo $this->baseUrl; ?>/plan/printPlan/id/<?php echo $plan_id; ?>" target="_blank">打印</a>
+<a class="span-5 last J_listPrinter" href="<?php echo $this->baseUrl; ?>/plan/printPlan/id/<?php echo $plan_id; ?>" target="_blank">打印</a>
