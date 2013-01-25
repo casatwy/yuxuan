@@ -9,8 +9,8 @@
     }
 ?> 
 
-	<span class="span-16 prepend-1" >客户：<span><?php echo $info['record']->provider->name;;?></span></span>
-	<span class="span-7 last">单据号：<span></span>
+	<span class="span-18 prepend-1" >客户：<span><?php echo $info['record']->provider->name;;?></span></span>
+	<span class="span-5 last">单据号：<span></span>
 	<?php 
     	if($info['type'] == StorageController::IN_RECORD){
     	    echo 'RC'.$info['record']->id;
@@ -18,10 +18,10 @@
     	    echo 'DL'.$info['record']->id;
     	}
 	?></span>
-	<span class="span-16 prepend-1">摘要：<span></span></span>
-	<span class="span-7 last"><span></span></span>
-	<span class="span-16 prepend-1"><span></span></span>
-	<span class="span-7 last small"></span>
+	<span class="span-18 prepend-1">摘要：<span></span></span>
+	<span class="span-5 last"><span></span></span>
+	<span class="span-18 prepend-1"><span></span></span>
+	<span class="span-5 last small"></span>
 
 
 <table class="record">
@@ -51,6 +51,7 @@
     </tr>
     <?php endforeach; ?>
 </table>
+<br />
 	<span class="span-23 last prepend-1">如有疑问，请您回传给我们！
 		<span><?php echo $info['record']->record_maker; ?></span>&nbsp;:&nbsp;
 		<span><?php echo $info['user']->telephone; ?></span>
