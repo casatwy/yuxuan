@@ -8,7 +8,7 @@ $this->pageTitle=Yii::app()->name . ' - 登录';
 ?>
 <div class="prepend-12 log-bg" >
 <div id="login">
-<h1>LOG IN</h1>
+    <h1><?php echo Yii::app()->name; ?></h1>
 
 <div class="form">
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -30,7 +30,7 @@ $this->pageTitle=Yii::app()->name . ' - 登录';
 	</div>
 
 	<div class="row buttons prepend-3 span-3 last">
-		<?php echo CHtml::submitButton('Login'); ?>
+		<?php echo CHtml::submitButton('登录'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>
