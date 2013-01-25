@@ -6,7 +6,7 @@
 
 $this->pageTitle=Yii::app()->name . ' - 登录';
 ?>
-<div class="prepend-12 log-bg" >
+<div class="prepend-11 log-bg" >
 <div id="login">
     <h1><?php echo Yii::app()->name; ?></h1>
 
@@ -20,16 +20,16 @@ $this->pageTitle=Yii::app()->name . ' - 登录';
 )); ?>
 
 	<div class="row">
-		<span class="prepend-1 span-2"><?php echo $form->labelEx($loginForm,'username'); ?></span>
-		<span class="span-3 last"><?php echo $form->dropDownList($loginForm,'username', $nameList); ?></span>
+		<span class="pad-50 span-2 "><?php echo $form->labelEx($loginForm,'username'); ?></span>
+		<span class="span-4 last"><?php echo $form->dropDownList($loginForm,'username', $nameList); ?></span>
 	</div>
 
 	<div class="row">
-		<span class="prepend-1 span-2"><?php echo $form->labelEx($loginForm,'password'); ?></span>
-		<span class="span-3 last"><?php echo $form->passwordField($loginForm,'password'); ?></span>
+		<span class="pad-50 span-2 "><?php echo $form->labelEx($loginForm,'password'); ?></span>
+		<span class="span-5 last"><?php echo $form->passwordField($loginForm,'password'); ?></span>
 	</div>
-
-	<div class="row buttons prepend-3 span-3 last">
+	<span class="pad-50 span-2 "></span>
+	<div class="row buttons span-3 last">
 		<?php echo CHtml::submitButton('登录'); ?>
 	</div>
 

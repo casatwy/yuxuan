@@ -9,19 +9,19 @@
     <div class="J_row">
 	<br />
         <span class="J_content">
-            <span class="span-7">类型:
+            <span class="span-15 last">类型:
                 <select name="type" class="J_type">
                     <?php foreach($productTypes as $item):?>
                     <option value="<?php echo $item->id; ?>"><?php echo $item->name; ?></option>
                     <?php endforeach;?>
                 </select>
             </span>
-            <span class="span-8 last">货号:<input type="text" class="J_goodsNumber"></input></span>
-            <span class="span-7">色号:<input type="text" class="J_colorNumber"></input></span>
-            <span class="span-8 last">颜色:<input type="text" class="J_colorName"></input></span>
-            <span class="span-7">针型:<input type="text" class="J_needleType"></input></span>
-            <span class="span-8 last">尺码:<input type="text" class="J_size"></input></span>
-            <span class="span-7">数量:<input type="text" class="J_quentity"></input></span>
+            <span class="span-7 ">货号:<input type="text" class="J_goodsNumber"></input></span>
+            <span class="span-8 last">色号:<input type="text" class="J_colorNumber"></input></span>
+            <span class="span-7">颜色:<input type="text" class="J_colorName"></input></span>
+            <span class="span-8 last">针型:<input type="text" class="J_needleType"></input></span>
+            <span class="span-7">尺码:<input type="text" class="J_size"></input></span>
+            <span class="span-8 last">数量:<input type="text" class="J_quentity"></input></span>
             <span class="prepend-13 last"><button class="J_deleteRecord">删除</button></span>
         </span>
     </div>

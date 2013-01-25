@@ -31,20 +31,22 @@
     </tr>
     <?php endforeach;?>
 </table>
-<span>类型:</span>
-<select name="type" id="J_type">
+<div class="prepend-2">
+<span class="span-2 last">类型:</span>
+<span  class="span-15 last"><select name="type" id="J_type" >
     <?php foreach($type as $item):?>
     <option value="<?php echo $item->id; ?>"><?php echo $item->name; ?></option>
     <?php endforeach;?>
-</select>
-<span class="prepend-12 span-3"></span>
+</select></span>
+
 <span class="span-2">货号：</span><span class="span-6"><input type="text" id="J_goodsNumber"></input></span>
-<span class="span-2">色号：</span><span class="span-5 last"><input type="text" id="J_colorNumber"></input></span>
-<span class="span-2">针型：</span><span class="span-6"><input type="text" id="J_needleType"></input></span>
-<span class="span-2">颜色：</span><span class="span-5 last"><input type="text" id="J_colorName"></input></span>
+<span class="span-2">色号：</span><span class="span-7 last"><input type="text" id="J_colorNumber"></input></span>
+<span class="span-2">针型：</span><span class="span-6 "><input type="text" id="J_needleType"></input></span>
+<span class="span-2">颜色：</span><span class="span-7 last"><input type="text" id="J_colorName"></input></span>
 <span class="span-2">尺寸：</span><span class="span-6"><input type="text" id="J_size"></input></span>
-<span class="span-2">吊线：</span><span class="span-5 last"><input type="text" id="J_diaoxian"></input></span>
+<span class="span-2">吊线：</span><span class="span-7 last"><input type="text" id="J_diaoxian"></input></span>
 <span class="span-2">任务数：</span><span class="span-6"><input type="text" id="J_total"></input></span>
-<span class="span-2">已完成：</span><span class="span-5 last"><input type="text" id="J_finished"></input></span>
-<span class="span-7 center"><button id="J_addButton">添加</button></span>
+<span class="span-2">已完成：</span><span class="span-7 last"><input type="text" id="J_finished"></input></span>
+<span class="span-14 center"><button id="J_addButton">添加</button></span>
+</div>
 </div>
