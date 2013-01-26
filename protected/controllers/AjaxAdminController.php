@@ -14,8 +14,7 @@ class AjaxAdminController extends Controller
             $user->name = htmlspecialchars($data["name"]);
 		    $user->telephone = htmlspecialchars($data["tel"]);
 		    $user->password = md5(htmlspecialchars($data["pwd"]));
-		    $user->authority = "authority";
-		    //$user->authority = htmlspecialchars($_POST["authority"]);
+		    $user->authority = $data["authority"];
             if($user->save()){
                 $result['success'] = '1';
             }else{
@@ -33,7 +32,7 @@ class AjaxAdminController extends Controller
             'name' => htmlspecialchars($_POST["data"]["name"]),
             'telephone' => htmlspecialchars($_POST["data"]["tel"]),
             'password' => md5(htmlspecialchars($_POST["data"]["pwd"])),
-            'authority' => 'authority'
+            'authority' => $_POST['data']['authority'],
         );
         $res = Users::model()->updateByPk($_POST['data']['id'],$attributes);
         if($res){

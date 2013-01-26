@@ -133,9 +133,10 @@ function Admin(baseUrl){
        var item = new Array(); 
        var tempName = new Array();
        var dbNames = window.names;
-       var name,pwd1,pwd2;
+       var name,pwd1,pwd2,authority;
        $('.J_content table').each(function(index,value){
             index++ ;
+            authority = 1;
             name = $(value).find('#J_name').val();
             pwd1 = $(value).find('#J_pwd1').val();
             pwd2 = $(value).find('#J_pwd2').val();
@@ -168,10 +169,16 @@ function Admin(baseUrl){
                 return false;
             }
 
+            $(value).find('.J_authority').each(function(i,v){
+                if($(v).attr('checked') == 'checked'){
+                    authority *= $(v).val();
+                }
+            });
             var data = {
                  name : name,
                  pwd : pwd1,
-                 tel : $(value).find('#J_tel').val()
+                 tel : $(value).find('#J_tel').val(),
+                 authority : authority    
             } 
             item.push(data); 
        });
@@ -183,11 +190,18 @@ function Admin(baseUrl){
     }
 
     this.getUpdateUserData = function(){
+        var authority = 1;
+        $('.J_authority').each(function(i,v){
+            if($(v).attr('checked') == 'checked'){
+                authority *= $(v).val();
+            }
+        });
         var data = {
            id : $('#J_userId').val(), 
            name : $('#J_name').val(),
            pwd : $('#J_pwd1').val(),
            tel : $('#J_tel').val(),
+           authority : authority    
         }
         return data;
     }
@@ -216,5 +230,15 @@ function Admin(baseUrl){
             }
         }
         return i;
+    }
+}
+function updateAuthority(){
+    var num = eval('('+$('#J_authoritys').text()+')');
+    for(var i = 0;i<num.length;i++){
+        $('.J_authority').each(function(index,value){
+            if($(value).val() == num[i]){
+                $(value).attr('checked','checked');
+            }
+        });
     }
 }

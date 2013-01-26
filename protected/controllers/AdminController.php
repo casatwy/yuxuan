@@ -56,11 +56,13 @@ class AdminController extends Controller
 	}
 
     public function actionUpdateUser(){
-        $this->cs->registerScriptFile($this->jsCommon."admin.js");
+        //$this->cs->registerScriptFile($this->jsCommon."admin.js");
         $user = Users::model()->findByPk($_GET['id']);
+        $authority = $this->getAuthority($user->authority);
         echo $this->renderPartial('addUser', array(
             'user' => $user,
-            'type' => 'updateUser'
+            'type' => 'updateUser',
+            'authority' => $authority,
         ));
         Yii::app()->end();
     }
@@ -114,6 +116,17 @@ class AdminController extends Controller
             'kind' => 'update', 
         ));
         Yii::app()->end();
+    }
+
+    private function getAuthority($num){
+        $result = array();
+        $allAuts = array(2,3,5,7,11,13,17,19,23,29,31,37);
+        foreach($allAuts as $aut){
+            if(($num % $aut) == 0){
+                $result[] = $aut;
+            }
+        }
+        return CJSON::encode($result);
     }
 }
 
