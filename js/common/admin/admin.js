@@ -225,3 +225,13 @@ function Admin(baseUrl){
         return i;
     }
 }
+function updateAuthority(){
+    var num = eval('('+$('#J_authoritys').text()+')');
+    for(var i = 0;i<num.length;i++){
+        $('.J_authority').each(function(index,value){
+            if($(value).val() == num[i]){
+                $(value).attr('checked','checked');
+            }
+        });
+    }
+}
