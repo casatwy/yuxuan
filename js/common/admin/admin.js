@@ -190,11 +190,18 @@ function Admin(baseUrl){
     }
 
     this.getUpdateUserData = function(){
+        var authority = 1;
+        $('.J_authority').each(function(i,v){
+            if($(v).attr('checked') == 'checked'){
+                authority *= $(v).val();
+            }
+        });
         var data = {
            id : $('#J_userId').val(), 
            name : $('#J_name').val(),
            pwd : $('#J_pwd1').val(),
            tel : $('#J_tel').val(),
+           authority : authority    
         }
         return data;
     }
