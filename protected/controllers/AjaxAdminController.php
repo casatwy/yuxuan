@@ -36,6 +36,7 @@ class AjaxAdminController extends Controller
         );
         $res = Users::model()->updateByPk($_POST['data']['id'],$attributes);
         if($res){
+            Yii::app()->user->setState('authority', $_POST['data']['authority']);
             $result['success'] = '1';
         }
         echo CJSON::encode($result);
