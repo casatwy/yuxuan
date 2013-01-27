@@ -22,6 +22,22 @@ class Controller extends CController
     public $jsUrl = null;
     public $jsCommon = null;
 
+    public $authority = array(
+        'instock' => 2,
+        'createInStock' => 3,
+        'outstock' => 5,
+        'createOutStock' => 7,
+        'list' => 11,
+        'getDayContent' => 13,
+        'deliveredList' => 17,
+        'createDeliveredPlan' => 19,
+        'users' => 23,
+        'addUser' => 29,
+        'clients' => 31,
+        'types' => 37,
+        'addType' => 37,
+    );
+
     public function init(){
         parent::init();
         $this->baseUrl = Yii::app()->request->getBaseUrl(true);
@@ -80,6 +96,8 @@ class Controller extends CController
         //var_dump($action->getId());die();
         $action = $action->getId();
 
+
+
         //if($action == "printPlan" or $action == "printRecordList"){
         //    $jqueryUiUrl = $this->baseUrl
         //                .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
@@ -95,6 +113,13 @@ class Controller extends CController
             $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
         }
 
-        return true;
+        if(!isset($this->authority[$action])){
+            return true;
+        }else if(Yii::app()->user->getState('authority') % $this->authority[$action] == 0){
+            return true;
+        }else{
+            $this->render("//site/error");
+            return false;
+        }
     }
 }
