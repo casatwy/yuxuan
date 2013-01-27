@@ -146,9 +146,11 @@ a.prepend {
 }
 /*  adduser 用户信息  修改创建用户  */
 .add {
-	width:300px;
+	width:310px;
 }
-
+.adduser {
+	width:630px;
+}
 /*  daycontent 日历  */
 .dayContent {
 		width:750px;
@@ -196,7 +198,7 @@ a.prepend {
 .pad-50 {
 	padding-left:50px;
 }
-.contant-container span , .dayContent span , .add span {
+.contant-container span , .dayContent span , .add span ,.adduser span {
 	margin:0 0 1.5em;
 }
 

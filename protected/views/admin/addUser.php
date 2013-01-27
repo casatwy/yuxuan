@@ -4,30 +4,30 @@ $(document).ready(function(){
     updateAuthority();
 });
 </script>
-<div class="J_content add">
-	<h3>修改资料</h3>
+<div class="J_content adduser">
+	<h3>修改信息</h3>
 	<hr>
 	<span class="span-3">用户名:</span>
-	<span class="span-4 last"><input type="text" id="J_name" value="<?php echo $user->name; ?>" disabled="disabled"></input></span>
+	<span class="span-5 "><input type="text" id="J_name" value="<?php echo $user->name; ?>" disabled="disabled"></input></span>
     	<span class="span-3">输入密码:</span>
-	<span class="span-4 last"><input type="password" id="J_pwd1" ></input></span>
+	<span class="span-5 last"><input type="password" id="J_pwd1" ></input></span>
         <span class="span-3">再次输入密码:</span>
-	<span class="span-4 last"><input type="password" id="J_pwd2"></input></span>
+	<span class="span-5 "><input type="password" id="J_pwd2"></input></span>
         <span class="span-3">手机号码:</span>
-	<span class="span-4 last"><input type="text" id="J_tel" value="<?php echo $user->telephone; ?>"></input></span>
-        <span class="span-3"><input type="checkbox" class="J_authority" value="2"></input>入库查看</span>
-        <span class="span-4 last"><input type="checkbox" class="J_authority" value="3"></input>入库新建</span>
-        <span class="span-3"><input type="checkbox" class="J_authority" value="5"></input>出库查看</span>
+	<span class="span-5 last"><input type="text" id="J_tel" value="<?php echo $user->telephone; ?>"></input></span>
+        <span class="span-4"><input type="checkbox" class="J_authority" value="2"></input>入库查看</span>
+        <span class="span-4 "><input type="checkbox" class="J_authority" value="3"></input>入库新建</span>
+        <span class="span-4"><input type="checkbox" class="J_authority" value="5"></input>出库查看</span>
         <span class="span-4 last"><input type="checkbox" class="J_authority" value="7"></input>出库新建</span>
-        <span class="span-3"><input type="checkbox" class="J_authority" value="11"></input>本厂生产计划查看</span>
-        <span class="span-4 last"><input type="checkbox" class="J_authority" value="13"></input>本厂生产计划新建</span>
-        <span class="span-3"><input type="checkbox" class="J_authority" value="17"></input>外发生产计划查看</span>
+        <span class="span-4"><input type="checkbox" class="J_authority" value="11"></input>本厂生产计划查看</span>
+        <span class="span-4 "><input type="checkbox" class="J_authority" value="13"></input>本厂生产计划新建</span>
+        <span class="span-4"><input type="checkbox" class="J_authority" value="17"></input>外发生产计划查看</span>
         <span class="span-4 last"><input type="checkbox" class="J_authority" value="19"></input>外发生产计划新建</span>
-        <span class="span-3"><input type="checkbox" class="J_authority" value="23"></input>信息管理查看</span>
-        <span class="span-4 last"><input type="checkbox" class="J_authority" value="29"></input>信息管理-用户</span>
-        <span class="span-3"><input type="checkbox" class="J_authority" value="31"></input>信息管理-客户</span>
+        <span class="span-4"><input type="checkbox" class="J_authority" value="23"></input>信息管理查看</span>
+        <span class="span-4 "><input type="checkbox" class="J_authority" value="29"></input>信息管理-用户</span>
+        <span class="span-4"><input type="checkbox" class="J_authority" value="31"></input>信息管理-客户</span>
         <span class="span-4 last"><input type="checkbox" class="J_authority" value="37"></input>信息管理-物料</span>
-        <span class="span-7 last center"><input type="button" value="保存" id="J_usersubmit"></input></span>
+        <span class="span-16 last center"><input type="button" value="保存" id="J_usersubmit"></input></span>
     <input type="hidden" id="J_userId" value="<?php echo $user->id;?>">
 </div>
 <div id="J_authoritys" style="display:none"><?php echo $authority; ?></div>
