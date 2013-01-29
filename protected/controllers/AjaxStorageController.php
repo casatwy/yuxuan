@@ -121,7 +121,6 @@ class AjaxStorageController extends Controller
                 echo CJSON::encode($result);
                 return;
             }
-
             $recordItem->item_id = $this->getItemId($item);
             $recordItem->type = $item['type'];
             $recordItem->weight = $item['weight'];

@@ -113,11 +113,11 @@ class Product extends CActiveRecord
                     SELECT silk.color_number, silk.color_name, product.needle_type, product.size, product.id
                     FROM silk, product
                     WHERE  `silk`.goods_number =  `product`.goods_number
-                    AND  `product`.goods_number =".htmlspecialchars($info["goods_number"])."
+                    AND  `product`.goods_number ='".htmlspecialchars($info["goods_number"])."'
                 ) AS sb
-                WHERE color_number =".htmlspecialchars($info["color_number"])."
-                AND needle_type =".htmlspecialchars($info["needle_type"])."
-                AND size =".htmlspecialchars($info["size"]).";";
+                WHERE color_number ='".htmlspecialchars($info["color_number"])."'
+                AND needle_type ='".htmlspecialchars($info["needle_type"])."'
+                AND size ='".htmlspecialchars($info["size"])."';";
         $result = Yii::app()->db->createCommand($sql)->queryRow();
         if(isset($result['id'])){
             self::setTotalAndDianxian($info, $result['id']);

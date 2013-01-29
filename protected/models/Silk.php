@@ -106,8 +106,8 @@ class Silk extends CActiveRecord
             SELECT * from (
                 SELECT * from silk where goods_number=".htmlspecialchars($info['goods_number'])."
             ) as temp
-            where color_name =".htmlspecialchars($info['color_name'])."
-            and color_number =".htmlspecialchars($info['color_number']);
+            where color_name ='".htmlspecialchars($info['color_name'])."'
+            and color_number ='".htmlspecialchars($info['color_number'])."';";
         $result = Yii::app()->db->createCommand($sql)->queryRow();
         if(isset($result['id'])){
             return $result['id'];
