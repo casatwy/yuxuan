@@ -94,6 +94,8 @@ class Controller extends CController
         //var_dump(Yii::app()->user->getState("authority"));
         //var_dump($this->getId());
         //var_dump($action->getId());die();
+
+
         $action = $action->getId();
 
 
@@ -115,7 +117,7 @@ class Controller extends CController
 
         if(!isset($this->authority[$action])){
             return true;
-        }else if(Yii::app()->user->getState('authority') % $this->authority[$action] == 0){
+        }else if(bcmod(Yii::app()->user->getState('authority') ,$this->authority[$action]) == 0){
             return true;
         }else{
             $this->render("//site/error");
