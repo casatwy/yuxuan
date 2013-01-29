@@ -8,8 +8,8 @@ class AjaxPlanController extends Controller
 	}
 
     public function actionGetPlanEvents(){
-        $start = strtotime($_POST['start']);
-        $end = strtotime($_POST['end']);
+        $start = strtotime(substr($_POST['start'], 0, 34));
+        $end = strtotime(substr($_POST['end'], 0, 34));
         $events = RecordContent::getPlanList($start,$end);
         echo CJSON::encode($events);
     }
@@ -50,7 +50,7 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetDate(){
-        echo strtotime($_GET['date']);
+        echo strtotime(substr($_GET['date'], 0, 34));
     }
 
     public function actionSaveDailyRecord(){
@@ -70,13 +70,14 @@ class AjaxPlanController extends Controller
             $product_id = Product::createNew($_POST);
         }
         $daily = new DailyProduct;
-        $daily->time = strtotime($_POST['date']);
+        $daily->time = strtotime(substr($_POST['date'], 0,34));
         $daily->product_id = $product_id;
         $daily->count = $_POST['finished'];
         $daily->goods_number = $_POST['goods_number'];
         if($daily->save()){
             echo 1;
         }else{
+            var_dump($daily->getErrors());
             echo 0;
         }
     }

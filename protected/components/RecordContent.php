@@ -110,8 +110,8 @@ class RecordContent extends CController
 
     public static function getPlanList($start,$end){
         $sql = "select p.id,dp.time,p.goods_number,p.size,s.color_name from `daily_product` dp "
-            ." inner join `product` p on dp.time >=".$start
-            ." and dp.time <".$end." and dp.product_id = p.id "
+            ." inner join `product` p on dp.time >='".$start
+            ."' and dp.time <'".$end."' and dp.product_id = p.id "
             ." inner join `silk` s on p.silk_id = s.id ";
         $daily_messages = Yii::app()->db->createCommand($sql)->queryAll();
         
