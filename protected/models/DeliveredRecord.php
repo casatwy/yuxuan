@@ -1,22 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "history_product".
+ * This is the model class for table "delivered_record".
  *
- * The followings are the available columns in table 'history_product':
+ * The followings are the available columns in table 'delivered_record':
  * @property string $id
- * @property integer $silk_id
- * @property string $needle_type
- * @property string $size
- * @property integer $goods_number
- * @property string $diaoxian
+ * @property integer $record_time
+ * @property integer $record_maker_id
+ * @property integer $client_id
  */
-class HistoryProduct extends CActiveRecord
+class DeliveredRecord extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return HistoryProduct the static model class
+	 * @return DeliveredRecord the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -28,7 +26,7 @@ class HistoryProduct extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'history_product';
+		return 'delivered_record';
 	}
 
 	/**
@@ -39,13 +37,11 @@ class HistoryProduct extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('silk_id, needle_type, size, goods_number, diaoxian', 'required'),
-			array('silk_id, goods_number', 'numerical', 'integerOnly'=>true),
-			array('id, size, diaoxian', 'length', 'max'=>20),
-			array('needle_type', 'length', 'max'=>10),
+			array('record_time, record_maker_id, client_id', 'required'),
+			array('record_time, record_maker_id, client_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, silk_id, needle_type, size, goods_number, diaoxian', 'safe', 'on'=>'search'),
+			array('id, record_time, record_maker_id, client_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -67,11 +63,9 @@ class HistoryProduct extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'silk_id' => 'Silk',
-			'needle_type' => 'Needle Type',
-			'size' => 'Size',
-			'goods_number' => 'Goods Number',
-			'diaoxian' => 'Diaoxian',
+			'record_time' => 'Record Time',
+			'record_maker_id' => 'Record Maker',
+			'client_id' => 'Client',
 		);
 	}
 
@@ -87,11 +81,9 @@ class HistoryProduct extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('silk_id',$this->silk_id);
-		$criteria->compare('needle_type',$this->needle_type,true);
-		$criteria->compare('size',$this->size,true);
-		$criteria->compare('goods_number',$this->goods_number);
-		$criteria->compare('diaoxian',$this->diaoxian,true);
+		$criteria->compare('record_time',$this->record_time);
+		$criteria->compare('record_maker_id',$this->record_maker_id);
+		$criteria->compare('client_id',$this->client_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

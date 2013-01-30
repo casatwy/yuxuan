@@ -1,18 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "type".
+ * This is the model class for table "user".
  *
- * The followings are the available columns in table 'type':
+ * The followings are the available columns in table 'user':
  * @property integer $id
  * @property string $name
+ * @property string $telephone
+ * @property string $password
+ * @property string $authority
+ * @property integer $available
  */
-class Type extends CActiveRecord
+class User extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Type the static model class
+	 * @return User the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -24,7 +28,7 @@ class Type extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'type';
+		return 'user';
 	}
 
 	/**
@@ -35,11 +39,13 @@ class Type extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>20),
+			array('name, telephone, password, authority, available', 'required'),
+			array('available', 'numerical', 'integerOnly'=>true),
+			array('name, telephone', 'length', 'max'=>20),
+			array('password, authority', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, name, telephone, password, authority, available', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,6 +68,10 @@ class Type extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
+			'telephone' => 'Telephone',
+			'password' => 'Password',
+			'authority' => 'Authority',
+			'available' => 'Available',
 		);
 	}
 
@@ -78,6 +88,10 @@ class Type extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
+		$criteria->compare('telephone',$this->telephone,true);
+		$criteria->compare('password',$this->password,true);
+		$criteria->compare('authority',$this->authority,true);
+		$criteria->compare('available',$this->available);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

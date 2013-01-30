@@ -59,12 +59,12 @@ class PlanController extends Controller
         
         $criteria = new CDbCriteria();
         $criteria->order = "id desc";
-        $count = DeliverPlan::model()->count($criteria);
+        $count = DeliveredPlan::model()->count($criteria);
         $pages = new CPagination($count);
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
 
-        $planList = DeliverPlan::model()->findAll($criteria);
+        $planList = DeliveredPlan::model()->findAll($criteria);
 
         $this->render("deliveredPlanList",array(
             'planList' => $planList,

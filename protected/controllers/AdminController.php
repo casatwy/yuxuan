@@ -33,7 +33,7 @@ class AdminController extends Controller
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
         $condition = "available=:available";
         $params = array(':available' => '0');
-		$users = Users::model()->findAll($condition,$params);
+		$users = User::model()->findAll($condition,$params);
         $this->render('users', array(
 			'users' => $users,
 		));
@@ -43,7 +43,7 @@ class AdminController extends Controller
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
         $condition = "available=:available";
         $params = array(':available' => '0');
-		$users = Users::model()->findAll($condition,$params);
+		$users = User::model()->findAll($condition,$params);
         $user = array();
         foreach($users as $u){
             $user[] = $u->name;
@@ -57,7 +57,7 @@ class AdminController extends Controller
 
     public function actionUpdateUser(){
         //$this->cs->registerScriptFile($this->jsCommon."admin.js");
-        $user = Users::model()->findByPk($_GET['id']);
+        $user = User::model()->findByPk($_GET['id']);
         $authority = $this->getAuthority($user->authority);
         echo $this->renderPartial('addUser', array(
             'user' => $user,
@@ -69,14 +69,14 @@ class AdminController extends Controller
     
     public function actionDeleteUser(){
         $attributes = array('available' => '1');
-        $res =  Users::model()->updateByPk($_GET['id'], $attributes);
+        $res =  User::model()->updateByPk($_GET['id'], $attributes);
         Header("location: ".$this->baseUrl.'/admin/users'); 
     }
 
     public function actionClients()
     {
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
-		$clients = Provider::model()->findall();
+		$clients = Client::model()->findall();
         $this->render('clients', array(
 			'clients' => $clients,
 		));
@@ -84,8 +84,8 @@ class AdminController extends Controller
 
     public function actionUpdateClient(){
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
-        $user = Users::model()->findByPk($_GET['id']);
-        $client = Provider::model()->findByPk($_GET['id']);
+        $user = User::model()->findByPk($_GET['id']);
+        $client = Client::model()->findByPk($_GET['id']);
         echo $this->renderPartial('addClient',array(
             'client' => $client,
         ));

@@ -1,20 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "deliver_plan".
+ * This is the model class for table "received_record".
  *
- * The followings are the available columns in table 'deliver_plan':
+ * The followings are the available columns in table 'received_record':
  * @property string $id
  * @property integer $record_time
- * @property string $plan_maker
- * @property integer $provider_id
+ * @property integer $record_maker_id
+ * @property integer $client_id
  */
-class DeliverPlan extends CActiveRecord
+class ReceivedRecord extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return DeliverPlan the static model class
+	 * @return ReceivedRecord the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -26,7 +26,7 @@ class DeliverPlan extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'deliver_plan';
+		return 'received_record';
 	}
 
 	/**
@@ -37,12 +37,11 @@ class DeliverPlan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('record_time, plan_maker, provider_id', 'required'),
-			array('record_time, provider_id', 'numerical', 'integerOnly'=>true),
-			array('plan_maker', 'length', 'max'=>20),
+			array('record_time, record_maker_id, client_id', 'required'),
+			array('record_time, record_maker_id, client_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, record_time, plan_maker, provider_id', 'safe', 'on'=>'search'),
+			array('id, record_time, record_maker_id, client_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -54,7 +53,6 @@ class DeliverPlan extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-            "provider"=>array(self::BELONGS_TO, 'Provider', 'provider_id'),
 		);
 	}
 
@@ -66,8 +64,8 @@ class DeliverPlan extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'record_time' => 'Record Time',
-			'plan_maker' => 'Plan Maker',
-			'provider_id' => 'Provider',
+			'record_maker_id' => 'Record Maker',
+			'client_id' => 'Client',
 		);
 	}
 
@@ -84,8 +82,8 @@ class DeliverPlan extends CActiveRecord
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('record_time',$this->record_time);
-		$criteria->compare('plan_maker',$this->plan_maker,true);
-		$criteria->compare('provider_id',$this->provider_id);
+		$criteria->compare('record_maker_id',$this->record_maker_id);
+		$criteria->compare('client_id',$this->client_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

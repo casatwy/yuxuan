@@ -1,21 +1,19 @@
 <?php
 
 /**
- * This is the model class for table "users".
+ * This is the model class for table "client".
  *
- * The followings are the available columns in table 'users':
+ * The followings are the available columns in table 'client':
  * @property integer $id
  * @property string $name
- * @property string $telephone
- * @property string $password
- * @property string $authority
+ * @property string $location
  */
-class Users extends CActiveRecord
+class Client extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Users the static model class
+	 * @return Client the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -27,7 +25,7 @@ class Users extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'users';
+		return 'client';
 	}
 
 	/**
@@ -38,12 +36,11 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, telephone, password, authority', 'required'),
-			array('name, telephone', 'length', 'max'=>20),
-			array('password, authority', 'length', 'max'=>45),
+			array('name, location', 'required'),
+			array('name, location', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, telephone, password, authority', 'safe', 'on'=>'search'),
+			array('id, name, location', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,9 +63,7 @@ class Users extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'name' => 'Name',
-			'telephone' => 'Telephone',
-			'password' => 'Password',
-			'authority' => 'Authority',
+			'location' => 'Location',
 		);
 	}
 
@@ -85,9 +80,7 @@ class Users extends CActiveRecord
 
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('telephone',$this->telephone,true);
-		$criteria->compare('password',$this->password,true);
-		$criteria->compare('authority',$this->authority,true);
+		$criteria->compare('location',$this->location,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

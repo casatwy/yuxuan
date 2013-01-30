@@ -47,12 +47,12 @@ class StorageController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = "id desc";
 
-        $count = ($type == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
+        $count = ($type == self::OUT_RECORD)?(DeliveredRecord::model()->count($criteria)):(ReceivedRecord::model()->count($criteria));
         $pages = new CPagination($count);
 
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = ($type == self::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
+        $recordList = ($type == self::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
 
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
