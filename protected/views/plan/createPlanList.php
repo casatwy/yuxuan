@@ -16,14 +16,14 @@
             <td></td>
         </tr>
         <tr class="J_bigRow">
-            <td><button class="J_addBigRow">添加</button></td>
-            <td><button class="J_delBigRow">删除</button></td>
+            <td><button class="J_addBigRow" next-id="4">添加</button></td>
+            <td><button class="J_delBigRow" next-id="4">删除</button></td>
             <!-- 颜色  -->
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_colorName"></input></td>
             <!-- 色号  -->
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_colorNumber"></input></td>
             <!-- 缸号  -->
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_gangNumber"></input></td>
             <!-- 尺码  -->
             <td>
                 <table>
@@ -80,15 +80,15 @@
 
 <table class="hide">
     <tbody id="J_bigRowTemplate">
-        <tr class="J_bigRow">
-            <td><button class="J_addBigRow">添加</button></td>
-            <td><button class="J_delBigRow">删除</button></td>
+        <tr class="J_bigRow J_template">
+            <td><button class="J_addBigRow" data-id="" next-id="">添加</button></td>
+            <td><button class="J_delBigRow" data-id="" next-id="">删除</button></td>
             <!-- 颜色  -->
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_colorName"></input></td>
             <!-- 色号  -->
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_colorNumber"></input></td>
             <!-- 缸号  -->
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_gangNumber"></input></td>
             <!-- 尺码  -->
             <td>
                 <table>
@@ -122,3 +122,5 @@
         </tr>
     </tbody>
 </table>
+
+<button id="J_test">get data</button>
