@@ -7,7 +7,7 @@ class PlanController extends Controller
     public function init(){
         parent::init();
         $this->layout = "//layouts/plan";
-        $this->defaultAction = "list";
+        $this->defaultAction = "listall";
     }
 
     public function filters(){
@@ -16,16 +16,17 @@ class PlanController extends Controller
 
     public function accessRules(){
         return array(
-            array(
-                'allow',
-                'actions' => array('index', 'list', 'deliveredList', 'createDeliveredPlan', 'printPlan'),
-                'users' => array('@')
-            ),
-            array(
-                'deny',
-                'users' => array('*')
-            ),
         );
+    }
+
+    public function actionListall(){
+        $this->render("listall");
+    }
+
+    public function actionCreatePlanList(){
+        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."bigtable.js");
+        $this->render("createPlanList");
     }
 
     public function actionCreateDeliveredPlan(){
@@ -40,7 +41,7 @@ class PlanController extends Controller
         ));
     }
 
-    public function actionList()
+    public function actionDailylist()
     {
         $fullCalendarUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.fullcalendar')).'/';
         $this->cs->registerCssFile($fullCalendarUrl."fullcalendar.css");

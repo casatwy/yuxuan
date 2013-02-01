@@ -74,7 +74,7 @@ class Controller extends CController
         //$this->cs->registerPackage('underscore');
 
         $this->jsUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.app.'.$this->id)).'/';
-        $this->jsCommon = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.common.'.$this->id)).'/';
+        $this->jsCommon = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.common')).'/';
 
 
         $nyroModalUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.nyroModal')).'/';
@@ -91,6 +91,7 @@ class Controller extends CController
 
     protected function beforeAction($action){
         parent::beforeAction($action);
+        return true;
         //var_dump(Yii::app()->user->getState("authority"));
         //var_dump($this->getId());
         //var_dump($action->getId());die();

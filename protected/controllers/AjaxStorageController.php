@@ -22,7 +22,7 @@ class AjaxStorageController extends Controller
 
     public function actionSelectprovider(){
         $providerArray = array();
-        $providerList = Provider::model()->findAll();
+        $providerList = Client::model()->findAll();
 
         foreach($providerList as $provider){
             $providerArray[$provider->location] = array();
@@ -62,10 +62,10 @@ class AjaxStorageController extends Controller
             ":name" => htmlspecialchars($_POST["data"]["providerName"]),
             ":location" => htmlspecialchars($_POST["data"]["providerLocation"]),
         );
-        $provider = Provider::model()->find($condition, $params);
+        $provider = Client::model()->find($condition, $params);
 
         if(is_null($provider)){
-            $provider = new Provider;
+            $provider = new Client;
             $provider->name = htmlspecialchars($_POST["data"]["providerName"]);
             $provider->location = htmlspecialchars($_POST["data"]["providerLocation"]);
             $provider->save();
