@@ -63,50 +63,16 @@ function LocalPlan(baseUrl){
                 closeOnClick:true,
                 closeOnEscape:true,
                 showCloseButton:false,
-                domCopy:true,
                 callbacks:{
                     beforeHideBg:function(){
                         $(".J_event").show();
                     },
                     afterShowCont:function(){
-                        $("#J_addButton").bind("click", function(){
-                            clickAddButton($(this),date);
-                        });
+                        $("#J_dailyPlanTab").tabs();
                     },
                 },
             });
             return false;
-        }
-
-        function clickAddButton(actionItem,date){
-            var data = {
-                goods_number:$("#J_goodsNumber").val(),
-                color_number:$("#J_colorNumber").val(),
-                needle_type:$("#J_needleType").val(),
-                color_name:$("#J_colorName").val(),
-                size:$("#J_size").val(),
-                total:$("#J_total").val(),
-                finished:$("#J_finished").val(),
-                diaoxian:$("#J_diaoxian").val(),
-                type:$("#J_type").val(),
-                date:date,
-            };
-
-            $.post(baseUrl+"/ajaxPlan/saveDailyRecord", data, function(result){
-                if(parseInt(result) == 1){
-                    $.jGrowl("保存成功！", {
-                        header:"反馈",
-                        life:2000,
-                    });
-                    $.nmTop().close();
-                    $("#J_calendar").fullCalendar('refetchEvents');
-                }else{
-                    $.jGrowl("保存失败！", {
-                        header:"反馈",
-                        life:2000,
-                    });
-                }
-            });
         }
 
         function clickOnEvent(event, jsevent, view){

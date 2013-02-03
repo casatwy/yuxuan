@@ -8,6 +8,7 @@ class AjaxPlanController extends Controller
 	}
 
     public function actionGetPlanEvents(){
+        var_dump($_POST);die();
         $start = strtotime(substr($_POST['start'], 0, 34));
         $end = strtotime(substr($_POST['end'], 0, 34));
         $events = RecordContent::getPlanList($start,$end);
@@ -33,20 +34,20 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetDayContent(){
-        $start = $_GET['start'];
-        $end = $start + 24*60*60; 
-        $events = RecordContent::getPlanList($start,$end);
-        $dailyDatas = array();
-        foreach($events as $event){
-            $dailyData = RecordContent::getDailyData($event['product_id']);
-            array_push($dailyDatas,$dailyData);
-        }
+        //$start = $_GET['start'];
+        //$end = $start + 24*60*60; 
+        //$events = RecordContent::getPlanList($start,$end);
+        //$dailyDatas = array();
+        //foreach($events as $event){
+        //    $dailyData = RecordContent::getDailyData($event['product_id']);
+        //    array_push($dailyDatas,$dailyData);
+        //}
 
-        echo $this->renderPartial("dayContent",array(
-            'type' => Type::model()->findAll("id != 1"),
-            'dailyDatas' => $dailyDatas,
-        ));
-        //echo $this->renderPartial("dayContent");
+        //echo $this->renderPartial("dayContent",array(
+        //    'type' => Type::model()->findAll("id != 1"),
+        //    'dailyDatas' => $dailyDatas,
+        //));
+        echo $this->renderPartial("dayContent");
     }
 
     public function actionGetDate(){
