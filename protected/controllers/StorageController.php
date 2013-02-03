@@ -17,16 +17,6 @@ class StorageController extends Controller
 
     public function accessRules(){
         return array(
-            array(
-                'allow',
-                'actions' => array('index', 'resource', 'instock', 'outstock', 'createinstock', 
-									'createoutstock', 'product', 'printrecordlist', 'search'),
-                'users' => array('@')
-            ),
-            array(
-                'deny',
-                'users' => array('*')
-            ),
         );
     }
 

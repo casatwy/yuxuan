@@ -15,16 +15,6 @@ class AdminController extends Controller
 
     public function accessRules(){
         return array(
-            array(
-                'allow',
-                'actions' => array('users', 'clients', 'types', 'adduser', 'updateuser', 'deleteuser', 
-                                    'updateClient', 'addType', 'updateType'),
-                'users' => array('@')
-            ),
-            array(
-                'deny',
-                'users' => array('*')
-            ),
         );
     }
 
