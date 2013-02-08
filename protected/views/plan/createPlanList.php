@@ -23,14 +23,14 @@
     </tbody>
     <tbody class="J_bigRow">
         <tr>
-            <td rowspan="4"><button class="J_addBigRow">添加</button></td>
-            <td rowspan="4"><button class="J_delBigRow">删除</button></td>
+            <td class="J_rowspan" rowspan="4"><button class="J_addBigRow">添加</button></td>
+            <td class="J_rowspan"  rowspan="4"><button class="J_delBigRow">删除</button></td>
             <!-- 颜色  -->
-            <td rowspan="4"><input type="text" class="J_colorName"></input></td>
+            <td class="J_rowspan"  rowspan="4"><input type="text" class="J_colorName"></input></td>
             <!-- 色号  -->
-            <td rowspan="4"><input type="text" class="J_colorNumber"></input></td>
+            <td class="J_rowspan"  rowspan="4"><input type="text" class="J_colorNumber"></input></td>
             <!-- 缸号  -->
-            <td rowspan="4"><input type="text" class="J_gangNumber"></input></td>
+            <td class="J_rowspan"  rowspan="4"><input type="text" class="J_gangNumber"></input></td>
 
         </tr>
         <tr class="J_smallTable" data-id="1">
@@ -66,14 +66,14 @@
 <table class="hide" id="J_bigRowTemplate" >
     <tbody class="J_bigRow">
         <tr class="J_template">
-            <td rowspan="4"><button class="J_addBigRow">添加</button></td>
-            <td rowspan="4"><button class="J_delBigRow">删除</button></td>
+            <td class="J_rowspan"  rowspan="4"><button class="J_addBigRow">添加</button></td>
+            <td class="J_rowspan"  rowspan="4"><button class="J_delBigRow">删除</button></td>
             <!-- 颜色  -->
-            <td rowspan="4"><input type="text" class="J_colorName"></input></td>
+            <td class="J_rowspan"  rowspan="4"><input type="text" class="J_colorName"></input></td>
             <!-- 色号  -->
-            <td rowspan="4"><input type="text" class="J_colorNumber"></input></td>
+            <td class="J_rowspan"  rowspan="4"><input type="text" class="J_colorNumber"></input></td>
             <!-- 缸号  -->
-            <td rowspan="4"><input type="text" class="J_gangNumber"></input></td>
+            <td class="J_rowspan"  rowspan="4"><input type="text" class="J_gangNumber"></input></td>
         </tr>
         <tr class="J_smallTable" data-id="">
             <!-- 尺码  -->
