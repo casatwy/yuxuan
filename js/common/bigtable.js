@@ -45,15 +45,14 @@ function BigTable(){
 
         $(".J_delSmallRow").live("click", function(){
             var bigRow = $(this).closest(".J_bigRow");
+            var html = bigRow.html().toString();
             var length = bigRow.children("tr").length;
-            var row_span = parseInt(length)-1;
 
             if (length > 2)
                     $(this).closest(".J_smallTable").remove();
+            length = parseInt(length)-1;
+            html = html.replace(/rowspan=\"4\"/g,"rowspan=\""+length+"\"");
 
-            bigRow = bigRow.html().replace(/rowspan=\"4\"/g,"rowspan=\""+row_span+"\"");
-            console.log(bigRow);         
-        
         });
 
         $("#J_test").bind("click", function(){
