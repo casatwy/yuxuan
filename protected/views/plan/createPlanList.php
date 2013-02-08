@@ -2,23 +2,23 @@
 <hr>
 
 <div class="contant-container prepend" id="createPlanList">
-客户：
-<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>
+<span class="span-15 last">客户：
+<a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
 
-货号：<input type="text"></input>
-针型：<input type="text"></input>
+<span class="span-7">货号：<input type="text"></input></span>
+<span class="span-8 last">针型：<input type="text"></input></span>
 <table class="record" id="J_bigTable" >
     <tbody>
         <tr>
-            <td></td>
-            <td></td>
-            <td>颜色</td>
-            <td>色号</td>
-            <td>缸号</td>
-            <td>尺码</td>
-            <td>件数</td>
-            <td></td>
-            <td></td>
+            <th></th>
+            <th></th>
+            <th>颜色</th>
+            <th>色号</th>
+            <th>缸号</th>
+            <th>尺码</th>
+            <th>件数</th>
+            <th></th>
+            <th></th>
         </tr>
     </tbody>
     <tbody class="J_bigRow">

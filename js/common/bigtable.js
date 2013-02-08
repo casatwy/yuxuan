@@ -33,26 +33,28 @@ function BigTable(){
         });
 
         $(".J_addSmallRow").live("click", function(){
-            var data_id = $(this).attr("data-id");
             var next_id = $("#J_nextId").attr("next-id");
+            var bigRow = $(this).closest(".J_bigRow");
+            var length = bigRow.children("tr").length;
             var count = $(".J_smallTable").html().toString();
             var smallTable = $("<tr data-id=\""+next_id+"\" class=\"J_smallTable\"></tr>").html(count);
 
             $(this).closest(".J_bigRow").append(smallTable);
             next_id = parseInt(next_id)+1;
             $("#J_nextId").attr("next-id", next_id);
+            bigRow.find(".J_rowspan").attr("rowspan",length+1);
+
         });
 
         $(".J_delSmallRow").live("click", function(){
             var bigRow = $(this).closest(".J_bigRow");
-            var html = bigRow.html().toString();
             var length = bigRow.children("tr").length;
 
-            if (length > 2)
+            if (length > 2) {
                     $(this).closest(".J_smallTable").remove();
-            length = parseInt(length)-1;
-            html = html.replace(/rowspan=\"4\"/g,"rowspan=\""+length+"\"");
-
+                    bigRow.find(".J_rowspan").attr("rowspan",length-1);
+                }
+        
         });
 
         $("#J_test").bind("click", function(){
@@ -73,11 +75,11 @@ function BigTable(){
                 item.gang_number = $(value).find(".J_gangNumber").val();
                 item.spec = [];
 
-                $.each($value.find(".J_sizeTable tr"), function(idx, val){
+                $.each($value.find(".J_sizeTable"), function(idx, val){
                     item.spec.push({size:$(val).find("input").val(), count:null});
                 });
 
-                $.each($value.find(".J_countTable tr"), function(idx, val){
+                $.each($value.find(".J_countTable"), function(idx, val){
                     item.spec[idx].count = $(val).find("input").val();
                 });
 

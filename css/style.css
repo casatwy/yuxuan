@@ -179,12 +179,14 @@ a.prepend {
 }
 
 /*   createPlanList 创建生产计划  */  
-#createPlanList .record, #createPlanList .record td, #createPlanList .record th {
-	border-color:#575555;
-}
-#createPlanList .record input {
+#createPlanList .record input{
     width:50px;
 }
+#createPlanList .record th{
+    background:#EFEFEF;
+}
+#createPlanList table, #createPlanList td, #createPlanList th ,#createPlanList tbody{
+border-color: #E6E6E6;}
 
 
 /*  文字样式  */
