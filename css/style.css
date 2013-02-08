@@ -66,6 +66,7 @@
 .contant-container {
 	margin: 0 120px;
 	width:590px;
+   float:left;
 }
 
 
@@ -176,6 +177,15 @@ a.prepend {
 #J_page span {
 	font-size:16px;
 }
+
+/*   createPlanList 创建生产计划  */  
+#createPlanList .record, #createPlanList .record td, #createPlanList .record th {
+	border-color:#575555;
+}
+#createPlanList .record input {
+    width:50px;
+}
+
 
 /*  文字样式  */
 .big {
