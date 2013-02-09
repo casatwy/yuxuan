@@ -2,10 +2,10 @@
 
 class AjaxPlanController extends Controller
 {
-	public function actionIndex()
-	{
-		$this->render('index');
-	}
+    public function actionIndex()
+    {
+        $this->render('index');
+    }
 
     public function actionGetPlanEvents(){
         var_dump($_POST);die();
@@ -134,7 +134,7 @@ class AjaxPlanController extends Controller
         $html = $this->renderPartial("searchedResult", array(
             "planList" => $recordList,
             "pages" => $pages,
-			"type" => RecordContent::PLAN
+            "type" => RecordContent::PLAN
         ), true);
         echo $html;
     }
@@ -146,5 +146,17 @@ class AjaxPlanController extends Controller
 
     public function actionActivateTab(){
         $status = $_GET['status'];
+    }
+
+    public function actionSetShangji(){
+        Product::setStatus($_POST['goods_number'], Product::PROCESSING);
+    }
+
+    public function actionDeleteByGoodsNumber(){
+        Product::deleteByGoodsNumber($_POST['goods_number']);
+    }
+
+    public function actionSetFinish(){
+        Product::setStatus($_POST['goods_number'], Product::FINISHED);
     }
 }
