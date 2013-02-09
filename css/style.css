@@ -93,6 +93,7 @@
 	border-collapse:collapse;
 	text-align:center;
 }
+
 /*  selectprovider 选择客户  */
 .selectPr {
 	cleae:both;
@@ -196,6 +197,22 @@ border-color: #E6E6E6;}
     width:60px;
 }
 
+/* createInStock  */
+.select_b {
+    border:2px #E6E6E6 solid;
+    text-align:center;
+    padding:5px;
+    margin-left:40px;
+}
+span.select_b:hover ,span.active {
+    border:3px #3C91D0 solid;
+}
+
+/*   error  */
+
+.record_error {
+   border-color: #CC0000;
+}
 
 
 /*  文字样式  */
@@ -220,7 +237,7 @@ border-color: #E6E6E6;}
 	padding-left:50px;
 }
 .contant-container span , .dayContent span , .add span ,.adduser span {
-	margin:0 0 1.5em;
+	margin-bottom:1.5em;
 }
 
 .font-2 {
