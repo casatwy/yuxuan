@@ -1,20 +1,21 @@
 <h2 class="prepend-1">创建入库记录</h2> <hr> <div id="J_container" class="contant-container prepend"> <span class="span-15 last">客户：<a provider="none" id="J_selectProvider" href="http://yuxuan.dev/ajaxStorage/selectprovider">点击选择客户</a></span>
 <div class="J_record" data-id="1">
     <span class="span-6">货号<input type="text" class="J_goodsNumber" ></input></span>
-    <span class="span-3"><span class="select_b active" data-type="0">毛纱</span></span>
-    <span class="span-3"><span class="select_b" data-type="1">产品</span></span>
+    <span class="span-3"><span data-id="1" class="J_selector select_b active" data-type="0">毛纱</span></span>
+    <span class="span-3"><span data-id="1" class="J_selector select_b" data-type="1">产品</span></span>
     <span class=" span-3 last"><button class="J_continue">继续</button></span>    
-    <div class="J_recordContent">
+    <div class="J_recordContent" data-id="1">
 
     </div>
 </div>
+
 <div class="hide" id="J_template">
     <div class="J_Record" data-id="">
         <span class="span-6">货号<input type="text" class="J_goodsNumber" ></input></span>
-        <span class="span-3"><span class="select_b active" data-type="0">毛纱</span></span>
-        <span class="span-3"><span class="select_b" data-type="1">产品</span></span>
+        <span class="span-3"><span data-id="" class="J_selector select_b active" data-type="0">毛纱</span></span>
+        <span class="span-3"><span data-id="" class="J_selector select_b" data-type="1">产品</span></span>
         <span class=" span-3 last"><button class="J_continue">继续</button></span>    
-        <div class="J_recordContent">
+        <div class="J_recordContent" data-id="">
 
         </div>
     </div>
@@ -22,7 +23,7 @@
 
 <span id="J_next" next-id="2"></span>
 
-<div class="J_yarn">
+<div class="J_yarn hide">
     <span class="span-7">色号:<input  type="text"></input></span>
     <span class="span-8 last">颜色:<input  type="text"></input></span>
     <span class="span-7">缸号:<input  type="text"></input></span>
@@ -30,7 +31,7 @@
     <span class="prepend-3 span-5"><button id="J_addRecord">添加</button></span>
     <span class="span-6"><button class="J_deleteRecord">删除</button></span>
 </div>
-<div class="J_type">
+<div class="J_type hide">
     <span class="span-7">色号:<input  type="text"></input></span>
     <span class="span-8 last">颜色:<input  type="text"></input></span>
     <span class="span-7">缸号:<input  type="text"></input></span>
