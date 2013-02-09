@@ -148,7 +148,7 @@ class Product extends CActiveRecord
     }
 
     public static function getList($start, $end){
-        $conditon = "(finished_time > :start or finished_time IS NULL ) and create_time < :end";
+        $condition = "(finished_time > :start or finished_time IS NULL ) and create_time < :end";
         $params = array(
             ":start" => $start,
             ":end" => $end

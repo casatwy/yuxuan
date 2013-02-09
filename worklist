@@ -2,7 +2,7 @@
 
 2    搜索
 新增入库/出库记录（http://yuxuan.dev/storage/createInStock）（http://yuxuan.dev/storage/createOutStock）
-3   DOM中标题<h2>入库OR出库</h2>
+
 
 5    选择（毛纱/产品）==》继续
 6    添加一条（毛纱/产品）信息
