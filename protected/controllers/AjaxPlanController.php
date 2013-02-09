@@ -7,8 +7,8 @@ class AjaxPlanController extends Controller
         $this->render('index');
     }
 
+    //useless
     public function actionGetPlanEvents(){
-        var_dump($_POST);die();
         $start = strtotime(substr($_POST['start'], 0, 34));
         $end = strtotime(substr($_POST['end'], 0, 34));
         $events = RecordContent::getPlanList($start,$end);
@@ -80,38 +80,6 @@ class AjaxPlanController extends Controller
     }
 
     public function actionSaveDeliveredPlan(){
-    /*
-            provider_id
-            goods_number
-            color_number
-            color_name
-            needle_type
-            size
-            quantity
-    */
-        $deliverPlan = new DeliverPlan;
-        $deliverPlan->record_time = time();
-        $deliverPlan->plan_maker = Yii::app()->user->getState("name");
-        $deliverPlan->provider_id = $_POST["data"][0]["provider_id"];
-        $deliverPlan->save();
-
-        foreach($_POST["data"] as $info){
-            $deliverPlanItem = new DeliverPlanItem;
-            $deliverPlanItem->product_id = Product::findExistedProduct($info);
-            $deliverPlanItem->quantity = $info["quantity"];
-            $deliverPlanItem->goods_number = $info["goods_number"];
-            $deliverPlanItem->plan_id = $deliverPlan->id;
-            $deliverPlanItem->record_time = $deliverPlan->record_time;
-            $deliverPlanItem->plan_maker = $deliverPlan->plan_maker;
-            $deliverPlanItem->provider_id = $deliverPlan->provider_id;
-            $deliverPlanItem->save();
-        }
-
-        echo CJSON::encode(array(
-            "success" => 1,
-            'id' => $deliverPlan->id,
-        ));
-
         Yii::app()->end();
     }
 
@@ -164,5 +132,10 @@ class AjaxPlanController extends Controller
         $goods_number = $_GET['goods_number'];
         $status = $_GET['status'];
         $this->renderPartial("getPlanByGoodsNumber");
+    }
+
+    public function actionGetDeliveredTable(){
+        $goods_number = $_GET['goods_number'];
+        $this->renderPartial("getDeliveredTable");
     }
 }
