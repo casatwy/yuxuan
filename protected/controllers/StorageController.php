@@ -65,13 +65,14 @@ class StorageController extends Controller
     }
 
     private function createRecord($actionType){
-        $type = Type::model()->findAll();
-        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
-        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
-        $this->render("createInStock",array(
-            'sort' => $actionType,
-            'type' => $type,
-        ));
+        //$type = Type::model()->findAll();
+        //$this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        //$this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        //$this->render("createInStock",array(
+        //    'sort' => $actionType,
+        //    'type' => $type,
+        //));
+        $this->render("createInStock");
     }
 
 	public function actionPrintRecordList(){
