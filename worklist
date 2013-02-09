@@ -1,9 +1,9 @@
 入库记录/出库记录（http://yuxuan.dev/storage/instock）（http://yuxuan.dev/storage/outstock)
-
+1    点击选择客户无法弹出
 2    搜索
 新增入库/出库记录（http://yuxuan.dev/storage/createInStock）（http://yuxuan.dev/storage/createOutStock）
-
-
+3   DOM中标题<h2>入库OR出库</h2>
+4    点击选择客户无法弹出
 5    选择（毛纱/产品）==》继续
 6    添加一条（毛纱/产品）信息
 7    删除该客户的（毛纱/产品）信息
@@ -23,10 +23,11 @@
 16    保存全部
 日常生产计划（http://yuxuan.dev/plan/dailylist）
 17    点击日期error
-
+外发生产计划（http://yuxuan.dev/plan/deliveredList）
+18    点击选择客户无法弹出
 19    搜索
 新增外发计划（http://yuxuan.dev/plan/createDeliveredPlan）
-
+20    点击选择客户无法弹出
 21    填写货号后==》继续
 22    添加
 23    删除
