@@ -64,7 +64,7 @@ function BigTable(baseUrl){
                     data:data,
                     goods_number:$("#J_goodsNumber").val(),
                     needle_type:$("#J_needleType").val(),
-                    client_id:$("J_selectProvider").attr("provider")
+                    client_id:$("#J_selectProvider").attr("provider")
                 }, function(result){
                     if(result == 0){
                         $.jGrowl("提交失败。", {header:"错误"})
@@ -118,8 +118,6 @@ function BigTable(baseUrl){
                 data.push(item);
             }
         });
-
-        console.log(data);
         return data;
     }
 }

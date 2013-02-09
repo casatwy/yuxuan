@@ -128,6 +128,7 @@ class Product extends CActiveRecord
             foreach($itemList['spec'] as $item){
                 $product = new Product();
                 $product->needle_type = $list['needle_type'];
+                $product->client_id = $list['client_id'];
                 $product->goods_number = $list['goods_number'];
                 $product->color_name = $itemList['color_name'];
                 $product->color_number = $itemList['color_number'];
