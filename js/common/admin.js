@@ -11,64 +11,64 @@ function Admin(baseUrl){
     }
 
     function bindEvent(){
-       $('.J_update').nyroModal({
-           closeOnEscapse:false,
-           closeOnClick:false
-       });
+        $('.J_update').nyroModal({
+            closeOnEscapse:false,
+            closeOnClick:false
+        });
 
-       $('#J_usersubmit').live('click', function(){
-           if($('#J_type').val() == 'addUser'){
-               var data = admin.getUserData();
-               if(data){
-                   submitUserData(data);
-               }
-           }else{
+        $('#J_usersubmit').live('click', function(){
+            if($('#J_type').val() == 'addUser'){
+                var data = admin.getUserData();
+                if(data){
+                    submitUserData(data);
+                }
+            }else{
                 if(register()){
                     var data = admin.getUpdateUserData();
                     submitUserData(data);
                 }
-           }
-       }); 
+            }
+        }); 
 
-       $('#J_providersubmit').live('click',function(){
-           if(isblank()){
-               submitProviderData();
-           }
-       });
+        $('#J_providersubmit').live('click',function(){
+            if(isblank()){
+                submitProviderData();
+            }
+        });
 
-       $('#J_typesubmit').live('click',function(){
+        $('#J_typesubmit').live('click',function(){
             if(isblank){
                 submitTypeData(); 
             }
-       });
+        });
 
-       $('#J_addOneUser').live('click',function(){
+        $('#J_addOneUser').live('click',function(){
             var html = $('#J_exOne').html();
             $('.J_content').append(html);
-       });
+        });
 
-       $('.J_deleUser').live('click',function(){
-           if($('.J_content table').length == 1){
+        $('.J_deleUser').live('click',function(){
+            if($('.J_content table').length == 1){
                 $.jGrowl("至少要保留一行。", {header:"提示"});
-           }else{
+            }else{
                 $(this).closest('table').remove();
-           }
-       });
+            }
+        });
     }
 
     function isblank(){
-       var result = true;
-       $(".J_content input").each(function(index, value){
-           if($(value).val().length == 0){
-               $.jGrowl("请填写空白处！", {
-                   header:"提示",
-                   life:2000
-               });
-               result = false;
-               return false;
-           }
-       });
-       return result;
+        var result = true;
+        $(".J_content input").each(function(index, value){
+            if($(value).val().length == 0){
+                $.jGrowl("请填写空白处！", {
+                    header:"提示",
+                    life:2000
+                });
+                result = false;
+                return false;
+            }
+        });
+        return result;
     }
 
     function register(){
@@ -85,29 +85,21 @@ function Admin(baseUrl){
     }
 
     function submitUserData(data){
-       var type = $('#J_type').val();
-       if(type == 'addUser'){
+        var type = $('#J_type').val();
+        if(type == 'addUser'){
             var appendUrl = '/ajaxAdmin/saveUser';
-       }else if(type == 'updateUser'){
+        }else if(type == 'updateUser'){
             var appendUrl = '/ajaxAdmin/updateUser';  
-       }
-       $.post(baseUrl+appendUrl, {data:data},function(result){
-           if(result['success'] == '1'){
-                window.location.href = baseUrl+'/admin/users';
-           }else{
-                $.jGrowl("保存失败，用户已存在。", {header:"反馈"});
-           }
-       },'json');
+        }
+        $.post(baseUrl+appendUrl, {data:data},function(result){
+            window.location.href = baseUrl+'/admin/users';
+        },'json');
     }
 
     function submitProviderData(){
         var data = admin.getProviderData();
         $.post(baseUrl+'/ajaxAdmin/updateProvider', {data:data}, function(result){
-           if(result['success'] == '1'){
-                window.location.href = baseUrl+'/admin/clients';
-           }else{
-                $.jGrowl("保存失败", {header:"反馈"});
-           }
+            window.location.href = baseUrl+'/admin/clients';
         },'json');
     }
 
@@ -120,21 +112,21 @@ function Admin(baseUrl){
             data['id'] = $('#J_userId').val();
         }
         $.post(baseUrl+appendUrl, {data:data}, function(result){
-           if(result['success'] == '1'){
+            if(result['success'] == '1'){
                 window.location.href = baseUrl+'/admin/types';
-           }else{
+            }else{
                 $.jGrowl("保存失败，名称已存在。", {header:"反馈"});
-           }
+            }
         },'json');
     }
 
     this.getUserData = function(){
-       var result = isblank();
-       var item = new Array(); 
-       var tempName = new Array();
-       var dbNames = window.names;
-       var name,pwd1,pwd2,authority;
-       $('.J_content table').each(function(index,value){
+        var result = isblank();
+        var item = new Array(); 
+        var tempName = new Array();
+        var dbNames = window.names;
+        var name,pwd1,pwd2,authority;
+        $('.J_content table').each(function(index,value){
             index++ ;
             authority = 1;
             name = $(value).find('#J_name').val();
@@ -175,18 +167,18 @@ function Admin(baseUrl){
                 }
             });
             var data = {
-                 name : name,
-                 pwd : pwd1,
-                 tel : $(value).find('#J_tel').val(),
-                 authority : authority    
+                name : name,
+                pwd : pwd1,
+                tel : $(value).find('#J_tel').val(),
+                authority : authority    
             } 
             item.push(data); 
-       });
-       if(result == false){
+        });
+        if(result == false){
             return false; 
-       }else{
+        }else{
             return item;
-       }
+        }
     }
 
     this.getUpdateUserData = function(){
@@ -197,11 +189,11 @@ function Admin(baseUrl){
             }
         });
         var data = {
-           id : $('#J_userId').val(), 
-           name : $('#J_name').val(),
-           pwd : $('#J_pwd1').val(),
-           tel : $('#J_tel').val(),
-           authority : authority    
+            id : $('#J_userId').val(), 
+            name : $('#J_name').val(),
+            pwd : $('#J_pwd1').val(),
+            tel : $('#J_tel').val(),
+            authority : authority    
         }
         return data;
     }

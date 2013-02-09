@@ -1,5 +1,5 @@
 <?php 
-	
+    
 class AdminController extends Controller
 {
 
@@ -23,17 +23,17 @@ class AdminController extends Controller
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
         $condition = "available=:available";
         $params = array(':available' => '0');
-		$users = User::model()->findAll($condition,$params);
+        $users = User::model()->findAll($condition,$params);
         $this->render('users', array(
-			'users' => $users,
-		));
+            'users' => $users,
+        ));
     }
-	
-	public function actionAddUser(){
+    
+    public function actionAddUser(){
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
         $condition = "available=:available";
         $params = array(':available' => '0');
-		$users = User::model()->findAll($condition,$params);
+        $users = User::model()->findAll($condition,$params);
         $user = array();
         foreach($users as $u){
             $user[] = $u->name;
@@ -43,7 +43,7 @@ class AdminController extends Controller
             'type' => 'addUser',
             'user' => CJSON::encode($user)
         ));
-	}
+    }
 
     public function actionUpdateUser(){
         //$this->cs->registerScriptFile($this->jsCommon."admin.js");
@@ -66,10 +66,10 @@ class AdminController extends Controller
     public function actionClients()
     {
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
-		$clients = Client::model()->findall();
+        $clients = Client::model()->findall();
         $this->render('clients', array(
-			'clients' => $clients,
-		));
+            'clients' => $clients,
+        ));
     }
 
     public function actionUpdateClient(){
@@ -85,10 +85,10 @@ class AdminController extends Controller
     public function actionTypes()
     {
         $this->cs->registerScriptFile($this->jsCommon."admin.js");
-		$types = Type::model()->findall();
+        $types = Type::model()->findall();
         $this->render('types', array(
-			'types' => $types,
-		));
+            'types' => $types,
+        ));
     }
 
     public function actionAddType(){

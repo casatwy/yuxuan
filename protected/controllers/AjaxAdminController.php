@@ -2,44 +2,35 @@
 
 class AjaxAdminController extends Controller
 {
+	const AVAILABLE = 0;
+	const DISAVAILABLE = 1;
 	public function actionIndex()
 	{
 		$this->render('index');
 	}
 
 	public function actionSaveUser(){
-        $result = array( "success" => '0');
         foreach($_POST['data'] as $data){
-            $user = new Users();
+            $user = new User();
             $user->name = htmlspecialchars($data["name"]);
 		    $user->telephone = htmlspecialchars($data["tel"]);
 		    $user->password = md5(htmlspecialchars($data["pwd"]));
 		    $user->authority = $data["authority"];
-            if($user->save()){
-                $result['success'] = '1';
-            }else{
-                $result['success'] = '0';
-                break;
-            }
+		    $user->available = self::AVAILABLE;
+            $user->save();
         }
-
-        echo CJSON::encode($result);
 	}
 
     public function actionUpdateUser(){
-        $result = array( "success" => '0');
+        $result = array("success" => '0');
         $attributes = array(
             'name' => htmlspecialchars($_POST["data"]["name"]),
             'telephone' => htmlspecialchars($_POST["data"]["tel"]),
             'password' => md5(htmlspecialchars($_POST["data"]["pwd"])),
             'authority' => $_POST['data']['authority'],
         );
-        $res = Users::model()->updateByPk($_POST['data']['id'],$attributes);
-        if($res){
-            Yii::app()->user->setState('authority', $_POST['data']['authority']);
-            $result['success'] = '1';
-        }
-        echo CJSON::encode($result);
+        $res = User::model()->updateByPk($_POST['data']['id'],$attributes);
+        Yii::app()->user->setState('authority', $_POST['data']['authority']);
     }
 
     public function actionUpdateProvider(){
@@ -48,11 +39,7 @@ class AjaxAdminController extends Controller
             'name' => htmlspecialchars($_POST['data']['name']),
             'location' => htmlspecialchars($_POST['data']['address'])
         );
-        $res = Provider::model()->updateByPk($_POST['data']['id'],$attributes);
-        if($res){
-            $result['success'] = '1';
-        }
-        echo CJSON::encode($result);
+        Client::model()->updateByPk($_POST['data']['id'],$attributes);
     }
 
     public function actionSaveType(){
