@@ -167,10 +167,10 @@ class Product extends CActiveRecord
             if(!array_key_exists($product->goods_number, $itemList)){
                 $itemList[$product->goods_number] = array();
             }
-            if(!array_key_exists($product->color, $itemList[$product->goods_number])){
-                $itemList[$product->goods_number][$product->color] = array();
+            if(!array_key_exists($product->color_name, $itemList[$product->goods_number])){
+                $itemList[$product->goods_number][$product->color_name] = array();
             }
-            array_push($itemList[$product->goods_number][$product->color],$product->getAttributes());
+            array_push($itemList[$product->goods_number][$product->color_name],$product->getAttributes());
         }
         return $itemList;
     }
