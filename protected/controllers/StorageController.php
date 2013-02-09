@@ -46,6 +46,7 @@ class StorageController extends Controller
 
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
         $this->cs->registerScriptFile($this->jsUrl."instock.js");
 
         $this->render("instock", array(
@@ -68,6 +69,7 @@ class StorageController extends Controller
         //$type = Type::model()->findAll();
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
         //$this->render("createInStock",array(
         //    'sort' => $actionType,
         //    'type' => $type,

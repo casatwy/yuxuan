@@ -33,7 +33,7 @@ class PlanController extends Controller
 
     public function actionCreateDeliveredPlan(){
         //$type = Type::model()->findAll();
-        //$this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
         //$this->cs->registerScriptFile($this->jsUrl."createDeliveredPlan.js");
         //$this->render("createDeliveredPlan", array(
         //    'productTypes' => Type::model()->findAll("id != 1"),
@@ -56,6 +56,7 @@ class PlanController extends Controller
 
     public function actionDeliveredList(){
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
         
         $criteria = new CDbCriteria();
         $criteria->order = "id desc";
