@@ -37,7 +37,16 @@ function ListAll(baseUrl){
                 $("tr[data-goods-number="+goods_number+"]").remove();
             });
         });
+
+        //$(".J_showPlan").bind("click", function(){
+        //    showPlanByGoodsNumber($(this));
+        //});
+        $(".J_showPlan").nyroModal();
     }
+
+    //function showPlanByGoodsNumber(actionItem){
+    //    $.nmTop.open();
+    //}
 
     function getFinishedPlan(){
         alert("not finished");

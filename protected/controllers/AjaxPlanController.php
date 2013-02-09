@@ -159,4 +159,10 @@ class AjaxPlanController extends Controller
     public function actionSetFinish(){
         Product::setStatus($_POST['goods_number'], Product::FINISHED);
     }
+
+    public function actionGetPlanByGoodsNumber(){
+        $goods_number = $_GET['goods_number'];
+        $status = $_GET['status'];
+        var_dump($_GET);
+    }
 }
