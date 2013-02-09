@@ -72,16 +72,13 @@
                     <th>客户</th>
                     <th>创建时间</th>
                 </tr>
-                <tr>
-                    <td><a id="J_goodsNumber" href="javascript:void(0);">123456</a></td>
-                    <td>casacasa</td>
-                    <td>2013-03-13 06:12:14</td>
+                <?php foreach($list2 as $goods_number=>$product): ?>
+                <tr data-goods-number="<?php echo $goods_number; ?>">
+                    <td><a class="J_showPlan" href="javascript:void(0);"><?php echo $goods_number; ?></a></td>
+                    <td><?php echo $product['client']; ?></td>
+                    <td><?php echo $product['create_time']; ?></td>
                 </tr>
-                <tr>
-                    <td><a id="J_goodsNumber" href="javascript:void(0);">987654</a></td>
-                    <td>yukiyuki</td>
-                    <td>2013-10-01 12:34:56</td>
-                </tr>
+                <?php endforeach; ?>
             </tbody>
         </table>
     </div>

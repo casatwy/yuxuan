@@ -178,23 +178,24 @@ class Product extends CActiveRecord
     public static function format0($productList){
         $itemList = array();
         foreach($productList as $product){
-			if(!array_key_exists($product->goods_number, $itemList)){
-				$itemList[$product->goods_number] = array(
-					'client' => $product->getClientName(),
-					'create_time' => date("Y-m-d H:i:s", $product->create_time),
-				);
-			}
+            if(!array_key_exists($product->goods_number, $itemList)){
+                $itemList[$product->goods_number] = array(
+                    'client' => $product->getClientName(),
+                    'create_time' => date("Y-m-d H:i:s", $product->create_time),
+                );
+            }
         }
         return $itemList;
     }
 
     public static function format1($productList){
-		$itemList = self::format0($productList);
+        $itemList = self::format0($productList);
         return $itemList;
     }
 
     public static function format2($productList){
-        return $productList;
+        $itemList = self::format0($productList);
+        return $itemList;
     }
 
     public static function getListByStatus($status){
@@ -210,22 +211,21 @@ class Product extends CActiveRecord
     }
 
     public function getClientName(){
-        //$sql = "select `name` from `client` where id=".$this->client_id.";"
         $sql = "select name from `client` where id=1;";
         $result = Yii::app()->db->createCommand($sql)->query()->read();
-		return $result['name'];
+        return $result['name'];
     }
 
-	public static function setStatus($goods_number, $status){
-		$attributes = array("status" => $status);
-		$condition = "goods_number=:goods_number";
-		$params = array(":goods_number"=>$goods_number);
-		self::model()->updateAll($attributes, $condition, $params);
-	}
+    public static function setStatus($goods_number, $status){
+        $attributes = array("status" => $status);
+        $condition = "goods_number=:goods_number";
+        $params = array(":goods_number"=>$goods_number);
+        self::model()->updateAll($attributes, $condition, $params);
+    }
 
-	public static function deleteByGoodsNumber($goods_number){
-		$condition = "goods_number=:goods_number";
-		$params = array(":goods_number"=>$goods_number);
-		self::model()->deleteAll($condition, $params);
-	}
+    public static function deleteByGoodsNumber($goods_number){
+        $condition = "goods_number=:goods_number";
+        $params = array(":goods_number"=>$goods_number);
+        self::model()->deleteAll($condition, $params);
+    }
 }

@@ -21,11 +21,15 @@ class PlanController extends Controller
 
     public function actionListall(){
         $this->cs->registerScriptFile($this->jsUrl."listall.js");
+
         $list0 = Product::getListByStatus(Product::PREPEARED);
         $list1 = Product::getListByStatus(Product::PROCESSING);
+        $list2 = Product::getListByStatus(Product::FINISHED);
+
         $this->render("listall", array(
             "list0" => $list0,
             "list1" => $list1,
+            "list2" => $list2,
         ));
     }
 

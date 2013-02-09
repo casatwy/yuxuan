@@ -23,6 +23,14 @@ function ListAll(baseUrl){
                 window.location.reload();
             });
         });
+
+        $(".J_finish").bind("click", function(){
+            var goods_number = $(this).attr("data-goods-number");
+            $.post(baseUrl+"/ajaxPlan/setFinish", {goods_number:goods_number}, function(){
+                window.location.reload();
+            });
+        });
+
         $(".J_delete").bind("click", function(){
             var goods_number = $(this).attr("data-goods-number");
             $.post(baseUrl+"/ajaxPlan/deleteByGoodsNumber", {goods_number:goods_number}, function(){
@@ -32,5 +40,6 @@ function ListAll(baseUrl){
     }
 
     function getFinishedPlan(){
+        alert("not finished");
     }
 }
