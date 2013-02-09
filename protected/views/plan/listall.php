@@ -4,12 +4,12 @@
 <br />
 <div id="J_tabs">
     <ul>
-            <li><a href="#J_tab1">正在生产中</a></li>
-            <li><a href="#J_tab2">未安排生产</a></li>
-            <li><a href="#J_tab3">生产已完成</a></li>
+            <li><a href="#J_tab0">正在生产中</a></li>
+            <li><a href="#J_tab1">未安排生产</a></li>
+            <li><a href="#J_tab2">生产已完成</a></li>
     </ul>
 
-    <div id="J_tab1">
+    <div id="J_tab0">
         <table>
            <tbody>
                 <tr>
@@ -48,7 +48,7 @@
         </table>
     </div>
 
-    <div id="J_tab2">
+    <div id="J_tab1">
         <table>
             <tbody>
                 <tr>
@@ -75,7 +75,7 @@
         </table>
     </div>
 
-    <div id="J_tab3">
+    <div id="J_tab2">
         <table>
             <tbody>
                 <tr>

@@ -15,8 +15,11 @@ class AjaxPlanController extends Controller
         echo CJSON::encode($events);
     }
 
-    public function actionGetPlanContent(){
-        echo $this->renderPartial("planContent");
+    public function actionGetPlanContentByStatus(){
+        $renderPage = array("processing", "prepared", "finished");
+        $status = $_GET['status'];
+        Product::GetPlanContentByStatus($status);
+        echo $this->renderPartial($renderPage[$status]);
     }
 
     public function actionShowPlanContent(){
@@ -139,5 +142,9 @@ class AjaxPlanController extends Controller
     public function actionSavePlanList(){
         $result = Product::createPlanList($_POST);
         echo CJSON::encode($result);
+    }
+
+    public function actionActivateTab(){
+        $status = $_GET['status'];
     }
 }

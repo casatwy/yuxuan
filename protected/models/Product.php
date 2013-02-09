@@ -163,4 +163,7 @@ class Product extends CActiveRecord
         }
         return $itemList;
     }
+
+    public static function getPlanContentWithStatus($status){
+    }
 }
