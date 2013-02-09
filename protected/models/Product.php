@@ -145,4 +145,21 @@ class Product extends CActiveRecord
         }
         return 1;
     }
+
+    public static function getList($start, $end){
+        $conditon = "(finished_time > :start or finished_time IS NULL ) and create_time < :end";
+        $params = array(
+            ":start" => $start,
+            ":end" => $end
+        );
+        $productList = self::model()->findAll($condition, $params);
+        $itemList = array();
+        foreach($productList as $product){
+            if(!array_key_exists($product->goods_number, $itemList)){
+                $itemList[$product->goods_number] = array();
+            }
+            array_push($itemList[$product->goods_number],$product->getAttributes());
+        }
+        return $itemList;
+    }
 }
