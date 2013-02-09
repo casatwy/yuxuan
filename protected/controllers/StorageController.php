@@ -58,38 +58,35 @@ class StorageController extends Controller
     }
 
     public function actionCreateinstock(){
-        $this->createRecord("instock");
+        $this->createRecord("入");
     }
 
     public function actionCreateoutstock(){
-        $this->createRecord("outstock");
+        $this->createRecord("出");
     }
 
     private function createRecord($actionType){
-        //$type = Type::model()->findAll();
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
-        //$this->render("createInStock",array(
-        //    'sort' => $actionType,
-        //    'type' => $type,
-        //));
-        $this->render("createInStock");
+        $this->render("createInStock", array(
+            'actionType' => $actionType
+        ));
     }
 
-	public function actionPrintRecordList(){
+    public function actionPrintRecordList(){
         $this->layout = "//layouts/blank";
         if(isset($_GET['id']) && isset($_GET['type'])){
-			$recordContent = new RecordContent();
-        	$recordList = $recordContent->getRecordContent($_GET['id'],$_GET['type']);
+            $recordContent = new RecordContent();
+            $recordList = $recordContent->getRecordContent($_GET['id'],$_GET['type']);
             $info = $recordContent->printInfomation($_GET['id'],$_GET['type']);
 
             $this->render("printRecordContent", array(
                 "recordList" => $recordList,
-				"info" => $info
+                "info" => $info
             ));
         }
-	}
+    }
 
     public function actionSearch(){
         $this->cs->registerScriptFile($this->jsUrl."search.js");
