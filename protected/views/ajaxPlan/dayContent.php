@@ -1,11 +1,11 @@
-<div id="J_dailyPlanTab">
+<div id="J_dailyPlanTab" class="daycontent">
     <ul>
         <li><a href="#J_12345">12345</a></li>
         <li><a href="#J_12346">12346</a></li>
         <li><a href="#J_12347">12347</a></li>
     </ul>
     <div id="J_12345">
-        <table>
+        <table  class="record">
             <tbody>
                 <tr>
                     <th>颜色/色号</th>
@@ -16,8 +16,30 @@
                     <th>余数</th>
                 </tr>
                 <tr>
-                    <td>红/123</td>
-                    <td>
+                    <td rowspan="4">红/123</td>
+                </tr>
+                <tr>  
+                    <td>S</td>
+                    <td><input type="text"></input></td>
+                    <td>10</td>
+                    <td>100</td>
+                    <td>90</td>
+                </tr>  
+                <tr>  
+                    <td>M</td>
+                    <td><input type="text"></input></td>
+                    <td>20</td>
+                    <td>100</td>
+                    <td>80</td>
+                </tr>
+                <tr>  
+                    <td>L</td>
+                    <td><input type="text"></input></td>
+                    <td>10</td>
+                    <td>100</td>
+                    <td>70</td>
+                </tr>            
+                 <!--   <td>
                         <table>
                             <tbody>
                                 <tr>
@@ -92,7 +114,7 @@
                             </tbody>
                         </table>
                     </td>
-                </tr>
+                </tr>-->
             </tbody>
         </table>
         <button>生产结束</button>

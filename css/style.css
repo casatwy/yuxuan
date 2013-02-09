@@ -188,6 +188,15 @@ a.prepend {
 #createPlanList table, #createPlanList td, #createPlanList th ,#createPlanList tbody{
 border-color: #E6E6E6;}
 
+/*  dayContent  */
+.daycontent {
+    width:700px;
+}
+.daycontent input{
+    width:60px;
+}
+
+
 
 /*  文字样式  */
 .big {
