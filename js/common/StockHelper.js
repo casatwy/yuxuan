@@ -10,11 +10,6 @@ function StockHelper(baseUrl){
 
     function bindEvent(){
 
-        $("#J_selectProvider").nyroModal({
-            closeOnEscape:false,
-            closeOnClick:false
-        });
-
         $("#J_addRecord").live('click', function(){
             alert();
             //clickAddRecord($(this));

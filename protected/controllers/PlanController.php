@@ -26,6 +26,7 @@ class PlanController extends Controller
 
     public function actionCreatePlanList(){
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
         $this->cs->registerScriptFile($this->jsCommon."bigtable.js");
         $this->render("createPlanList");
     }

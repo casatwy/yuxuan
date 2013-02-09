@@ -5,8 +5,8 @@
 <span class="span-15 last">客户：
 <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
 
-<span class="span-7">货号：<input type="text"></input></span>
-<span class="span-8 last">针型：<input type="text"></input></span>
+<span class="span-7">货号：<input type="text" id="J_goodsNumber"></input></span>
+<span class="span-8 last">针型：<input type="text" id="J_needleType"></input></span>
 <table class="record" id="J_bigTable" >
     <tbody>
         <tr>
@@ -64,7 +64,7 @@
 <span id="J_rowspan" rowspan="4"></span>
 
 <table class="hide" id="J_bigRowTemplate" >
-    <tbody class="J_bigRow">
+    <tbody class="J_bigRow J_template">
         <tr class="J_template">
             <td class="J_rowspan"  rowspan="4"><button class="J_addBigRow">添加</button></td>
             <td class="J_rowspan"  rowspan="4"><button class="J_delBigRow">删除</button></td>
@@ -102,7 +102,7 @@
     </tbody>
 </table>
 
-<button id="J_test">get data</button>
+<button id="J_saveData">保存全部</button>
 </div>
 <!--客户：
 <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>

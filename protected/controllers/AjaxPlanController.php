@@ -35,21 +35,12 @@ class AjaxPlanController extends Controller
 
     public function actionGetDayContent(){
         $start = $_GET['start'];
-        var_dump($start);
         $end = $start + 24*60*60; 
-        //$events = RecordContent::getPlanList($start,$end);
-        //var_dump($events);
-        //$dailyDatas = array();
-        //foreach($events as $event){
-        //    $dailyData = RecordContent::getDailyData($event['product_id']);
-        //    array_push($dailyDatas,$dailyData);
-        //}
+        $productList = Product::getList($start, $end);
 
-        //echo $this->renderPartial("dayContent",array(
-        //    'type' => Type::model()->findAll("id != 1"),
-        //    'dailyDatas' => $dailyDatas,
-        //));
-        echo $this->renderPartial("dayContent");
+        echo $this->renderPartial("dayContent", array(
+            'productList' => $productList
+        ));
     }
 
     public function actionGetDate(){
@@ -143,5 +134,10 @@ class AjaxPlanController extends Controller
 			"type" => RecordContent::PLAN
         ), true);
         echo $html;
+    }
+
+    public function actionSavePlanList(){
+        $result = Product::createPlanList($_POST);
+        echo CJSON::encode($result);
     }
 }
