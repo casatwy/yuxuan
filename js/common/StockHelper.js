@@ -43,7 +43,12 @@ function StockHelper(baseUrl){
         });
 
         $(".J_continue").live("click", function(){
-            alert();
+            var yarn =  $("J_yarn").html();
+            var type =  $("J_type").html();
+            var record = $(this).closest(".J_record");
+            var data_type = record.find(".active").attr("data-type")
+            //if ()
+            alert(data_type);
         })
     }
 
