@@ -1,4 +1,4 @@
-<div id="J_dailyPlanTab">
+<div id="J_dailyPlanTab" class="daycontent">
     <ul>
         <?php foreach($productList as $goods_number=>$value): ?>
         <li><a href="#J_<?php echo $goods_number; ?>"><?php echo $goods_number; ?></a></li>
@@ -19,83 +19,29 @@
                     <th>余数</th>
                 </tr>
                 <tr>
-                    <td>红/123</td>
-                    <td>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>S</td>
-                                </tr>
-                                <tr>
-                                    <td>M</td>
-                                </tr>
-                                <tr>
-                                    <td>L</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td><input type="text"></input></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="text"></input></td>
-                                </tr>
-                                <tr>
-                                    <td><input type="text"></input></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>20</td>
-                                </tr>
-                                <tr>
-                                    <td>30</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>100</td>
-                                </tr>
-                                <tr>
-                                    <td>100</td>
-                                </tr>
-                                <tr>
-                                    <td>100</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                    <td>
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>90</td>
-                                </tr>
-                                <tr>
-                                    <td>80</td>
-                                </tr>
-                                <tr>
-                                    <td>70</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
+                    <td rowspan="4">红/123</td>
                 </tr>
+                <tr>  
+                    <td>S</td>
+                    <td><input type="text"></input></td>
+                    <td>10</td>
+                    <td>100</td>
+                    <td>90</td>
+                </tr>  
+                <tr>  
+                    <td>M</td>
+                    <td><input type="text"></input></td>
+                    <td>20</td>
+                    <td>100</td>
+                    <td>80</td>
+                </tr>
+                <tr>  
+                    <td>L</td>
+                    <td><input type="text"></input></td>
+                    <td>10</td>
+                    <td>100</td>
+                    <td>70</td>
+                </tr>            
             </tbody>
         </table>
         <button>生产结束</button>

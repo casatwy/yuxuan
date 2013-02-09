@@ -5,6 +5,8 @@ protected/config/setting.php
 .htaccess
 *.swp
 *.php~
+*.js~
+*.css~
 *.log
 *.bak
 *.zip
