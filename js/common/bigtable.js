@@ -1,9 +1,9 @@
 $(document).ready(function(){
-    var bigtable = new BigTable();
+    var bigtable = new BigTable($("#J_baseUrl").val());
     bigtable.init();
 });
 
-function BigTable(){
+function BigTable(baseUrl){
     this.init = function(){
         bindEvent();
     };
@@ -17,7 +17,7 @@ function BigTable(){
             for(var i = 0 ;i < 3 ;i++){
                 html = html.replace(/data-id=\"\"/, "data-id=\""+next_id+"\"");
                 next_id = parseInt(next_id)+1;
-                }
+            }
 
             $(this).closest("#J_bigTable").append(html);
             $("#J_nextId").attr("next-id", next_id);
@@ -57,17 +57,49 @@ function BigTable(){
         
         });
 
-        $("#J_test").bind("click", function(){
-            getPlanData();
+        $("#J_saveData").bind("click", function(){
+            var data = getPlanData();
+            if(data != false){
+                $.post(baseUrl+"/ajaxPlan/savePlanList", {
+                    data:data,
+                    goods_number:$("#J_goodsNumber").val(),
+                    needle_type:$("#J_needleType").val(),
+                    client_id:$("J_selectProvider").attr("provider")
+                }, function(result){
+                    if(result == 0){
+                        $.jGrowl("提交失败。", {header:"错误"})
+                    }else{
+                        window.location.href = baseUrl+"/plan";
+                    }
+                }, 'json');
+            }
+        });
+
+        $(".record_error").live("click", function(){
+            $(this).removeClass("record_error");
         });
     }
 
+    function checkAvailable(){
+        var result = true;
+        $("input").each(function(index, value){
+            if($(value).val() == ''){
+                $(value).addClass("record_error");
+                result = false;
+            }
+        });
+        return true;
+    }
+
     function getPlanData(){
+        if(!checkAvailable()){
+            $.jGrowl("请将表格填写完整。", {header:"提示"});
+            return false;
+        }
         var data = [];
         $.each($(".J_bigRow"), function(index, value){
             var $value = $(value);
             if(!$value.hasClass("J_template")){
-
                 var item = {};
 
                 item.color_name = $(value).find(".J_colorName").val();
@@ -88,80 +120,6 @@ function BigTable(){
         });
 
         console.log(data);
+        return data;
     }
 }
-/*
-$(document).ready(function(){
-    var bigtable = new BigTable();
-    bigtable.init();
-});
-
-function BigTable(){
-    this.init = function(){
-        bindEvent();
-    };
-
-    function bindEvent(){
-        $(".J_addBigRow").live("click", function(){
-            var html = $("#J_bigRowTemplate").html().toString();
-            var next_id = $(this).attr("next-id");
-
-            html = html.replace(/ J_template/,"");
-            html = html.replace(/data-id/g, "data-id=\""+next_id+"\"");
-            $(this).closest(".J_bigRow").after(html);
-
-            next_id = parseInt(next_id)+1;
-            $("button").each(function(index, value){
-                console.log(value);
-                $(value).attr("next-id", next_id.toString());
-            });
-        });
-
-        $(".J_delBigRow").live("click", function(){
-            $(this).closest(".J_bigRow").remove();
-        });
-
-        $(".J_addSmallRow").live("click", function(){
-            var data_id = $(this).attr("data-id");
-            var next_id = $(this).attr("next-id");
-            $(".J_countTable tr[data-id="+data_id+"]").after("<tr data-id='"+next_id+"'><td><input type='text'></input><td></tr>");
-            $(".J_sizeTable tr[data-id="+data_id+"]").after("<tr data-id='"+next_id+"'><td><input type='text'></input><td></tr>");
-        });
-
-        $(".J_delSmallRow").live("click", function(){
-        });
-
-        $("#J_test").bind("click", function(){
-            getPlanData();
-        });
-    }
-
-    function getPlanData(){
-        var data = [];
-        $.each($(".J_bigRow"), function(index, value){
-            var $value = $(value);
-            if(!$value.hasClass("J_template")){
-
-                var item = {};
-
-                item.color_name = $(value).find(".J_colorName").val();
-                item.color_number = $(value).find(".J_colorNumber").val();
-                item.gang_number = $(value).find(".J_gangNumber").val();
-                item.spec = [];
-
-                $.each($value.find(".J_sizeTable tr"), function(idx, val){
-                    item.spec.push({size:$(val).find("input").val(), count:null});
-                });
-
-                $.each($value.find(".J_countTable tr"), function(idx, val){
-                    item.spec[idx].count = $(val).find("input").val();
-                });
-
-                data.push(item);
-            }
-        });
-
-        console.log(data);
-    }
-}
-*/

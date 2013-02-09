@@ -144,4 +144,9 @@ class AjaxPlanController extends Controller
         ), true);
         echo $html;
     }
+
+    public function actionSavePlanList(){
+        $result = Product::createPlanList($_POST);
+        echo CJSON::encode($result);
+    }
 }
