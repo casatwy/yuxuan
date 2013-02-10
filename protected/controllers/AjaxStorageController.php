@@ -4,6 +4,8 @@ class AjaxStorageController extends Controller
 {
     const OUT_RECORD = 1;
     const IN_RECORD = 2;
+    const SILK = 0;
+    const PRODUCT = 1;
 
     public function actionIndex()
     {
@@ -253,7 +255,17 @@ class AjaxStorageController extends Controller
         return (string)mktime(0,0,0,$month,$day,$year);
     }
 
-    public function getStockTable(){
-        var_dump($_GET);
+    public function actionGetStockTable(){
+        $data_type = $_GET['data_type'];
+        $goods_number = $_GET['goods_number'];
+        $attributeList = Resource::getAttributesByGoodsNumber($goods_number);
+
+        if($data_type == self::SILK){
+            echo $this->renderPartial("silkStock", array("attributeList" => $attributeList));
+        }
+
+        if($data_type == self::PRODUCT){
+            echo $this->renderPartial("productStock", array("attributeList" => $attributeList));
+        }
     }
 }

@@ -42,17 +42,15 @@ function StockHelper(baseUrl){
             var record = $(this).closest(".J_record");
 
             var data_type = record.find(".active").attr("data-type");
-            var goodsNumber = record.find(".J_goodsNumber").val()
+            var goods_number = record.find(".J_goodsNumber").val()
 
-
-            $.get(baseUrl+"", {data_type:data_type, goods_number:goods_number}, function(html){
-            });
-
-            if ( data_type == 0)
-                record.find(".J_recordContent").append(yarn);
-            else
-                record.find(".J_recordContent").append(type);
-            alert(goodsNumber);
+            $.get(baseUrl+"/ajaxStorage/getStockTable",
+                {data_type:data_type, goods_number:goods_number},
+                function(html){
+                    $("#J_template").html(html);
+                    record.find(".J_recordContent").append(html);
+                }
+            );
         })
 
         $(".J_selector").live("click", function(){

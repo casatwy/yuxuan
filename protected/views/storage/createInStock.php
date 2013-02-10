@@ -22,14 +22,13 @@
             <span class="span-3"><span data-id="" class="J_selector select_b" data-type="1">产品</span></span>
             <span class=" span-3 last"><button class="J_continue">继续</button></span>    
             <div class="J_recordContent" data-id="">
-    
             </div>
         </div>
     </div>
 
     <span id="J_next" next-id="2"></span>
 
-    <div class="J_template hide">
+    <div id="J_template" class="hide">
     </div>
 
     <hr>

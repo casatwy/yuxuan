@@ -6,9 +6,9 @@ class RecordContent extends CController
     const IN_RECORD = 2;
     const PLAN = 3;
 
-	public function __construct(){
-	}
-	
+    public function __construct(){
+    }
+    
     public function getRecordContent($record_id,$type){
         $recordList = array();
         $condition = "record_id=:record_id";
@@ -18,9 +18,9 @@ class RecordContent extends CController
 
         $recordData = null;
         if($type == self::OUT_RECORD){
-        	$recordData = DeliverRecordItem::model()->findAll($condition, $params);
+            $recordData = DeliverRecordItem::model()->findAll($condition, $params);
         }else if($type == self::IN_RECORD){
-        	$recordData = ReceiveRecordItem::model()->findAll($condition, $params);
+            $recordData = ReceiveRecordItem::model()->findAll($condition, $params);
         }
 
         $product = null;
@@ -89,22 +89,22 @@ class RecordContent extends CController
 
     public function printInfomation($id,$type){
         $record = null;
-		if($type == self::IN_RECORD){
-			$record = ReceiveRecord::model()->findByPk($id);
-		}elseif($type == self::OUT_RECORD){
-			$record = DeliverRecord::model()->findByPk($id);
-		} 
+        if($type == self::IN_RECORD){
+            $record = ReceiveRecord::model()->findByPk($id);
+        }elseif($type == self::OUT_RECORD){
+            $record = DeliverRecord::model()->findByPk($id);
+        } 
 
         $condition = "name=:name";
         $params = array(
             ":name" => $record->record_maker,
         );
         $user = Users::model()->find($condition, $params);
-		$info = array(
-			"type" => $type,
-			"record" => $record,
-			"user" => $user
-		);
+        $info = array(
+            "type" => $type,
+            "record" => $record,
+            "user" => $user
+        );
         return $info;
     }
 
