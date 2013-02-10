@@ -148,14 +148,14 @@ class AjaxStorageController extends Controller
     //based on the record id
     public function actionGetRecordContent(){
         if(isset($_GET['record_id'])){
-			$recordContent = new RecordContent();
-        	$recordList = $recordContent->getRecordContent($_GET['record_id'],$_GET['record_type']);
+            $recordContent = new RecordContent();
+            $recordList = $recordContent->getRecordContent($_GET['record_id'],$_GET['record_type']);
 
             //echo "record id is ".htmlspecialchars($_GET['record_id']);
             echo $this->renderPartial("recordContent", array(
                 "recordList" => $recordList,
-				"record_id" => $_GET['record_id'],
-				"record_type" => $_GET['record_type']
+                "record_id" => $_GET['record_id'],
+                "record_type" => $_GET['record_type']
             ));
         }
     }
@@ -189,7 +189,7 @@ class AjaxStorageController extends Controller
         $html = $this->renderPartial("recordList", array(
             "recordList" => $recordList,
             "pages" => $pages,
-			"type" => $_GET['type']	
+            "type" => $_GET['type']    
         ), true);
         echo $html;
     }
@@ -251,5 +251,9 @@ class AjaxStorageController extends Controller
         $month=((int)substr($date,5,2));
         $day=((int)substr($date,8,2));
         return (string)mktime(0,0,0,$month,$day,$year);
+    }
+
+    public function getStockTable(){
+        var_dump($_GET);
     }
 }

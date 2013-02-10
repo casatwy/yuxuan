@@ -39,18 +39,20 @@ function StockHelper(baseUrl){
         });
 
         $(".J_continue").live("click", function(){
-            var yarn =  $(".J_yarn").html();
-            var type =  $(".J_type").html();
             var record = $(this).closest(".J_record");
+
             var data_type = record.find(".active").attr("data-type");
             var goodsNumber = record.find(".J_goodsNumber").val()
+
+
+            $.get(baseUrl+"", {data_type:data_type, goods_number:goods_number}, function(html){
+            });
 
             if ( data_type == 0)
                 record.find(".J_recordContent").append(yarn);
             else
                 record.find(".J_recordContent").append(type);
             alert(goodsNumber);
-                console.log(goodsNumber);
         })
 
         $(".J_selector").live("click", function(){
