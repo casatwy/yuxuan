@@ -67,7 +67,6 @@ class StorageController extends Controller
 
     private function createRecord($actionType){
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
-        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
         $this->render("createInStock", array(
             'actionType' => $actionType
