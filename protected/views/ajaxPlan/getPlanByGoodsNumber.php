@@ -1,5 +1,10 @@
-<h2>生产计划</h2>
-<hr>
+<div class="span-15">
+    <h2>生产计划</h2>
+    <hr>
+    <span class="span-5">货号：<span></span></span>
+    <span class="span-5">客户名：<span></span></span>
+    <span class="span-5 last">创建时间：<span></span></span>
+
     <table class="record span-15">
         <tbody>
             <tr>
@@ -34,5 +39,5 @@
             </tr>
         </tbody>
     </table>
-
+</div>
 
