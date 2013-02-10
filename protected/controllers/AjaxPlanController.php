@@ -135,7 +135,7 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetDeliveredTable(){
-        $goods_number = $_GET['goods_number'];
-        $this->renderPartial("getDeliveredTable");
+        //$goods_number = $_GET['goods_number'];
+        $this->render("getDeliveredTable");
     }
 }

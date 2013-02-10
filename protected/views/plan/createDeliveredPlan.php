@@ -13,5 +13,6 @@
     <div>
 
     </div>
+    <a href="<?php echo $this->baseUrl; ?>/ajaxPlan/getDeliveredTable">show</a>
     
 </div>
