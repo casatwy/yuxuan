@@ -184,10 +184,10 @@ a.prepend {
     width:50px;
 }
 #createPlanList .record th{
-    background:#EFEFEF;
+    background:#c8cef6;
 }
 #createPlanList table, #createPlanList td, #createPlanList th ,#createPlanList tbody{
-border-color: #E6E6E6;}
+border-color: #adb8fd;}
 
 /*  dayContent  */
 .daycontent {
