@@ -205,12 +205,16 @@ class RecordContent extends CController
     }
 
     public static function getProductByGoodsNumber($goods_number){
+        $table = array();
         $condition = "goods_number=:goods_number";
         $params = array(
             ":goods_number" => htmlspecialchars($goods_number)
         );
         $products = Product::model()->findAll($condition,$params);
-        return $products;
+        foreach($products as $product){
+            $table[$product->color_name][] = $product->size;
+        }
+        return $table;
     }
 }
 ?>

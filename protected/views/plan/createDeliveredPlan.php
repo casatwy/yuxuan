@@ -10,7 +10,7 @@
     <span class="span-3 last"><button class="J_goOn">继续</button></span>
     <span class="prepend-3 span-5"><button>添加</button></span>
     <span class="span-6 last"><button>删除</button></span>
-    <div></div>
+    <div id="J_show"></div>
     <a href="<?php echo $this->baseUrl; ?>/ajaxPlan/getDeliveredTable">show</a>
     
     

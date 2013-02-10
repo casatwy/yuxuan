@@ -12,7 +12,7 @@ function CreateDeliveredPlan(baseUrl){
         $('.J_goOn').live('click',function(){
             var goodsNumber = $('#J_goodsNumber').val();
             $.get(baseUrl+'/ajaxPlan/getDeliveredTable', {goods_number : goodsNumber}, function(html){
-                console.log(html);
+                $('#J_show').html(html);
             })
         });
     }
