@@ -36,6 +36,8 @@ function SelectProvider(baseUrl){
         var providerLocation = actionItem.text();
         $(".J_providerList[location!="+providerLocation+"]").hide();
         $(".J_providerList[location="+providerLocation+"]").show();
+        $(".J_location").removeClass("active");
+        actionItem.addClass("active");
     };
 
     function selectProvider(actionItem){
