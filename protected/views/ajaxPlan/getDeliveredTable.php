@@ -30,23 +30,23 @@
 <table class="record span-15 last">
     <tbody>
         <tr>
-            <th>尺码</th>
             <th>颜色</th>
+            <th>尺码</th>
             <th>件数</th> 
         </tr>
         <tr>
-            <td>M</td>
-            <td>红</td>
-            <td><input type="text"></input></td>
+            <td rowspan="4">红</td> 
         </tr>
         <tr>
             <td>L</td>
-            <td>红</td>
             <td><input type="text"></input></td>
         </tr>
         <tr>
             <td>XL</td>
-            <td>兰</td>
+            <td><input type="text"></input></td>
+        </tr>
+        <tr>
+            <td>M</td>
             <td><input type="text"></input></td>
         </tr>
     </tbody>
