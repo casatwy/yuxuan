@@ -21,5 +21,5 @@
         </select>
     </span>
     <span class="span-8 last">重量:<input type="text" class="J_weight"></input></span>
-    <span class="span-6"><button class="J_deleteRecord">删除</button></span>
+    <span class="prepend-10 span-5"><button class="J_deleteRecord">删除</button></span>
 </div>
