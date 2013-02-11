@@ -1,5 +1,4 @@
 <?php
-
 class StorageController extends Controller
 {
     const OUT_RECORD = 1;
@@ -47,7 +46,6 @@ class StorageController extends Controller
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
-        $this->cs->registerScriptFile($this->jsUrl."instock.js");
 
         $this->render("instock", array(
             'type' => $type,

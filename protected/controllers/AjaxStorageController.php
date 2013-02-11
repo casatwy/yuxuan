@@ -258,7 +258,7 @@ class AjaxStorageController extends Controller
     public function actionGetStockTable(){
         $data_type = $_GET['data_type'];
         $goods_number = $_GET['goods_number'];
-        $attributeList = Resource::getAttributesByGoodsNumber($goods_number);
+        $attributeList = Resource::getAttributesByGoodsNumber($goods_number, $data_type);
 
         if($data_type == self::SILK){
             echo $this->renderPartial("silkStock", array("attributeList" => $attributeList));

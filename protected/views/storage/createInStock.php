@@ -16,7 +16,7 @@
     </div>
 
     <div class="hide" id="J_template">
-        <div class="J_Record" data-id="">
+        <div class="J_recordTemplate" data-id="">
             <span class="span-6">货号<input type="text" class="J_goodsNumber" ></input></span>
             <span class="span-3"><span data-id="" class="J_selector select_b active" data-type="0">毛纱</span></span>
             <span class="span-3"><span data-id="" class="J_selector select_b" data-type="1">产品</span></span>

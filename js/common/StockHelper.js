@@ -25,7 +25,7 @@ function StockHelper(baseUrl){
             var next_id = $("#J_next").attr("next-id");
                 
             html = html.replace(/data-id=\"\"/g,"data-id=\""+next_id+"\"");
-            html = html.replace(/J_Record/,"J_record");
+            html = html.replace(/J_recordTemplate/,"J_record");
             $(".J_record:last").after(html);
             next_id = parseInt(next_id)+1;
             $("#J_next").attr("next-id", next_id);          
