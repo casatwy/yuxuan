@@ -9,5 +9,11 @@ function CreateDeliveredPlan(baseUrl){
     }
 
     function bindEvent(){
+        $('.J_goOn').live('click',function(){
+            var goodsNumber = $('#J_goodsNumber').val();
+            $.get(baseUrl+'/ajaxPlan/getDeliveredTable', {goods_number : goodsNumber}, function(html){
+                $('#J_show').html(html);
+            })
+        });
     }
 }

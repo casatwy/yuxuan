@@ -34,20 +34,16 @@
             <th>尺码</th>
             <th>件数</th> 
         </tr>
+        <?php foreach($products as $key=>$product): ?>
         <tr>
-            <td rowspan="4">红</td> 
+            <td rowspan="4"><?php echo $key; ?></td> 
         </tr>
-        <tr>
-            <td>L</td>
-            <td><input type="text"></input></td>
-        </tr>
-        <tr>
-            <td>XL</td>
-            <td><input type="text"></input></td>
-        </tr>
-        <tr>
-            <td>M</td>
-            <td><input type="text"></input></td>
-        </tr>
+            <?php foreach($product as $pd): ?>
+            <tr>
+                <td><?php echo $pd; ?></td>
+                <td><input type="text"></input></td>
+            </tr>
+            <?php endforeach; ?>
+        <?php endforeach; ?>
     </tbody>
 </table>
