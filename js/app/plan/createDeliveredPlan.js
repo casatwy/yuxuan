@@ -9,11 +9,27 @@ function CreateDeliveredPlan(baseUrl){
     }
 
     function bindEvent(){
+        $('#J_saveAll').live('click',function(){
+            alert('save');
+        });
+
         $('.J_goOn').live('click',function(){
-            var goodsNumber = $('#J_goodsNumber').val();
+            var plan =  $(this).parents('.J_deliverdPlan');
+            var goodsNumber = $(plan).find('#J_goodsNumber').val();
             $.get(baseUrl+'/ajaxPlan/getDeliveredTable', {goods_number : goodsNumber}, function(html){
-                $('#J_show').html(html);
+                $(plan).find('#J_show').html(html);
             })
+        });
+
+        $('.J_addPlan').live('click',function(){
+            var html = $('#J_addDeliverdPlan').html().toString();
+            $("#J_deliverdPlanDiv").append(html);
+        });
+
+        $('.J_delPlan').live('click',function(){
+            var length = $('#J_deliverdPlanDiv .J_deliverdPlan').length;
+            if(length != 1)
+                $(this).parents('.J_deliverdPlan').remove();
         });
     }
 }
