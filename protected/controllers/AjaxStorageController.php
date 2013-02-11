@@ -202,7 +202,7 @@ class AjaxStorageController extends Controller
 
         $searchCriteria = new CDbCriteria();
         $searchCriteria->distinct = true;
-        $searchCriteria->select = "record_id";
+        $searchCriteria->select = "delivered_record_id";
         $searchCriteria->condition = "1=1";
 
         $recordIdList = array();
@@ -212,7 +212,7 @@ class AjaxStorageController extends Controller
         }
 
         if($data['providerId'] != 'none'){
-            $searchCriteria->condition .= " and provider_id=";
+            $searchCriteria->condition .= " and client_id=";
             $searchCriteria->condition .= $data['providerId'];
         }
 
