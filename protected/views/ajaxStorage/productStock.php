@@ -1,12 +1,11 @@
 <div class="J_item">
     <div class="span-15">
         <span class="span-7">色号:
-            <?php if(empty($attributeList['color_number'])): ?>
+            <?php if(!empty($attributeList['color_number'])): ?>
             <select class="J_colorNumber">
                 <?php foreach($attributeList['color_number'] as $color_number): ?>
                 <option value ="<?php echo $color_number; ?>"><?php echo $color_number; ?></option>
                 <?php endforeach; ?>
-                <option value="4">4</option>
                 <option value="input">手工输入</option>
             </select>
             <?php else: ?>
@@ -14,12 +13,11 @@
             <?php endif; ?>
         </span>
         <span class="span-8 last">颜色:
-            <?php if(empty($attributeList['color_name'])): ?>
+            <?php if(!empty($attributeList['color_name'])): ?>
             <select class="J_colorName">
                 <?php foreach($attributeList['color_name'] as $color_name): ?>
                 <option value ="<?php echo $color_name; ?>"><?php echo $color_name; ?></option>
                 <?php endforeach; ?>
-                <option value="5">5</option>
                 <option value="input">手工输入</option>
             </select>
             <?php else: ?>
@@ -29,12 +27,11 @@
     </div>
     <div class="span-15">
         <span class="span-7">缸号:
-            <?php if(empty($attributeList['gang_number'])): ?>
+            <?php if(!empty($attributeList['gang_number'])): ?>
             <select class="J_gangNumber">
                 <?php foreach($attributeList['gang_number'] as $gang_number): ?>
                 <option value ="<?php echo $gang_number; ?>"><?php echo $gang_number; ?></option>
                 <?php endforeach; ?>
-                <option value="6">6</option>
                 <option value="input">手工输入</option>
             </select>
             <?php else: ?>
@@ -43,12 +40,11 @@
             </select>
         </span>
         <span class="span-8 last">尺码:
-            <?php if(empty($attributeList['size'])): ?>
+            <?php if(!empty($attributeList['size'])): ?>
             <select class="J_size">
                 <?php foreach($attributeList['size'] as $size): ?>
                 <option value ="<?php echo $size; ?>"><?php echo $size; ?></option>
                 <?php endforeach; ?>
-                <option value="7">7</option>
                 <option value="input">手工输入</option>
             </select>
             <?php else: ?>

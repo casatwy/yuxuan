@@ -1,12 +1,11 @@
 <div class="J_item">
     <div class="span-15">
         <span class="span-7">色号:
-            <?php if(empty($attributeList['color_number'])): ?>
+            <?php if(!empty($attributeList['color_number'])): ?>
             <select class="J_colorNumber">
                 <?php foreach($attributeList["color_number"] as $color_number): ?>
                 <option value ="<?php echo $color_number; ?>"><?php echo $color_number; ?></option>
                 <?php endforeach; ?>
-                <option value="1">1</option>
                 <option value="input">手工输入</option>
             </select>
             <?php else: ?>
@@ -15,12 +14,11 @@
             </select>
         </span>
         <span class="span-8 last">颜色:
-            <?php if(empty($attributeList['color_name'])): ?>
+            <?php if(!empty($attributeList['color_name'])): ?>
             <select class="J_colorName">
                 <?php foreach($attributeList["color_name"] as $color_name): ?>
                 <option value ="<?php echo $color_name; ?>"><?php echo $color_name; ?></option>
                 <?php endforeach; ?>
-                <option value="2">2</option>
                 <option value="input">手工输入</option>
             </select>
             <?php else: ?>
@@ -31,12 +29,11 @@
     </div>
     <div class="span-15">
         <span class="span-7">缸号:
-            <?php if(empty($attributeList['gang_number'])): ?>
+            <?php if(!empty($attributeList['gang_number'])): ?>
             <select class="J_gangNumber">
                 <?php foreach($attributeList["gang_number"] as $gang_number): ?>
                 <option value ="<?php echo $gang_number; ?>"><?php echo $gang_number; ?></option>
                 <?php endforeach; ?>
-                <option value="3">3</option>
                 <option value="input">手工输入</option>
             </select>
             <?php else: ?>
