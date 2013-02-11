@@ -84,10 +84,10 @@ class AjaxStorageController extends Controller
     private function saveRecord($saveType){
         $record = null;
         if($saveType == self::IN_RECORD){
-            $record = new ReceiveRecord;
+            $record = new ReceivedRecord;
         }
         if($saveType == self::OUT_RECORD){
-            $record = new DeliverRecord;
+            $record = new DeliveredRecord;
         }
 
         $record->record_time = time();
@@ -107,10 +107,10 @@ class AjaxStorageController extends Controller
         foreach($_POST['data'] as $item){
             $recordItem = null;
             if($saveType == self::IN_RECORD){
-                $recordItem = new ReceiveRecordItem;
+                $recordItem = new ReceivedRecordItem;
             }
             if($saveType == self::OUT_RECORD){
-                $recordItem = new DeliverRecordItem;
+                $recordItem = new DeliveredRecordItem;
             }
 
             if($item['type'] !== '1' and !isset($item['needle_type'])){
@@ -180,12 +180,12 @@ class AjaxStorageController extends Controller
             $criteria->condition = "id=".$_GET['data']['recordId'];
         }
         $criteria->order = "id desc";
-        $count = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
+        $count = ($_GET['type'] == self::OUT_RECORD)?(DeliveredRecord::model()->count($criteria)):(ReceivedRecord::model()->count($criteria));
         $pages = new CPagination($count);
 
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
+        $recordList = ($_GET['type'] == self::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
 
 
         $html = $this->renderPartial("recordList", array(
@@ -228,10 +228,10 @@ class AjaxStorageController extends Controller
 
         $searchedRecordList = null;
         if($type == self::OUT_RECORD){
-            $searchedRecordList = DeliverRecordItem::model()->findAll($searchCriteria); 
+            $searchedRecordList = DeliveredRecordItem::model()->findAll($searchCriteria); 
         }
         if($type == self::IN_RECORD){
-            $searchedRecordList = ReceiveRecordItem::model()->findAll($searchCriteria); 
+            $searchedRecordList = ReceivedRecordItem::model()->findAll($searchCriteria); 
         }
 
         foreach($searchedRecordList as $searchedRecord){
