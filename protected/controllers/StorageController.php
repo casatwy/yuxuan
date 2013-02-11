@@ -43,7 +43,6 @@ class StorageController extends Controller
         $pages->applyLimit($criteria);
         $recordList = ($type == self::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
 
-        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
 
@@ -97,8 +96,6 @@ class StorageController extends Controller
         $recordList = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
 
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
-        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
-        $this->cs->registerScriptFile($this->jsUrl."instock.js");
 
         $this->render("instock", array(
             'type' => $_GET['type'],
@@ -107,6 +104,4 @@ class StorageController extends Controller
         ));
 
     }
-
-    
 }

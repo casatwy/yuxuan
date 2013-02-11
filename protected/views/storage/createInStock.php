@@ -1,4 +1,5 @@
 <h2 class="prepend-1">创建<?php echo $actionType; ?>库记录</h2>
+<span id="J_recordType" data-type="<?php echo $actionType; ?>"></span>
 <hr>
 <div id="J_container" class="contant-container prepend">
     <span class="span-15 last">客户：

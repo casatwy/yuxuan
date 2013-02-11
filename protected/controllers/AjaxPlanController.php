@@ -92,12 +92,12 @@ class AjaxPlanController extends Controller
             $criteria->condition = "id=".$_GET['data']['recordId'];
         }
         $criteria->order = "id desc";
-        $count = DeliverPlan::model()->count($criteria);
+        $count = DeliveredPlan::model()->count($criteria);
         $pages = new CPagination($count);
 
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = DeliverPlan::model()->findAll($criteria);
+        $recordList = DeliveredPlan::model()->findAll($criteria);
 
         $html = $this->renderPartial("searchedResult", array(
             "planList" => $recordList,

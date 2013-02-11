@@ -38,8 +38,7 @@ function StockHelper(baseUrl){
         });
 
         $("#J_saveRecord").live('click', function(){
-            alert();
-            //clickSaveRecord($(this));
+            saveRecord($(this));
         });
 
         $(".J_continue").live("click", function(){
@@ -68,7 +67,6 @@ function StockHelper(baseUrl){
         $(".J_selector").live("click", function(){
             selectorClicked($(this));
         });
-        
     }
 
     function changeToInput(actionItem){
@@ -108,6 +106,44 @@ function StockHelper(baseUrl){
         $(".J_selector[data-id="+data_id+"]").removeClass("active");
         actionItem.addClass("active");
         $(".J_recordContent[data-id="+data_id+"]").html("");
+    }
+
+    function saveRecord(actionItem){
+        var saveType = $(".J_selector.active").attr("data-type");
+        var saveData = getDataForSave();
+        var url = getSaveUrl();
+        $.post(url, {saveType:saveType, data:saveData}, function(result){
+            console.log(result);
+        }, "json");
+    }
+
+    function getSaveUrl(){
+        var url = baseUrl+"/ajaxStorage/";
+        if($("#J_recordType").attr("data-type") == "入"){
+            url+="saveinstock";
+        }
+        if($("#J_recordType").attr("data-type") == "出"){
+            url+="saveoutstock";
+        }
+        return url;
+    }
+
+    function getDataForSave(){
+        var result = [];
+        $(".J_item").each(function(index, value){
+            var item = $(value);
+            var itemData = {
+                color_number : item.find(".J_colorNumber").val(),
+                color_name : item.find(".J_colorName").val(),
+                gang_number : item.find(".J_gangNumber").val(),
+                weight : item.find(".J_weight").val(),
+                size : item.find(".J_size").val(),
+                needle_type : item.find(".J_needleType").val(),
+                count : item.find(".J_count").val()
+            };
+            result.push(itemData);
+        });
+        return result;
     }
 }
 
