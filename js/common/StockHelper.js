@@ -51,7 +51,7 @@ function StockHelper(baseUrl){
                     record.find(".J_recordContent").append(html);
                 }
             );
-        })
+        });
 
         $(".J_selector").live("click", function(){
             selectorClicked($(this));
