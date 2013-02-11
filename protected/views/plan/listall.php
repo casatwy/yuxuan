@@ -1,7 +1,8 @@
-<a href="<?php echo $this->baseUrl; ?>/plan/createPlanList">创建生产计划</a>
-<br />
-<br />
-<br />
+<img src="../../../images/listall.png" class="span-1">
+<h2 class="span-4 ">生产计划总览</h2>
+<a href="<?php echo $this->baseUrl; ?>/plan/createPlanList" class="span-17 last" id="plus"></a>
+<hr>
+
 <div id="J_tabs">
     <ul>
             <li><a href="#J_tab0">正在生产中</a></li>
