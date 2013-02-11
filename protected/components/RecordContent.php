@@ -107,6 +107,26 @@ class RecordContent extends CController
         );
         return $info;
     }
+    public static function getPlanList($start,$end){
+        $sql = "select p.id,dp.time,p.goods_number,p.size,s.color_name from `daily_product` dp "
+            ." inner join `product` p on dp.time >='".$start
+            ."' and dp.time <'".$end."' and dp.product_id = p.id "
+            ." inner join `silk` s on p.silk_id = s.id ";
+        $daily_messages = Yii::app()->db->createCommand($sql)->queryAll();
+        $events = array();
+        foreach($daily_messages as $m){
+            $event = array(
+                'product_id' => $m['id'],
+                'title' => $m['goods_number'].'_'.$m['color_name'].'_'.$m['size'],
+                'start' => $m['time'],
+                'end' => $m['time'],
+                'className' => 'J_event',
+                'editable' => false,
+                );
+            array_push($events,$event);
+        }
+        return $events;
+    }
 
     public static function getDailyData($product_id){
         $product = Product::model()->findByPk($product_id);
