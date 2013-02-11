@@ -37,4 +37,5 @@
     <hr>
     <span class="prepend-3 span-5"><button id="J_creatNewRecord">添加一条</button></span>
     <span class="span-6"><button id="J_saveRecord">保存全部</button></span>
+<span id="J_tableNextId" next-id="1"></span>
 </div>

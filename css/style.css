@@ -244,9 +244,7 @@ span.select_b:hover ,span.active {
 .font-2 {
 	font-size:1.1em;
 }
-input,select{
-    line-height:1.3em;
-} 
+
 
 /*  我会告诉你这里是菊花么= - =  */
 #J_fetchedRecords div img {
