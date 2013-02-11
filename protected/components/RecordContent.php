@@ -18,9 +18,9 @@ class RecordContent extends CController
 
         $recordData = null;
         if($type == self::OUT_RECORD){
-            $recordData = DeliverRecordItem::model()->findAll($condition, $params);
+            $recordData = DeliveredRecordItem::model()->findAll($condition, $params);
         }else if($type == self::IN_RECORD){
-            $recordData = ReceiveRecordItem::model()->findAll($condition, $params);
+            $recordData = ReceivedRecordItem::model()->findAll($condition, $params);
         }
 
         $product = null;
@@ -51,11 +51,11 @@ class RecordContent extends CController
 
     public function getPlanContent($plan_id){
         $planList = array();
-        $condition = "plan_id=:plan_id";
+        $condition = "delivered_plan_id=:plan_id";
         $params = array(
             ":plan_id" => htmlspecialchars($plan_id)
         );
-        $planData = DeliverPlanItem::model()->findAll($condition,$params);
+        $planData = DeliveredPlanItem::model()->findAll($condition,$params);
 
         $condition = "name=:name";
         $params = array(
@@ -90,9 +90,9 @@ class RecordContent extends CController
     public function printInfomation($id,$type){
         $record = null;
         if($type == self::IN_RECORD){
-            $record = ReceiveRecord::model()->findByPk($id);
+            $record = ReceivedRecord::model()->findByPk($id);
         }elseif($type == self::OUT_RECORD){
-            $record = DeliverRecord::model()->findByPk($id);
+            $record = DeliveredRecord::model()->findByPk($id);
         } 
 
         $condition = "name=:name";
@@ -134,7 +134,7 @@ class RecordContent extends CController
         $searchCriteria->distinct = true;
         $searchCriteria->select = "record_id";
         if($type == self::PLAN){
-            $searchCriteria->select = "plan_id";
+            $searchCriteria->select = "delivered_plan_id";
         }
         $searchCriteria->condition = "1=1";
 
@@ -161,18 +161,18 @@ class RecordContent extends CController
 
         $searchedRecordList = null;
         if($type == self::OUT_RECORD){
-            $searchedRecordList = DeliverRecordItem::model()->findAll($searchCriteria); 
+            $searchedRecordList = DeliveredRecordItem::model()->findAll($searchCriteria); 
         }
         if($type == self::IN_RECORD){
-            $searchedRecordList = ReceiveRecordItem::model()->findAll($searchCriteria); 
+            $searchedRecordList = ReceivedRecordItem::model()->findAll($searchCriteria); 
         }
         if($type == self::PLAN){
-            $searchedRecordList = DeliverPlanItem::model()->findAll($searchCriteria); 
+            $searchedRecordList = DeliveredPlanItem::model()->findAll($searchCriteria); 
         }
 
         foreach($searchedRecordList as $searchedRecord){
             if($type == self::PLAN){
-                array_push($recordIdList, $searchedRecord->plan_id);
+                array_push($recordIdList, $searchedRecord->delivered_plan_id);
             }else{
                 array_push($recordIdList, $searchedRecord->record_id);
             }

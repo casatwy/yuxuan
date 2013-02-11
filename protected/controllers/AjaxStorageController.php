@@ -235,7 +235,7 @@ class AjaxStorageController extends Controller
         }
 
         foreach($searchedRecordList as $searchedRecord){
-            array_push($recordIdList, $searchedRecord->record_id);
+            array_push($recordIdList, $searchedRecord->delivered_record_id);
         }
         $recordIdList = implode(",", $recordIdList);
 
