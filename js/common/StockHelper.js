@@ -47,7 +47,7 @@ function StockHelper(baseUrl){
             $.get(baseUrl+"/ajaxStorage/getStockTable",
                 {data_type:data_type, goods_number:goods_number},
                 function(html){
-                    $("#J_template").html(html);
+                    $("#J_templateSilkOrProduct").html(html);
                     record.find(".J_recordContent").append(html);
                 }
             );

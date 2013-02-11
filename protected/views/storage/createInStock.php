@@ -28,7 +28,7 @@
 
     <span id="J_next" next-id="2"></span>
 
-    <div id="J_template" class="hide">
+    <div id="J_templateSilkOrProduct" class="hide">
     </div>
 
     <hr>
