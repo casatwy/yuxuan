@@ -145,7 +145,7 @@ class RecordContent extends CController
         }
 
         if(isset($data['providerId']) and $data['providerId'] != 'none'){
-            $searchCriteria->condition .= " and provider_id=";
+            $searchCriteria->condition .= " and client_id=";
             $searchCriteria->condition .= $data['providerId'];
         }
 
