@@ -6,7 +6,9 @@
     </span>
 
     <div class="J_record" data-id="1">
-        <span class="span-6">货号<input type="text" class="J_goodsNumber" ></input></span>
+        <span class="span-6">货号:
+            <input type="text" class="J_goodsNumber" ></input>
+        </span>
         <span class="span-3"><span data-id="1" class="J_selector select_b active" data-type="0">毛纱</span></span>
         <span class="span-3"><span data-id="1" class="J_selector select_b" data-type="1">产品</span></span>
         <span class=" span-3 last"><button class="J_continue">继续</button></span>    
@@ -17,7 +19,7 @@
 
     <div class="hide" id="J_template">
         <div class="J_recordTemplate" data-id="">
-            <span class="span-6">货号<input type="text" class="J_goodsNumber" ></input></span>
+            <span class="span-6">货号:<input type="text" class="J_goodsNumber" ></input></span>
             <span class="span-3"><span data-id="" class="J_selector select_b active" data-type="0">毛纱</span></span>
             <span class="span-3"><span data-id="" class="J_selector select_b" data-type="1">产品</span></span>
             <span class=" span-3 last"><button class="J_continue">继续</button></span>    

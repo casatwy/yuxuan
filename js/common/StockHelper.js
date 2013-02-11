@@ -1,6 +1,10 @@
 $(document).ready(function(){
     stockHelper = new StockHelper($("#J_baseUrl").val());
     stockHelper.init();
+    //var helper = new ContentHelper();
+    //helper.setContent("casa", "casacasa");
+    //var fetchedContent = helper.getContent("casacasa");
+    //alert(fetchedContent);
 });
 
 function StockHelper(baseUrl){
@@ -53,11 +57,50 @@ function StockHelper(baseUrl){
             );
         });
 
+        $("select").live("change", function(){
+            changeToInput($(this));
+        });
+
+        $(".J_return").live("click",function(){
+            returnToSelect($(this));
+        });
+
         $(".J_selector").live("click", function(){
             selectorClicked($(this));
         });
-
         
+    }
+
+    function changeToInput(actionItem){
+        var content = actionItem.html();
+        var value = actionItem.val();
+        var classes = actionItem.attr("class");
+
+        var next_id = $("#J_tableNextId").attr("next-id");
+        var inputDom = "<input type=\"text\" id=\"J_input"+next_id+"\"></input>";
+        var returnDom = "<a class=\"J_return\" id=\"J_"+next_id+"\" data-id=\""+next_id+"\">返回</a>";
+
+        var selector = "J_"+next_id;
+        $("#J_tableNextId").attr("next-id", parseInt(next_id)+1);
+
+        inputDom = $(inputDom).addClass(classes);
+        inputDom = $(inputDom).after(returnDom);
+        if (value == "input"){
+            actionItem.before($("<span class=\"bottom_none\"></span>").html(inputDom));
+            $("#"+selector).data("content", content);
+            actionItem.remove();
+        }
+    }
+
+    function returnToSelect(actionItem){
+        var inputFrame = actionItem.closest("span");
+        var content = actionItem.data("content");
+        var classes = actionItem.prev().attr("class");
+        var selectDom = "<select></select>";
+
+        inputFrame.before($(selectDom).addClass(classes));
+        $("select."+classes).html(content);
+        inputFrame.remove();
     }
 
     function selectorClicked(actionItem){
@@ -66,4 +109,14 @@ function StockHelper(baseUrl){
         actionItem.addClass("active");
         $(".J_recordContent[data-id="+data_id+"]").html("");
     }
+}
+
+function ContentHelper(){
+    this.setContent = function(content, key){
+        this.contentArray[key] = content;
+    };
+
+    this.getContent = function(key){
+        return this.contentArray[key];
+    };
 }
