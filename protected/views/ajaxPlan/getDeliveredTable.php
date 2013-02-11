@@ -6,12 +6,14 @@
             <th>缸号</th>
             <th>重量</th>
         </tr>
+        <?php foreach($silks as $silk): ?>
         <tr>
-            <td>红</td>
-            <td>123</td>
-            <td>456</td>
+            <td><?php $silk->color_name; ?></td>
+            <td><?php $silk->color_number; ?></td>
+            <td><?php $silk->gang_number; ?></td>
             <td><input type="text"></input>kg</td>
         </tr>
+        <?php endforeach;?>
         <tr>
             <td>黄</td>
             <td>321</td>

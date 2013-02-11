@@ -6,13 +6,20 @@
         客户：
         <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>
     </span>
-    <span class="span-11">货号:<input type="text" id="J_goodsNumber"></span>
-    <span class="span-3 last"><button class="J_goOn">继续</button></span>
-    <span class="prepend-3 span-5"><button>添加</button></span>
-    <span class="span-6 last"><button>删除</button></span>
-    <div id="J_show"></div>
-    <a href="<?php echo $this->baseUrl; ?>/ajaxPlan/getDeliveredTable">show</a>
-    
-    
-    
+    <tbody class="J_deliverdPlan">
+        <span class="span-11">货号:<input type="text" id="J_goodsNumber"></span>
+        <span class="span-3 last"><button class="J_goOn">继续</button></span>
+        <span class="prepend-3 span-5"><button>添加</button></span>
+        <span class="span-6 last"><button>删除</button></span>
+        <div id="J_show"></div>
+        <a href="<?php echo $this->baseUrl; ?>/ajaxPlan/getDeliveredTable">show</a>
+    </tbody>
+</div>
+<div class="hide" id="J_addDeliverdPlan">
+    <tbody class="J_deliverdPlan">
+        <span class="span-11">货号:<input type="text" id="J_goodsNumber"></span>
+        <span class="span-3 last"><button class="J_goOn">继续</button></span>
+        <span class="prepend-3 span-5"><button>添加</button></span>
+        <span class="span-6 last"><button>删除</button></span>
+    </tbody>
 </div>
