@@ -194,5 +194,27 @@ class RecordContent extends CController
         $day=((int)substr($date,8,2));
         return (string)mktime(0,0,0,$month,$day,$year);
     }
+
+    public static function getSilkByGoodsNumber($goods_number){
+        $condition = "goods_number=:goods_number";
+        $params = array(
+            ":goods_number" => htmlspecialchars($goods_number)
+        );
+        $silks = Silk::model()->findAll($condition,$params);
+        return $silks;
+    }
+
+    public static function getProductByGoodsNumber($goods_number){
+        $table = array();
+        $condition = "goods_number=:goods_number";
+        $params = array(
+            ":goods_number" => htmlspecialchars($goods_number)
+        );
+        $products = Product::model()->findAll($condition,$params);
+        foreach($products as $product){
+            $table[$product->color_name][] = $product->size;
+        }
+        return $table;
+    }
 }
 ?>

@@ -135,7 +135,16 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetDeliveredTable(){
-        //$goods_number = $_GET['goods_number'];
-        $this->render("getDeliveredTable");
+        $goods_number = $_GET['goods_number'];
+        //$silks = RecordContent::getSilkByGoodsNumber($goods_number);
+        $products = RecordContent::getProductByGoodsNumber($goods_number);
+
+        //var_dump($silks);
+        $html = $this->renderPartial("getDeliveredTable",array(
+            'products' => $products,
+            //'silks' => $silks
+        ));
+
+        echo $html;
     }
 }
