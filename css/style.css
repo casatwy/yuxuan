@@ -103,9 +103,10 @@
 	display:block;
 }*/
 .selectNa {
-	background-color:#F6F6F6;
+	background-color:#edeff6;
 	border:1px solid #E0E0E0;
 	margin:1px 20px 5px; 
+   border-radius: 5px;
 
 }
 .address {
@@ -116,8 +117,8 @@
 }
 a.prepend {
 	float:left;
-	padding:0px 4px;
-	margin:0px 3px 5px;
+	padding:2px 7px;
+	margin:3px;
 	position:relative;
 	wite-space:nowrap;
 	color:#0088cc;
@@ -128,6 +129,9 @@ a.prepend {
 	background-color:#0088cc;
 	color:#ffffff;
 	text-decoration:none;
+   border-radius: 5px 5px 5px 5px;
+   -webkit-transition: all .3s linear .1s;
+   transition: all .3s ease-in .1s;
 }
 .selevtADD {
 	position:absolute;
@@ -184,7 +188,7 @@ a.prepend {
     width:50px;
 }
 #createPlanList .record th{
-    background:#c8cef6;
+    background:#c7d8f1;
 }
 #createPlanList table, #createPlanList td, #createPlanList th ,#createPlanList tbody{
 border-color: #adb8fd;}
