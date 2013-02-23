@@ -109,10 +109,14 @@ function StockHelper(baseUrl){
     }
 
     function saveRecord(actionItem){
-        var saveType = $(".J_selector.active").attr("data-type");
+        var itemType = $(".J_selector.active").attr("data-type");
         var saveData = getDataForSave();
         var url = getSaveUrl();
-        $.post(url, {saveType:saveType, data:saveData}, function(result){
+        $.post(url, {
+            client_id:$("#J_selectProvider").attr("provider"),
+            itemType:itemType,
+            data:saveData
+        }, function(result){
             console.log(result);
         }, "json");
     }

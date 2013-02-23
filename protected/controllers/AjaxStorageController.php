@@ -2,10 +2,6 @@
 
 class AjaxStorageController extends Controller
 {
-    const OUT_RECORD = 1;
-    const IN_RECORD = 2;
-    const SILK = 0;
-    const PRODUCT = 1;
 
     public function actionIndex()
     {
@@ -13,12 +9,12 @@ class AjaxStorageController extends Controller
     }
 
     public function actionSaveoutstock(){
-        $this->saveRecord(self::OUT_RECORD);
+        $this->saveRecord(Record::OUT_RECORD);
         Yii::app()->end();
     } 
 
     public function actionSaveinstock(){
-        $this->saveRecord(self::IN_RECORD);
+        $this->saveRecord(Record::IN_RECORD);
         Yii::app()->end();
     }
 
@@ -82,69 +78,8 @@ class AjaxStorageController extends Controller
     }
 
     private function saveRecord($saveType){
-        $record = null;
-        if($saveType == self::IN_RECORD){
-            $record = new ReceivedRecord;
-        }
-        if($saveType == self::OUT_RECORD){
-            $record = new DeliveredRecord;
-        }
-
-        $record->record_time = time();
-        $record->record_maker = Yii::app()->user->getState('name');
-        if($_POST['data'][0]['type'] !== '1' and !isset($_POST['data']['0']['needle_type'])){
-            $result = array(
-                "success" => 0,
-                'msg' => "此页面已经过期，请刷新后重试。",
-                'id' => $record->id,
-            );
-            echo CJSON::encode($result);
-            return;
-        }
-        $record->provider_id = $_POST['data'][0]['provider_id'];
-        $record->save();
-
-        foreach($_POST['data'] as $item){
-            $recordItem = null;
-            if($saveType == self::IN_RECORD){
-                $recordItem = new ReceivedRecordItem;
-            }
-            if($saveType == self::OUT_RECORD){
-                $recordItem = new DeliveredRecordItem;
-            }
-
-            if($item['type'] !== '1' and !isset($item['needle_type'])){
-                $record->delete();
-                $result = array(
-                    "success" => 0,
-                    'msg' => "此页面已经过期，请刷新后重试。",
-                    'id' => $record->id,
-                );
-                echo CJSON::encode($result);
-                return;
-            }
-            $recordItem->item_id = $this->getItemId($item);
-            $recordItem->type = $item['type'];
-            $recordItem->weight = $item['weight'];
-            $recordItem->quantity = $item['type'];
-            $recordItem->goods_number = $item['goods_number'];
-            $recordItem->record_id = $record->id;
-            $recordItem->record_time = $record->record_time;
-            $recordItem->record_maker = $record->record_maker;
-            $recordItem->provider_id = $record->provider_id;
-
-            //storage is also saved in the afterSave() of ReceiveRecordItem.
-            if(!$recordItem->save()){
-                $record->delete();
-            }
-        }
-
-        $result = array(
-            "success" => 1,
-            'type' => $saveType,
-            'id' => $record->id,
-        );
-        echo CJSON::encode($result);
+        $record = new Record($saveType);
+        $record->saveRecord($_POST);
     }
 
     //based on the record id
@@ -260,11 +195,11 @@ class AjaxStorageController extends Controller
         $goods_number = $_GET['goods_number'];
         $attributeList = Resource::getAttributesByGoodsNumber($goods_number, $data_type);
 
-        if($data_type == self::SILK){
+        if($data_type == Record::SILK){
             echo $this->renderPartial("silkStock", array("attributeList" => $attributeList));
         }
 
-        if($data_type == self::PRODUCT){
+        if($data_type == Record::PRODUCT){
             echo $this->renderPartial("productStock", array("attributeList" => $attributeList));
         }
     }

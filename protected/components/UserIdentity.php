@@ -19,6 +19,7 @@ class UserIdentity extends CUserIdentity
 	{
         $record = User::model()->findByAttributes(array('name'=>$this->username));
         if(!is_null($record) && md5($this->password) == $record->password){
+            Yii::app()->user->setState('user_id', $record->id);
             Yii::app()->user->setState('authority', $record->authority);
             Yii::app()->user->setState('name', $record->name);
             Yii::app()->user->setState('password', $record->password);
