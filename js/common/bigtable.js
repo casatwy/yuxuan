@@ -114,7 +114,7 @@ function BigTable(baseUrl){
                 $.each($value.find(".J_countTable"), function(idx, val){
                     item.spec[idx].count = $(val).find("input").val();
                 });
-
+                console.log(item);
                 data.push(item);
             }
         });

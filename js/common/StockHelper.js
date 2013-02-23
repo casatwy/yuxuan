@@ -14,13 +14,8 @@ function StockHelper(baseUrl){
 
     function bindEvent(){
 
-        $("#J_addRecord").live('click', function(){
-            alert();
-            //clickAddRecord($(this));
-        });
-
-        $(".J_deleteRecord").live('click', function(){
-            alert();
+        $(".J_deleteRecord").live('click', function(){            
+            $(this).closest(".J_item").remove();
             //clickDeleteRecord($(this));
         });
 
@@ -102,6 +97,7 @@ function StockHelper(baseUrl){
     }
 
     function selectorClicked(actionItem){
+        if (actionItem.hasClass("active")){return 0;}
         var data_id = actionItem.attr("data-id");
         $(".J_selector[data-id="+data_id+"]").removeClass("active");
         actionItem.addClass("active");

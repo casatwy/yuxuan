@@ -13,7 +13,7 @@
             <div id="J_show"></div>
             <span class="prepend-3 span-5"><button class="J_addPlan">添加</button></span>
             <span class="span-6 last"><button class="J_delPlan">删除</button></span>
-            <a href="<?php echo $this->baseUrl; ?>/ajaxPlan/getDeliveredTable">show</a>
+            
         </div>
     </div>
 </div>
