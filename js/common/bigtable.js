@@ -59,6 +59,7 @@ function BigTable(baseUrl){
 
         $("#J_saveData").bind("click", function(){
             var data = getPlanData();
+            console.log(data);
             if(data != false){
                 $.post(baseUrl+"/ajaxPlan/savePlanList", {
                     data:data,

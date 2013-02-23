@@ -9,8 +9,19 @@
  * @property integer $record_maker_id
  * @property integer $client_id
  */
-class ReceivedRecord extends CActiveRecord
+class Record extends CActiveRecord
 {
+
+    private $saveType;
+    const IN_RECORD = 0;
+    const OUT_RECORD = 1;
+
+    const SILK = 0;
+    const PRODUCT = 1;
+
+    public function __construct($saveType){
+        $this->saveType = $saveType;
+    }
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -26,7 +37,13 @@ class ReceivedRecord extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'received_record';
+        if($this->saveType == self::IN_RECORD){
+		    return 'received_record';
+        }
+
+        if($this->saveType == self::OUT_RECORD){
+		    return 'delivered_record';
+        }
 	}
 
 	/**
@@ -89,4 +106,17 @@ class ReceivedRecord extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function saveRecord($data){
+        $this->record_time = time();
+        $this->record_maker_id = Yii::app()->user->getState("user_id");
+        $this->client_id = $data['client_id'];
+        //if($this->save()){
+        //    $this->saveItem($data);
+        //}
+        var_dump($data);die();
+    }
+
+    private function saveItem($data){
+    }
 }

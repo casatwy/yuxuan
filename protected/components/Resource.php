@@ -5,10 +5,10 @@ class Resource extends CComponent{
         $params = array(":goods_number"=>$goods_number);
 
         $productList = null;
-        if($type == AjaxStorageController::SILK ){
+        if($type == Record::SILK ){
             $productList = Silk::model()->findAll($condition, $params);
         }
-        if($type == AjaxStorageController::PRODUCT ){
+        if($type == Record::PRODUCT ){
             $productList = Product::model()->findAll($condition, $params);
         }
 
