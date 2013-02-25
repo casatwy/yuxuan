@@ -109,7 +109,6 @@ class Controller extends CController
                 $letgo = true;
             }
         }
-
         return $letgo;
     }
 
