@@ -218,7 +218,10 @@ span.select_b:hover ,span.active {
 .record_error {
    border-color: #CC0000;
 }
-
+/*   input输入框   */
+input[type="text"]{
+    border:1px #c9e0ed solid;
+}
 
 /*  文字样式  */
 .big {
