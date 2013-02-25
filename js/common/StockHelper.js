@@ -45,7 +45,7 @@ function StockHelper(baseUrl){
             $.get(baseUrl+"/ajaxStorage/getStockTable",
                 {data_type:data_type, goods_number:goods_number},
                 function(html){
-                    $("#J_templateSilkOrProduct").html(html);
+                    //$("#J_templateSilkOrProduct").html(html);
                     record.find(".J_recordContent").append(html);
                 }
             );
@@ -143,7 +143,9 @@ function StockHelper(baseUrl){
             };
             result.push(itemData);
         });
+console.log(result);
         return result;
+
     }
 }
 

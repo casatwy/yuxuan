@@ -103,7 +103,7 @@
 	display:block;
 }*/
 .selectNa {
-	background-color:#edeff6;
+	background-color:#F0F0F0;
 	border:1px solid #E0E0E0;
 	margin:1px 20px 5px; 
    border-radius: 5px;
@@ -188,7 +188,7 @@ a.prepend {
     width:50px;
 }
 #createPlanList .record th{
-    background:#c7d8f1;
+    background:#d6e9fc;
 }
 #createPlanList table, #createPlanList td, #createPlanList th ,#createPlanList tbody{
 border-color: #adb8fd;}
@@ -219,8 +219,8 @@ span.select_b:hover ,span.active {
    border-color: #CC0000;
 }
 /*   input输入框   */
-input[type="text"]{
-    border:1px #c9e0ed solid;
+input[type="text"],input[type="password"]{
+    border:1px #8ec2f5 solid;
 }
 
 /*  文字样式  */

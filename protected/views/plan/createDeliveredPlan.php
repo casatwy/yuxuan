@@ -10,7 +10,7 @@
         <div class="J_deliverdPlan">
             <span class="span-11">货号:<input type="text" id="J_goodsNumber"></span>
             <span class="span-3 last"><button class="J_goOn">继续</button></span>
-            <div id="J_show"></div>
+            <div class="J_show"></div>
             <span class="prepend-3 span-5"><button class="J_addPlan">添加</button></span>
             <span class="span-6 last"><button class="J_delPlan">删除</button></span>
             
@@ -21,7 +21,7 @@
     <div class="J_deliverdPlan">
         <span class="span-11">货号:<input type="text" id="J_goodsNumber"></span>
         <span class="span-3 last"><button class="J_goOn">继续</button></span>
-        <div id="J_show"></div>
+        <div class="J_show"></div>
         <span class="prepend-3 span-5"><button class="J_addPlan">添加</button></span>
         <span class="span-6 last"><button class="J_delPlan">删除</button></span>
     </div>

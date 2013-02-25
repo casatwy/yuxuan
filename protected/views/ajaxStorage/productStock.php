@@ -48,7 +48,7 @@
                 <option value="input">手工输入</option>
             </select>
             <?php else: ?>
-            <input class="size" type="text"></input>
+            <input class="J_size" type="text"></input>
             <?php endif; ?>
             </select>
         </span>

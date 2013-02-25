@@ -18,7 +18,7 @@ function CreateDeliveredPlan(baseUrl){
             var plan =  $(this).parents('.J_deliverdPlan');
             var goodsNumber = $(plan).find('#J_goodsNumber').val();
             $.get(baseUrl+'/ajaxPlan/getDeliveredTable', {goods_number : goodsNumber}, function(html){
-                $(plan).find('#J_show').html(html);
+                $(plan).find('.J_show').html(html);
             })
         });
 
@@ -34,24 +34,25 @@ function CreateDeliveredPlan(baseUrl){
         });
     }
     function getDeliveredPlanData(){
-        var data = [];
-        $.each($("#J_show"), function(index, value){
-            var $value = $(value);
-            var item = {};
-
-            item.weight = [];
-            $.each($value.find("table:first"), function(idx, val){
-                    item.weight.push({weight:$(val).find("input").val()});
-                });
-
-            item.number = [];
-            $.each($value.find("table:last"), function(idx, val){
-                    item.number.push({weight:$(val).find("input").val()});
-                });
-
-            data.push(item);
-            console.log(item);
-            
+        var plandata = [];
+        $(".J_show").each(function(index, value){
+            var item = $(value);
+            if(!$(item).closest("#J_addDeliverdPlan").hasClass("hide")) {console.log()
+                var itemDate = {};
+                itemDate.weight = [];
+                $(item).find("table:first input").each(function(idx, val){
+                     itemDate.weight.push({weight:$(this).val()});  
+                    });
+    
+                itemDate.number = [];
+                $(item).find("table:last input").each(function(idx, val){
+                    itemDate.number.push({number:$(this).val()});
+                    });
+             plandata.push(itemDate);
+                }
         }); 
+        console.log(plandata);
+        return plandata;    
     }
 }
+
