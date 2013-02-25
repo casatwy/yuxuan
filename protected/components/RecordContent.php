@@ -107,29 +107,6 @@ class RecordContent extends CController
         );
         return $info;
     }
-    public static function getPlanList($start,$end){
-
-        $condition = "create_time > :start and create_time < :end";
-        $params = array(
-            ':start' => $start,
-            ':end' => $end,
-        );
-        $daily_messages = Product::model()->findAll($condition, $params);
-
-        $events = array();
-        foreach($daily_messages as $m){
-            $event = array(
-                'product_id' => $m['id'],
-                'title' => $m['goods_number'].'_'.$m['color_name'].'_'.$m['size'],
-                'start' => $m['create_time'],
-                'end' => $m['finished_time'],
-                'className' => 'J_event',
-                'editable' => false,
-                );
-            array_push($events,$event);
-        }
-        return $events;
-    }
 
     public static function getDailyData($product_id){
         $product = Product::model()->findByPk($product_id);
