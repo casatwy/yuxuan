@@ -89,17 +89,47 @@ class Controller extends CController
         Yii::app()->user->setReturnUrl('/storage/instock');
     }
 
+    private function authentication($action){
+        $action = $action->getId();
+
+        $letgo = false;
+
+        if($action == "login"){
+            return true;
+        }
+
+        $authority = Yii::app()->user->getState('authority');
+
+        if(empty($authority)){
+            $letgo = false;
+        }else{
+            if(!isset($this->authority[$action])){
+                $letgo = true;
+            }else if(bcmod($authority ,$this->authority[$action]) == 0){
+                $letgo = true;
+            }
+        }
+        return $letgo;
+    }
+
     protected function beforeAction($action){
         parent::beforeAction($action);
+ 
+        if($action == "instock" or $action == "outstock" or $action == "deliveredList"){
+            $jqueryUiUrl = $this->baseUrl
+                        .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
+            $this->cs->registerCssFile($jqueryUiUrl."css/print-preview.css");
+            $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
+        }
+
+        if(!$this->authentication($action)){
+            $this->redirect("/site/login");
+        }
+
         return true;
         //var_dump(Yii::app()->user->getState("authority"));
         //var_dump($this->getId());
         //var_dump($action->getId());die();
-
-
-        $action = $action->getId();
-
-
 
         //if($action == "printPlan" or $action == "printRecordList"){
         //    $jqueryUiUrl = $this->baseUrl
@@ -108,21 +138,5 @@ class Controller extends CController
         //    $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
         //    //$this->cs->registerScriptFile($jqueryUiUrl."loadPrinter.js");
         //}
-
-        if($action == "instock" or $action == "outstock" or $action == "deliveredList"){
-            $jqueryUiUrl = $this->baseUrl
-                        .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
-            $this->cs->registerCssFile($jqueryUiUrl."css/print-preview.css");
-            $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
-        }
-
-        if(!isset($this->authority[$action])){
-            return true;
-        }else if(bcmod(Yii::app()->user->getState('authority') ,$this->authority[$action]) == 0){
-            return true;
-        }else{
-            $this->render("//site/error");
-            return false;
-        }
     }
 }

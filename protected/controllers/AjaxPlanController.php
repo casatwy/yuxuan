@@ -7,11 +7,10 @@ class AjaxPlanController extends Controller
         $this->render('index');
     }
 
-    //useless
     public function actionGetPlanEvents(){
         $start = strtotime(substr($_POST['start'], 0, 34));
         $end = strtotime(substr($_POST['end'], 0, 34));
-        $events = RecordContent::getPlanList($start,$end);
+        $events = Product::getPlanList($start,$end);
         echo CJSON::encode($events);
     }
 

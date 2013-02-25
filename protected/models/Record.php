@@ -114,6 +114,7 @@ class Record extends CActiveRecord
         //if($this->save()){
         //    $this->saveItem($data);
         //}
+        $data['record_id'] = $this->id;
         var_dump($data);die();
     }
 

@@ -132,7 +132,9 @@ function StockHelper(baseUrl){
         var result = [];
         $(".J_item").each(function(index, value){
             var item = $(value);
+            var data_id = $(value).parents(".J_recordContent");
             var itemData = {
+                itemType : $(value).parents(".J_record").find(".J_selector.active").attr('data-type'),
                 color_number : item.find(".J_colorNumber").val(),
                 color_name : item.find(".J_colorName").val(),
                 gang_number : item.find(".J_gangNumber").val(),

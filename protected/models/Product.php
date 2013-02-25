@@ -199,7 +199,7 @@ class Product extends CActiveRecord
     }
 
     public static function getListByStatus($status){
-        $condition = "status=:status";
+        $condition = "status=:status limit 0, 30";
         $params = array(":status" => $status);
 
         $productList = self::model()->findAll($condition, $params);
@@ -229,4 +229,26 @@ class Product extends CActiveRecord
         self::model()->deleteAll($condition, $params);
     }
 
+    public static function getPlanList($start,$end){
+        $condition = "create_time > :start and create_time < :end";
+        $params = array(
+            ':start' => $start,
+            ':end' => $end,
+        );
+        $daily_messages = self::model()->findAll($condition, $params);
+
+        $events = array();
+        foreach($daily_messages as $m){
+            $event = array(
+                'product_id' => $m['id'],
+                'title' => $m['goods_number'].'_'.$m['color_name'].'_'.$m['size'],
+                'start' => $m['create_time'],
+                'end' => $m['finished_time'],
+                'className' => 'J_event',
+                'editable' => false,
+                );
+            array_push($events,$event);
+        }
+        return $events;
+    }
 }
