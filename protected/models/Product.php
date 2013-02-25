@@ -199,7 +199,7 @@ class Product extends CActiveRecord
     }
 
     public static function getListByStatus($status){
-        $condition = "status=:status";
+        $condition = "status=:status limit 0, 30";
         $params = array(":status" => $status);
 
         $productList = self::model()->findAll($condition, $params);
