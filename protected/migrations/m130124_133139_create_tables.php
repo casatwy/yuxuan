@@ -213,7 +213,7 @@ class m130124_133139_create_tables extends CDbMigration
             ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
         INSERT INTO  `yuxuan`.`user` (`id` , `name` ,`telephone` ,`password` ,`authority` ,`available`)
-        VALUES (NULL ,  'casa',  '13636495946',  '6752324b14fe3c3c8df0d973e5ae32ed',  'authority',  '0');
+        VALUES (NULL ,  'casa',  '13636495946',  '6752324b14fe3c3c8df0d973e5ae32ed',  '7420738134810',  '0');
         ";
         return Yii::app()->db->createCommand($sql)->execute();
 	}
