@@ -89,7 +89,7 @@
 /*  record  表格  */
 
 .record, .record td, .record th {
-	border:1px solid black;
+	border:1px solid  #dddddd;
 	border-collapse:collapse;
 	text-align:center;
 }
@@ -104,7 +104,7 @@
 }*/
 .selectNa {
 	background-color:#F0F0F0;
-	border:1px solid #E0E0E0;
+	border:1px solid #ccdef2;
 	margin:1px 20px 5px; 
    border-radius: 5px;
 
@@ -126,7 +126,7 @@ a.prepend {
 	cursor:pointer;
 }
  a.prepend:hover ,a.active{
-	background-color:#0088cc;
+	background-color:#a3d3e7;
 	color:#ffffff;
 	text-decoration:none;
    border-radius: 5px 5px 5px 5px;
@@ -190,8 +190,7 @@ a.prepend {
 #createPlanList .record th{
     background:#d6e9fc;
 }
-#createPlanList table, #createPlanList td, #createPlanList th ,#createPlanList tbody{
-border-color: #adb8fd;}
+
 
 /*  dayContent  */
 .daycontent {
@@ -218,10 +217,32 @@ span.select_b:hover ,span.active {
 .record_error {
    border-color: #CC0000;
 }
-/*   input输入框   */
-input[type="text"],input[type="password"]{
-    border:1px #8ec2f5 solid;
+/*  button按钮 input输入框   */
+button,input{
+    border:1px #ccdef2 solid;
+    border-radius:5px;
+    background:#f2efea;
+    margin-left:5px;
 }
+input[type="submit"]{
+    border:0px;
+    background:url(../images/light.png) no-repeat ;
+    width:130px;
+    height:29px;
+}
+input[type="submit"]:hover{
+    background:url(../images/dark.png) no-repeat ;
+}
+input[type="submit"]:active{
+    background:url(../images/active.png) no-repeat ;
+}
+button:hover{
+    background:#e6dfe6;
+}
+  button:active {
+    border: 1px solid #a3d3e7;
+    -webkit-box-shadow: inset 0 0 8px 2px #a3d3e7, 0 1px 0 0 #f2efea;
+    box-shadow: inset 0 0 8px 2px #a3d3e7, 0 1px 0 0 #f2efea; }
 
 /*  文字样式  */
 .big {
