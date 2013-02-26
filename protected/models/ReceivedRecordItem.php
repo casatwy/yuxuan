@@ -13,6 +13,7 @@
  * @property integer $record_maker_id
  * @property integer $product_id
  * @property integer $type
+ * @property integer $client_id
  */
 class ReceivedRecordItem extends CActiveRecord
 {
@@ -42,13 +43,13 @@ class ReceivedRecordItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('received_record_id, goods_number, record_time, record_maker_id, product_id, type', 'required'),
-			array('count, goods_number, record_time, record_maker_id, product_id, type', 'numerical', 'integerOnly'=>true),
+			array('received_record_id, goods_number, record_time, record_maker_id, product_id, type, client_id', 'required'),
+			array('count, goods_number, record_time, record_maker_id, product_id, type, client_id', 'numerical', 'integerOnly'=>true),
 			array('weight', 'numerical'),
 			array('received_record_id', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, received_record_id, weight, count, goods_number, record_time, record_maker_id, product_id, type', 'safe', 'on'=>'search'),
+			array('id, received_record_id, weight, count, goods_number, record_time, record_maker_id, product_id, type, client_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +79,7 @@ class ReceivedRecordItem extends CActiveRecord
 			'record_maker_id' => 'Record Maker',
 			'product_id' => 'Product',
 			'type' => 'Type',
+			'client_id' => 'Client',
 		);
 	}
 
@@ -101,6 +103,7 @@ class ReceivedRecordItem extends CActiveRecord
 		$criteria->compare('record_maker_id',$this->record_maker_id);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('type',$this->type);
+		$criteria->compare('client_id',$this->client_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
