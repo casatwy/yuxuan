@@ -5,15 +5,15 @@
  */
 class Controller extends CController
 {
-	/**
-	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
-	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
-	 */
-	public $layout='//layouts/column1';
-	/**
-	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
-	 */
-	public $menu=array();
+    /**
+     * @var string the default layout for the controller view. Defaults to '//layouts/column1',
+     * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
+     */
+    public $layout='//layouts/column1';
+    /**
+     * @var array context menu items. This property will be assigned to {@link CMenu::items}.
+     */
+    public $menu=array();
 
     public $cs = null;
 
@@ -114,6 +114,7 @@ class Controller extends CController
 
     protected function beforeAction($action){
         parent::beforeAction($action);
+        return true;
  
         if($action == "instock" or $action == "outstock" or $action == "deliveredList"){
             $jqueryUiUrl = $this->baseUrl
@@ -122,7 +123,7 @@ class Controller extends CController
             $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
         }
 
-        if(!$this->authentication($action)){
+        if($this->authentication($action)){
             $this->redirect("/site/login");
         }
 
