@@ -94,10 +94,6 @@ class Controller extends CController
 
         $letgo = false;
 
-        if($action == "login"){
-            return true;
-        }
-
         $authority = Yii::app()->user->getState('authority');
 
         if(empty($authority)){
@@ -109,12 +105,16 @@ class Controller extends CController
                 $letgo = true;
             }
         }
+
+        if($action == "login"){
+            $letgo = true;
+        }
+
         return $letgo;
     }
 
     protected function beforeAction($action){
         parent::beforeAction($action);
-        return true;
  
         if($action == "instock" or $action == "outstock" or $action == "deliveredList"){
             $jqueryUiUrl = $this->baseUrl
@@ -123,21 +123,10 @@ class Controller extends CController
             $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
         }
 
-        if($this->authentication($action)){
+        if(!$this->authentication($action)){
             $this->redirect("/site/login");
         }
 
         return true;
-        //var_dump(Yii::app()->user->getState("authority"));
-        //var_dump($this->getId());
-        //var_dump($action->getId());die();
-
-        //if($action == "printPlan" or $action == "printRecordList"){
-        //    $jqueryUiUrl = $this->baseUrl
-        //                .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
-        //    $this->cs->registerCssFile($jqueryUiUrl."css/print-preview.css");
-        //    $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
-        //    //$this->cs->registerScriptFile($jqueryUiUrl."loadPrinter.js");
-        //}
     }
 }
