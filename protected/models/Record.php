@@ -111,19 +111,16 @@ class Record extends CActiveRecord
         $this->record_time = time();
         $this->record_maker_id = Yii::app()->user->getState("user_id");
         $this->client_id = $data['client_id'];
-        //if($this->save()){
-        //    $this->saveItem($data['data'], $data['client_id']);
-        //}
+        if($this->save()){
+            $this->saveItem($data['data'], $data['client_id']);
+        }
         $data['record_id'] = $this->id;
     }
 
     private function saveItem($data, $client_id){
         foreach($data as $item){
-            $recordItem = null;
-            if($item['itemType'] == self::SILK){
-            }
-            if($item['itemType'] == self::PRODUCT){
-            }
+            $recordItem = new RecordItem($this->saveType);
+			$recordItem->saveItem($item, $this);
         }
     }
 }

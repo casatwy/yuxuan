@@ -16,7 +16,6 @@ function StockHelper(baseUrl){
 
         $(".J_deleteRecord").live('click', function(){            
             $(this).closest(".J_item").remove();
-            //clickDeleteRecord($(this));
         });
 
         $("#J_creatNewRecord").live('click', function(){
@@ -28,8 +27,6 @@ function StockHelper(baseUrl){
             $(".J_record:last").after(html);
             next_id = parseInt(next_id)+1;
             $("#J_next").attr("next-id", next_id);          
-            //clickAddRecord($(this));
-
         });
 
         $("#J_saveRecord").live('click', function(){
@@ -45,7 +42,6 @@ function StockHelper(baseUrl){
             $.get(baseUrl+"/ajaxStorage/getStockTable",
                 {data_type:data_type, goods_number:goods_number},
                 function(html){
-                    //$("#J_templateSilkOrProduct").html(html);
                     record.find(".J_recordContent").append(html);
                 }
             );
@@ -135,6 +131,7 @@ function StockHelper(baseUrl){
             var data_id = $(value).parents(".J_recordContent");
             var itemData = {
                 itemType : $(value).parents(".J_record").find(".J_selector.active").attr('data-type'),
+                goods_number : $(value).parents(".J_record").find(".J_goodsNumber").val(),
                 color_number : item.find(".J_colorNumber").val(),
                 color_name : item.find(".J_colorName").val(),
                 gang_number : item.find(".J_gangNumber").val(),
@@ -145,7 +142,7 @@ function StockHelper(baseUrl){
             };
             result.push(itemData);
         });
-console.log(result);
+        console.log(result);
         return result;
 
     }

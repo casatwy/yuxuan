@@ -5,15 +5,15 @@
  */
 class Controller extends CController
 {
-	/**
-	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
-	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
-	 */
-	public $layout='//layouts/column1';
-	/**
-	 * @var array context menu items. This property will be assigned to {@link CMenu::items}.
-	 */
-	public $menu=array();
+    /**
+     * @var string the default layout for the controller view. Defaults to '//layouts/column1',
+     * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
+     */
+    public $layout='//layouts/column1';
+    /**
+     * @var array context menu items. This property will be assigned to {@link CMenu::items}.
+     */
+    public $menu=array();
 
     public $cs = null;
 
@@ -94,10 +94,6 @@ class Controller extends CController
 
         $letgo = false;
 
-        if($action == "login"){
-            return true;
-        }
-
         $authority = Yii::app()->user->getState('authority');
 
         if(empty($authority)){
@@ -109,6 +105,11 @@ class Controller extends CController
                 $letgo = true;
             }
         }
+
+        if($action == "login"){
+            $letgo = true;
+        }
+
         return $letgo;
     }
 
@@ -127,16 +128,5 @@ class Controller extends CController
         }
 
         return true;
-        //var_dump(Yii::app()->user->getState("authority"));
-        //var_dump($this->getId());
-        //var_dump($action->getId());die();
-
-        //if($action == "printPlan" or $action == "printRecordList"){
-        //    $jqueryUiUrl = $this->baseUrl
-        //                .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
-        //    $this->cs->registerCssFile($jqueryUiUrl."css/print-preview.css");
-        //    $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
-        //    //$this->cs->registerScriptFile($jqueryUiUrl."loadPrinter.js");
-        //}
     }
 }

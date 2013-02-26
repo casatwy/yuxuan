@@ -96,4 +96,23 @@ class Silk extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getProductId($data){
+		$condition = "goods_number = :goods_number and color_number = :color_number and gang_number = :gang_number";
+		$params = array(
+			":goods_number" => $data['goods_number'],
+			":color_number" => $data['color_number'],
+			":gang_number" => $data['gang_number'],
+		);
+		$silk = self::model()->find($condition, $params);
+		if(is_null($silk)){
+			$silk->goods_number = $data['goods_number'];
+			$silk->color_name = $data['color_name'];
+			$silk->color_number = $data['color_number'];
+			$silk->gang_number = $data['gang_number'];
+			$silk->order_id = 0;
+			$silk->save();
+		}
+		return $silk->id;
+	}
 }

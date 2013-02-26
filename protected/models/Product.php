@@ -251,4 +251,26 @@ class Product extends CActiveRecord
         }
         return $events;
     }
+
+    public static function getProductId($data){
+        $condition = "goods_number = :goods_number and color_number = :color_number and size = :size";
+        $params = array(
+            ":goods_number" => $data['goods_number'],
+            ":color_number" => $data['color_number'],
+            ":size" => $data['size'],
+        );
+        $product = self::model()->find($condition, $params);
+        if(is_null($product)){
+            $product = new Product;
+            $product->needle_type = 0;
+            $product->color_name = $data['color_name'];
+            $product->color_number = $data['color_number'];
+            $product->goods_number = $data['goods_number'];
+            $product->size = $data['size'];
+            $product->status = self::PREPEARED;
+            $product->create_time = time();
+            $product->save();
+        }
+        return $product->id;
+    }
 }
