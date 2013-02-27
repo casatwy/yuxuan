@@ -224,6 +224,9 @@ button,input{
     background:#f2efea;
     margin-left:5px;
 }
+button{
+    padding:3px 10px;
+}
 input[type="submit"]{
     border:0px;
     background:url(../images/light.png) no-repeat ;

@@ -15,16 +15,16 @@
         </tr>
         <?php endforeach;?>
         <tr>
-            <td>黄</td>
-            <td>321</td>
-            <td>456</td>
-            <td><input type="text" class="J_weightTable"></input>kg</td>
+            <td class="J_color_name">黄</td>
+            <td class="J_color_number">321</td>
+            <td class="J_gang_number">456</td>
+            <td><input type="text"></input>kg</td>
         </tr>
         <tr>
-            <td>蓝</td>
-            <td>213</td>
-            <td>456</td>
-            <td><input type="text" class="J_weightTable"></input>kg</td>
+            <td class="J_color_name">蓝</td>
+            <td class="J_color_number">213</td>
+            <td class="J_gang_number">456</td>
+            <td><input type="text"></input>kg</td>
         </tr>
     </tbody>
 </table>
@@ -36,16 +36,32 @@
             <th>尺码</th>
             <th>件数</th> 
         </tr>
+    </tbody>
+    <tbody class="J_bignumberTable">
         <tr>
-            <td rowspan="3">红</td>
+            <td rowspan="3" class="J_color_name">红</td>
         </tr>
-        <tr>
+        <tr class="J_smallnumberTable">
             <td>S</td>
-            <td><input type="text" class="J_numberTable"></input> 
+            <td><input type="text"></input> 
         </tr>
-        <tr>
+        <tr class="J_smallnumberTable">
             <td>M</td>
-            <td><input type="text" class="J_numberTable"></input>
+            <td><input type="text"></input>
+                          
+        </tr>
+    </tbody>
+    <tbody class="J_bignumberTable">
+        <tr>
+            <td rowspan="3" class="J_color_name">紫</td>
+        </tr>
+        <tr class="J_smallnumberTable">
+            <td>L</td>
+            <td><input type="text"></input> 
+        </tr>
+        <tr class="J_smallnumberTable">
+            <td>XL</td>
+            <td><input type="text"></input>
                           
         </tr>
         <!--<?php foreach($products as $key=>$product): ?>
