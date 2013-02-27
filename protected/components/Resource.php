@@ -28,8 +28,12 @@ class Resource extends CComponent{
                 array_push($result['color_name'], $product->color_name);
             }
 
-            if(!in_array($product->gang_number, $result['gang_number'])){
-                array_push($result['gang_number'], $product->gang_number);
+            if(isset($product->gang_number)){
+                if(!in_array($product->gang_number, $result['gang_number'])){
+                    array_push($result['gang_number'], $product->gang_number);
+                }
+            }else{
+                array_push($result['gang_number'], "手工输入");
             }
 
             if(!in_array($product->color_number, $result['color_number'])){
