@@ -109,8 +109,19 @@ function StockHelper(baseUrl){
             itemType:itemType,
             data:saveData
         }, function(result){
-            console.log(result);
+            location.href = getRedirectUrl();
         }, "json");
+    }
+
+    function getRedirectUrl(){
+        var url = baseUrl+"/storage/";
+        if($("#J_recordType").attr("data-type") == "入"){
+            url+="instock";
+        }
+        if($("#J_recordType").attr("data-type") == "出"){
+            url+="outstock";
+        }
+        return url;
     }
 
     function getSaveUrl(){

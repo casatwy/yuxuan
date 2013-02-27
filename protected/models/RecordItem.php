@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'delivered_record_item':
  * @property integer $id
- * @property string $delivered_record_id
+ * @property string $record_id
  * @property double $weight
  * @property integer $count
  * @property integer $goods_number
@@ -53,13 +53,13 @@ class RecordItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('delivered_record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'required'),
+			array('record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'required'),
 			array('count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'numerical', 'integerOnly'=>true),
 			array('weight', 'numerical'),
-			array('delivered_record_id', 'length', 'max'=>20),
+			array('record_id', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, delivered_record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'safe', 'on'=>'search'),
+			array('id, record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -81,7 +81,7 @@ class RecordItem extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'delivered_record_id' => 'Delivered Record',
+			'record_id' => 'Delivered Record',
 			'weight' => 'Weight',
 			'count' => 'Count',
 			'goods_number' => 'Goods Number',
@@ -105,7 +105,7 @@ class RecordItem extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('delivered_record_id',$this->delivered_record_id,true);
+		$criteria->compare('record_id',$this->record_id,true);
 		$criteria->compare('weight',$this->weight);
 		$criteria->compare('count',$this->count);
 		$criteria->compare('goods_number',$this->goods_number);
