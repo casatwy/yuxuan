@@ -33,12 +33,13 @@ class StorageController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = "id desc";
 
-        $count = ($type == Record::OUT_RECORD)?(DeliveredRecord::model()->count($criteria)):(ReceivedRecord::model()->count($criteria));
+        $record = new Record($type);
+        $count = $record->count($criteria);
         $pages = new CPagination($count);
 
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = ($type == Record::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
+        $recordList = $record->findAll($criteria);
 
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");

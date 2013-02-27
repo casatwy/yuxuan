@@ -12,7 +12,7 @@
 class Record extends CActiveRecord
 {
 
-    private $saveType;
+    public $saveType;
     const IN_RECORD = 0;
     const OUT_RECORD = 1;
 
@@ -23,6 +23,7 @@ class Record extends CActiveRecord
 
     public function __construct($saveType){
         $this->saveType = $saveType;
+        $this->_md = new CActiveRecordMetaData($this);
     }
 	/**
 	 * Returns the static model of the specified AR class.
