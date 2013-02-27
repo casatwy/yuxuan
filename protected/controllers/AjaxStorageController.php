@@ -115,12 +115,12 @@ class AjaxStorageController extends Controller
             $criteria->condition = "id=".$_GET['data']['recordId'];
         }
         $criteria->order = "id desc";
-        $count = ($_GET['type'] == self::OUT_RECORD)?(DeliveredRecord::model()->count($criteria)):(ReceivedRecord::model()->count($criteria));
+        $count = ($_GET['type'] == Record::OUT_RECORD)?(DeliveredRecord::model()->count($criteria)):(ReceivedRecord::model()->count($criteria));
         $pages = new CPagination($count);
 
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = ($_GET['type'] == self::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
+        $recordList = ($_GET['type'] == Record::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
 
 
         $html = $this->renderPartial("recordList", array(
@@ -137,7 +137,7 @@ class AjaxStorageController extends Controller
 
         $searchCriteria = new CDbCriteria();
         $searchCriteria->distinct = true;
-        $searchCriteria->select = "delivered_record_id";
+        $searchCriteria->select = "record_id";
         $searchCriteria->condition = "1=1";
 
         $recordIdList = array();
@@ -161,16 +161,16 @@ class AjaxStorageController extends Controller
             $searchCriteria->condition .= $this->getTime($data['end_time']) + 60*60*24;
         }
 
-        $searchedRecordList = null;
-        if($type == self::OUT_RECORD){
+        $searchedRecordList = array();
+        if($type == Record::OUT_RECORD){
             $searchedRecordList = DeliveredRecordItem::model()->findAll($searchCriteria); 
         }
-        if($type == self::IN_RECORD){
+        if($type == Record::IN_RECORD){
             $searchedRecordList = ReceivedRecordItem::model()->findAll($searchCriteria); 
         }
 
         foreach($searchedRecordList as $searchedRecord){
-            array_push($recordIdList, $searchedRecord->delivered_record_id);
+            array_push($recordIdList, $searchedRecord->record_id);
         }
         $recordIdList = implode(",", $recordIdList);
 

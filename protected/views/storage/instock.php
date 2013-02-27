@@ -1,16 +1,16 @@
 <?php 
-    if($type == StorageController::IN_RECORD){
+    if($type == Record::IN_RECORD){
         echo '	<img class="span-1" src="../../../images/instock.png" /><h2 class="span-3">入库记录</h2>';
     }
-    if($type == StorageController::OUT_RECORD){
+    if($type == Record::OUT_RECORD){
         echo '	<img class="span-1" src="../../../images/outstock.png" /><h2 class="span-3">出库记录</h2>';
     }
 ?> 
 <a id="plus" class="span-17 last" href="<?php 
-    if($type == StorageController::IN_RECORD){
+    if($type == Record::IN_RECORD){
         echo $this->baseUrl.'/storage/createInStock';
     }
-    if($type == StorageController::OUT_RECORD){
+    if($type == Record::OUT_RECORD){
         echo $this->baseUrl.'/storage/createOutStock'; 
     }
 ?>" > </a>

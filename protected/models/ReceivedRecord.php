@@ -11,5 +11,7 @@
  */
 class ReceivedRecord extends Record
 {
-
+    public function tableName(){
+        return "received_record";
+    }
 }

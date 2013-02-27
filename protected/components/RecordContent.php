@@ -2,8 +2,6 @@
 
 class RecordContent extends CController
 {
-    const OUT_RECORD = 1;
-    const IN_RECORD = 2;
     const PLAN = 3;
 
     public function __construct(){
@@ -17,9 +15,9 @@ class RecordContent extends CController
         );
 
         $recordData = null;
-        if($type == self::OUT_RECORD){
+        if($type == Record::OUT_RECORD){
             $recordData = DeliveredRecordItem::model()->findAll($condition, $params);
-        }else if($type == self::IN_RECORD){
+        }else if($type == Record::IN_RECORD){
             $recordData = ReceivedRecordItem::model()->findAll($condition, $params);
         }
 
@@ -88,9 +86,9 @@ class RecordContent extends CController
 
     public function printInfomation($id,$type){
         $record = null;
-        if($type == self::IN_RECORD){
+        if($type == Record::IN_RECORD){
             $record = ReceivedRecord::model()->findByPk($id);
-        }elseif($type == self::OUT_RECORD){
+        }elseif($type == Record::OUT_RECORD){
             $record = DeliveredRecord::model()->findByPk($id);
         } 
 
@@ -159,10 +157,10 @@ class RecordContent extends CController
         }
 
         $searchedRecordList = null;
-        if($type == self::OUT_RECORD){
+        if($type == Record::OUT_RECORD){
             $searchedRecordList = DeliveredRecordItem::model()->findAll($searchCriteria); 
         }
-        if($type == self::IN_RECORD){
+        if($type == Record::IN_RECORD){
             $searchedRecordList = ReceivedRecordItem::model()->findAll($searchCriteria); 
         }
         if($type == self::PLAN){

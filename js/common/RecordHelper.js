@@ -69,7 +69,7 @@ function RecordHelper(baseUrl){
         var count = ui.newPanel.find("img").length;
         var record_type = ui.newHeader.attr("data-record-type");
         var appendUrl;
-        if(record_type == '1' || record_type == '2'){
+        if(record_type == '0' || record_type == '1'){
             appendUrl = "/ajaxStorage/getRecordContent";
         }else if(record_type == '3'){
             appendUrl = "/ajaxPlan/showPlanContent"; 

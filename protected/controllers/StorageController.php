@@ -1,9 +1,6 @@
 <?php
 class StorageController extends Controller
 {
-    const OUT_RECORD = 1;
-    const IN_RECORD = 2;
-
     public function init(){
         parent::init();
         $this->layout = "//layouts/storage";
@@ -25,23 +22,23 @@ class StorageController extends Controller
     }
 
     public function actionOutstock(){
-        $this->getRecordList(self::OUT_RECORD);
+        $this->getRecordList(Record::OUT_RECORD);
     }
 
     public function actionInstock(){
-        $this->getRecordList(self::IN_RECORD);
+        $this->getRecordList(Record::IN_RECORD);
     }
 
     private function getRecordList($type){
         $criteria = new CDbCriteria();
         $criteria->order = "id desc";
 
-        $count = ($type == self::OUT_RECORD)?(DeliveredRecord::model()->count($criteria)):(ReceivedRecord::model()->count($criteria));
+        $count = ($type == Record::OUT_RECORD)?(DeliveredRecord::model()->count($criteria)):(ReceivedRecord::model()->count($criteria));
         $pages = new CPagination($count);
 
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = ($type == self::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
+        $recordList = ($type == Record::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
 
         $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
         $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
@@ -88,12 +85,12 @@ class StorageController extends Controller
         $this->cs->registerScriptFile($this->jsUrl."search.js");
         $criteria = RecordContent::getCriteria($_GET,$_GET['type']);
 
-        $count = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
+        $count = ($_GET['type'] == Record::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
         $pages = new CPagination($count);
 
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = ($_GET['type'] == self::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
+        $recordList = ($_GET['type'] == Record::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
 
         $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
 
