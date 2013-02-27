@@ -62,5 +62,5 @@
     <span class="span-15 last">件数:
         <input class="J_count" type="text"></input>
     </span>
-    <span class="prepend-10 span-5 last"><button>删除</button></span>
+    <span class="prepend-10 span-5 last"><button class="J_deleteRecord">删除</button></span>
 </div>
