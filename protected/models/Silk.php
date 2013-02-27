@@ -97,7 +97,7 @@ class Silk extends CActiveRecord
 		));
 	}
 
-	public function getProductId($data){
+	public static function getProductId($data){
 		$condition = "goods_number = :goods_number and color_number = :color_number and gang_number = :gang_number";
 		$params = array(
 			":goods_number" => $data['goods_number'],
@@ -106,6 +106,7 @@ class Silk extends CActiveRecord
 		);
 		$silk = self::model()->find($condition, $params);
 		if(is_null($silk)){
+            $silk = new Silk;
 			$silk->goods_number = $data['goods_number'];
 			$silk->color_name = $data['color_name'];
 			$silk->color_number = $data['color_number'];

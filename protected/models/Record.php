@@ -108,19 +108,47 @@ class Record extends CActiveRecord
 	}
 
     public function saveRecord($data){
+        $this->_new = true;
         $this->record_time = time();
         $this->record_maker_id = Yii::app()->user->getState("user_id");
         $this->client_id = $data['client_id'];
         if($this->save()){
-            $this->saveItem($data['data'], $data['client_id']);
+            $this->saveItem($data['data']);
         }
-        $data['record_id'] = $this->id;
     }
 
-    private function saveItem($data, $client_id){
+    private function saveItem($data){
         foreach($data as $item){
             $recordItem = new RecordItem($this->saveType);
 			$recordItem->saveItem($item, $this);
+        }
+    }
+
+    public function getClient(){
+        $condition = "id = :client_id";
+        $params = array(
+            ':client_id' => $this->client_id
+        );
+        $client = Client::model()->find($condition, $params);
+
+        if(is_null($client)){
+            return "未知客户";
+        }else{
+            return $client->name;
+        }
+    }
+
+    public function getMaker(){
+        $condition = "id = :record_maker_id";
+        $params = array(
+            ':record_maker_id' => $this->record_maker_id
+        );
+        $user = User::model()->find($condition, $params);
+
+        if(is_null($user)){
+            return "未知建立人";
+        }else{
+            return $user->name;
         }
     }
 }

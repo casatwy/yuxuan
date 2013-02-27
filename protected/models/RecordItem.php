@@ -121,6 +121,7 @@ class RecordItem extends CActiveRecord
 	}
 
 	public function saveItem($item, $record){
+        $this->_new = true;
 		$this->record_id = $record->id;
 		$this->weight = $item['weight'];
 		if(isset($item['count'])){
@@ -139,10 +140,10 @@ class RecordItem extends CActiveRecord
 
 	public function getProductId($itemData){
 		$product_id = null;
-		if($itemData == Record::SILK){
+		if($itemData['itemType'] == Record::SILK){
 			$product_id = Silk::getProductId($itemData);
 		}
-		if($itemData == Record::PRODUCT){
+		if($itemData['itemType'] == Record::PRODUCT){
 			$product_id = Product::getProductId($itemData);
 		}
 		return $product_id;
