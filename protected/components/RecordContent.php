@@ -96,9 +96,9 @@ class RecordContent extends CController
 
         $condition = "name=:name";
         $params = array(
-            ":name" => $record->record_maker,
+            ":name" => $record->getMaker(),
         );
-        $user = Users::model()->find($condition, $params);
+        $user = User::model()->find($condition, $params);
         $info = array(
             "type" => $type,
             "record" => $record,

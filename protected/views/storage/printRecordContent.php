@@ -9,7 +9,7 @@
     }
 ?> 
 
-	<span class="span-18 prepend-1" >客户：<span><?php echo $info['record']->provider->name;;?></span></span>
+	<span class="span-18 prepend-1" >客户：<span><?php echo $info['record']->getMaker();?></span></span>
 	<span class="span-5 last">单据号：<span></span>
 	<?php 
     	if($info['type'] == StorageController::IN_RECORD){
@@ -53,11 +53,11 @@
 </table>
 <br />
 	<span class="span-23 last prepend-1">如有疑问，请您回传给我们！
-		<span><?php echo $info['record']->record_maker; ?></span>&nbsp;:&nbsp;
+		<span><?php echo $info['record']->getMaker(); ?></span>&nbsp;:&nbsp;
 		<span><?php echo $info['user']->telephone; ?></span>
 	</span>
 
-<span class="span-5">制单人：<span><?php echo $info['record']->record_maker; ?></span></span>
+<span class="span-5">制单人：<span><?php echo $info['record']->getMaker(); ?></span></span>
 <span class="span-5">发货人：<span></span></span>
 <span class="span-5">审核人：<span></span></span>
 <span class="span-5">进货人：<span></span></span>

@@ -19,6 +19,8 @@ class Record extends CActiveRecord
     const SILK = 0;
     const PRODUCT = 1;
 
+    public $maker = null;
+
     public function __construct($saveType){
         $this->saveType = $saveType;
     }
@@ -139,16 +141,23 @@ class Record extends CActiveRecord
     }
 
     public function getMaker(){
-        $condition = "id = :record_maker_id";
-        $params = array(
-            ':record_maker_id' => $this->record_maker_id
-        );
-        $user = User::model()->find($condition, $params);
-
-        if(is_null($user)){
-            return "未知建立人";
+        $maker = null;
+        if(!is_null($this->maker)){
+            $maker =  $this->maker;
         }else{
-            return $user->name;
+            $condition = "id = :record_maker_id";
+            $params = array(
+                ':record_maker_id' => $this->record_maker_id
+            );
+            $user = User::model()->find($condition, $params);
+
+            if(is_null($user)){
+                $maker = "未知建立人";
+            }else{
+                $maker = $user->name;
+            }
+            $this->maker = $maker;
         }
+        return $maker;
     }
 }
