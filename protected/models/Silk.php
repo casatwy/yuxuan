@@ -98,11 +98,18 @@ class Silk extends CActiveRecord
 	}
 
 	public static function getProductId($data){
+        $gangNumber = null;
+        if(isset($data['gang_number'])){
+            $gangNumber = $data['gang_number'];
+        }else{
+            $gangNumber = "无";
+        }
+
 		$condition = "goods_number = :goods_number and color_number = :color_number and gang_number = :gang_number";
 		$params = array(
 			":goods_number" => $data['goods_number'],
 			":color_number" => $data['color_number'],
-			":gang_number" => $data['gang_number'],
+			":gang_number" => $gangNumber,
 		);
 		$silk = self::model()->find($condition, $params);
 		if(is_null($silk)){
@@ -110,7 +117,7 @@ class Silk extends CActiveRecord
 			$silk->goods_number = $data['goods_number'];
 			$silk->color_name = $data['color_name'];
 			$silk->color_number = $data['color_number'];
-			$silk->gang_number = $data['gang_number'];
+			$silk->gang_number = $gangNumber;
 			$silk->order_id = 0;
 			$silk->save();
 		}
