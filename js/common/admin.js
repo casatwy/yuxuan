@@ -15,6 +15,9 @@ function Admin(baseUrl){
             closeOnEscapse:false,
             closeOnClick:false
         });
+        $('.J_deldate').live("click",function(){
+            alert("删除");
+        });
 
         $('#J_usersubmit').live('click', function(){
             if($('#J_type').val() == 'addUser'){
