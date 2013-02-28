@@ -273,4 +273,17 @@ class Product extends CActiveRecord
         }
         return $product->id;
     }
+
+    public static function getByGoodsNumber($goods_number){
+        $table = array();
+        $condition = "goods_number=:goods_number";
+        $params = array(
+            ":goods_number" => htmlspecialchars($goods_number)
+        );
+        $products = Product::model()->findAll($condition,$params);
+        foreach($products as $product){
+            $table[$product->color_name][] = $product->size;
+        }
+        return $table;
+    }
 }

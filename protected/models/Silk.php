@@ -116,4 +116,13 @@ class Silk extends CActiveRecord
 		}
 		return $silk->id;
 	}
+
+    public static function getByGoodsNumber($goods_number){
+        $condition = "goods_number=:goods_number";
+        $params = array(
+            ":goods_number" => htmlspecialchars($goods_number)
+        );
+        $silks = Silk::model()->findAll($condition,$params);
+        return $silks;
+    }
 }
