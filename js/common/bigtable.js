@@ -18,8 +18,7 @@ function BigTable(baseUrl){
                 html = html.replace(/data-id=\"\"/, "data-id=\""+next_id+"\"");
                 next_id = parseInt(next_id)+1;
             }
-
-            $(this).closest("#J_bigTable").append(html);
+            $(html).css("display","none").fadeIn(500).appendTo($(this).closest("#J_bigTable"));
             $("#J_nextId").attr("next-id", next_id);
         
         });
@@ -28,7 +27,9 @@ function BigTable(baseUrl){
             var length = $("#J_bigTable tbody").length;
 
             if (length != 2 )
-                $(this).closest(".J_bigRow").remove();
+                $(this).closest(".J_bigRow").fadeOut(500,function(){
+                    $(this).remove();
+                    });
 
         });
 
@@ -39,7 +40,8 @@ function BigTable(baseUrl){
             var count = $(".J_smallTable").html().toString();
             var smallTable = $("<tr data-id=\""+next_id+"\" class=\"J_smallTable\"></tr>").html(count);
 
-            $(this).closest(".J_bigRow").append(smallTable);
+            //$(this).closest(".J_bigRow").append(smallTable);
+            $(smallTable).css("display","none").fadeIn(500).appendTo($(this).closest(".J_bigRow"));
             next_id = parseInt(next_id)+1;
             $("#J_nextId").attr("next-id", next_id);
             bigRow.find(".J_rowspan").attr("rowspan",length+1);
@@ -51,8 +53,10 @@ function BigTable(baseUrl){
             var length = bigRow.children("tr").length;
 
             if (length > 2) {
-                    $(this).closest(".J_smallTable").remove();
+                $(this).closest(".J_smallTable").fadeOut(500,function(){
+                    $(this).remove();
                     bigRow.find(".J_rowspan").attr("rowspan",length-1);
+                    });
                 }
         
         });
