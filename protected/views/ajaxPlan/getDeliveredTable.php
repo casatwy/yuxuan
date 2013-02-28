@@ -24,16 +24,24 @@
             <th>尺码</th>
             <th>件数</th> 
         </tr>
-        <?php foreach($products as $color => $productList): ?>
-        <tr>
-        <td rowspan="<?php echo count($productList)+1; ?>">红</td>
-        </tr>
-            <?php foreach($productList as $size): ?>
-            <tr>
-            <td><?php echo $size; ?></td>
-                <td><input type="text" class="J_numberTable"></input> 
-            </tr>
-            <?php endforeach; ?>
-        <?php endforeach; ?>
     </tbody>
+    <?php foreach($products as $color => $productSizeList): ?>
+        <tbody class="J_bignumberTable">
+            <tr>
+                <td rowspan="<?php echo count($productSizeList)+1; ?>" class="J_color_name">
+                    <?php echo $color; ?>
+                </td>
+            </tr>
+            <?php foreach($productSizeList as $size): ?>
+                <tr class="J_smallnumberTable">
+                    <td>
+                        <?php echo $size; ?>
+                    </td>
+                    <td>
+                        <input type="text"></input> 
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    <?php endforeach; ?>
 </table>

@@ -22,20 +22,24 @@ class RecordContent extends CController
         }
 
         $product = null;
-        $silk = null;
         foreach($recordData as $recordItem){
             if($recordItem->type == Record::SILK){
-                $silk = Silk::model()->findByPk($recordItem->product_id);
+                $product = Silk::model()->findByPk($recordItem->product_id);
             }else{
                 $product = Product::model()->findByPk($recordItem->product_id);
-                $silk = Silk::model()->findByPk($product->silk_id);
             }
+
+            $gang_number = "无";
+            if(isset($product->gang_number)){
+                $gang_number = $product->gang_number;
+            }
+
             $record = array(
                 'type' => $recordItem->type,
                 'goods_number' => $recordItem->goods_number, 
-                'color_number' => $silk->color_number, 
-                'color_name' => $silk->color_name,
-                'gang_number' => $silk->gang_number,
+                'color_number' => $product->color_number, 
+                'color_name' => $product->color_name,
+                'gang_number' => $gang_number,
                 'needle_type' => isset($product->needle_type)?$product->needle_type:"无",
                 'size' => isset($product->size)?$product->size:"无",
                 'weight' => $recordItem->weight,

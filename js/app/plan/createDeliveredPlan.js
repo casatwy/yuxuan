@@ -38,17 +38,26 @@ function CreateDeliveredPlan(baseUrl){
         $(".J_show").each(function(index, value){
             var item = $(value);
             if(!$(item).closest("#J_addDeliverdPlan").hasClass("hide")) {console.log()
-                var itemDate = {};
-                itemDate.weight = [];
-                $(item).find("table:first input").each(function(idx, val){
-                     itemDate.weight.push({weight:$(this).val()});  
+
+                $(item).find("table:first tr:gt(0)").each(function(idx, val){
+                    var itemDate = {};
+                    itemDate.color_name = $(this).find(".J_color_name").text();
+                    itemDate.color_number = $(this).find(".J_color_number").text();
+                    itemDate.gang_number = $(this).find(".J_gang_number").text();
+                    itemDate.weight = $(this).find("input").val(); 
+                    plandata.push(itemDate); 
                     });
-    
-                itemDate.number = [];
-                $(item).find("table:last input").each(function(idx, val){
-                    itemDate.number.push({number:$(this).val()});
+
+                $(item).find(".J_bignumberTable").each(function(idx, val){
+                    var numberDate = {};
+                    numberDate.color = $(val).find(".J_color_name").text();
+                    numberDate.spec = [];
+                    $(val).find(".J_smallnumberTable").each(function(idxNum, valNum){
+                    numberDate.spec.push({size:$(valNum).find("td:eq(0)").text(),number:$(valNum).find("input").val()});
+                        })
+                    plandata.push(numberDate);
                     });
-             plandata.push(itemDate);
+
                 }
         }); 
         console.log(plandata);
