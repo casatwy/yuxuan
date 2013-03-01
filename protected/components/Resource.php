@@ -34,8 +34,6 @@ class Resource extends CComponent{
                 if(!in_array($product->gang_number, $result['gang_number'])){
                     array_push($result['gang_number'], $product->gang_number);
                 }
-            }else{
-                array_push($result['gang_number'], "手工输入");
             }
 
             if(!in_array($product->color_number, $result['color_number'])){
