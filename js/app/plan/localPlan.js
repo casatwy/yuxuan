@@ -1,6 +1,8 @@
 $(document).ready(function(){
     var localPlan = new LocalPlan($("#J_baseUrl").val());
     localPlan.init();
+    var popupDiagram = new PopupDiagram($("#J_baseUrl").val());
+    popupDiagram.init();
 });
 
 function LocalPlan(baseUrl){
@@ -91,5 +93,38 @@ function LocalPlan(baseUrl){
             //});
             return true;
         }
+    }
+}
+
+function PopupDiagram(baseUrl){
+    this.init = function(){
+        bindEvent();
+    };
+
+    function bindEvent(){
+        /*
+         *
+         * in model Product's afterSave function will set it to finish automatically
+         *
+         * */
+        //$(".J_Popup_finish").live("click", function(){
+        //    alert();
+        //});
+
+        $(".J_Popup_checkRecord").live("click", function(){
+            redirectToCheckRecord($(this));
+        });
+
+        $(".J_Popup_checkProduceHistory").live("click", function(){
+            alert();
+        });
+
+        $(".J_Popup_saveAll").live("click", function(){
+            alert();
+        });
+    }
+
+    function redirectToCheckRecord(actionItem){
+        location.href = baseUrl + "/storage/search/goodsNumber/"+actionItem.attr("data-goods-number") + "/type/" + actionItem.attr('data-type');
     }
 }

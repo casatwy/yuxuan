@@ -29,8 +29,9 @@ class StorageController extends Controller
         $this->getRecordList(Record::IN_RECORD);
     }
 
-    private function getRecordList($type){
+    private function getRecordList($type, $goods_number = null){
         $criteria = new CDbCriteria();
+
         $criteria->order = "id desc";
 
         $record = new Record($type);
@@ -83,17 +84,19 @@ class StorageController extends Controller
     }
 
     public function actionSearch(){
-        $this->cs->registerScriptFile($this->jsUrl."search.js");
         $criteria = RecordContent::getCriteria($_GET,$_GET['type']);
 
-        $count = ($_GET['type'] == Record::OUT_RECORD)?(DeliverRecord::model()->count($criteria)):(ReceiveRecord::model()->count($criteria));
+        $record = new Record($_GET['type']);
+        $count = $record->count($criteria);
+
         $pages = new CPagination($count);
 
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = ($_GET['type'] == Record::OUT_RECORD)?(DeliverRecord::model()->findAll($criteria)):(ReceiveRecord::model()->findAll($criteria));
+        $recordList = $record->findAll($criteria);
 
-        $this->cs->registerScriptFile($this->jsCommon."StockHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."RecordHelper.js");
+        $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
 
         $this->render("instock", array(
             'type' => $_GET['type'],

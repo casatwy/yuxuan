@@ -290,6 +290,10 @@ class Product extends CActiveRecord
     }
 
     public function afterSave(){
+        if($this->finished_count == $this->total_count && $this->status != Product::FINISHED){
+            $this->status = Product::FINISHED;
+            $this->save();
+        }
         Silk::getProductId($this->attributes);
     }
 

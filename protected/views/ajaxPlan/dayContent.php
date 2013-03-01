@@ -32,14 +32,24 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <button>生产结束</button>
-        <button>查看出货记录</button>
-        <button>查看入库记录</button>
-        <button>查看生产历史</button>
+        <!--<button class="J_Popup_finish">生产结束</button>-->
+        <button class="J_Popup_checkRecord"
+                data-type="<?php echo Record::OUT_RECORD; ?>"
+                data-goods-number="<?php echo $goods_number; ?>">
+            查看出货记录
+        </button>
+        <button class="J_Popup_checkRecord"
+                data-type="<?php echo Record::IN_RECORD; ?>"
+                data-goods-number="<?php echo $goods_number; ?>">
+            查看入库记录
+        </button>
+        <button class="J_Popup_checkProduceHistory">
+            查看生产历史
+        </button>
     </div>
     <?php endforeach; ?>
 </div>
-<button>全部保存</button>
+<button class="J_Popup_saveAll">全部保存</button>
 
 <?php
 //'id' => string '1' (length=1)

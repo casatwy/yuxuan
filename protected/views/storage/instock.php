@@ -1,9 +1,9 @@
 <?php 
     if($type == Record::IN_RECORD){
-        echo '	<img class="span-1" src="../../../images/instock.png" /><h2 class="span-3">入库记录</h2>';
+        echo '<img class="span-1" src="'.$this->baseUrl.'/images/instock.png" /><h2 class="span-3">入库记录</h2>';
     }
     if($type == Record::OUT_RECORD){
-        echo '	<img class="span-1" src="../../../images/outstock.png" /><h2 class="span-3">出库记录</h2>';
+        echo '<img class="span-1" src="'.$this->baseUrl.'/images/outstock.png" /><h2 class="span-3">出库记录</h2>';
     }
 ?> 
 <a id="plus" class="span-17 last" href="<?php 
