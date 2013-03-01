@@ -20,13 +20,13 @@
             <td><?php echo $plan['size']?></td>
             <td><?php echo $plan['quantity']?></td>
             <td>
-                <a href="<?php echo $this->baseUrl; ?>/storage/search?goodsNumber=<?php echo $plan['goods_number']; ?>&type=1"
+            <a href="<?php echo $this->baseUrl; ?>/storage/search?goodsNumber=<?php echo $plan['goods_number']; ?>&type=<?php echo Record::OUT_RECORD; ?>"
                     target="_blank">
                     出货记录
                 </a>
             </td>
             <td>
-                <a href="<?php echo $this->baseUrl; ?>/storage/search?goodsNumber=<?php echo $plan['goods_number']; ?>&type=2"
+            <a href="<?php echo $this->baseUrl; ?>/storage/search?goodsNumber=<?php echo $plan['goods_number']; ?>&type=<?php echo Record::IN_RECORD; ?>"
                     target="_blank">
                     入货记录
                 </a>

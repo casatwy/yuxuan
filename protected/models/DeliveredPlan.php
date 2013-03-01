@@ -89,4 +89,58 @@ class DeliveredPlan extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public static function savePlan($data){
+        $plan = new DeliveredPlan;
+        $plan->client_id = $data['client_id'];
+        $plan->record_time = time();
+        $plan->plan_maker_id = Yii::app()->user->getState("user_id");
+        if($plan->save()){
+            var_dump(__line__);
+            DeliveredPlanItem::saveItem($plan, $data);
+        }
+    }
+
+    public function getClientName(){
+        return Client::model()->findByPk($this->client_id)->name;
+    }
+
+    public function getPlanMakerName(){
+        return User::model()->findByPk($this->plan_maker_id)->name;
+    }
+
+    public function getPlanMakerTelephone(){
+        return User::model()->findByPk($this->plan_maker_id)->telephone;
+    }
+
+    public static function getPlanContent($plan_id){
+        $planList = array();
+        $condition = "delivered_plan_id=:plan_id";
+        $params = array(
+            ":plan_id" => htmlspecialchars($plan_id)
+        );
+        $planData = DeliveredPlanItem::model()->findAll($condition,$params);
+
+        $product = null;
+        $silk = null;
+        foreach($planData as $planItem){
+            $product = Product::model()->findByPk($planItem->product_id);
+            $silk = Silk::model()->findByPk($planItem->silk_id);
+            
+            $plan = array(
+                'plan_id' => $plan_id,
+                'provider' => Client::getNameById($planItem->client_id),
+                'plan_maker' => $planItem->getPlanMakerName(),
+                'telephone' => $planItem->getMakerTelephone(),
+                'goods_number' => $planItem->goods_number,
+                'color_number' => $silk->color_number,
+                'color_name' => $silk->color_name,
+                'needle_type' => $product->needle_type,
+                'size' => $product->size,
+                'quantity' => $planItem->count
+            );
+            array_push($planList,$plan);
+        }
+        return $planList;
+    }
 }

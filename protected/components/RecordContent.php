@@ -50,44 +50,6 @@ class RecordContent extends CController
         return $recordList;
     }
 
-    public function getPlanContent($plan_id){
-        $planList = array();
-        $condition = "delivered_plan_id=:plan_id";
-        $params = array(
-            ":plan_id" => htmlspecialchars($plan_id)
-        );
-        $planData = DeliveredPlanItem::model()->findAll($condition,$params);
-
-        $condition = "name=:name";
-        $params = array(
-            ":name" => $planData[0]->plan_maker
-        );
-        $user = Users::model()->find($condition, $params);
-
-        $product = null;
-        $silk = null;
-        foreach($planData as $planItem){
-            $product = Product::model()->findByPk($planItem->product_id);
-            $silk = Silk::model()->findByPk($product->silk_id);
-            
-            $plan = array(
-                'plan_id' => $plan_id,
-                'provider' => $planItem->provider->name,
-                'plan_maker' => $planItem->plan_maker,
-                'telephone' => $user->telephone,
-                'goods_number' => $planItem->goods_number,
-                'color_number' => $silk->color_number,
-                'color_name' => $silk->color_name,
-                'needle_type' => $product->needle_type,
-                'size' => $product->size,
-                'type' => $product->getTypeName(),
-                'quantity' => $planItem->quantity
-            );
-            array_push($planList,$plan);
-        }
-        return $planList;
-    }
-
     public function printInfomation($id,$type){
         $record = null;
         if($type == Record::IN_RECORD){
@@ -169,6 +131,10 @@ class RecordContent extends CController
         }
         if($type == self::PLAN){
             $searchedRecordList = DeliveredPlanItem::model()->findAll($searchCriteria); 
+        }
+
+        if(is_null($searchedRecordList)){
+            $searchedRecordList = array();
         }
 
         foreach($searchedRecordList as $searchedRecord){

@@ -10,8 +10,10 @@ function CreateDeliveredPlan(baseUrl){
 
     function bindEvent(){
         $('#J_saveAll').live('click',function(){
-            alert('save');
             var data = getDeliveredPlanData();
+            $.post(baseUrl+"/ajaxPlan/saveDeliveredPlan", {data:data}, function(){
+                location.href=baseUrl+"/plan/deliveredList";
+            });
         });
 
         $('.J_goOn').live('click',function(){
@@ -34,34 +36,29 @@ function CreateDeliveredPlan(baseUrl){
         });
     }
     function getDeliveredPlanData(){
-        var plandata = [];
-        $(".J_show").each(function(index, value){
-            var item = $(value);
-            if(!$(item).closest("#J_addDeliverdPlan").hasClass("hide")) {console.log()
-
-                $(item).find("table:first tr:gt(0)").each(function(idx, val){
-                    var itemDate = {};
-                    itemDate.color_name = $(this).find(".J_color_name").text();
-                    itemDate.color_number = $(this).find(".J_color_number").text();
-                    itemDate.gang_number = $(this).find(".J_gang_number").text();
-                    itemDate.weight = $(this).find("input").val(); 
-                    plandata.push(itemDate); 
-                    });
-
-                $(item).find(".J_bignumberTable").each(function(idx, val){
-                    var numberDate = {};
-                    numberDate.color = $(val).find(".J_color_name").text();
-                    numberDate.spec = [];
-                    $(val).find(".J_smallnumberTable").each(function(idxNum, valNum){
-                    numberDate.spec.push({size:$(valNum).find("td:eq(0)").text(),number:$(valNum).find("input").val()});
-                        })
-                    plandata.push(numberDate);
-                    });
-
-                }
-        }); 
-        console.log(plandata);
-        return plandata;    
+        var silk = [];
+        var product = [];
+        $("#J_silkTable input").each(function(index, value){
+            var silkInput = $(value);
+            silk.push({
+                silk_id:silkInput.attr("data-silk-id"),
+                weight:silkInput.val(),
+            });
+        });
+        $("#J_productTable input").each(function(index, value){
+            var productInput = $(value);
+            product.push({
+                product_id:productInput.attr("data-product-id"),
+                count:productInput.val(),
+            });
+        });
+        var planData = {
+            client_id:$("#J_selectProvider").attr('provider'),
+            goods_number:$("#J_goodsNumber").val(),
+            silk:silk,
+            product:product,
+        };
+        return planData;    
     }
 }
 

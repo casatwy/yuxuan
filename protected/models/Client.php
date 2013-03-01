@@ -86,4 +86,8 @@ class Client extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public static function getNameById($id){
+        return self::model()->findByPk($id)->name;
+    }
 }

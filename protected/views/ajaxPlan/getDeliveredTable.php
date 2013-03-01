@@ -1,5 +1,5 @@
 <table class="record span-15 last">
-    <tbody>
+    <tbody id="J_silkTable">
         <tr>
             <th>颜色</th>
             <th>色号</th>
@@ -11,7 +11,7 @@
             <td><?php echo $silk->color_name; ?></td>
             <td><?php echo $silk->color_number; ?></td>
             <td><?php echo $silk->gang_number; ?></td>
-            <td><input type="text" class="J_weightTable"></input>kg</td>
+            <td><input type="text" class="J_weightTable" data-silk-id="<?php echo $silk->id; ?>"></input>kg</td>
         </tr>
         <?php endforeach;?>
     </tbody>
@@ -25,20 +25,20 @@
             <th>件数</th> 
         </tr>
     </tbody>
-    <?php foreach($products as $color => $productSizeList): ?>
-        <tbody class="J_bignumberTable">
+    <?php foreach($products as $color => $productList): ?>
+        <tbody id="J_productTable">
             <tr>
-                <td rowspan="<?php echo count($productSizeList)+1; ?>" class="J_color_name">
+                <td rowspan="<?php echo count($productList)+1; ?>" class="J_color_name">
                     <?php echo $color; ?>
                 </td>
             </tr>
-            <?php foreach($productSizeList as $size): ?>
+            <?php foreach($productList as $product): ?>
                 <tr class="J_smallnumberTable">
                     <td>
-                        <?php echo $size; ?>
+                        <?php echo $product->size; ?>
                     </td>
                     <td>
-                        <input type="text"></input> 
+                    <input type="text" data-product-id="<?php echo $product->id; ?>"></input> 
                     </td>
                 </tr>
             <?php endforeach; ?>

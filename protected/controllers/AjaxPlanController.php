@@ -25,8 +25,7 @@ class AjaxPlanController extends Controller
         $planList = null;
         if(isset($_GET['record_id'])){
             $plan_id = $_GET['record_id'];
-            $recordContent = new RecordContent();
-            $planList = $recordContent->getPlanContent($plan_id);
+            $planList = DeliveredPlan::getPlanContent($plan_id);
         }
 
         echo $this->renderPartial("showPlanContent",array(
@@ -79,7 +78,7 @@ class AjaxPlanController extends Controller
     }
 
     public function actionSaveDeliveredPlan(){
-        Yii::app()->end();
+        DeliveredPlan::savePlan($_POST['data']);
     }
 
     public function actionSearchDeliveredPlan(){

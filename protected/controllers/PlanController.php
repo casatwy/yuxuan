@@ -41,13 +41,8 @@ class PlanController extends Controller
     }
 
     public function actionCreateDeliveredPlan(){
-        //$type = Type::model()->findAll();
         $this->cs->registerScriptFile($this->jsCommon."selectProvider.js");
         $this->cs->registerScriptFile($this->jsUrl."createDeliveredPlan.js");
-        //$this->render("createDeliveredPlan", array(
-        //    'productTypes' => Type::model()->findAll("id != 1"),
-        //    'type' => $type,
-        //));
         $this->render("createDeliveredPlan");
     }
 

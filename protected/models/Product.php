@@ -284,7 +284,7 @@ class Product extends CActiveRecord
         );
         $products = Product::model()->findAll($condition,$params);
         foreach($products as $product){
-            $table[$product->color_name][] = $product->size;
+            $table[$product->color_name][] = $product;
         }
         return $table;
     }

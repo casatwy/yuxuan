@@ -106,4 +106,27 @@ class DeliveredPlanItem extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public static function saveItem($plan, $data){
+        foreach($data['silk'] as $silk){
+            $item = new DeliveredPlanItem;
+            $item->silk_id = $silk['silk_id'];
+            $item->count = $data['product']['count'];
+            $item->weight = $silk['weight'];
+            $item->goods_number = $data['goods_number'];
+            $item->record_time = $plan->record_time;
+            $item->product_id = $data['product']['product_id'];
+            $item->delivered_plan_id = $plan->id;
+            $item->client_id = $plan->client_id;
+            $item->save();
+        }
+    }
+
+    public function getPlanMakerName(){
+        DeliveredPlan::model()->findByPk($this->delivered_plan_id)->getPlanMakerName();
+    }
+
+    public function getMakerTelephone(){
+        DeliveredPlan::model()->findByPk($this->delivered_plan_id)->getPlanMakerTelephone();
+    }
 }

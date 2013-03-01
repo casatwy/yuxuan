@@ -1,6 +1,6 @@
 
 <span id="J_baseUrl" value="<?php echo $this->baseUrl; ?>"></span>
-<img class="span-1" src="../../../images/deliveredList.png" /><h2 class="span-3 ">外发计划</h2>
+<img class="span-1" src="<?php echo $this->baseUrl; ?>/images/deliveredList.png" /><h2 class="span-3 ">外发计划</h2>
 
 <a id="plus" class="span-17 last" href="<?php echo $this->baseUrl; ?>/plan/createDeliveredPlan" ></a>
 <hr>
@@ -21,10 +21,10 @@
     <?php foreach($planList as $plan): ?>
 
     <J_HEADER data-record-id="<?php echo $plan->id; ?>" data-record-type="<?php echo $type; ?>">
-        客户名:<?php echo $plan->provider->name; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        客户名:<?php echo $plan->getClientName(); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         时间:<?php echo date("Y-m-d H:i:s", $plan->record_time); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         单号:RC<?php echo $plan->id; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        制单人:<?php echo $plan->plan_maker; ?>
+        制单人:<?php echo $plan->getPlanMakerName(); ?>
     </J_HEADER>
     <div><img src="<?php echo $this->baseUrl; ?>/images/mediumloading.gif"></img></div>
 
