@@ -286,4 +286,8 @@ class Product extends CActiveRecord
         }
         return $table;
     }
+
+    public function afterSave(){
+        Silk::getProductId($this->attributes);
+    }
 }

@@ -8,9 +8,9 @@
         </tr>
         <?php foreach($silks as $silk): ?>
         <tr>
-            <td><?php $silk->color_name; ?></td>
-            <td><?php $silk->color_number; ?></td>
-            <td><?php $silk->gang_number; ?></td>
+            <td><?php echo $silk->color_name; ?></td>
+            <td><?php echo $silk->color_number; ?></td>
+            <td><?php echo $silk->gang_number; ?></td>
             <td><input type="text" class="J_weightTable"></input>kg</td>
         </tr>
         <?php endforeach;?>
