@@ -38,7 +38,7 @@ class AjaxPlanController extends Controller
     public function actionGetDayContent(){
         $start = $_GET['start'];
         $end = $start + 24*60*60; 
-        $productList = Product::getList($start, $end);
+        $productList = Product::getListForCalendar($start, $end);
 
         echo $this->renderPartial("dayContent", array(
             'productList' => $productList
@@ -128,9 +128,8 @@ class AjaxPlanController extends Controller
     }
 
     public function actionGetPlanByGoodsNumber(){
-        $goods_number = $_GET['goods_number'];
-        $status = $_GET['status'];
-        $this->renderPartial("getPlanByGoodsNumber");
+        $planData = Product::getPlanByGoodsNumber($_GET['goods_number'], $_GET['status']);
+        $this->renderPartial("getPlanByGoodsNumber", array("planData" => $planData));
     }
 
     public function actionGetDeliveredTable(){
@@ -138,11 +137,9 @@ class AjaxPlanController extends Controller
         $silks = Silk::getByGoodsNumber($goods_number);
         $products = Product::getByGoodsNumber($goods_number);
 
-        $html = $this->renderPartial("getDeliveredTable",array(
+        $this->renderPartial("getDeliveredTable",array(
             'products' => $products,
             'silks' => $silks
         ));
-
-        echo $html;
     }
 }

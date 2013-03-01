@@ -1,9 +1,9 @@
 <div class="span-15">
     <h2>生产计划</h2>
     <hr>
-    <span class="span-5">货号：<span></span></span>
-    <span class="span-5">客户名：<span></span></span>
-    <span class="span-5 last">创建时间：<span></span></span>
+    <span class="span-5">货号：<?php echo $planData['goods_number']; ?><span></span></span>
+    <span class="span-5">客户名：<?php echo $planData['client']; ?><span></span></span>
+    <span class="span-5 last">创建时间：<?php echo $planData['create_time']; ?><span></span></span>
 
     <table class="record span-15">
         <tbody>
@@ -16,27 +16,19 @@
             </tr>
         </tbody>
         <tbody>
+            <?php foreach($planData['data'] as $color => $productList):?>
             <tr>
-                <td rowspan="4">蓝</td>
+            <td rowspan="<?php echo count($productList)+1; ?>"><?php echo $color; ?></td>
             </tr>
-            <tr>
-                <td>M</td>
-                <td>100</td>
-                <td>50</td>
-                <td>50</td>
-            </tr>
-            <tr>
-                <td>L</td>
-                <td>1000</td>
-                <td>500</td>
-                <td>500</td>
-            </tr>
-            <tr>
-                <td>XL</td>
-                <td>200</td>
-                <td>50</td>
-                <td>150</td>
-            </tr>
+                <?php foreach($productList as $product): ?>
+                <tr>
+                    <td><?php echo $product->size; ?></td>
+                    <td><?php echo $product->total_count; ?></td>
+                    <td><?php echo $product->finished_count; ?></td>
+                    <td><?php echo $product->total_count - $product->finished_count; ?></td>
+                </tr>
+                <?php endforeach; ?>
+            <?php endforeach;?>
         </tbody>
     </table>
 </div>

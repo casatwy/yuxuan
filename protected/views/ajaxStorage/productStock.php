@@ -26,19 +26,6 @@
         </span>
     </div>
     <div class="span-15">
-        <span class="span-7">缸号:
-            <?php if(!empty($attributeList['gang_number'])): ?>
-            <select class="J_gangNumber">
-                <?php foreach($attributeList['gang_number'] as $gang_number): ?>
-                <option value ="<?php echo $gang_number; ?>"><?php echo $gang_number; ?></option>
-                <?php endforeach; ?>
-                <option value="input">手工输入</option>
-            </select>
-            <?php else: ?>
-            <input class="J_gangNumber" type="text"></input>
-            <?php endif; ?>
-            </select>
-        </span>
         <span class="span-8 last">尺码:
             <?php if(!empty($attributeList['size'])): ?>
             <select class="J_size">
