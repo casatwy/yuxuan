@@ -30,6 +30,7 @@ class RecordItem extends CActiveRecord
     private $saveType;
     public function __construct($saveType){
         $this->saveType = $saveType;
+        $this->_md = new CActiveRecordMetaData($this);
     }
 
     /**

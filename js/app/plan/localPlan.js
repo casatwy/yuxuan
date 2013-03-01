@@ -125,6 +125,6 @@ function PopupDiagram(baseUrl){
     }
 
     function redirectToCheckRecord(actionItem){
-        location.href = baseUrl + "/storage/search/goodsNumber/"+actionItem.attr("data-goods-number") + "/type/" + actionItem.attr('data-type');
+        location.href = baseUrl+"/storage/search/goodsNumber/"+actionItem.attr("data-goods-number")+"/type/"+actionItem.attr('data-type');
     }
 }

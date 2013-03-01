@@ -27,7 +27,7 @@ function SelectProvider(baseUrl){
             submitProvider($(this));
         });
 
-        $(".J_createProvider").live('keypress', function(){
+        $(".J_createProvider").live('keyup', function(){
             validateProvider($(this));
         });
     }
@@ -77,6 +77,7 @@ function SelectProvider(baseUrl){
                 return false;
             }
         });
+
         if(buttonAvailable){
             $("#J_submitProvider").removeAttr("disabled");
         }
