@@ -42,9 +42,9 @@ function StockHelper(baseUrl){
             $.get(baseUrl+"/ajaxStorage/getStockTable",
                 {data_type:data_type, goods_number:goods_number},
                 function(html){
-                    record.find(".J_recordContent").append(html);
-                }
-            );
+                record.find(".J_recordContent").append(html);
+                    }
+                );  
         });
 
         $("select").live("change", function(){
