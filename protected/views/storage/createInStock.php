@@ -6,24 +6,24 @@
         <a provider="none" id="J_selectProvider" href="http://yuxuan.dev/ajaxStorage/selectprovider">点击选择客户</a>
     </span>
 
-    <div class="J_record" data-id="1">
+    <div class="J_record J_note" data-id="1">
         <span class="span-6">货号:
-            <input type="text" class="J_goodsNumber" ></input>
+            <input type="text" class="J_goodsNumber J_goodsNum"></input>
         </span>
         <span class="span-3"><span data-id="1" class="J_selector select_b active" data-type="0">毛纱</span></span>
         <span class="span-3"><span data-id="1" class="J_selector select_b" data-type="1">产品</span></span>
-        <span class=" span-3 last"><button class="J_continue">继续</button></span>    
+        <span class=" span-3 last"><button class="J_continue J_goOnButton" disabled>继续</button></span>    
         <div class="J_recordContent" data-id="1">
     
         </div>
     </div>
 
     <div class="hide" id="J_template">
-        <div class="J_recordTemplate" data-id="">
-            <span class="span-6">货号:<input type="text" class="J_goodsNumber" ></input></span>
+        <div class="J_recordTemplate J_note" data-id="">
+            <span class="span-6">货号:<input type="text" class="J_goodsNumber J_goodsNum"></input></span>
             <span class="span-3"><span data-id="" class="J_selector select_b active" data-type="0">毛纱</span></span>
             <span class="span-3"><span data-id="" class="J_selector select_b" data-type="1">产品</span></span>
-            <span class=" span-3 last"><button class="J_continue">继续</button></span>    
+            <span class=" span-3 last"><button class="J_continue J_goOnButton" disabled>继续</button></span>    
             <div class="J_recordContent" data-id="">
             </div>
         </div>

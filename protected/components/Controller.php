@@ -85,7 +85,7 @@ class Controller extends CController
         $jqueryUiUrl = $this->baseUrl.Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.jquery-ui')).'/';
         $this->cs->registerCssFile($jqueryUiUrl."css/smoothness/jquery-ui-1.9.2.custom.min.css");
         $this->cs->registerScriptFile($jqueryUiUrl."js/jquery-ui-min.js");
-
+        $this->cs->registerScriptFile($this->jsCommon."judge.js");
         Yii::app()->user->setReturnUrl('/storage/instock');
     }
 

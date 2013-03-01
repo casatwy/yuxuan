@@ -19,7 +19,7 @@ function CreateDeliveredPlan(baseUrl){
             var goodsNumber = $(plan).find('#J_goodsNumber').val();
             $.get(baseUrl+'/ajaxPlan/getDeliveredTable', {goods_number : goodsNumber}, function(html){
                 $(plan).find('.J_show').html(html);
-            })
+               })
         });
 
         $('.J_addPlan').live('click',function(){
