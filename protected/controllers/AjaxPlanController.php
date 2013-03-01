@@ -141,4 +141,8 @@ class AjaxPlanController extends Controller
             'silks' => $silks
         ));
     }
+
+    public function actionSaveFinishedCount(){
+        Product::saveFinishedCount($_POST['data']);
+    }
 }

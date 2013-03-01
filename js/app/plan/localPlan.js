@@ -115,16 +115,32 @@ function PopupDiagram(baseUrl){
             redirectToCheckRecord($(this));
         });
 
-        $(".J_Popup_checkProduceHistory").live("click", function(){
-            alert();
-        });
+        //$(".J_Popup_checkProduceHistory").live("click", function(){
+        //    alert();
+        //});
 
         $(".J_Popup_saveAll").live("click", function(){
-            alert();
+            var data = getSaveData();
+            $.post(baseUrl+"/ajaxPlan/saveFinishedCount", {data:data}, function(){
+                $.nmTop().close();
+            });
         });
     }
 
     function redirectToCheckRecord(actionItem){
         location.href = baseUrl+"/storage/search/goodsNumber/"+actionItem.attr("data-goods-number")+"/type/"+actionItem.attr('data-type');
+    }
+
+    function getSaveData(){
+        var data = [];
+        $("#J_dailyPlanTab input").each(function(index, value){
+            if($(value).val().length != 0){
+                data.push({
+                    product_id:$(value).attr("data-product-id"),
+                    finished_count:$(value).val(),
+                });
+            }
+        });
+        return data;
     }
 }

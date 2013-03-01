@@ -23,7 +23,7 @@
                     <?php foreach($itemList as $size => $item): ?>
                     <tr>  
                         <td><?php echo $size; ?></td>
-                        <td><input type="text"></input></td>
+                        <td><input type="text" data-product-id="<?php echo $item['id']; ?>"></input></td>
                         <td><?php echo $item['finished_count']; ?></td>
                         <td><?php echo $item['total_count']; ?></td>
                         <td><?php echo $item['total_count'] - $item['finished_count']; ?></td>

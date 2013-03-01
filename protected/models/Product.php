@@ -327,4 +327,12 @@ class Product extends CActiveRecord
         }
         return $data;
     }
+
+    public static function saveFinishedCount($data){
+        foreach($data as $item){
+            $product = self::model()->findByPk($item['product_id']);
+            $product->finished_count += $item['finished_count'];
+            $product->save();
+        }
+    }
 }
