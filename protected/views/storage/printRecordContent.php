@@ -1,10 +1,10 @@
 <div class="container font-2" id="J_page">
 <h1 class="center big">上海星位针织服装有限公司<h1>
 <?php 
-    if($info['type'] == StorageController::IN_RECORD){
+    if($info['type'] == Record::IN_RECORD){
         echo '<h2 class="center">入库单</h2>';
     }
-    if($info['type'] == StorageController::OUT_RECORD){
+    if($info['type'] == Record::OUT_RECORD){
         echo '<h2  class="center">出库单</h2>';
     }
 ?> 
@@ -12,9 +12,9 @@
 	<span class="span-18 prepend-1" >客户：<span><?php echo $info['record']->getMaker();?></span></span>
 	<span class="span-5 last">单据号：<span></span>
 	<?php 
-    	if($info['type'] == StorageController::IN_RECORD){
+    	if($info['type'] == Record::IN_RECORD){
     	    echo 'RC'.$info['record']->id;
-    	}elseif($info['type'] == StorageController::OUT_RECORD){
+    	}elseif($info['type'] == Record::OUT_RECORD){
     	    echo 'DL'.$info['record']->id;
     	}
 	?></span>

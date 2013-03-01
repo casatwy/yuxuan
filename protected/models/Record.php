@@ -161,4 +161,8 @@ class Record extends CActiveRecord
         }
         return $maker;
     }
+
+    public function getUser(){
+        return User::model()->findByPk($this->record_maker_id);
+    }
 }

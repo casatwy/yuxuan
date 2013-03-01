@@ -14,12 +14,8 @@ class RecordContent extends CController
             ":record_id" => htmlspecialchars($record_id)
         );
 
-        $recordData = null;
-        if($type == Record::OUT_RECORD){
-            $recordData = DeliveredRecordItem::model()->findAll($condition, $params);
-        }else if($type == Record::IN_RECORD){
-            $recordData = ReceivedRecordItem::model()->findAll($condition, $params);
-        }
+        $recordItemList = new RecordItem($type);
+        $recordData = $recordItemList->findAll($condition, $params);
 
         $product = null;
         foreach($recordData as $recordItem){
@@ -51,12 +47,8 @@ class RecordContent extends CController
     }
 
     public function printInfomation($id,$type){
-        $record = null;
-        if($type == Record::IN_RECORD){
-            $record = ReceivedRecord::model()->findByPk($id);
-        }elseif($type == Record::OUT_RECORD){
-            $record = DeliveredRecord::model()->findByPk($id);
-        } 
+        $record = new Record($type);
+        $record = $record->findByPk($id);
 
         $condition = "name=:name";
         $params = array(
@@ -66,7 +58,7 @@ class RecordContent extends CController
         $info = array(
             "type" => $type,
             "record" => $record,
-            "user" => $user
+            "user" => $record->getUser(),
         );
         return $info;
     }

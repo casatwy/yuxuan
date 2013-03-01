@@ -43,9 +43,7 @@
                 data-goods-number="<?php echo $goods_number; ?>">
             查看入库记录
         </button>
-        <button class="J_Popup_checkProduceHistory">
-            查看生产历史
-        </button>
+        <!--<button class="J_Popup_checkProduceHistory">查看生产历史</button>-->
     </div>
     <?php endforeach; ?>
 </div>
