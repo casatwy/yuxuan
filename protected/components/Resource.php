@@ -20,8 +20,10 @@ class Resource extends CComponent{
             "needle_type" => null,
         );
         foreach($productList as $product){
-            if(!in_array($product->size, $result['size'])){
-                array_push($result['size'], $product->size);
+            if(isset($product->size)){
+                if(!in_array($product->size, $result['size'])){
+                    array_push($result['size'], $product->size);
+                }
             }
 
             if(!in_array($product->color_name, $result['color_name'])){
@@ -40,7 +42,9 @@ class Resource extends CComponent{
                 array_push($result['color_number'], $product->color_number);
             }
 
-            $result['needle_type'] = $product->needle_type;
+            if(isset($product->needle_type)){
+                $result['needle_type'] = $product->needle_type;
+            }
         }
         return $result;
     }
