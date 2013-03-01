@@ -17,6 +17,7 @@
  * @property integer $status
  * @property integer $create_time
  * @property integer $finished_time
+ * @property integer $finished_count
  */
 class Product extends CActiveRecord
 {
@@ -51,11 +52,11 @@ class Product extends CActiveRecord
         // will receive user inputs.
         return array(
             array('needle_type, color_name, color_number, goods_number, size, status, create_time', 'required'),
-            array('needle_type, color_number, goods_number, order_id, price, total_count, client_id, status, create_time, finished_time', 'numerical', 'integerOnly'=>true),
+            array('needle_type, color_number, goods_number, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count', 'numerical', 'integerOnly'=>true),
             array('color_name, size', 'length', 'max'=>10),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, needle_type, color_name, color_number, goods_number, size, order_id, price, total_count, client_id, status, create_time, finished_time', 'safe', 'on'=>'search'),
+            array('id, needle_type, color_name, color_number, goods_number, size, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count', 'safe', 'on'=>'search'),
         );
     }
 
@@ -89,6 +90,7 @@ class Product extends CActiveRecord
             'status' => 'Status',
             'create_time' => 'Create Time',
             'finished_time' => 'Finished Time',
+            'finished_count' => 'Finished Count',
         );
     }
 
@@ -116,6 +118,7 @@ class Product extends CActiveRecord
         $criteria->compare('status',$this->status);
         $criteria->compare('create_time',$this->create_time);
         $criteria->compare('finished_time',$this->finished_time);
+        $criteria->compare('finished_count',$this->finished_count);
 
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
@@ -135,6 +138,7 @@ class Product extends CActiveRecord
                 $product->size = $item['size'];
                 $product->total_count = $item['count'];
                 $product->create_time = time();
+                $product->finished_count = 0;
                 $product->status = self::PREPEARED;
                 if(!$product->save()){
                     self::model()->deleteByPk($idList);
@@ -147,21 +151,21 @@ class Product extends CActiveRecord
         return 1;
     }
 
-    public static function getList($start, $end){
+    public static function getListForCalendar($start, $end){
         $condition = "(finished_time > :start or finished_time IS NULL ) and create_time < :end";
         $params = array(
             ":start" => $start,
             ":end" => $end
         );
         $productList = self::model()->findAll($condition, $params);
-        $itemList = self::formatList($productList);
+        $itemList = self::formatListForCalendar($productList);
         return $itemList;
     }
 
     public static function getFinishedPlan(){
     }
 
-    public static function formatList($productList){
+    public static function formatListForCalendar($productList){
         $itemList = array();
         foreach($productList as $product){
             if(!array_key_exists($product->goods_number, $itemList)){

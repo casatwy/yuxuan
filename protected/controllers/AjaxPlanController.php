@@ -38,7 +38,7 @@ class AjaxPlanController extends Controller
     public function actionGetDayContent(){
         $start = $_GET['start'];
         $end = $start + 24*60*60; 
-        $productList = Product::getList($start, $end);
+        $productList = Product::getListForCalendar($start, $end);
 
         echo $this->renderPartial("dayContent", array(
             'productList' => $productList
