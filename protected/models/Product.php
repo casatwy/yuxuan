@@ -95,8 +95,8 @@ class Product extends CActiveRecord
     }
 
     /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     * Retrieves a list of models based on the current search/filter condition.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter condition.
      */
     public function search()
     {
@@ -184,7 +184,7 @@ class Product extends CActiveRecord
         foreach($productList as $product){
             if(!array_key_exists($product->goods_number, $itemList)){
                 $itemList[$product->goods_number] = array(
-                    'client' => $product->getClientName(),
+                    'client' => $product->getClientName($product->client_id),
                     'create_time' => date("Y-m-d H:i:s", $product->create_time),
                 );
             }
@@ -214,10 +214,8 @@ class Product extends CActiveRecord
         return $itemList;
     }
 
-    public function getClientName(){
-        $sql = "select name from `client` where id=1;";
-        $result = Yii::app()->db->createCommand($sql)->query()->read();
-        return $result['name'];
+    public static function getClientName($client_id){
+        return Client::model()->findByPk($client_id)->name;
     }
 
     public static function setStatus($goods_number, $status){
@@ -293,5 +291,36 @@ class Product extends CActiveRecord
 
     public function afterSave(){
         Silk::getProductId($this->attributes);
+    }
+
+    public static function getPlanByGoodsNumber($goods_number, $status){
+        $condition = "goods_number = :goods_number and status = :status";
+        $params = array(
+            ":goods_number" => $goods_number,
+            ":status" => $status,
+        );
+
+        $productList = self::model()->findAll($condition, $params);
+
+        if(is_null($productList)){
+            return array();
+        }else{
+            $data = array(
+                "goods_number" => $goods_number,
+                "client" => $productList[0]->getClientName($productList[0]->client_id),
+                "create_time" => date("Y-m-d H:i:s", $productList[0]->create_time),
+                "data" => array()
+            );
+            $data['data'] = self::formatPlan($productList);
+            return $data;
+        }
+    }
+
+    public static function formatPlan($productList){
+        $data = array();
+        foreach($productList as $product){
+            $data[$product->color_name][] = $product;
+        }
+        return $data;
     }
 }
