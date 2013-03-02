@@ -51,7 +51,7 @@ function CreateDeliveredPlan(baseUrl){
         });
 
         $('.J_goOn').live('click',function(){
-            var plan =  $(this).parents('.J_deliverdPlan');
+            var plan = $(this).parents('.J_deliverdPlan');
             var goodsNumber = $(plan).find('#J_goodsNumber').val();
             $.get(baseUrl+'/ajaxPlan/getDeliveredTable', {goods_number : goodsNumber}, function(html){
                 $(plan).find('.J_show').html(html);
