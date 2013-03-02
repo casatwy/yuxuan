@@ -16,7 +16,7 @@ function StockHelper(baseUrl){
         var success = true;
         $(".J_record").each(function(indContent, valContent){
             if($(valContent).find(".J_item").length == 0){
-                $.jGrowl("请填写货号后按继续!", { life: 5000 });
+                $.jGrowl("请先填写货号.", { header:"提示", life: 5000 });
                 success = false; 
                 return false;
                 }
@@ -25,17 +25,16 @@ function StockHelper(baseUrl){
                 $(valContent).find(".J_item").each(function(index, value){
                     $(value).find("input").each(function(ind, val){
                         if($(val).val().length == 0){
-                            $.jGrowl("请填写完整!", { life: 5000 });
+                            $.jGrowl("请将数据填写完整.", { header:"错误", life: 5000 });
                             success = false; 
                             return  false;
-                            }
-                        else{
+                        }else{
                             return true;
-                            }
-                        });
+                        }
                     });
-                }
-            });
+                });
+            }
+        });
         return success ; 
      };
     function bindEvent(){
@@ -59,10 +58,10 @@ function StockHelper(baseUrl){
             var judge = new Judge($("#J_baseUrl").val());
             if(!judge.checkAvailable()){
                 return;
-                 }
+            }
             if(!stockHelper.judgeRecord()){
                 return;
-                }
+            }
         
             saveRecord($(this));
         });
@@ -76,9 +75,13 @@ function StockHelper(baseUrl){
             $.get(baseUrl+"/ajaxStorage/getStockTable",
                 {data_type:data_type, goods_number:goods_number},
                 function(html){
-                record.find(".J_recordContent").append(html);
+                    if(html == 0){
+                        $.jGrowl("请确保输入正确的货号。", {header:"错误", life: 5000});
+                    }else{
+                        record.find(".J_recordContent").append(html);
                     }
-                );  
+                }
+            );  
         });
 
         $("select").live("change", function(){
