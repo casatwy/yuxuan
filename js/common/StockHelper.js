@@ -84,13 +84,13 @@ function StockHelper(baseUrl){
             );  
         });
 
-        //$("select").live("change", function(){
-        //    changeToInput($(this));
-        //});
+        $("select").live("change", function(){
+            changeToInput($(this));
+        });
 
-        //$(".J_return").live("click",function(){
-        //    returnToSelect($(this));
-        //});
+        $(".J_return").live("click",function(){
+            returnToSelect($(this));
+        });
 
         $(".J_selector").live("click", function(){
             selectorClicked($(this));
