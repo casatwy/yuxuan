@@ -1,6 +1,7 @@
 $(document).ready(function(){
     stockHelper = new StockHelper($("#J_baseUrl").val());
     stockHelper.init();
+
     //var helper = new ContentHelper();
     //helper.setContent("casa", "casacasa");
     //var fetchedContent = helper.getContent("casacasa");
@@ -11,7 +12,32 @@ function StockHelper(baseUrl){
     this.init = function(){
         bindEvent();
     };
+    this.judgeRecord = function(){
+        var success = true;
+        $(".J_record").each(function(indContent, valContent){
+            if($(valContent).find(".J_item").length == 0){
+                $.jGrowl("请填写货号后按继续!", { life: 5000 });
+                success = false; 
+                return false;
+                }
 
+            else {
+                $(valContent).find(".J_item").each(function(index, value){
+                    $(value).find("input").each(function(ind, val){
+                        if($(val).val().length == 0){
+                            $.jGrowl("请填写完整!", { life: 5000 });
+                            success = false; 
+                            return  false;
+                            }
+                        else{
+                            return true;
+                            }
+                        });
+                    });
+                }
+            });
+        return success ; 
+     };
     function bindEvent(){
 
         $(".J_deleteRecord").live('click', function(){            
@@ -30,6 +56,14 @@ function StockHelper(baseUrl){
         });
 
         $("#J_saveRecord").live('click', function(){
+            var judge = new Judge($("#J_baseUrl").val());
+            if(!judge.checkAvailable()){
+                return;
+                 }
+            if(!stockHelper.judgeRecord()){
+                return;
+                }
+        
             saveRecord($(this));
         });
 
