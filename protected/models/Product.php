@@ -242,7 +242,7 @@ class Product extends CActiveRecord
     }
 
     public static function getPlanList($start,$end){
-        $condition = "create_time > :start and create_time < :end";
+        $condition = "create_time > :start and create_time < :end and status = 1";
         $params = array(
             ':start' => $start,
             ':end' => $end,
