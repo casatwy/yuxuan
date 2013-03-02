@@ -15,21 +15,19 @@ function CreateDeliveredPlan(baseUrl){
                 $.jGrowl("请填写货号后按继续!", { life: 5000 });
                 success = false; 
                 return false;
-                }
-            else{
+            }else{
                 $(value).find(".J_show").each(function(ind, val){
                     $(val).find("input").each(function(indshow, valshow){
                         if($(valshow).val().length == 0){
                             $.jGrowl("请填写完整!", { life: 5000 });
                             success = false; 
                             return  false;
-                            }
-                        else{
+                        }else{
                             return true;
-                            }
-                        });
+                        }
                     });
-                }
+                });
+            }
         });
         return success ;
     }
@@ -39,23 +37,23 @@ function CreateDeliveredPlan(baseUrl){
             var judge = new Judge($("#J_baseUrl").val());
             if(!judge.checkAvailable()){
                 return;
-                 }
+            }
             if(!createDeliveredPlan.judgePlan()){
                 return;
-                }
+            }
 
             var data = getDeliveredPlanData();
             $.post(baseUrl+"/ajaxPlan/saveDeliveredPlan", {data:data}, function(){
-                location.href=baseUrl+"/plan/deliveredList";
+                //location.href=baseUrl+"/plan/deliveredList";
             });
         });
 
         $('.J_goOn').live('click',function(){
-            var plan =  $(this).parents('.J_deliverdPlan');
+            var plan = $(this).parents('.J_deliverdPlan');
             var goodsNumber = $(plan).find('#J_goodsNumber').val();
             $.get(baseUrl+'/ajaxPlan/getDeliveredTable', {goods_number : goodsNumber}, function(html){
                 $(plan).find('.J_show').html(html);
-               })
+            });
         });
 
         $('.J_addPlan').live('click',function(){

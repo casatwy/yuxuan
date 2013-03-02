@@ -195,6 +195,11 @@ class AjaxStorageController extends Controller
         $goods_number = $_GET['goods_number'];
         $attributeList = Resource::getAttributesByGoodsNumber($goods_number, $data_type);
 
+        if(is_null($attributeList)){
+            echo 0;
+            Yii::app()->end();
+        }
+
         if($data_type == Record::SILK){
             echo $this->renderPartial("silkStock", array("attributeList" => $attributeList));
         }

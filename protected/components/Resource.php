@@ -12,6 +12,10 @@ class Resource extends CComponent{
             $productList = Product::model()->findAll($condition, $params);
         }
 
+        if(empty($productList)){
+            return null;
+        }
+
         $result = array(
             "size" => array(),
             "color_name" => array(),
