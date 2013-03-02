@@ -29,7 +29,8 @@ class AjaxPlanController extends Controller
         }
 
         echo $this->renderPartial("showPlanContent",array(
-            'planList' => $planList,
+            'silkList' => $planList['silk'],
+            'productList' => $planList['product'],
             'plan_id' => $_GET['record_id'],
         ));
     }
