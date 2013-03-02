@@ -6,7 +6,6 @@
                 <?php foreach($attributeList['color_number'] as $color_number): ?>
                 <option value ="<?php echo $color_number; ?>"><?php echo $color_number; ?></option>
                 <?php endforeach; ?>
-                <option value="input">手工输入</option>
             </select>
             <?php else: ?>
             <input class="J_colorNumber" type="text"></input>
@@ -18,7 +17,6 @@
                 <?php foreach($attributeList['color_name'] as $color_name): ?>
                 <option value ="<?php echo $color_name; ?>"><?php echo $color_name; ?></option>
                 <?php endforeach; ?>
-                <option value="input">手工输入</option>
             </select>
             <?php else: ?>
             <input class="J_colorName" type="text"></input>
@@ -32,7 +30,6 @@
                 <?php foreach($attributeList['size'] as $size): ?>
                 <option value ="<?php echo $size; ?>"><?php echo $size; ?></option>
                 <?php endforeach; ?>
-                <option value="input">手工输入</option>
             </select>
             <?php else: ?>
             <input class="J_size" type="text"></input>
