@@ -195,7 +195,7 @@ class AjaxStorageController extends Controller
         $goods_number = $_GET['goods_number'];
         $attributeList = Resource::getAttributesByGoodsNumber($goods_number, $data_type);
 
-        if(is_null($attributeList)){
+        if(is_null($attributeList) && $data_type != Record::SILK){
             echo 0;
             Yii::app()->end();
         }
