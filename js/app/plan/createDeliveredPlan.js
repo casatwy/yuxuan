@@ -44,7 +44,7 @@ function CreateDeliveredPlan(baseUrl){
 
             var data = getDeliveredPlanData();
             $.post(baseUrl+"/ajaxPlan/saveDeliveredPlan", {data:data}, function(){
-                //location.href=baseUrl+"/plan/deliveredList";
+                location.href=baseUrl+"/plan/deliveredList";
             });
         });
 

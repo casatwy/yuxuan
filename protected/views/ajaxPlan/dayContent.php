@@ -20,9 +20,9 @@
                 <tr>
                 <td rowspan="<?php echo count($itemList)+1; ?>"><?php echo $color; ?></td>
                 </tr>
-                    <?php foreach($itemList as $size => $item): ?>
+                    <?php foreach($itemList as $item): ?>
                     <tr>  
-                        <td><?php echo $size; ?></td>
+                        <td><?php echo $item['size']; ?></td>
                         <td><input type="text" data-product-id="<?php echo $item['id']; ?>"></input></td>
                         <td><?php echo $item['finished_count']; ?></td>
                         <td><?php echo $item['total_count']; ?></td>

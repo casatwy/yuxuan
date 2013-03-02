@@ -96,7 +96,6 @@ class DeliveredPlan extends CActiveRecord
         $plan->record_time = time();
         $plan->plan_maker_id = Yii::app()->user->getState("user_id");
         if($plan->save()){
-            var_dump(__line__);
             DeliveredPlanItem::saveItem($plan, $data);
         }
     }
@@ -114,33 +113,35 @@ class DeliveredPlan extends CActiveRecord
     }
 
     public static function getPlanContent($plan_id){
-        $planList = array();
-        $condition = "delivered_plan_id=:plan_id";
-        $params = array(
-            ":plan_id" => htmlspecialchars($plan_id)
+        $planList = array(
+            'silk' => array(),
+            'product' => array(),
         );
-        $planData = DeliveredPlanItem::model()->findAll($condition,$params);
 
-        $product = null;
-        $silk = null;
-        foreach($planData as $planItem){
-            $product = Product::model()->findByPk($planItem->product_id);
-            $silk = Silk::model()->findByPk($planItem->silk_id);
-            
-            $plan = array(
-                'plan_id' => $plan_id,
-                'provider' => Client::getNameById($planItem->client_id),
-                'plan_maker' => $planItem->getPlanMakerName(),
-                'telephone' => $planItem->getMakerTelephone(),
-                'goods_number' => $planItem->goods_number,
-                'color_number' => $silk->color_number,
-                'color_name' => $silk->color_name,
-                'needle_type' => $product->needle_type,
-                'size' => $product->size,
-                'quantity' => $planItem->count
+        $params = array(":plan_id" => $plan_id);
+
+        $silkCondition = "delivered_plan_id = :plan_id and product_id=-1";
+        $silkDeliveredList = DeliveredPlanItem::model()->findAll($silkCondition, $params);
+        foreach($silkDeliveredList as $silkDelivered){
+            $silk = Silk::model()->findByPk($silkDelivered->silk_id);
+            $planList['silk'][] = array(
+                "color_name" => $silk->color_name,
+                "color_number" => $silk->color_number,
+                "gang_number" => $silk->gang_number,
+                "weight" => $silkDelivered->weight,
             );
-            array_push($planList,$plan);
         }
+
+        $productCondition = "delivered_plan_id = :plan_id and silk_id=-1";
+        $productDeliveredList = DeliveredPlanItem::model()->findAll($productCondition, $params);
+        foreach($productDeliveredList as $productDelivered){
+            $product = Product::model()->findByPk($productDelivered->product_id);
+            $planList['product'][$product->color_name][] = array(
+                "size" => $product->size,
+                "count" => $productDelivered->count,
+            );
+        }
+
         return $planList;
     }
 }
