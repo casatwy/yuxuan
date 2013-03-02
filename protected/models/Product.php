@@ -215,7 +215,11 @@ class Product extends CActiveRecord
     }
 
     public static function getClientName($client_id){
-        return Client::model()->findByPk($client_id)->name;
+        if(is_null($client_id)){
+            return "未知";
+        }else{
+            return Client::model()->findByPk($client_id)->name;
+        }
     }
 
     public static function setStatus($goods_number, $status){
