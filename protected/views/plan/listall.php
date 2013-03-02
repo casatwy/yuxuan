@@ -22,7 +22,7 @@
                 </tr>
 
                 <?php foreach($list1 as $goods_number=>$product): ?>
-                <tr>
+                <tr data-goods-number="<?php echo $goods_number; ?>">
                     <td><a class="J_showPlan" href="<?php echo $this->baseUrl; ?>/ajaxPlan/getPlanByGoodsNumber/goods_number/<?php echo $goods_number; ?>/status/1"><?php echo $goods_number; ?></a></td>
                     <td><?php echo $product['client'] ?></td>
                     <td><?php echo $product['create_time'];?></td>
