@@ -90,23 +90,12 @@ class Controller extends CController
     }
 
     private function authentication($action){
-        $action = $action->getId();
-
         $letgo = false;
+        $authority = Yii::app()->user->getState("authority");
 
-        $authority = Yii::app()->user->getState('authority');
-
-        if(empty($authority)){
-            $letgo = false;
-        }else{
-            if(!isset($this->authority[$action])){
-                $letgo = true;
-            }else if(bcmod($authority ,$this->authority[$action]) == 0){
-                $letgo = true;
-            }
-        }
-
-        if($action == "login"){
+        if(!isset($this->authority[$action])){
+            $letgo = true;
+        }else if(bcmod($authority ,$this->authority[$action]) == 0){
             $letgo = true;
         }
 
@@ -114,8 +103,7 @@ class Controller extends CController
     }
 
     protected function beforeAction($action){
-        parent::beforeAction($action);
- 
+        $action = $action->getId();
         if($action == "instock" or $action == "outstock" or $action == "deliveredList"){
             $jqueryUiUrl = $this->baseUrl
                         .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
@@ -123,10 +111,18 @@ class Controller extends CController
             $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
         }
 
-        if(!$this->authentication($action)){
-            $this->redirect("/site/login");
+        if(Yii::app()->user->isGuest && $action == "login"){
+            return true;
+        }else{
+            if(Yii::app()->user->isGuest && $action != "login"){
+                $this->redirect("/site/logout");
+            }else{
+                if(!$this->authentication($action)){
+                    $this->redirect("/site/logout");
+                }else{
+                    return true;
+                }
+            }
         }
-
-        return true;
     }
 }
