@@ -201,7 +201,7 @@ a.prepend {
     border:2px #E6E6E6 solid;
     text-align:center;
     padding:5px;
-    margin-left:40px;
+    margin-left:20px;
 }
 span.select_b:hover ,span.active {
     border:3px #3C91D0 solid;
