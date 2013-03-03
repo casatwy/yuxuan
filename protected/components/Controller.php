@@ -115,10 +115,12 @@ class Controller extends CController
             return true;
         }else{
             if(Yii::app()->user->isGuest && $action != "login"){
-                $this->redirect("/site/logout");
+                Yii::app()->user->logout();
+                $this->redirect("/site/login");
             }else{
                 if(!$this->authentication($action)){
-                    $this->redirect("/site/logout");
+                    Yii::app()->user->logout();
+                    $this->redirect("/site/login");
                 }else{
                     return true;
                 }
