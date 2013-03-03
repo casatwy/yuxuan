@@ -34,7 +34,7 @@ function ListAll(baseUrl){
         $(".J_delete").bind("click", function(){
             var goods_number = $(this).attr("data-goods-number");
             $.post(baseUrl+"/ajaxPlan/deleteByGoodsNumber", {goods_number:goods_number}, function(){
-                $("tr[data-goods-number="+goods_number+"]").remove();
+                $("#J_tab1 tr[data-goods-number="+goods_number+"]").remove();
             });
         });
 

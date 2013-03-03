@@ -236,7 +236,7 @@ class Product extends CActiveRecord
     }
 
     public static function deleteByGoodsNumber($goods_number){
-        $condition = "goods_number=:goods_number";
+        $condition = "goods_number=:goods_number and status=0";
         $params = array(":goods_number"=>$goods_number);
         self::model()->deleteAll($condition, $params);
     }
