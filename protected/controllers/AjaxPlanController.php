@@ -134,13 +134,21 @@ class AjaxPlanController extends Controller
 
     public function actionGetDeliveredTable(){
         $goods_number = $_GET['goods_number'];
-        $silks = Silk::getByGoodsNumber($goods_number);
-        $products = Product::getByGoodsNumber($goods_number);
+        $condition = "goods_number = :goods_number";
+        $params = array(":goods_number" => $goods_number);
+        if(Product::model()->exists($condition, $params)){
+            $silks = Silk::getByGoodsNumber($goods_number);
+            $products = Product::getByGoodsNumber($goods_number);
 
-        $this->renderPartial("getDeliveredTable",array(
-            'products' => $products,
-            'silks' => $silks
-        ));
+            $this->renderPartial("getDeliveredTable",array(
+                'products' => $products,
+                'silks' => $silks
+            ));
+        }else{
+            echo 0;
+        }
+
+
     }
 
     public function actionSaveFinishedCount(){

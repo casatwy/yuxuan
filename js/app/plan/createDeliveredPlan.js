@@ -12,14 +12,14 @@ function CreateDeliveredPlan(baseUrl){
 
         $("#J_deliverdPlanDiv .J_deliverdPlan").each(function(index,value){
             if($(value).find(".J_show").children().length == 0){
-                $.jGrowl("请填写货号后按继续!", { life: 5000 });
+                $.jGrowl("请填写货号后按继续.", { life: 5000 });
                 success = false; 
                 return false;
             }else{
                 $(value).find(".J_show").each(function(ind, val){
                     $(val).find("input").each(function(indshow, valshow){
                         if($(valshow).val().length == 0){
-                            $.jGrowl("请填写完整!", { life: 5000 });
+                            $.jGrowl("请填写完整.", { life: 5000 });
                             success = false; 
                             return  false;
                         }else{
@@ -52,7 +52,11 @@ function CreateDeliveredPlan(baseUrl){
             var plan = $(this).parents('.J_deliverdPlan');
             var goodsNumber = $(plan).find('#J_goodsNumber').val();
             $.get(baseUrl+'/ajaxPlan/getDeliveredTable', {goods_number : goodsNumber}, function(html){
-                $(plan).find('.J_show').html(html);
+                if(html == 0){
+                    $.jGrowl("您尚未创建该货号相关的生产计划，请创建生产计划之后再外发。", {header:"提示"});
+                }else{
+                    $(plan).find('.J_show').html(html);
+                }
             });
         });
 
