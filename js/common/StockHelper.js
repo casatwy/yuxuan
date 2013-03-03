@@ -85,6 +85,8 @@ function StockHelper(baseUrl){
         $(".J_del").live("click", function(){
             if($(".J_record").length > 1)
                 $(this).closest(".J_record").remove();
+            else
+                $.jGrowl("至少保留一条！", {header:"错误", life: 5000});
         });
 
         $("select").live("change", function(){
