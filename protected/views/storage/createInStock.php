@@ -3,7 +3,7 @@
 <hr>
 <div id="J_container" class="contant-container prepend">
     <span class="span-15 last">客户：
-        <a provider="none" id="J_selectProvider" href="http://yuxuan.dev/ajaxStorage/selectprovider">点击选择客户</a>
+        <a provider="none" id="J_selectProvider" href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider">点击选择客户</a>
     </span>
 
     <div class="J_record J_note" data-id="1">
