@@ -82,6 +82,11 @@ function StockHelper(baseUrl){
             );  
         });
 
+        $(".J_del").live("click", function(){
+            if($(".J_record").length > 1)
+                $(this).closest(".J_record").remove();
+        });
+
         $("select").live("change", function(){
             changeToInput($(this));
         });
