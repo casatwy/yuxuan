@@ -158,7 +158,7 @@ class Product extends CActiveRecord
     }
 
     public static function getListForCalendar($start, $end){
-        $condition = "(finished_time > :start or finished_time IS NULL ) and create_time < :end";
+        $condition = "(finished_time > :start or finished_time IS NULL ) and create_time < :end and status = 1";
         $params = array(
             ":start" => $start,
             ":end" => $end
