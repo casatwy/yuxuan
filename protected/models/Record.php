@@ -108,7 +108,7 @@ class Record extends CActiveRecord
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
         ));
-    }
+    } 
 
     public function saveRecord($data){
         $this->_new = true;

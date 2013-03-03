@@ -31,10 +31,9 @@ class AjaxStorageController extends Controller
                 'name' => $provider->name,
             ));
         }
-        $html = $this->renderPartial("selectProvider", array(
+        $this->renderPartial("selectProvider", array(
             'providerArray' => $providerArray,
         ));
-        echo $html;
         Yii::app()->end();
     }
 
@@ -195,7 +194,7 @@ class AjaxStorageController extends Controller
         $goods_number = $_GET['goods_number'];
         $attributeList = Resource::getAttributesByGoodsNumber($goods_number, $data_type);
 
-        if(is_null($attributeList)){
+        if(is_null($attributeList) && $data_type != Record::SILK){
             echo 0;
             Yii::app()->end();
         }

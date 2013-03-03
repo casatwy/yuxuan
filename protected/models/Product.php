@@ -126,6 +126,12 @@ class Product extends CActiveRecord
     }
 
     public static function createPlanList($list){
+        $condition = "goods_number = :goods_number";
+        $params = array(":goods_number" => $list['goods_number']);
+        if(!Silk::model()->exists($condition, $params)){
+            return 2;
+        }
+
         $idList = array();
         foreach($list['data'] as $itemList){
             foreach($itemList['spec'] as $item){
@@ -236,7 +242,7 @@ class Product extends CActiveRecord
     }
 
     public static function getPlanList($start,$end){
-        $condition = "create_time > :start and create_time < :end";
+        $condition = "create_time > :start and create_time < :end and status = 1";
         $params = array(
             ':start' => $start,
             ':end' => $end,
