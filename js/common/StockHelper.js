@@ -19,9 +19,7 @@ function StockHelper(baseUrl){
                 $.jGrowl("请先填写货号.", { header:"提示", life: 5000 });
                 success = false; 
                 return false;
-                }
-
-            else {
+            }else{
                 $(valContent).find(".J_item").each(function(index, value){
                     $(value).find("input").each(function(ind, val){
                         if($(val).val().length == 0){
@@ -82,6 +80,13 @@ function StockHelper(baseUrl){
                     }
                 }
             );  
+        });
+
+        $(".J_del").live("click", function(){
+            if($(".J_record").length > 1)
+                $(this).closest(".J_record").remove();
+            else
+                $.jGrowl("至少保留一条！", {header:"错误", life: 5000});
         });
 
         $("select").live("change", function(){

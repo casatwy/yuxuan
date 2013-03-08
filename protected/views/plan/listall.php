@@ -30,7 +30,6 @@
                         <button data-goods-number="<?php echo $goods_number; ?>" class="J_finish">结束</button>
                     </td>
                     <td>
-                        <button data-goods-number="<?php echo $goods_number; ?>" class="J_delete">删除</button>
                     </td>
                 </tr>
                 <?php endforeach;  ?>

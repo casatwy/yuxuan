@@ -12,7 +12,11 @@
     </tr>
     <?php foreach($recordList as $record): ?>
     <tr>
-        <td><?php echo $record['type'];?></td>
+        <?php if($record['type'] == Record::SILK): ?>
+            <td><?php echo "毛纱";?></td>
+        <?php else: ?>
+            <td><?php echo "衣服";?></td>
+        <?php endif; ?>
         <td><?php echo $record['goods_number'];?></td>
         <td><?php echo $record['color_number'];?></td>
         <td><?php echo $record['color_name'];?></td>

@@ -158,7 +158,7 @@ class Product extends CActiveRecord
     }
 
     public static function getListForCalendar($start, $end){
-        $condition = "(finished_time > :start or finished_time IS NULL ) and create_time < :end";
+        $condition = "(finished_time > :start or finished_time IS NULL ) and create_time < :end and status = 1";
         $params = array(
             ":start" => $start,
             ":end" => $end
@@ -242,7 +242,7 @@ class Product extends CActiveRecord
     }
 
     public static function deleteByGoodsNumber($goods_number){
-        $condition = "goods_number=:goods_number";
+        $condition = "goods_number=:goods_number and status=0";
         $params = array(":goods_number"=>$goods_number);
         self::model()->deleteAll($condition, $params);
     }

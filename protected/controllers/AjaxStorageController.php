@@ -31,10 +31,9 @@ class AjaxStorageController extends Controller
                 'name' => $provider->name,
             ));
         }
-        $html = $this->renderPartial("selectProvider", array(
+        $this->renderPartial("selectProvider", array(
             'providerArray' => $providerArray,
         ));
-        echo $html;
         Yii::app()->end();
     }
 
