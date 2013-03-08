@@ -28,6 +28,7 @@ class Controller extends CController
         'outstock' => 5,
         'createOutStock' => 7,
         'list' => 11,
+        'listall' => 11,
         'getDayContent' => 13,
         'deliveredList' => 17,
         'createDeliveredPlan' => 19,
