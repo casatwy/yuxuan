@@ -232,6 +232,12 @@ class Product extends CActiveRecord
         $attributes = array("status" => $status);
         $condition = "goods_number=:goods_number";
         $params = array(":goods_number"=>$goods_number);
+
+        if($status != Product::PREPEARED){
+            $condition = $condition." and status = :status";
+            $params[":status"] = $status - 1;
+        }
+
         self::model()->updateAll($attributes, $condition, $params);
     }
 
