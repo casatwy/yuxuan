@@ -26,7 +26,6 @@ class AjaxAdminController extends Controller
         $attributes = array(
             'name' => htmlspecialchars($_POST["data"]["name"]),
             'telephone' => htmlspecialchars($_POST["data"]["tel"]),
-            'password' => md5(htmlspecialchars($_POST["data"]["pwd"])),
             'authority' => $_POST['data']['authority'],
         );
         $res = User::model()->updateByPk($_POST['data']['id'],$attributes);
@@ -69,5 +68,13 @@ class AjaxAdminController extends Controller
         }
 
         echo CJSON::encode($result);
+    }
+
+    public function actionUpdatePassword(){
+        $user = User::model()->findByPk($_POST['data']['user_id']);
+        if(!is_null($user)){
+            $user->password = md5($_POST['data']['password']);
+            $user->save();
+        }
     }
 }

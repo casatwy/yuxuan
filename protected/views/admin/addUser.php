@@ -1,20 +1,16 @@
-<?php if($type == 'updateUser'): ?>
+<?php if($type == 'updateUserAuthority'): ?>
 <script type="text/javascript">
 $(document).ready(function(){
     updateAuthority();
 });
 </script>
 <div class="J_content adduser">
-	<h3>修改信息</h3>
-	<hr>
-	<span class="span-3">用户名:</span>
-	<span class="span-5 "><input type="text" id="J_name" value="<?php echo $user->name; ?>" disabled="disabled"></input></span>
-    	<span class="span-3">输入密码:</span>
-	<span class="span-5 last"><input type="password" id="J_pwd1" ></input></span>
-        <span class="span-3">再次输入密码:</span>
-	<span class="span-5 "><input type="password" id="J_pwd2"></input></span>
-        <span class="span-3">手机号码:</span>
-	<span class="span-5 last"><input type="text" id="J_tel" value="<?php echo $user->telephone; ?>"></input></span>
+    <h3>修改用户信息</h3>
+    <hr>
+    <span class="span-3">手机号码:</span>
+    <span class="span-5 last">
+        <input type="text" id="J_tel" value="<?php echo $user->telephone; ?>"></input>
+    </span>
         <span class="span-4"><input type="checkbox" class="J_authority" value="2"></input>入库查看</span>
         <span class="span-4 "><input type="checkbox" class="J_authority" value="3"></input>入库新建</span>
         <span class="span-4"><input type="checkbox" class="J_authority" value="5"></input>出库查看</span>
@@ -32,17 +28,18 @@ $(document).ready(function(){
 </div>
 <div id="J_authoritys" style="display:none"><?php echo $authority; ?></div>
 <?php endif; ?>
+
 <?php if($type == 'addUser'): ?>
 <div class="J_content">
-	<h2 class="prepend-1">创建用户</h2>
-	<hr>
-	<div class="contant-container">
-	<table>
+    <h2 class="prepend-1">创建用户</h2>
+    <hr>
+    <div class="contant-container">
+    <table>
             <tr><th class="span-4">用户名:</th><th class="span-6"><input type="text" id="J_name"></input></th>
                 <th class="span-5 last"></th></tr>
-        	<tr><td>输入密码:</td><td><input type="password" id="J_pwd1" ></input></td></tr>
-        	<tr><td>再次输入密码:</td><td><input type="password" id="J_pwd2"></input></td></tr>
-        	<tr><td>手机号码:</td><td><input type="text" id="J_tel"></input></td></tr>
+            <tr><td>输入密码:</td><td><input type="password" id="J_pwd1" ></input></td></tr>
+            <tr><td>再次输入密码:</td><td><input type="password" id="J_pwd2"></input></td></tr>
+            <tr><td>手机号码:</td><td><input type="text" id="J_tel"></input></td></tr>
             <tr>
                 <td><input type="checkbox" class="J_authority" value="2"></input>入库查看</td>
                 <td><input type="checkbox" class="J_authority" value="3"></input>入库新建</td>
@@ -67,20 +64,20 @@ $(document).ready(function(){
                 <td><input type="checkbox" class="J_authority" value="31"></input>信息管理-客户</td>
                 <td><input type="checkbox" class="J_authority" value="37"></input>信息管理-物料</td>
             </tr>
-        	<tr><td></td><td></td><td><button class="J_deleUser">删除</button></td></tr>
-    	</table>
-	</div>
+            <tr><td></td><td></td><td><button class="J_deleUser">删除</button></td></tr>
+        </table>
+    </div>
 </div>
     <span class="prepend-7 span-6"><input type="button" value="添加一个用户" id="J_addOneUser"></span>
     <span class="span-7 last pad-6"><input type="button" value="保存" id="J_usersubmit"></input></span>
 <div id="J_exOne"  style="display:none">
 <div class="contant-container">
-	<table>
+    <table>
         <tr><th class="span-4">用户名:</th><th class="span-6"><input type="text" id="J_name"></input></th>
             <th class="span-5 last"></th></tr>
-		<tr><td>输入密码:</td><td><input type="password" id="J_pwd1" ></input></td></tr>
-		<tr><td>再次输入密码:</td><td><input type="password" id="J_pwd2"></input></td></tr>
-		<tr><td>手机号码:</td><td><input type="text" id="J_tel"></input></td></tr>
+        <tr><td>输入密码:</td><td><input type="password" id="J_pwd1" ></input></td></tr>
+        <tr><td>再次输入密码:</td><td><input type="password" id="J_pwd2"></input></td></tr>
+        <tr><td>手机号码:</td><td><input type="text" id="J_tel"></input></td></tr>
         <tr>
             <td><input type="checkbox" class="J_authority" value="2"></input>入库查看</td>
             <td><input type="checkbox" class="J_authority" value="3"></input>入库新建</td>
@@ -105,11 +102,34 @@ $(document).ready(function(){
             <td><input type="checkbox" class="J_authority" value="31"></input>信息管理-客户</td>
             <td><input type="checkbox" class="J_authority" value="37"></input>信息管理-物料</td>
         </tr>
-		<tr><td></td><td></td><td class="last"><button class="J_deleUser">删除</button></td></tr>
-	</table>
+        <tr><td></td><td></td><td class="last"><button class="J_deleUser">删除</button></td></tr>
+    </table>
 </div>
 </div>
 <div id="J_allUser" style="display:none"><?php echo $user;?></div>
 <?php endif; ?>
+
+<?php if($type == 'updateUserPassword'): ?>
+<script type="text/javascript">
+</script>
+<div class="J_content adduser">
+    <h3>修改密码</h3>
+    <hr>
+    <span class="span-3">用户名:</span>
+    <span class="span-5 ">
+        <input type="text" id="J_name" data-user-id="<?php echo $user->id; ?>" value="<?php echo $user->name; ?>" disabled="disabled"></input>
+    </span>
+    <span class="span-3">输入密码:</span>
+    <span class="span-5 last">
+        <input type="password" id="J_pwd1" ></input>
+    </span>
+    <span class="span-3">再次输入密码:</span>
+    <span class="span-5 ">
+        <input type="password" id="J_pwd2"></input>
+    </span>
+</div>
+    <button id="J_updatePassword">保存</button>
+<?php endif; ?>
+
 <input type="hidden" id="J_type" value="<?php echo $type;?>">
 <input type="hidden" id="J_baseUrl" value="<?php echo $this->baseUrl;?>">

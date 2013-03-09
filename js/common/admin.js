@@ -11,6 +11,10 @@ function Admin(baseUrl){
     }
 
     function bindEvent(){
+        $("#J_updatePassword").live('click', function(){
+            updatePassword();
+        });
+
         $('.J_update').nyroModal({
             closeOnEscapse:false,
             closeOnClick:false
@@ -54,6 +58,53 @@ function Admin(baseUrl){
                 $(this).closest('table').remove();
             }
         });
+    }
+
+    function updatePassword(){
+        if(!hasBlank()){
+            if(checkUpdatePasswordAvailable()){
+                data = getUpdatePasswordData();
+                $.post(baseUrl + "/ajaxAdmin/updatePassword", {data:data}, function(){
+                    $.nmTop().close();
+                });
+            }else{
+                $.jGrowl("两次输入的密码不相同，请重新输入。", {header:"提示"});
+            }
+        }else{
+            $.jGrowl("请填充空白处。", {header:"提示"});
+        }
+    }
+
+    function checkUpdatePasswordAvailable(){
+        if($("#J_pwd2").val() == $("#J_pwd1").val()){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function getUpdatePasswordData(){
+        return {
+            user_id : $("#J_name").attr("data-user-id"),
+            password : $("#J_pwd1").val()
+        };
+    }
+
+    function hasBlank(){
+        var result = false;
+        $(".J_content input").each(function(index, value){
+            if($(value).val().length == 0){
+                $.jGrowl("请填写空白处！", {
+                    header:"提示",
+                    life:2000
+                });
+
+                if(!result){
+                    result = true;
+                }
+            }
+        });
+        return result;
     }
 
     function isblank(){
@@ -133,7 +184,7 @@ function Admin(baseUrl){
             pwd1 = $(value).find('#J_pwd1').val();
             pwd2 = $(value).find('#J_pwd2').val();
             if(isSet(tempName,name) < tempName.length){
-                $.jGrowl("第"+index+"组用户名相同！", {
+                $.jGrowl("第"+index+"组用户名相同.", {
                     header:"提示",
                     life:2000
                 });
