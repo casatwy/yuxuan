@@ -112,16 +112,14 @@ class Controller extends CController
             $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
         }
 
-        if(Yii::app()->user->isGuest && $action == "login"){
+        if((Yii::app()->user->isGuest && $action == "login") || $action == "error"){
             return true;
         }else{
             if(Yii::app()->user->isGuest && $action != "login"){
-                Yii::app()->user->logout();
-                $this->redirect("/site/login");
+                $this->redirect("/site/error");
             }else{
                 if(!$this->authentication($action)){
-                    Yii::app()->user->logout();
-                    $this->redirect("/site/login");
+                    $this->redirect("/site/error");
                 }else{
                     return true;
                 }
