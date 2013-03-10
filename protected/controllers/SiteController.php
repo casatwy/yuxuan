@@ -23,15 +23,15 @@ class SiteController extends Controller
      */
     public function actionError()
     {
-        //$this->render('error');
-        if($error=Yii::app()->errorHandler->error)
-        {
-            if(Yii::app()->request->isAjaxRequest)
-                echo $error['message'];
-            else
-                //var_dump($error);
-                $this->render('error');
-        }
+        $this->render('error');
+        //if($error=Yii::app()->errorHandler->error)
+        //{
+        //    if(Yii::app()->request->isAjaxRequest)
+        //        echo $error['message'];
+        //    else
+        //        //var_dump($error);
+        //        $this->render('error');
+        //}
     }
 
     /**
@@ -85,5 +85,10 @@ class SiteController extends Controller
     {
         Yii::app()->user->logout();
         $this->redirect(Yii::app()->homeUrl);
+    }
+
+    public function actionHome(){
+        $this->layout = "//layouts/main";
+        $this->render("home");
     }
 }

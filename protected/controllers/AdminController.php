@@ -45,16 +45,24 @@ class AdminController extends Controller
         ));
     }
 
-    public function actionUpdateUser(){
-        //$this->cs->registerScriptFile($this->jsCommon."admin.js");
+    public function actionUpdateUserAuthority(){
+        $this->showUserModifyPage('updateUserAuthority');
+        Yii::app()->end();
+    }
+
+    public function actionUpdateUserPassword(){
+        $this->showUserModifyPage("updateUserPassword");
+        Yii::app()->end();
+    }
+
+    private function showUserModifyPage($type){
         $user = User::model()->findByPk($_GET['id']);
         $authority = $this->getAuthority($user->authority);
         echo $this->renderPartial('addUser', array(
             'user' => $user,
-            'type' => 'updateUser',
+            'type' => $type,
             'authority' => $authority,
         ));
-        Yii::app()->end();
     }
     
     public function actionDeleteUser(){
@@ -112,7 +120,7 @@ class AdminController extends Controller
         $result = array();
         $allAuts = array(2,3,5,7,11,13,17,19,23,29,31,37);
         foreach($allAuts as $aut){
-            if(($num % $aut) == 0){
+            if(bcmod($num , $aut) == 0){
                 $result[] = $aut;
             }
         }

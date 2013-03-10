@@ -31,6 +31,7 @@
     <div id="mainmenu">
         <?php $this->widget('zii.widgets.CMenu',array(
             'items'=>array(
+                array('label'=>'主页(正式部署的时候不显示"主页"这一项的，只是给你修改时候方便。)', 'url'=>array('/site/home')),
                 array('label'=>'仓库', 'url'=>array('/storage')),
                 array('label'=>'生产计划', 'url'=>array('/plan')),
                 array('label'=>'信息管理', 'url'=>array('/admin')),
