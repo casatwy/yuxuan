@@ -6,7 +6,7 @@
     </ul>
     <?php foreach($productList as $goods_number=>$product): ?>
     <div id="J_<?php echo $goods_number; ?>">
-        <table>
+        <table class="record">
             <tbody>
                 <tr>
                     <th>颜色</th>
