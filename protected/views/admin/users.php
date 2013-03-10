@@ -21,7 +21,7 @@
 /*
         <td><a href="<?php echo $this->baseUrl.'/admin/updateUser/id/'.$user->id;?>" class="J_update">修改信息</a>
         &nbsp;<a href="<?php echo $this->baseUrl.'/admin/deleteUser/id/'.$user->id;?>" >删除</a></td>
- */
+*/
 ?>
 	</tr>
 	<?php endforeach; ?>
