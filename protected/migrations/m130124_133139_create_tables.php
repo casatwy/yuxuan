@@ -42,14 +42,12 @@ class m130124_133139_create_tables extends CDbMigration
             `weight` float NOT NULL,
             `goods_number` int(11) NOT NULL,
             `record_time` int(11) NOT NULL,
-            `client_id` int(11) NOT NULL,
             `product_id` int(11) NOT NULL,
             `delivered_plan_id` bigint(20) NOT NULL,
             PRIMARY KEY (`id`),
             KEY `goods_number` (`goods_number`),
             KEY `silk_id` (`silk_id`),
             KEY `record_time` (`record_time`),
-            KEY `client_id` (`client_id`),
             KEY `product_id` (`product_id`),
             KEY `delivered_plan_id` (`delivered_plan_id`)
             ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;

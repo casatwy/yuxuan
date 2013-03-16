@@ -15,21 +15,12 @@
         <td><?php echo $user->name;?></td>
 		<td><?php echo  $user->telephone;?></td>
 		<td><?php echo  $user->authority;?></td>
-<<<<<<< HEAD
-<?php
-/*
-        <td><a href="<?php echo $this->baseUrl.'/admin/updateUser/id/'.$user->id;?>" class="J_update">修改信息</a>
-        &nbsp;<a href="<?php echo $this->baseUrl.'/admin/deleteUser/id/'.$user->id;?>" >删除</a></td>
-*/
-?>
-=======
         <td>
             <a href="<?php echo $this->baseUrl.'/admin/updateUserAuthority/id/'.$user->id;?>" class="J_update">修改用户信息</a>
         &nbsp;
             <a href="<?php echo $this->baseUrl.'/admin/updateUserPassword/id/'.$user->id;?>" class="J_update">修改密码</a>
             <a href="<?php echo $this->baseUrl.'/admin/deleteUser/id/'.$user->id;?>" >删除</a>
         </td>
->>>>>>> b689f5f974d23edd9cb9c79e5481f54faae49186
 	</tr>
 	<?php endforeach; ?>
 </table>

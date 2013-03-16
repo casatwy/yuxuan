@@ -136,12 +136,19 @@ function Admin(baseUrl){
     }
 
     function submitUserData(data){
+
         var type = $('#J_type').val();
+        var appendUrl = "";
         if(type == 'addUser'){
-            var appendUrl = '/ajaxAdmin/saveUser';
-        }else if(type == 'updateUser'){
-            var appendUrl = '/ajaxAdmin/updateUser';  
+            appendUrl = '/ajaxAdmin/saveUser';
         }
+        if(type == 'updateUser'){
+            appendUrl = '/ajaxAdmin/updateUser';  
+        }
+        if(type == 'updateUserAuthority'){
+            appendUrl = '/ajaxAdmin/updateUserAuthority';
+        }
+
         $.post(baseUrl+appendUrl, {data:data},function(result){
             window.location.href = baseUrl+'/admin/users';
         },'json');

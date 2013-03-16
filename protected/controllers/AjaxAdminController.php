@@ -77,4 +77,13 @@ class AjaxAdminController extends Controller
             $user->save();
         }
     }
+
+    public function actionUpdateUserAuthority(){
+        $user = User::model()->findByPk($_POST['data']['id']);
+        if(!is_null($user)){
+            $user->authority = $_POST['data']['authority'];
+            $user->telephone = $_POST['data']['tel'];
+            $user->save();
+        }
+    }
 }
