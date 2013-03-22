@@ -59,7 +59,7 @@ return CMap::mergeArray(
         'params'=>array(
             // this is used in contact page
             'adminEmail'=>'casatwy@msn.com',
-            'companyName'=>'上海星位针织有限公司',
+            'companyName'=>'上海米灿针纺织品有限公司',
         ),
     )
 );

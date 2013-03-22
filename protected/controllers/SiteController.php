@@ -2,6 +2,12 @@
 
 class SiteController extends Controller
 {
+
+    public function init(){
+        parent::init();
+        $this->defaultAction = "login";
+    }
+
     public function filters(){
         return array("accessControl");
     }
@@ -15,7 +21,6 @@ class SiteController extends Controller
     {
         // renders the view file 'protected/views/site/index.php'
         // using the default layout 'protected/views/layouts/main.php'
-        $this->redirect('site/login');
     }
 
     /**
@@ -40,6 +45,7 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if(!Yii::app()->user->isGuest){
+            //var_dump(Yii::app()->user->returnUrl);die();
             $this->redirect(Yii::app()->user->returnUrl);
             Yii::app()->end();
         }
@@ -84,7 +90,7 @@ class SiteController extends Controller
     public function actionLogout()
     {
         Yii::app()->user->logout();
-        $this->redirect(Yii::app()->homeUrl);
+        $this->redirect("/site/login");
     }
 
     public function actionHome(){

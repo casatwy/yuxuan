@@ -40,6 +40,9 @@ class Controller extends CController
 
     public function init(){
         parent::init();
+
+        Yii::app()->user->setReturnUrl("/site/home");
+
         $this->baseUrl = Yii::app()->request->getBaseUrl(true);
         $this->cs = Yii::app()->clientScript;
 
@@ -86,43 +89,35 @@ class Controller extends CController
         $this->cs->registerCssFile($jqueryUiUrl."css/smoothness/jquery-ui-1.9.2.custom.min.css");
         $this->cs->registerScriptFile($jqueryUiUrl."js/jquery-ui-min.js");
         $this->cs->registerScriptFile($this->jsCommon."judge.js");
-        Yii::app()->user->setReturnUrl('/storage/instock');
     }
 
     private function authentication($action){
-        $letgo = false;
         $authority = Yii::app()->user->getState("authority");
 
         if(!isset($this->authority[$action])){
-            $letgo = true;
+            return true;
         }else if(bcmod($authority ,$this->authority[$action]) == 0){
-            $letgo = true;
+            return true;
         }
 
-        return $letgo;
+        return false;
     }
 
     protected function beforeAction($action){
         $action = $action->getId();
-        if($action == "instock" or $action == "outstock" or $action == "deliveredList"){
-            $jqueryUiUrl = $this->baseUrl
-                        .Yii::app()->assetManager->publish(Yii::getPathOfAlias('webroot.js.libs.plugins.printPreview')).'/';
-            $this->cs->registerCssFile($jqueryUiUrl."css/print-preview.css");
-            $this->cs->registerScriptFile($jqueryUiUrl."jquery.print-preview.js");
+
+        if($action == 'login' || $action == 'home' || $action == 'error'){
+            return true;
         }
 
-        if((Yii::app()->user->isGuest && $action == "login") || $action == "error"){
+        if(Yii::app()->user->isGuest){
+            $this->redirect("/site/login");
+        }
+
+        if($this->authentication($action)){
             return true;
         }else{
-            if(Yii::app()->user->isGuest && $action != "login"){
-                $this->redirect("/site/error");
-            }else{
-                if(!$this->authentication($action)){
-                    $this->redirect("/site/error");
-                }else{
-                    return true;
-                }
-            }
+            $this->redirect("/sites/error");
         }
     }
 }
