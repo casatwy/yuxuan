@@ -30,6 +30,7 @@
 
 
 <div class="span-21 last" id="J_fetchedRecords">
+<?php if(!empty($recordList)): ?>
     <?php foreach($recordList as $record): ?>
 
     <J_HEADER data-record-id="<?php echo $record->id; ?>" data-record-type="<?php echo $type; ?>">
@@ -47,4 +48,7 @@
             'pages' => $pages,
         ));
     ?>
+<?php else: ?>
+        没有记录
+<?php endif; ?>
 </div>

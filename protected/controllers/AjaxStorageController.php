@@ -152,12 +152,12 @@ class AjaxStorageController extends Controller
 
         if(!empty($data["start_time"])){
             $searchCriteria->condition .= " and record_time>";
-            $searchCriteria->condition .= $this->getTime($data['start_time']);
+            $searchCriteria->condition .= self::getTime($data['start_time']);
         }
 
         if(!empty($data["end_time"])){
             $searchCriteria->condition .= " and record_time<";
-            $searchCriteria->condition .= $this->getTime($data['end_time']) + 60*60*24;
+            $searchCriteria->condition .= self::getTime($data['end_time']) + 60*60*24;
         }
 
         $searchedRecordList = array();
@@ -182,7 +182,7 @@ class AjaxStorageController extends Controller
         return $criteria;
     }
 
-    private function getTime($date){
+    public static function getTime($date){
         $year=((int)substr($date,0,4));
         $month=((int)substr($date,5,2));
         $day=((int)substr($date,8,2));
