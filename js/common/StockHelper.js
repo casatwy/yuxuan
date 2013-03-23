@@ -195,9 +195,7 @@ function StockHelper(baseUrl){
             };
             result.push(itemData);
         });
-        console.log(result);
         return result;
-
     }
 }
 

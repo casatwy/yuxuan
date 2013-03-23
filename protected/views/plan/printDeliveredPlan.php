@@ -1,5 +1,5 @@
 <div class="container font-2" id="J_page">
-	<h1 class="center big">上海星位针织服装有限公司<h1>
+<h1 class="center big"><?php echo Yii::app()->params["companyName"]; ?><h1>
 	<h2 class="center">外发计划单</h2>
 
     <span class="span-16 prepend-1" >客户：<span><?php echo $planList[0]['provider']; ?></span></span>

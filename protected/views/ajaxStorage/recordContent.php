@@ -23,7 +23,7 @@
         <td><?php echo $record['gang_number'];?></td>
         <td><?php echo $record['needle_type'];?></td>
         <td><?php echo $record['size'];?></td>
-        <td><?php echo $record['weight'];?></td>
+        <td><?php echo $record['weight'];?> kg</td>
         <td><?php echo $record['quantity'];?></td>
     </tr>
     <?php endforeach; ?>

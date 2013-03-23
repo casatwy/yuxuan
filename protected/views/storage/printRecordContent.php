@@ -1,5 +1,5 @@
 <div class="container font-2" id="J_page">
-<h1 class="center big">上海星位针织服装有限公司<h1>
+<h1 class="center big"><?php echo Yii::app()->params["companyName"]; ?><h1>
 <?php 
     if($info['type'] == Record::IN_RECORD){
         echo '<h2 class="center">入库单</h2>';
@@ -46,7 +46,7 @@
         <td><?php echo $record['gang_number'];?></td>
         <td><?php echo $record['needle_type'];?></td>
         <td><?php echo $record['size'];?></td>
-        <td><?php echo $record['weight'];?></td>
+        <td><?php echo $record['weight'];?> kg</td>
         <td><?php echo $record['quantity'];?></td>
     </tr>
     <?php endforeach; ?>
