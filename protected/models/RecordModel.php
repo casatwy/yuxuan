@@ -1,31 +1,24 @@
 <?php
 
 /**
- * This is the model class for table "client".
+ * This is the model class for table "delivered_record".
  *
- * The followings are the available columns in table 'client':
- * @property integer $id
- * @property string $name
- * @property string $location
+ * The followings are the available columns in table 'delivered_record':
+ * @property string $id
+ * @property integer $record_time
+ * @property integer $record_maker_id
+ * @property integer $client_id
  */
-class Client extends CActiveRecord
+class RecordModel extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Client the static model class
+	 * @return RecordModel the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
-	}
-
-	/**
-	 * @return string the associated database table name
-	 */
-	public function tableName()
-	{
-		return 'client';
 	}
 
 	/**
@@ -36,11 +29,11 @@ class Client extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, location', 'required'),
-			array('name, location', 'length', 'max'=>20),
+			array('record_time, record_maker_id, client_id', 'required'),
+			array('record_time, record_maker_id, client_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, location', 'safe', 'on'=>'search'),
+			array('id, record_time, record_maker_id, client_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,8 +55,9 @@ class Client extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
-			'location' => 'Location',
+			'record_time' => 'Record Time',
+			'record_maker_id' => 'Record Maker',
+			'client_id' => 'Client',
 		);
 	}
 
@@ -78,16 +72,13 @@ class Client extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
-		$criteria->compare('location',$this->location,true);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('record_time',$this->record_time);
+		$criteria->compare('record_maker_id',$this->record_maker_id);
+		$criteria->compare('client_id',$this->client_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-
-    public static function getNameById($id){
-        return self::model()->findByPk($id)->name;
-    }
 }

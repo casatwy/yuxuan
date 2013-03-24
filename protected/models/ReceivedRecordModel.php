@@ -1,26 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "delivered_record_item".
+ * This is the model class for table "received_record".
  *
- * The followings are the available columns in table 'delivered_record_item':
- * @property integer $id
- * @property string $delivered_record_id
- * @property double $weight
- * @property integer $count
- * @property integer $goods_number
- * @property integer $type
+ * The followings are the available columns in table 'received_record':
+ * @property string $id
  * @property integer $record_time
  * @property integer $record_maker_id
- * @property integer $product_id
  * @property integer $client_id
  */
-class DeliveredRecordItem extends CActiveRecord
+class ReceivedRecordModel extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return DeliveredRecordItem the static model class
+	 * @return ReceivedRecordModel the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -32,7 +26,7 @@ class DeliveredRecordItem extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'delivered_record_item';
+		return 'received_record';
 	}
 
 	/**
@@ -43,13 +37,11 @@ class DeliveredRecordItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('delivered_record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'required'),
-			array('count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'numerical', 'integerOnly'=>true),
-			array('weight', 'numerical'),
-			array('delivered_record_id', 'length', 'max'=>20),
+			array('record_time, record_maker_id, client_id', 'required'),
+			array('record_time, record_maker_id, client_id', 'numerical', 'integerOnly'=>true),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, delivered_record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'safe', 'on'=>'search'),
+			array('id, record_time, record_maker_id, client_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,14 +63,8 @@ class DeliveredRecordItem extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'delivered_record_id' => 'Delivered Record',
-			'weight' => 'Weight',
-			'count' => 'Count',
-			'goods_number' => 'Goods Number',
-			'type' => 'Type',
 			'record_time' => 'Record Time',
 			'record_maker_id' => 'Record Maker',
-			'product_id' => 'Product',
 			'client_id' => 'Client',
 		);
 	}
@@ -94,15 +80,9 @@ class DeliveredRecordItem extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('id',$this->id);
-		$criteria->compare('delivered_record_id',$this->delivered_record_id,true);
-		$criteria->compare('weight',$this->weight);
-		$criteria->compare('count',$this->count);
-		$criteria->compare('goods_number',$this->goods_number);
-		$criteria->compare('type',$this->type);
+		$criteria->compare('id',$this->id,true);
 		$criteria->compare('record_time',$this->record_time);
 		$criteria->compare('record_maker_id',$this->record_maker_id);
-		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('client_id',$this->client_id);
 
 		return new CActiveDataProvider($this, array(

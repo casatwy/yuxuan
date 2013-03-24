@@ -1,26 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "received_record_item".
+ * This is the model class for table "delivered_record_item".
  *
- * The followings are the available columns in table 'received_record_item':
+ * The followings are the available columns in table 'delivered_record_item':
  * @property integer $id
- * @property string $received_record_id
+ * @property string $record_id
  * @property double $weight
  * @property integer $count
- * @property integer $goods_number
+ * @property string $goods_number
+ * @property integer $type
  * @property integer $record_time
  * @property integer $record_maker_id
  * @property integer $product_id
- * @property integer $type
  * @property integer $client_id
  */
-class ReceivedRecordItem extends CActiveRecord
+class DeliveredRecordItemModel extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ReceivedRecordItem the static model class
+	 * @return DeliveredRecordItemModel the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -32,7 +32,7 @@ class ReceivedRecordItem extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'received_record_item';
+		return 'delivered_record_item';
 	}
 
 	/**
@@ -43,13 +43,14 @@ class ReceivedRecordItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('received_record_id, goods_number, record_time, record_maker_id, product_id, type, client_id', 'required'),
-			array('count, goods_number, record_time, record_maker_id, product_id, type, client_id', 'numerical', 'integerOnly'=>true),
+			array('record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'required'),
+			array('count, type, record_time, record_maker_id, product_id, client_id', 'numerical', 'integerOnly'=>true),
 			array('weight', 'numerical'),
-			array('received_record_id', 'length', 'max'=>20),
+			array('record_id', 'length', 'max'=>20),
+			array('goods_number', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, received_record_id, weight, count, goods_number, record_time, record_maker_id, product_id, type, client_id', 'safe', 'on'=>'search'),
+			array('id, record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,14 +72,14 @@ class ReceivedRecordItem extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'received_record_id' => 'Received Record',
+			'record_id' => 'Record',
 			'weight' => 'Weight',
 			'count' => 'Count',
 			'goods_number' => 'Goods Number',
+			'type' => 'Type',
 			'record_time' => 'Record Time',
 			'record_maker_id' => 'Record Maker',
 			'product_id' => 'Product',
-			'type' => 'Type',
 			'client_id' => 'Client',
 		);
 	}
@@ -95,14 +96,14 @@ class ReceivedRecordItem extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('received_record_id',$this->received_record_id,true);
+		$criteria->compare('record_id',$this->record_id,true);
 		$criteria->compare('weight',$this->weight);
 		$criteria->compare('count',$this->count);
-		$criteria->compare('goods_number',$this->goods_number);
+		$criteria->compare('goods_number',$this->goods_number,true);
+		$criteria->compare('type',$this->type);
 		$criteria->compare('record_time',$this->record_time);
 		$criteria->compare('record_maker_id',$this->record_maker_id);
 		$criteria->compare('product_id',$this->product_id);
-		$criteria->compare('type',$this->type);
 		$criteria->compare('client_id',$this->client_id);
 
 		return new CActiveDataProvider($this, array(

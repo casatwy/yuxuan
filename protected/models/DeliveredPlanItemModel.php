@@ -8,18 +8,18 @@
  * @property integer $silk_id
  * @property integer $count
  * @property double $weight
- * @property integer $goods_number
+ * @property string $goods_number
  * @property integer $record_time
- * @property integer $client_id
  * @property integer $product_id
  * @property string $delivered_plan_id
+ * @property integer $client_id
  */
-class DeliveredPlanItem extends CActiveRecord
+class DeliveredPlanItemModel extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return DeliveredPlanItem the static model class
+	 * @return DeliveredPlanItemModel the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -42,13 +42,14 @@ class DeliveredPlanItem extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('silk_id, count, weight, goods_number, record_time, client_id, product_id, delivered_plan_id', 'required'),
-			array('silk_id, count, goods_number, record_time, client_id, product_id', 'numerical', 'integerOnly'=>true),
+			array('silk_id, count, weight, goods_number, record_time, product_id, delivered_plan_id, client_id', 'required'),
+			array('silk_id, count, record_time, product_id, client_id', 'numerical', 'integerOnly'=>true),
 			array('weight', 'numerical'),
+			array('goods_number', 'length', 'max'=>30),
 			array('delivered_plan_id', 'length', 'max'=>20),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, silk_id, count, weight, goods_number, record_time, client_id, product_id, delivered_plan_id', 'safe', 'on'=>'search'),
+			array('id, silk_id, count, weight, goods_number, record_time, product_id, delivered_plan_id, client_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -75,9 +76,9 @@ class DeliveredPlanItem extends CActiveRecord
 			'weight' => 'Weight',
 			'goods_number' => 'Goods Number',
 			'record_time' => 'Record Time',
-			'client_id' => 'Client',
 			'product_id' => 'Product',
 			'delivered_plan_id' => 'Delivered Plan',
+			'client_id' => 'Client',
 		);
 	}
 
@@ -96,49 +97,14 @@ class DeliveredPlanItem extends CActiveRecord
 		$criteria->compare('silk_id',$this->silk_id);
 		$criteria->compare('count',$this->count);
 		$criteria->compare('weight',$this->weight);
-		$criteria->compare('goods_number',$this->goods_number);
+		$criteria->compare('goods_number',$this->goods_number,true);
 		$criteria->compare('record_time',$this->record_time);
-		$criteria->compare('client_id',$this->client_id);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('delivered_plan_id',$this->delivered_plan_id,true);
+		$criteria->compare('client_id',$this->client_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
 	}
-
-    public static function saveItem($plan, $data){
-        foreach($data['silk'] as $silk){
-            $item = new DeliveredPlanItem;
-            $item->silk_id = $silk['silk_id'];
-            $item->count = -1;
-            $item->weight = $silk['weight'];
-            $item->goods_number = $data['goods_number'];
-            $item->record_time = $plan->record_time;
-            $item->product_id = -1;
-            $item->delivered_plan_id = $plan->id;
-            $item->client_id = $plan->client_id;
-            $item->save();
-        }
-        foreach($data['product'] as $product){
-            $item = new DeliveredPlanItem;
-            $item->silk_id = -1;
-            $item->count = $product['count'];
-            $item->weight = -1;
-            $item->goods_number = $data['goods_number'];
-            $item->record_time = $plan->record_time;
-            $item->product_id = $product['product_id'];
-            $item->delivered_plan_id = $plan->id;
-            $item->client_id = $plan->client_id;
-            $item->save();
-        }
-    }
-
-    public function getPlanMakerName(){
-        DeliveredPlan::model()->findByPk($this->delivered_plan_id)->getPlanMakerName();
-    }
-
-    public function getMakerTelephone(){
-        DeliveredPlan::model()->findByPk($this->delivered_plan_id)->getPlanMakerTelephone();
-    }
 }

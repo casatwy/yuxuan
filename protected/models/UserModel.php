@@ -11,12 +11,12 @@
  * @property string $authority
  * @property integer $available
  */
-class User extends CActiveRecord
+class UserModel extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return User the static model class
+	 * @return UserModel the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -97,8 +97,4 @@ class User extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-
-    public static function getNameById($id){
-        return self::model()->findByPk($id)->name;
-    }
 }

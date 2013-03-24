@@ -17,6 +17,7 @@ return CMap::mergeArray(
 
         // autoloading model and component classes
         'import'=>array(
+            'application.bll.*',
             'application.models.*',
             'application.components.*',
         ),
