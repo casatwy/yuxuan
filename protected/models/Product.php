@@ -280,7 +280,7 @@ class Product extends CActiveRecord
         $product = self::model()->find($condition, $params);
         if(is_null($product)){
             $product = new Product;
-            $product->needle_type = 0;
+            $product->needle_type = isset($data['needle_type'])?$data['needle_type']:0;
             $product->color_name = $data['color_name'];
             $product->color_number = $data['color_number'];
             $product->goods_number = $data['goods_number'];
@@ -306,10 +306,10 @@ class Product extends CActiveRecord
     }
 
     public function afterSave(){
-        if($this->finished_count == $this->total_count && $this->status != Product::FINISHED){
-            $this->status = Product::FINISHED;
-            $this->save();
-        }
+        //if($this->finished_count == $this->total_count && $this->status != Product::FINISHED){
+        //    $this->status = Product::FINISHED;
+        //    $this->save();
+        //}
         Silk::getProductId($this->attributes);
     }
 
