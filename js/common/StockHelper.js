@@ -151,7 +151,8 @@ function StockHelper(baseUrl){
             itemType:itemType,
             data:saveData
         }, function(result){
-            //location.href = getRedirectUrl();
+            console.log(result);
+            location.href = getRedirectUrl();
         }, "json");
     }
 

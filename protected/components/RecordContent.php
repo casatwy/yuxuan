@@ -18,11 +18,14 @@ class RecordContent extends CController
         $recordData = $recordItemList->findAll($condition, $params);
 
         $product = null;
+        $recordType = null;
         foreach($recordData as $recordItem){
             if($recordItem->type == Record::SILK){
                 $product = Silk::model()->findByPk($recordItem->product_id);
+                $recordType = "毛纱";
             }else{
                 $product = Product::model()->findByPk($recordItem->product_id);
+                $recordType = "成品";
             }
 
             $gang_number = "无";
@@ -31,6 +34,7 @@ class RecordContent extends CController
             }
 
             $record = array(
+                'recordType' => $recordType,
                 'type' => $recordItem->type,
                 'goods_number' => $recordItem->goods_number, 
                 'color_number' => $product->color_number, 
@@ -39,7 +43,8 @@ class RecordContent extends CController
                 'needle_type' => isset($product->needle_type)?$product->needle_type:"无",
                 'size' => isset($product->size)?$product->size:"无",
                 'weight' => $recordItem->weight,
-                'quantity' => $recordItem->count
+                'count' => isset($product->size)?$recordItem->count:"无",
+                'product_type' => isset($product->product_type)?$product->product_type:"毛纱",
             );
             array_push($recordList, $record);
         }

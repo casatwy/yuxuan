@@ -1,7 +1,7 @@
 <table class="record">
     <tr>
-        <th>类型</th>
         <th>货号</th>
+        <th>类型</th>
         <th>色号</th>
         <th>色名</th>
         <th>缸号</th>
@@ -12,19 +12,22 @@
     </tr>
     <?php foreach($recordList as $record): ?>
     <tr>
+
+        <td><?php echo $record['goods_number'];?></td>
+
         <?php if($record['type'] == Record::SILK): ?>
             <td><?php echo "毛纱";?></td>
         <?php else: ?>
-            <td><?php echo "衣服";?></td>
+            <td><?php echo $record['product_type']; ?></td>
         <?php endif; ?>
-        <td><?php echo $record['goods_number'];?></td>
+
         <td><?php echo $record['color_number'];?></td>
         <td><?php echo $record['color_name'];?></td>
         <td><?php echo $record['gang_number'];?></td>
         <td><?php echo $record['needle_type'];?></td>
         <td><?php echo $record['size'];?></td>
         <td><?php echo $record['weight'];?> kg</td>
-        <td><?php echo $record['quantity'];?></td>
+        <td><?php echo $record['count'];?></td>
     </tr>
     <?php endforeach; ?>
 </table>
