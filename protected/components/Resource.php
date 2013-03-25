@@ -21,7 +21,8 @@ class Resource extends CComponent{
             "color_name" => array(),
             "gang_number" => array(),
             "color_number" => array(),
-            "needle_type" => null,
+            "needle_type" => array(),
+            "product_type" => array(),
         );
         foreach($productList as $product){
             if(isset($product->size)){
@@ -45,7 +46,15 @@ class Resource extends CComponent{
             }
 
             if(isset($product->needle_type)){
-                $result['needle_type'] = $product->needle_type;
+                if(!in_array($product->needle_type, $result['needle_type'])){
+                    array_push($result['needle_type'], $product->needle_type);
+                }
+            }
+
+            if(isset($product->product_type)){
+                if(!in_array($product->product_type, $result['product_type'])){
+                    array_push($result['product_type'], $product->product_type);
+                }
             }
         }
         return $result;

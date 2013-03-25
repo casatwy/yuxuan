@@ -79,7 +79,7 @@ function RecordHelper(baseUrl){
 		    	, {record_id:ui.newHeader.attr("data-record-id"), record_type:record_type}
 		    	, function(html){
                 ui.newPanel.html(html);
-                $(".J_listPrinter").printPreview();
+                //$(".J_listPrinter").printPreview();
             });
         }
     }

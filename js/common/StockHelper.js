@@ -70,9 +70,7 @@ function StockHelper(baseUrl){
             var data_type = record.find(".active").attr("data-type");
             var goods_number = record.find(".J_goodsNumber").val()
 
-            $.get(baseUrl+"/ajaxStorage/getStockTable",
-                {data_type:data_type, goods_number:goods_number},
-                function(html){
+            $.get(baseUrl+"/ajaxStorage/getStockTable",{data_type:data_type, goods_number:goods_number},function(html){
                     if(html == 0){
                         $.jGrowl("请确保输入正确的货号。", {header:"错误", life: 5000});
                     }else{
@@ -144,14 +142,16 @@ function StockHelper(baseUrl){
 
     function saveRecord(actionItem){
         var itemType = $(".J_selector.active").attr("data-type");
+        var client_id = $("#J_selectProvider").attr("provider");
         var saveData = getDataForSave();
         var url = getSaveUrl();
+
         $.post(url, {
-            client_id:$("#J_selectProvider").attr("provider"),
+            client_id:client_id,
             itemType:itemType,
             data:saveData
         }, function(result){
-            location.href = getRedirectUrl();
+            //location.href = getRedirectUrl();
         }, "json");
     }
 
@@ -183,15 +183,17 @@ function StockHelper(baseUrl){
             var item = $(value);
             var data_id = $(value).parents(".J_recordContent");
             var itemData = {
-                itemType : $(value).parents(".J_record").find(".J_selector.active").attr('data-type'),
-                goods_number : $(value).parents(".J_record").find(".J_goodsNumber").val(),
+                itemType : item.parents(".J_record").find(".J_selector.active").attr('data-type'),
+                goods_number : item.parents(".J_record").find(".J_goodsNumber").val(),
                 color_number : item.find(".J_colorNumber").val(),
                 color_name : item.find(".J_colorName").val(),
                 gang_number : item.find(".J_gangNumber").val(),
                 weight : item.find(".J_weight").val(),
                 size : item.find(".J_size").val(),
                 needle_type : item.find(".J_needleType").val(),
-                count : item.find(".J_count").val()
+                count : item.find(".J_count").val(),
+                product_type : item.find(".J_productType").val(),
+                gang_number : item.find(".J_gangNumber").val()
             };
             result.push(itemData);
         });

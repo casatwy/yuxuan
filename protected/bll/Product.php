@@ -186,6 +186,8 @@ class Product extends ProductModel
             $product->size = $data['size'];
             $product->status = self::PREPEARED;
             $product->create_time = time();
+            $product->gang_number = $data['gang_number'];
+            $product->product_type = $data['product_type'];
             $product->save();
         }
         return $product->id;

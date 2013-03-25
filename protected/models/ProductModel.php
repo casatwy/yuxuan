@@ -18,6 +18,9 @@
  * @property integer $create_time
  * @property integer $finished_time
  * @property integer $finished_count
+ * @property string $product_type
+ * @property string $gang_number
+ * @property integer $deadline_time
  */
 class ProductModel extends CActiveRecord
 {
@@ -48,12 +51,13 @@ class ProductModel extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('needle_type, color_name, color_number, goods_number, size, status, create_time', 'required'),
-			array('needle_type, color_number, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count', 'numerical', 'integerOnly'=>true),
+			array('needle_type, color_number, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, deadline_time', 'numerical', 'integerOnly'=>true),
 			array('color_name, size', 'length', 'max'=>10),
 			array('goods_number', 'length', 'max'=>30),
+			array('product_type, gang_number', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, needle_type, color_name, color_number, goods_number, size, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count', 'safe', 'on'=>'search'),
+			array('id, needle_type, color_name, color_number, goods_number, size, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, product_type, gang_number, deadline_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -88,6 +92,9 @@ class ProductModel extends CActiveRecord
 			'create_time' => 'Create Time',
 			'finished_time' => 'Finished Time',
 			'finished_count' => 'Finished Count',
+			'product_type' => 'Product Type',
+			'gang_number' => 'Gang Number',
+			'deadline_time' => 'Deadline Time',
 		);
 	}
 
@@ -116,6 +123,9 @@ class ProductModel extends CActiveRecord
 		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('finished_time',$this->finished_time);
 		$criteria->compare('finished_count',$this->finished_count);
+		$criteria->compare('product_type',$this->product_type,true);
+		$criteria->compare('gang_number',$this->gang_number,true);
+		$criteria->compare('deadline_time',$this->deadline_time);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
