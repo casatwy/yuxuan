@@ -107,27 +107,29 @@ class AjaxStorageController extends Controller
             type:
         */
         $criteria = null;
+
         if(empty($_GET['data']['recordId'])){
             $criteria = $this->setupCriteria($_GET['data'], $_GET['type']);
         }else{
             $criteria = new CDbCriteria();
             $criteria->condition = "id=".$_GET['data']['recordId'];
         }
-        $criteria->order = "id desc";
-        $count = ($_GET['type'] == Record::OUT_RECORD)?(DeliveredRecord::model()->count($criteria)):(ReceivedRecord::model()->count($criteria));
-        $pages = new CPagination($count);
 
+        $criteria->order = "id desc";
+        $record = new Record($_GET['type']);
+        $count = $record->count($criteria);
+
+        $pages = new CPagination($count);
         $pages->pageSize = 10;
         $pages->applyLimit($criteria);
-        $recordList = ($_GET['type'] == Record::OUT_RECORD)?(DeliveredRecord::model()->findAll($criteria)):(ReceivedRecord::model()->findAll($criteria));
 
+        $recordList = $record->findAll($criteria);
 
-        $html = $this->renderPartial("recordList", array(
+        $this->renderPartial("recordList", array(
             "recordList" => $recordList,
             "pages" => $pages,
             "type" => $_GET['type']    
-        ), true);
-        echo $html;
+        ));
     }
 
     public static function setupCriteria($data, $type){
