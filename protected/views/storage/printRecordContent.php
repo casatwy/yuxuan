@@ -1,3 +1,7 @@
+<?php
+$totalCount = 0;
+$totalWeight = 0;
+?>
 <div class="container font-2" id="J_page">
 <h1 class="center big"><?php echo Yii::app()->params["companyName"]; ?><h1>
 <?php 
@@ -49,6 +53,10 @@
         <th>数量</th>
     </tr>
     <?php foreach($recordList as $record): ?>
+    <?php
+        $totalCount += $record['count'];
+        $totalWeight += $record['weight'];
+    ?>
     <tr>
         <td><?php echo $record['goods_number'];?></td>
         <td><?php echo $record['product_type'];?></td>
@@ -61,6 +69,17 @@
         <td><?php echo $record['count'];?></td>
     </tr>
     <?php endforeach; ?>
+    <tr>
+        <td>合计</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><?php echo $totalWeight; ?> kg</td>
+        <td><?php echo $totalCount; ?></td>
+    </tr>
 </table>
 <br />
 	<span class="span-23 last prepend-1">如有疑问，请您联系我:
