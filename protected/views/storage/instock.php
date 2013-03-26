@@ -38,7 +38,7 @@
         时间:<?php echo date("Y-m-d H:i:s", $record->record_time); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         单号:RC<?php echo $record->id; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         制单人:<?php echo $record->getMaker(); ?>
-        <a href="javascript:void(0);" class="J_deleteRecord prepend-6" data-record-id="<?php echo $record->id; ?>">删除</a>
+        <a href="javascript:void(0);" class="J_deleteRecord spanright" data-record-id="<?php echo $record->id; ?>">删除</a>
     </J_HEADER>
     <div><img src="<?php echo $this->baseUrl; ?>/images/mediumloading.gif"></img></div>
 
