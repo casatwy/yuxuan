@@ -110,6 +110,10 @@ class Controller extends CController
             return true;
         }
 
+        if(Yii::app()->request->isAjaxRequest){
+            return true;
+        }
+
         if(Yii::app()->user->isGuest){
             $this->redirect("/site/login");
         }

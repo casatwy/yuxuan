@@ -34,9 +34,20 @@ function RecordHelper(baseUrl){
         });
 
         $(".J_deleteRecord").live("click", function(){
-            alert("here");
+            deleteRecord($(this));
             return false;
         });
+    }
+
+    function deleteRecord(actionItem){
+        var record_id = actionItem.attr("data-record-id");
+        var type = actionItem.attr("data-record-type");
+        if(confirm("确定删除这条记录吗？")){
+            $.post(baseUrl+"/ajaxStorage/deleteRecordById", {record_id:record_id, type:type}, function(){
+                $("J_HEADER[data-record-id="+record_id+"]").remove();
+                $("div[data-record-id="+record_id+"]").remove();
+            });
+        }
     }
 
     function setAccordion(rebuild){

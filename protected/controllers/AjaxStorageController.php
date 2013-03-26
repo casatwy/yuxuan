@@ -210,4 +210,9 @@ class AjaxStorageController extends Controller
             echo $this->renderPartial("productStock", array("attributeList" => $attributeList));
         }
     }
+
+    public function actionDeleteRecordById(){
+        $record = new Record($_POST['type']);
+        $record->deleteByPk($_POST['record_id']);
+    }
 }
