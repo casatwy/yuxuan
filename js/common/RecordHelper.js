@@ -32,6 +32,11 @@ function RecordHelper(baseUrl){
             ajaxGetRecords($(this));
             return false;
         });
+
+        $(".J_deleteRecord").live("click", function(){
+            alert("here");
+            return false;
+        });
     }
 
     function setAccordion(rebuild){
