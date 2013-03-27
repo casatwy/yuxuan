@@ -214,5 +214,11 @@ class AjaxStorageController extends Controller
     public function actionDeleteRecordById(){
         $record = new Record($_POST['type']);
         $record->deleteByPk($_POST['record_id']);
+        $recordItem = new RecordItem($_POST['type']);
+        $condition = "record_id = :record_id";
+        $params = array(
+            ':record_id' => $_POST['record_id']
+        );
+        $recordItem->deleteAll($condition, $params);
     }
 }
