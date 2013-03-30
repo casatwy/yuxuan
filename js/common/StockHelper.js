@@ -1,11 +1,6 @@
 $(document).ready(function(){
     stockHelper = new StockHelper($("#J_baseUrl").val());
     stockHelper.init();
-
-    //var helper = new ContentHelper();
-    //helper.setContent("casa", "casacasa");
-    //var fetchedContent = helper.getContent("casacasa");
-    //alert(fetchedContent);
 });
 
 function StockHelper(baseUrl){
@@ -37,19 +32,21 @@ function StockHelper(baseUrl){
      };
     function bindEvent(){
 
-        $(".J_deleteRecord").live('click', function(){            
+        $(".J_deleteRecord").live('click', function(){
             $(this).closest(".J_item").remove();
         });
 
         $("#J_creatNewRecord").live('click', function(){
-            var html = $("#J_template").html();
-            var next_id = $("#J_next").attr("next-id");
-                
-            html = html.replace(/data-id=\"\"/g,"data-id=\""+next_id+"\"");
-            html = html.replace(/J_recordTemplate/,"J_record");
-            $(".J_record:last").after(html);
-            next_id = parseInt(next_id)+1;
-            $("#J_next").attr("next-id", next_id);          
+            $.post(baseUrl+"/ajaxStorage/createNewRecord", {}, function(result){
+                var next_id = $("#J_next").attr("next-id");
+
+                result = result.replace(/data-id=\"\"/g,"data-id=\""+next_id+"\"");
+                result = result.replace(/J_recordTemplate/,"J_record");
+                $(".J_record:last").after(result);
+
+                next_id = parseInt(next_id)+1;
+                $("#J_next").attr("next-id", next_id);
+            });
         });
 
         $("#J_saveRecord").live('click', function(){
@@ -60,7 +57,7 @@ function StockHelper(baseUrl){
             if(!stockHelper.judgeRecord()){
                 return;
             }
-        
+
             saveRecord($(this));
         });
 
@@ -68,7 +65,7 @@ function StockHelper(baseUrl){
             var record = $(this).closest(".J_record");
 
             var data_type = record.find(".active").attr("data-type");
-            var goods_number = record.find(".J_goodsNumber").val()
+            var goods_number = record.find(".J_goodsNumber").val();
 
             $.get(baseUrl+"/ajaxStorage/getStockTable",{data_type:data_type, goods_number:goods_number},function(html){
                     if(html == 0){

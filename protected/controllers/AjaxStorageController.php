@@ -221,4 +221,17 @@ class AjaxStorageController extends Controller
         );
         $recordItem->deleteAll($condition, $params);
     }
+
+    public function actionCreateNewRecord(){
+        echo '
+                <div class="J_record J_note" data-id="">
+                    <span class="span-6">货号:<input type="text" class="J_goodsNumber J_goodsNum"></input></span>
+                    <span class="span-2"><span data-id="" class="J_selector select_b active" data-type="0">毛纱</span></span>
+                    <span class="span-2"><span data-id="" class="J_selector select_b" data-type="1">产品</span></span>
+                    <span class=" span-2"><button class="J_continue J_goOnButton" disabled>继续</button></span> 
+                    <span class=" span-2 last"><button class="J_del">删除</button></span>
+                    <div class="J_recordContent" data-id=""></div>
+                </div>
+            ';
+    }
 }

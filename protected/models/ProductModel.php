@@ -50,7 +50,7 @@ class ProductModel extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('needle_type, color_name, color_number, goods_number, size, status, create_time', 'required'),
+			array('needle_type, color_name, color_number, goods_number, size, status, create_time, gang_number', 'required'),
 			array('needle_type, color_number, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, deadline_time', 'numerical', 'integerOnly'=>true),
 			array('color_name, size', 'length', 'max'=>10),
 			array('goods_number', 'length', 'max'=>30),

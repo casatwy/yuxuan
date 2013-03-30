@@ -94,6 +94,12 @@
 	text-align:center;
 }
 
+.recordprint, .recordprint td, .recordprint th {
+	border:1px solid  #000000;
+	border-collapse:collapse;
+	text-align:center;
+}
+
 /*  selectprovider 选择客户  */
 .selectPr {
 	padding:0 0 20px 0;

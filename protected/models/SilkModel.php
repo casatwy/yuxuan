@@ -8,7 +8,7 @@
  * @property string $goods_number
  * @property string $color_name
  * @property integer $color_number
- * @property integer $gang_number
+ * @property string $gang_number
  * @property integer $order_id
  */
 class SilkModel extends CActiveRecord
@@ -40,9 +40,10 @@ class SilkModel extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('goods_number, color_name, color_number, gang_number, order_id', 'required'),
-			array('color_number, gang_number, order_id', 'numerical', 'integerOnly'=>true),
+			array('color_number, order_id', 'numerical', 'integerOnly'=>true),
 			array('goods_number', 'length', 'max'=>30),
 			array('color_name', 'length', 'max'=>20),
+			array('gang_number', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, goods_number, color_name, color_number, gang_number, order_id', 'safe', 'on'=>'search'),
@@ -90,7 +91,7 @@ class SilkModel extends CActiveRecord
 		$criteria->compare('goods_number',$this->goods_number,true);
 		$criteria->compare('color_name',$this->color_name,true);
 		$criteria->compare('color_number',$this->color_number);
-		$criteria->compare('gang_number',$this->gang_number);
+		$criteria->compare('gang_number',$this->gang_number,true);
 		$criteria->compare('order_id',$this->order_id);
 
 		return new CActiveDataProvider($this, array(
