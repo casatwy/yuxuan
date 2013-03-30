@@ -33,29 +33,48 @@ class Silk extends SilkModel
 
     public static function getProductId($data){
         $gangNumber = null;
-        if(isset($data['gang_number'])){
-            $gangNumber = $data['gang_number'];
-        }else{
-            $gangNumber = "0";
+        if(!isset($data['gang_number'])){
+            $data['gang_number'] = "0";
         }
 
-        $condition = "goods_number = :goods_number and color_number = :color_number and gang_number = :gang_number";
+        $condition = "goods_number = :goods_number";
         $params = array(
             ":goods_number" => $data['goods_number'],
-            ":color_number" => $data['color_number'],
-            ":gang_number" => $gangNumber,
         );
-        $silk = self::model()->find($condition, $params);
+        $silk = self::model()->findAll($condition, $params);
         if(is_null($silk)){
-            $silk = new Silk;
-            $silk->goods_number = $data['goods_number'];
-            $silk->color_name = $data['color_name'];
-            $silk->color_number = $data['color_number'];
-            $silk->gang_number = $gangNumber;
-            $silk->order_id = 0;
-            $silk->save();
+            $silk = self::createNewSilk($data);
+        } else if (count($silk) > 0) {
+            $result = null;
+
+            foreach($silk as $item){
+                if ($item->color_name == $data['color_name']
+                    && $item->color_number == $data['color_number']
+                    && $item->gang_number == $data['gang_number']
+                ){
+                    $result = $item;
+                    break;
+                }
+            }
+
+            if(is_null($result)){
+                $silk = self::createNewRecord($data);
+            }else{
+                $silk = $result;
+            }
         }
         return $silk->id;
+    }
+
+    public static function createNewSilk($data){
+        $silk = new Silk;
+        $silk->goods_number = $data['goods_number'];
+        $silk->color_name = $data['color_name'];
+        $silk->color_number = $data['color_number'];
+        $silk->gang_number = $data['gangNumber'];
+        $silk->order_id = 0;
+        $silk->save();
+        return $silk;
     }
 
     public static function getByGoodsNumber($goods_number){

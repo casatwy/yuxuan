@@ -170,27 +170,53 @@ class Product extends ProductModel
     }
 
     public static function getProductId($data){
-        $condition = "goods_number = :goods_number and color_number = :color_number and size = :size";
+        $condition = "goods_number = :goods_number";
         $params = array(
             ":goods_number" => $data['goods_number'],
-            ":color_number" => $data['color_number'],
-            ":size" => $data['size'],
         );
-        $product = self::model()->find($condition, $params);
+
+        $product = self::model()->findAll($condition, $params);
+
         if(is_null($product)){
-            $product = new Product;
-            $product->needle_type = isset($data['needle_type'])?$data['needle_type']:0;
-            $product->color_name = $data['color_name'];
-            $product->color_number = $data['color_number'];
-            $product->goods_number = $data['goods_number'];
-            $product->size = $data['size'];
-            $product->status = self::PREPEARED;
-            $product->create_time = time();
-            $product->gang_number = $data['gang_number'];
-            $product->product_type = $data['product_type'];
-            $product->save();
+            $product = self::createNewProduct($data);
+        } else if (count($product) > 0){
+            $result = null;
+
+            foreach($product as $item){
+                if( $item->color_number == $data['color_number']
+                    && $item->size = $data['size']
+                    && $item->product_type = $data['product_type']
+                    && $item->needle_type = $data['needle_type']
+                    && $item->gang_number = $data['gang_number']
+                    && $item->color_name = $data['color_name']
+                ){
+                    $result = $item;
+                    break;
+                }
+            }
+
+            if(is_null($result)){
+                $product = self::createNewProduct($data);
+            }else{
+                $product = $result;
+            }
         }
         return $product->id;
+    }
+
+    public static function createNewProduct($data){
+        $product = new Product;
+        $product->needle_type = isset($data['needle_type'])?$data['needle_type']:0;
+        $product->color_name = $data['color_name'];
+        $product->color_number = $data['color_number'];
+        $product->goods_number = $data['goods_number'];
+        $product->size = $data['size'];
+        $product->status = self::PREPEARED;
+        $product->create_time = time();
+        $product->gang_number = $data['gang_number'];
+        $product->product_type = $data['product_type'];
+        $product->save();
+        return $product;
     }
 
     public static function getByGoodsNumber($goods_number){
