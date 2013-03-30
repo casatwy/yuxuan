@@ -50,13 +50,12 @@ foreach($recordListArray as $pageNumber => $recordListItem):
         <tr>
             <th>货号</th>
             <th>生产种类</th>
-            <th>色号</th>
-            <th>色名</th>
-            <th>缸号</th>
             <th>针型</th>
-            <th>尺寸</th>
+            <th>颜色</th>
+            <th>缸号</th>
+            <th>尺码</th>
+            <th>出货量</th>
             <th>重量</th>
-            <th>数量</th>
         </tr>
         <?php $rowCount = 0; ?>
         <?php foreach($recordListItem as $rowIndex => $record): ?>
@@ -68,13 +67,12 @@ foreach($recordListArray as $pageNumber => $recordListItem):
         <tr>
             <td><?php echo $record['goods_number'];?></td>
             <td><?php echo $record['product_type'];?></td>
-            <td><?php echo $record['color_number'];?></td>
+            <td><?php echo $record['needle_type'];?></td>
             <td><?php echo $record['color_name'];?></td>
             <td><?php echo $record['gang_number'];?></td>
-            <td><?php echo $record['needle_type'];?></td>
             <td><?php echo $record['size'];?></td>
-            <td><?php echo $record['weight'];?> kg</td>
             <td><?php echo $record['count'];?></td>
+            <td><?php echo $record['weight'];?> kg</td>
         </tr>
         <?php endforeach; ?>
 
@@ -83,7 +81,6 @@ foreach($recordListArray as $pageNumber => $recordListItem):
             $leftCount--;
         ?>
             <tr>
-                <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -102,9 +99,8 @@ foreach($recordListArray as $pageNumber => $recordListItem):
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td><?php echo $totalWeight; ?> kg</td>
             <td><?php echo $totalCount; ?></td>
+            <td><?php echo $totalWeight; ?> kg</td>
         </tr>
     </table>
     <br />
