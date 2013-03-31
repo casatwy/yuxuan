@@ -197,12 +197,13 @@ a.prepend {
 #J_page h3{
     font-size:25px;
     margin-top:-20px;
+    margin-bottom: 0em;
 }
 #J_page table{
     margin-bottom: 0.2em;
 }
 #J_page th,#J_page td,#J_page caption {
-padding: 0px;
+    padding: 0px;
 }
 /*   createPlanList 创建生产计划  */  
 #createPlanList .record input{
