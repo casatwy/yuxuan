@@ -1,188 +1,197 @@
 /*       login登入         */
 #login {
-	width:350px;
-	border-radius: 3px 3px 3px 3px;
-   	box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2), 0 3px 0 #FFFFFF, 0 4px 0 rgba(0, 0, 0, 0.2), 0 6px 0 #FFFFFF, 0 7px 0 rgba(0, 0, 0, 0.2);
-    	height: 200px;
-    	padding: 30px;
-	background-image: -moz-linear-gradient(center top , #FFFFFF, #EEEEEE);
-    	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
-	position: relative;
-	z-index: 0;
+    width:350px;
+    border-radius: 3px 3px 3px 3px;
+       box-shadow: 0 0 30px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.2), 0 3px 0 #FFFFFF, 0 4px 0 rgba(0, 0, 0, 0.2), 0 6px 0 #FFFFFF, 0 7px 0 rgba(0, 0, 0, 0.2);
+        height: 200px;
+        padding: 30px;
+    background-image: -moz-linear-gradient(center top , #FFFFFF, #EEEEEE);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));
+    position: relative;
+    z-index: 0;
 }
 
 #login:before {
-    	border: 1px dashed #CCCCCC;
-    	bottom: 5px;
-    	box-shadow: 0 0 0 1px #FFFFFF;
-    	content: "";
-    	left: 5px;
-    	position: absolute;
-    	right: 5px;
-    	top: 5px;
-	z-index: -1;
+        border: 1px dashed #CCCCCC;
+        bottom: 5px;
+        box-shadow: 0 0 0 1px #FFFFFF;
+        content: "";
+        left: 5px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    z-index: -1;
 }
 
 
 #login h1:after {
-    	background-image: -moz-linear-gradient(left center , #777777, #FFFFFF);
-    	background-image: -webkit-gradient(linear, left top, right top, from(#777), to(#fff));
-    	right: 0;
+        background-image: -moz-linear-gradient(left center , #777777, #FFFFFF);
+        background-image: -webkit-gradient(linear, left top, right top, from(#777), to(#fff));
+        right: 0;
 }
 #login h1:before {
-    	background-image: -moz-linear-gradient(right center , #777777, #FFFFFF);
-	background-image: -webkit-gradient(linear, right top, left top, from(#777), to(#fff));
-    	left: 0;
+        background-image: -moz-linear-gradient(right center , #777777, #FFFFFF);
+    background-image: -webkit-gradient(linear, right top, left top, from(#777), to(#fff));
+        left: 0;
 }
  #login h1:after, #login h1:before {
-    	background-color: #777777;
-    	content: "";
-    	height: 1px;
-    	position: absolute;
-    	top: 15px;
-    	width: 80px;
+        background-color: #777777;
+        content: "";
+        height: 1px;
+        position: absolute;
+        top: 15px;
+        width: 80px;
 }
 
 #login h1 {
-    	color: #666666;
-    	font: 26px/1 Verdana,Helvetica;
-    	letter-spacing: 4px;
-    	margin: 0 0 30px;
-    	position: relative;
-    	text-align: center;
-    	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.698), 0 2px 0 rgba(0, 0, 0, 0.5);
-    	text-transform: uppercase;
+        color: #666666;
+        font: 26px/1 Verdana,Helvetica;
+        letter-spacing: 4px;
+        margin: 0 0 30px;
+        position: relative;
+        text-align: center;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.698), 0 2px 0 rgba(0, 0, 0, 0.5);
+        text-transform: uppercase;
 }
 #login span {
-	font-size:1.2em;
-	margin-bottom:20px;
+    font-size:1.2em;
+    margin-bottom:20px;
 }
 
 .log-bg {
-	height:380px;
-	background:url(../images/login-bg.png) no-repeat 80px 50px;
+    height:380px;
+    background:url(../images/login-bg.png) no-repeat 80px 50px;
 }
 /* contant-container  */
 .contant-container {
-	margin: 0 120px;
-	width:590px;
+    margin: 0 120px;
+    width:590px;
    float:left;
 }
 
 
 /*    instock      */
 #plus{
-	display:block;
-	width:20px;
-	height:20px;
-	margin:0 auto;
-	background:url(../images/plus.png) no-repeat;
-}	
-#plus:hover{
-	display:block;
-	width:25px;
-	height:25px;
-	margin:-2px auto;
-	background:url(../images/plus-big.png) no-repeat;
+    display:block;
+    width:20px;
+    height:20px;
+    margin:0 auto;
+    background:url(../images/plus.png) no-repeat;
+}    
+
+#plus:hover
+{
+    display:block;
+    width:25px;
+    height:25px;
+    margin:-2px auto;
+    background:url(../images/plus-big.png) no-repeat;
 }
 
 /*  record  表格  */
 
-.record, .record td, .record th {
-	border:1px solid  #dddddd;
-	border-collapse:collapse;
-	text-align:center;
+.record, .record td, .record th
+{
+    border:1px solid  #dddddd;
+    border-collapse:collapse;
+    text-align:center;
 }
 
-.recordprint, .recordprint td, .recordprint th {
-	border:1px solid  #000000;
-	border-collapse:collapse;
-	text-align:center;
+.recordprint, .recordprint td, .recordprint th
+{
+    border:1px solid  #000000;
+    border-collapse:collapse;
+    text-align:center;
+    font-size:20px;
 }
 
+.font-size-20
+{
+    font-size:20px;
+}
 /*  selectprovider 选择客户  */
 .selectPr {
-	padding:0 0 20px 0;
+    padding:0 0 20px 0;
 }
 .selectNa {
-	background-color:#F0F0F0;
-	border:1px solid #ccdef2;
-	margin:1px 20px 5px; 
+    background-color:#F0F0F0;
+    border:1px solid #ccdef2;
+    margin:1px 20px 5px; 
    border-radius: 5px;
 
 }
 .address {
-	clear:both;
-	content:" ";
-	display:block;
-	height:0;
+    clear:both;
+    content:" ";
+    display:block;
+    height:0;
 }
 a.prepend {
-	float:left;
-	padding:2px 7px;
-	margin:3px;
-	position:relative;
-	wite-space:nowrap;
-	color:#0088cc;
-	text-decoration:none;
-	cursor:pointer;
+    float:left;
+    padding:2px 7px;
+    margin:3px;
+    position:relative;
+    wite-space:nowrap;
+    color:#0088cc;
+    text-decoration:none;
+    cursor:pointer;
 }
  a.prepend:hover ,a.active{
-	background-color:#a3d3e7;
-	color:#ffffff;
-	text-decoration:none;
+    background-color:#a3d3e7;
+    color:#ffffff;
+    text-decoration:none;
    border-radius: 5px 5px 5px 5px;
    -webkit-transition: all .3s linear .1s;
    transition: all .3s ease-in .1s;
 }
 .selevtADD {
-	position:absolute;
-	top:30%;
-	border-left: 1px solid #DDDDDD;
-	margin-left: 25px;
-	padding-left: 24px;
+    position:absolute;
+    top:30%;
+    border-left: 1px solid #DDDDDD;
+    margin-left: 25px;
+    padding-left: 24px;
 }
 /* deliverePlan 生产计划   */
 .th-bg {
-	background:url(../images/th-bg.png) no-repeat;
-	width:100px;
-	height:40px;
+    background:url(../images/th-bg.png) no-repeat;
+    width:100px;
+    height:40px;
 }
 .th-bg span {
-	margin:0;
-	float:left;
+    margin:0;
+    float:left;
 }
 /*  adduser 用户信息  修改创建用户  */
 .add {
-	width:310px;
+    width:310px;
 }
 .adduser {
-	width:630px;
+    width:630px;
 }
 /*  daycontent 日历  */
 .dayContent {
-		width:750px;
+        width:750px;
 }
 /*  button 按钮  */
 
 
 /* brackets */
 .brackets, .brackets.glossy:after, .brackets.glass:after { 
-	border-top: 			none; 
-	-webkit-border-radius: 	.5em / 1em;
-	-moz-border-radius: 	.5em / 1em;
-	border-radius: 			.5em / 1em;
+    border-top:             none; 
+    -webkit-border-radius:     .5em / 1em;
+    -moz-border-radius:     .5em / 1em;
+    border-radius:             .5em / 1em;
 }
 /*  print 打印  */
 #J_page {
-	-o-transform-origin:0 0;
-	-webkit-transform: scale(0.8);     /* for Chrome || Safari */
+    -o-transform-origin:0 0;
+    -webkit-transform: scale(0.8);     /* for Chrome || Safari */
         -moz-transform: scale(0.8);        /* for Firefox */
-	float:left;
-	margin-left:-80px;
+    float:left;
+    margin-left:-80px;
 }
 #J_page span {
-	font-size:16px;
+    font-size:16px;
 }
 
 /*   createPlanList 创建生产计划  */  
@@ -229,19 +238,23 @@ button,input{
 button{
     padding:3px 10px;
 }
-input[type="submit"]{
+input[type="submit"]
+{
     border:0px;
     background:url(../images/light.png) no-repeat ;
     width:130px;
     height:29px;
 }
-input[type="submit"]:hover{
+input[type="submit"]:hover
+{
     background:url(../images/dark.png) no-repeat ;
 }
-input[type="submit"]:active{
+input[type="submit"]:active
+{
     background:url(../images/active.png) no-repeat ;
 }
-button:hover{
+button:hover
+{
     background:#e6dfe6;
 }
   button:active {
@@ -251,31 +264,31 @@ button:hover{
 
 /*  文字样式  */
 .big {
-	font-size:3em;
-	font-weight: bold;
-	line-height:1.7em;
+    font-size:3em;
+    font-weight: bold;
+    line-height:1.7em;
 }
 .left {
-	text-align:left;
-}	
+    text-align:left;
+}    
 .center {
-	text-align:center;
-}	
+    text-align:center;
+}    
 .right {
-	text-align:right;
+    text-align:right;
 }
 .pad-6 {
-	padding-left:6px;
+    padding-left:6px;
 }
 .pad-50 {
-	padding-left:50px;
+    padding-left:50px;
 }
 .contant-container span , .dayContent span , .add span ,.adduser span {
-	margin-bottom:1.5em;
+    margin-bottom:1.5em;
 }
 
 .font-2 {
-	font-size:1.1em;
+    font-size:1.1em;
 }
 
 .spanright{
@@ -283,9 +296,9 @@ button:hover{
 }
 /*  我会告诉你这里是菊花么= - =  */
 #J_fetchedRecords div img {
-	padding-left:300px;
+    padding-left:300px;
 }
 
 .ass_hole {
-	margin-left:300px;
+    margin-left:300px;
 }

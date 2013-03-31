@@ -12,10 +12,10 @@ foreach($recordListArray as $pageNumber => $recordListItem):
     <h1 class="center big"><?php echo Yii::app()->params["companyName"]; ?><h1>
     <?php 
         if($info['type'] == Record::IN_RECORD){
-            echo '<h2 class="center">'.$recordList[0]['recordType'].'入库单</h2>';
+            echo '<h3 class="center">'.$recordList[0]['recordType'].'入库单</h3>';
         }
         if($info['type'] == Record::OUT_RECORD){
-            echo '<h2  class="center">'.$recordList[0]['recordType'].'出库单</h2>';
+            echo '<h3  class="center">'.$recordList[0]['recordType'].'出库单</h3>';
         }
     ?> 
 
