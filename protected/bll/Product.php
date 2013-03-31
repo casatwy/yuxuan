@@ -184,11 +184,11 @@ class Product extends ProductModel
 
             foreach($product as $item){
                 if( $item->color_number == $data['color_number']
-                    && $item->size = $data['size']
-                    && $item->product_type = $data['product_type']
-                    && $item->needle_type = $data['needle_type']
-                    && $item->gang_number = $data['gang_number']
-                    && $item->color_name = $data['color_name']
+                    && $item->size == $data['size']
+                    && $item->product_type == $data['product_type']
+                    && $item->needle_type == $data['needle_type']
+                    && $item->gang_number == $data['gang_number']
+                    && $item->color_name == $data['color_name']
                 ){
                     $result = $item;
                     break;
