@@ -183,15 +183,19 @@ a.prepend {
     border-radius:             .5em / 1em;
 }
 /*  print 打印  */
-#J_page {
+/*#J_page {
     -o-transform-origin:0 0;
     /*-webkit-transform: scale(0.8);      for Chrome || Safari */
-     /*   -moz-transform: scale(0.8);         for Firefox */  
+     /*   -moz-transform: scale(0.8);         for Firefox  
     float:left;
-   /* margin-left:-80px;*/
-}
+    margin-left:-80px;
+}*/ 
 #J_page span {
-    font-size:16px;
+    font-size:20px;
+}
+#J_page h3{
+    font-size:25px;
+    margin-top:-20px;
 }
 
 /*   createPlanList 创建生产计划  */  

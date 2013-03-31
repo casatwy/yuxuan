@@ -42,8 +42,7 @@ foreach($recordListArray as $pageNumber => $recordListItem):
         </span>
 
         <span class="span-5 last"><span>第<?php echo $pageNumber + 1;  ?>页/共<?php echo $totalPageCount; ?>页</span></span>
-    	<span class="span-18 prepend-1"><span></span></span>
-    	<span class="span-5 last small"></span>
+
 
     <table class="recordprint">
 
@@ -103,21 +102,21 @@ foreach($recordListArray as $pageNumber => $recordListItem):
             <td><?php echo $totalWeight; ?> kg</td>
         </tr>
     </table>
-    <br />
+
     	<span class="span-23 last prepend-1">如有疑问，请您联系我:
     		<span><?php echo $info['record']->getMaker(); ?></span>&nbsp;&nbsp;
     		<span><?php echo $info['user']->telephone; ?></span>
     	</span>
 
-    <span class="span-5">制单人：<span><?php echo $info['record']->getMaker(); ?></span></span>
+    <span class="span-6">制单人：<span><?php echo $info['record']->getMaker(); ?></span></span>
     <span class="span-5">发货人：<span></span></span>
     <span class="span-5">审核人：<span></span></span>
-    <span class="span-5">送货人：<span></span></span>
+    <span class="span-4">送货人：<span></span></span>
     <span class="span-4 last">客户签收：<span></span></span>
-    <span class="span-5">制单日期：<span><?php echo date('Y-m-d', $info['record']->record_time); ?></span></span>
+    <span class="span-6">制单日期：<span><?php echo date('Y-m-d', $info['record']->record_time); ?></span></span>
     <span class="span-5">发货日期：<span></span></span>
     <span class="span-5">审核日期：<span></span></span>
-    <span class="span-5">送货日期：<span></span></span>
+    <span class="span-4">送货日期：<span></span></span>
     <span class="span-4 last">签收日期：<span></span></span>
 
     </div>
