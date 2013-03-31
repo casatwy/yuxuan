@@ -61,7 +61,7 @@ class Silk extends SilkModel
             }
 
             if(is_null($result)){
-                $silk = self::createNewRecord($data);
+                $silk = self::createNewSilk($data);
             }else{
                 $silk = $result;
             }
