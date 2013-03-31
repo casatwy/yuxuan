@@ -185,10 +185,10 @@ a.prepend {
 /*  print 打印  */
 #J_page {
     -o-transform-origin:0 0;
-    -webkit-transform: scale(0.8);     /* for Chrome || Safari */
-        -moz-transform: scale(0.8);        /* for Firefox */
+    /*-webkit-transform: scale(0.8);      for Chrome || Safari */
+     /*   -moz-transform: scale(0.8);         for Firefox */  
     float:left;
-    margin-left:-80px;
+   /* margin-left:-80px;*/
 }
 #J_page span {
     font-size:16px;
