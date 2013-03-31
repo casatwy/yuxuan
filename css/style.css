@@ -191,11 +191,15 @@ a.prepend {
     margin-left:-80px;
 }*/ 
 #J_page span {
-    font-size:20px;
+    font-size:18px;
+    margin-top:-5px;
 }
 #J_page h3{
     font-size:25px;
     margin-top:-20px;
+}
+#J_page table{
+    margin-bottom: 0.2em;
 }
 
 /*   createPlanList 创建生产计划  */  
