@@ -1,5 +1,5 @@
 <?php
-define("RECORD_TABLE_ROW_LIMIT", 10);
+define("RECORD_TABLE_ROW_LIMIT", 12);
 $recordListArray = array_chunk($recordList, RECORD_TABLE_ROW_LIMIT);
 $totalPageCount = ceil(count($recordList) / RECORD_TABLE_ROW_LIMIT);
 foreach($recordListArray as $pageNumber => $recordListItem):
