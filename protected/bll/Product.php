@@ -177,7 +177,7 @@ class Product extends ProductModel
 
         $product = self::model()->findAll($condition, $params);
 
-        if(is_null($product)){
+        if(count($product) == 0){
             $product = self::createNewProduct($data);
         } else if (count($product) > 0){
             $result = null;

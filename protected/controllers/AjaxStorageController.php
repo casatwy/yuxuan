@@ -78,7 +78,7 @@ class AjaxStorageController extends Controller
 
     private function saveRecord($saveType){
         $record = new Record($saveType);
-        $record->saveRecord($_POST);
+        $record->saveRecord($_POST['data']);
     }
 
     //based on the record id

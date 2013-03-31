@@ -60,9 +60,9 @@ class Record extends RecordModel
     }
 
     private function saveItem($data){
-        foreach($data as $item){
+        foreach($data as $itemData){
             $recordItem = new RecordItem($this->saveType);
-            $recordItem->saveItem($item, $this);
+            $recordItem->saveItem($itemData, $this);
         }
     }
 

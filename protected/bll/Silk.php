@@ -34,7 +34,10 @@ class Silk extends SilkModel
     public static function getProductId($data){
         $gangNumber = null;
         if(!isset($data['gang_number'])){
-            $data['gang_number'] = "0";
+            $data = array_merge(
+                array("gang_number" => "0"),
+                $data
+            );
         }
 
         $condition = "goods_number = :goods_number";
@@ -42,7 +45,7 @@ class Silk extends SilkModel
             ":goods_number" => $data['goods_number'],
         );
         $silk = self::model()->findAll($condition, $params);
-        if(is_null($silk)){
+        if(count($silk) == 0){
             $silk = self::createNewSilk($data);
         } else if (count($silk) > 0) {
             $result = null;
@@ -71,7 +74,7 @@ class Silk extends SilkModel
         $silk->goods_number = $data['goods_number'];
         $silk->color_name = $data['color_name'];
         $silk->color_number = $data['color_number'];
-        $silk->gang_number = $data['gangNumber'];
+        $silk->gang_number = $data['gang_number'];
         $silk->order_id = 0;
         $silk->save();
         return $silk;

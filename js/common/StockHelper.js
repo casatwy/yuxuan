@@ -143,10 +143,14 @@ function StockHelper(baseUrl){
         var saveData = getDataForSave();
         var url = getSaveUrl();
 
-        $.post(url, {
+        var postData = {
             client_id:client_id,
             itemType:itemType,
             data:saveData
+        };
+
+        $.post(url, {
+            data:postData
         }, function(result){
             console.log(result);
             location.href = getRedirectUrl();
