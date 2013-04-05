@@ -70,23 +70,23 @@
         </tr>
     </tbody>
     <tbody>        
-        <tr>
+        <tr class="J_SecondRow">
             <td><input type="text"></input></td>
             <td><input type="text"></input></td>
-            <td><button>添加</button></td>
-            <td><button>删除</button></td>
+            <td><button class="J_addSecondRow">添加</button></td>
+            <td><button class="J_delSecondRow">删除</button></td>
         </tr>
-        <tr>
+        <tr class="J_SecondRow">
             <td><input type="text"></input></td>
             <td><input type="text"></input></td>
-            <td><button>添加</button></td>
-            <td><button>删除</button></td>
+            <td><button class="J_addSecondRow">添加</button></td>
+            <td><button class="J_delSecondRow">删除</button></td>
         </tr>
-        <tr>
+        <tr class="J_SecondRow">
             <td><input type="text"></input></td>
             <td><input type="text"></input></td>
-            <td><button>添加</button></td>
-            <td><button>删除</button></td>
+            <td><button class="J_addSecondRow">添加</button></td>
+            <td><button class="J_delSecondRow">删除</button></td>
         </tr>
     </tbody>
 </table>
