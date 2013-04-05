@@ -25,7 +25,7 @@
     </div>
 
 
-    <div class="span-5 last">
+    <div class="span-6 last">
         <div class="selevtADD">
             <p>创建客户:</p>
             <p>客户名称：<input id="J_providerName" type="text" class="J_createProvider"></input></p>

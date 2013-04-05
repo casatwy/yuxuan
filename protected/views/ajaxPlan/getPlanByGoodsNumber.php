@@ -31,5 +31,28 @@
             <?php endforeach;?>
         </tbody>
     </table>
+<table class="record span-15">
+    <tbody>
+        <tr>
+            <th>针型</th>
+            <th>部位</th>
+        </tr>
+    </tbody>
+    <tbody>        
+        <tr>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+    </tbody>
+</table>
+
 </div>
 

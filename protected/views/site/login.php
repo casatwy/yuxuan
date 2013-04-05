@@ -21,15 +21,15 @@ $this->pageTitle=Yii::app()->name . ' - 登录';
 
 	<div class="row">
 		<span class="pad-50 span-2 "><?php echo $form->labelEx($loginForm,'username'); ?></span>
-		<span class="span-4 last"><?php echo $form->dropDownList($loginForm,'username', $nameList); ?></span>
+		<span class="span-5 "><?php echo $form->dropDownList($loginForm,'username', $nameList); ?></span>
 	</div>
 
 	<div class="row">
 		<span class="pad-50 span-2 "><?php echo $form->labelEx($loginForm,'password'); ?></span>
-		<span class="span-5 last"><?php echo $form->passwordField($loginForm,'password'); ?></span>
+		<span class="span-5 "><?php echo $form->passwordField($loginForm,'password'); ?></span>
 	</div>
 	<span class="pad-50 span-2 "></span>
-	<div class="row buttons span-3 last">
+	<div class="row buttons span-3">
 		<?php echo CHtml::submitButton('登录'); ?>
 	</div>
 
