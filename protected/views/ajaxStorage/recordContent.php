@@ -7,7 +7,9 @@
         <th>缸号</th>
         <th>针型</th>
         <th>尺寸</th>
-        <th>重量</th>
+        <th>来料重量</th>
+        <th>实收重量</th>
+        <th>成品重量</th>
         <th>数量</th>
     </tr>
     <?php foreach($recordList as $record): ?>
@@ -26,6 +28,8 @@
         <td><?php echo $record['gang_number'];?></td>
         <td><?php echo $record['needle_type'];?></td>
         <td><?php echo $record['size'];?></td>
+        <td> kg</td>
+        <td> kg</td>
         <td><?php echo $record['weight'];?> kg</td>
         <td><?php echo $record['count'];?></td>
     </tr>

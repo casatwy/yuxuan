@@ -57,7 +57,7 @@
     </div>
 
     <div class="span-15">
-        <span class="span-7">重量:
+        <span class="span-7">成品重量:
             <input class="J_weight" type="text"></input>
         </span>
         <span class="span-8 last">针型:

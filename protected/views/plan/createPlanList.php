@@ -1,14 +1,18 @@
 <h2 class="prepend-1">创建生产计划</h2>
 <hr>
 
-<div class="contant-container prepend" id="createPlanList">
-<span class="span-15 last">客户：
+<div id="createPlanList">
+<span class="span-7">客户：
 <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
 
+<<<<<<< HEAD
+<span class="span-14 last">货号：<input type="text" id="J_goodsNumber"></input></span>
+=======
 <span class="span-8">货号：<input type="text" id="J_goodsNumber"></input></span>
 <span class="span-7 last">交付日期：<input type="text" id="J_deadLine" class='J_selectTime'></input></span>
+>>>>>>> 277739e1bf4365e41bdb9aa23d4fbead256b41e9
 
-<table class="record" id="J_bigTable" >
+<table class="record" id="J_bigTable">
     <tbody>
         <tr>
             <th></th>
@@ -18,6 +22,7 @@
             <th>缸号</th>
             <th>尺码</th>
             <th>件数</th>
+            <th>尺码吊线</th>
             <th></th>
             <th></th>
         </tr>
@@ -39,6 +44,8 @@
             <td class="J_sizeTable"><input type="text"></input></td>
             <!-- 件数  -->
             <td class="J_countTable"><input type="text"></input></td>
+            <!-- 尺码吊线  -->
+            <td class=""><input type="text"></input></td>
             <td><button class="J_addSmallRow">添加</button></td>
             <td><button class="J_delSmallRow">删除</button></td>
         </tr>
@@ -47,6 +54,8 @@
             <td class="J_sizeTable"><input type="text"></input></td>
             <!-- 件数  -->
             <td class="J_countTable"><input type="text"></input></td>
+            <!-- 尺码吊线  -->
+            <td class=""><input type="text"></input></td>
             <td><button class="J_addSmallRow">添加</button></td>
             <td><button class="J_delSmallRow">删除</button></td>
         </tr>
@@ -55,6 +64,8 @@
             <td class="J_sizeTable"><input type="text"></input></td>
             <!-- 件数  -->
             <td class="J_countTable"><input type="text"></input></td>
+            <!-- 尺码吊线  -->
+            <td class=""><input type="text"></input></td>
             <td><button class="J_addSmallRow">添加</button></td>
             <td><button class="J_delSmallRow">删除</button></td>
         </tr>
@@ -70,20 +81,20 @@
             <th></th>
         </tr>
     </tbody>
-    <tbody>        
-        <tr class="J_SecondRow">
+    <tbody class="J_SecondRow">        
+        <tr class="J_SmallSecondRow" data-id="1">
             <td><input type="text"></input></td>
             <td><input type="text"></input></td>
             <td><button class="J_addSecondRow">添加</button></td>
             <td><button class="J_delSecondRow">删除</button></td>
         </tr>
-        <tr class="J_SecondRow">
+        <tr class="J_SmallSecondRow" data-id="2">
             <td><input type="text"></input></td>
             <td><input type="text"></input></td>
             <td><button class="J_addSecondRow">添加</button></td>
             <td><button class="J_delSecondRow">删除</button></td>
         </tr>
-        <tr class="J_SecondRow">
+        <tr class="J_SmallSecondRow" data-id="3">
             <td><input type="text"></input></td>
             <td><input type="text"></input></td>
             <td><button class="J_addSecondRow">添加</button></td>
@@ -93,6 +104,7 @@
 </table>
 
 <span id="J_nextId" next-id="4"></span>
+<span id="J_nextSecId" nextSec-id="4"></span>
 <span id="J_rowspan" rowspan="4"></span>
 
 <table class="hide" id="J_bigRowTemplate" >
@@ -134,7 +146,7 @@
     </tbody>
 </table>
 
-<button id="J_saveData">保存全部</button>
+<span class="last"><button id="J_saveData">保存全部</button></span>
 </div>
 <!--客户：
 <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a>

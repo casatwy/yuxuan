@@ -105,7 +105,7 @@
             data-record-id="<?php echo $record->id; ?>" data-record-type="<?php echo $type; ?>">删除</a>
     </J_HEADER>
     <div data-record-id="<?php echo $record->id; ?>"><img src="<?php echo $this->baseUrl; ?>/images/mediumloading.gif"></img></div>
-
+    <div class="pageTop">
     <?php endforeach; ?>
 
     <?php
@@ -113,6 +113,7 @@
             'pages' => $pages,
         ));
     ?>
+    </div>
 <?php else: ?>
         没有记录
 <?php endif; ?>
