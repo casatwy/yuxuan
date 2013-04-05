@@ -40,7 +40,6 @@ function BigTable(baseUrl){
             var count = $(".J_smallTable").html().toString();
             var smallTable = $("<tr data-id=\""+next_id+"\" class=\"J_smallTable\"></tr>").html(count);
 
-            //$(this).closest(".J_bigRow").append(smallTable);
             $(smallTable).css("display","none").fadeIn(500).appendTo($(this).closest(".J_bigRow"));
             next_id = parseInt(next_id)+1;
             $("#J_nextId").attr("next-id", next_id);
@@ -57,6 +56,28 @@ function BigTable(baseUrl){
                     $(this).remove();
                     bigRow.find(".J_rowspan").attr("rowspan",length-1);
                     });
+                }
+        
+        });
+
+        $(".J_addSecondRow").live("click", function(){
+            var nextSec_id = $("#J_nextSecId").attr("nextSec-id");
+            var secondRow = $(this).closest(".J_SecondRow");
+            var count = $(".J_SmallSecondRow").html().toString();
+            var smallsecRow = $("<tr data-id=\""+nextSec_id+"\" class=\"J_SmallSecondRow\"></tr>").html(count);           
+
+            $(secondRow).append(smallsecRow);
+            nextSec_id = parseInt(nextSec_id)+1;
+            $("#J_nextSecId").attr("nextSec-id", nextSec_id);
+        });
+
+
+        $(".J_delSecondRow").live("click", function(){
+            var secondRow = $(this).closest(".J_SecondRow");
+            var length = secondRow.children("tr").length;
+
+            if (length > 1) {
+                $(this).closest(".J_SmallSecondRow").remove();
                 }
         
         });
