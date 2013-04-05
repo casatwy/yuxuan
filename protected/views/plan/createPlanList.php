@@ -5,8 +5,8 @@
 <span class="span-15 last">客户：
 <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
 
-<span class="span-7">货号：<input type="text" id="J_goodsNumber"></input></span>
-<span class="span-8 last">针型：<input type="text" id="J_needleType"></input></span>
+<span class="span-15 last">货号：<input type="text" id="J_goodsNumber"></input></span>
+
 <table class="record" id="J_bigTable" >
     <tbody>
         <tr>
@@ -56,6 +56,37 @@
             <td class="J_countTable"><input type="text"></input></td>
             <td><button class="J_addSmallRow">添加</button></td>
             <td><button class="J_delSmallRow">删除</button></td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="record">
+    <tbody>
+        <tr>
+            <th>针型</th>
+            <th>部位</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </tbody>
+    <tbody>        
+        <tr>
+            <td><input type="text"></input></td>
+            <td><input type="text"></input></td>
+            <td><button>添加</button></td>
+            <td><button>删除</button></td>
+        </tr>
+        <tr>
+            <td><input type="text"></input></td>
+            <td><input type="text"></input></td>
+            <td><button>添加</button></td>
+            <td><button>删除</button></td>
+        </tr>
+        <tr>
+            <td><input type="text"></input></td>
+            <td><input type="text"></input></td>
+            <td><button>添加</button></td>
+            <td><button>删除</button></td>
         </tr>
     </tbody>
 </table>

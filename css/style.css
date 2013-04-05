@@ -73,7 +73,6 @@
 /*    instock      */
 #plus{
     display:block;
-    width:20px;
     height:20px;
     margin:0 auto;
     background:url(../images/plus.png) no-repeat;
@@ -82,7 +81,6 @@
 #plus:hover
 {
     display:block;
-    width:25px;
     height:25px;
     margin:-2px auto;
     background:url(../images/plus-big.png) no-repeat;
@@ -191,7 +189,7 @@ a.prepend {
     margin-left:-80px;
 }*/ 
 #J_page span {
-    font-size:18px;
+    font-size:17px;
     margin-top:-5px;
 }
 #J_page h3{
@@ -302,7 +300,7 @@ button:hover
     font-size:1.1em;
 }
 
-.spanright{
+.last{
     float:right;
 }
 /*  我会告诉你这里是菊花么= - =  */
