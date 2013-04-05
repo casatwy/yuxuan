@@ -89,6 +89,7 @@ class Controller extends CController
         $this->cs->registerCssFile($jqueryUiUrl."css/smoothness/jquery-ui-1.9.2.custom.min.css");
         $this->cs->registerScriptFile($jqueryUiUrl."js/jquery-ui-min.js");
         $this->cs->registerScriptFile($this->jsCommon."judge.js");
+        $this->cs->registerScriptFile($this->jsCommon."main.js");
     }
 
     private function authentication($action){
