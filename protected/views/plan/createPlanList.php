@@ -2,11 +2,11 @@
 <hr>
 
 <div id="createPlanList">
-<span class="span-7">客户：
+<span class="span-21 last">客户：
 <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/selectprovider" id="J_selectProvider" provider="none">点击选择客户</a></span>
 
-<span class="span-8">货号：<input type="text" id="J_goodsNumber"></input></span>
-<span class="span-7 last">交付日期：<input type="text" id="J_deadLine" class='J_selectTime'></input></span>
+<span class="span-7">货号：<input type="text" id="J_goodsNumber"></input></span>
+<span class="span-14 last">交付日期：<input type="text" id="J_deadLine" class='J_selectTime'></input></span>
 
 <table class="record" id="J_bigTable">
     <tbody>
