@@ -35,7 +35,6 @@ class Product extends ProductModel
         foreach($list['data'] as $itemList){
             foreach($itemList['spec'] as $item){
                 $product = new Product();
-                $product->needle_type = $list['needle_type'];
                 $product->client_id = $list['client_id'];
                 $product->goods_number = $list['goods_number'];
                 $product->color_name = $itemList['color_name'];
@@ -186,7 +185,6 @@ class Product extends ProductModel
                 if( $item->color_number == $data['color_number']
                     && $item->size == $data['size']
                     && $item->product_type == $data['product_type']
-                    && $item->needle_type == $data['needle_type']
                     && $item->gang_number == $data['gang_number']
                     && $item->color_name == $data['color_name']
                 ){
@@ -206,7 +204,6 @@ class Product extends ProductModel
 
     public static function createNewProduct($data){
         $product = new Product;
-        $product->needle_type = isset($data['needle_type'])?$data['needle_type']:0;
         $product->color_name = $data['color_name'];
         $product->color_number = $data['color_number'];
         $product->goods_number = $data['goods_number'];
