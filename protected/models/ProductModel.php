@@ -5,7 +5,6 @@
  *
  * The followings are the available columns in table 'product':
  * @property integer $id
- * @property integer $needle_type
  * @property string $color_name
  * @property integer $color_number
  * @property string $goods_number
@@ -50,14 +49,14 @@ class ProductModel extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('needle_type, color_name, color_number, goods_number, size, status, create_time, gang_number', 'required'),
-			array('needle_type, color_number, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, deadline_time', 'numerical', 'integerOnly'=>true),
+			array('color_name, color_number, goods_number, size, status, create_time, gang_number', 'required'),
+			array('color_number, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, deadline_time', 'numerical', 'integerOnly'=>true),
 			array('color_name, size', 'length', 'max'=>10),
 			array('goods_number', 'length', 'max'=>30),
 			array('product_type, gang_number', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, needle_type, color_name, color_number, goods_number, size, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, product_type, gang_number, deadline_time', 'safe', 'on'=>'search'),
+			array('id, color_name, color_number, goods_number, size, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, product_type, gang_number, deadline_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,7 +78,6 @@ class ProductModel extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'needle_type' => 'Needle Type',
 			'color_name' => 'Color Name',
 			'color_number' => 'Color Number',
 			'goods_number' => 'Goods Number',
@@ -110,7 +108,6 @@ class ProductModel extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('needle_type',$this->needle_type);
 		$criteria->compare('color_name',$this->color_name,true);
 		$criteria->compare('color_number',$this->color_number);
 		$criteria->compare('goods_number',$this->goods_number,true);
