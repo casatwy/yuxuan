@@ -107,7 +107,7 @@ class AjaxPlanController extends Controller
     }
 
     public function actionSavePlanList(){
-        $result = Product::createPlanList($_POST);
+        $result = Plan::createPlan($_POST['data']);
         echo CJSON::encode($result);
     }
 

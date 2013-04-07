@@ -24,35 +24,34 @@ class Product extends ProductModel
         return 'product';
     }
 
-    public static function createPlanList($list){
-        $condition = "goods_number = :goods_number";
-        $params = array(":goods_number" => $list['goods_number']);
-        if(!Silk::model()->exists($condition, $params)){
-            return 2;
-        }
-
+    public static function createProduct($list, $plan){
         $idList = array();
-        foreach($list['data'] as $itemList){
+        foreach($list as $itemList){
             foreach($itemList['spec'] as $item){
                 $product = new Product();
-                $product->client_id = $list['client_id'];
-                $product->goods_number = $list['goods_number'];
+                $product->client_id = $plan->client_id;
+                $product->goods_number = $plan->goods_number;
                 $product->color_name = $itemList['color_name'];
                 $product->color_number = $itemList['color_number'];
                 $product->size = $item['size'];
                 $product->total_count = $item['count'];
-                $product->create_time = time();
+                $product->create_time = $plan->create_time;
                 $product->finished_count = 0;
+                $product->gang_number = $itemList['gang_number'];
+                $product->deadline_time = $plan->deadline_time;
+                $product->diaoxian = $item['diaoxian'];
+                $product->plan_id = $plan->id;
                 $product->status = self::PREPEARED;
                 if(!$product->save()){
                     self::model()->deleteByPk($idList);
-                    return 0;
+                    return false;
                 }else{
                     array_push($idList, $product->id);
                 }
             }
         }
-        return 1;
+
+        return $idList;
     }
 
     public static function getListForCalendar($start, $end){
@@ -274,5 +273,9 @@ class Product extends ProductModel
             $product->finished_count += $item['finished_count'];
             $product->save();
         }
+    }
+
+    public static function deleteByIdList($idList){
+        self::deleteByPk($idList);
     }
 }
