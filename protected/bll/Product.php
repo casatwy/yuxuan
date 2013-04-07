@@ -276,6 +276,6 @@ class Product extends ProductModel
     }
 
     public static function deleteByIdList($idList){
-        self::deleteByPk($idList);
+        self::model()->deleteByPk($idList);
     }
 }

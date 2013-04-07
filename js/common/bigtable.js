@@ -90,8 +90,8 @@ function BigTable(baseUrl){
             var productData = getPlanData();
             var partData = getPartitionData();
             var data = {
-                productData:productData,
                 partData:partData,
+                productData:productData,
                 goods_number:$("#J_goodsNumber").val(),
                 client_id:$("#J_selectProvider").attr("provider"),
                 deadline:$("#J_deadLine").val()
@@ -104,7 +104,7 @@ function BigTable(baseUrl){
                     //}else if(result == 2){
                     //    $.jGrowl("该产品对应的毛纱尚未入库。", {header:"错误"})
                     //}else{
-                    //    window.location.href = baseUrl+"/plan";
+                        window.location.href = baseUrl+"/plan";
                     //}
                 }, 'json');
             }
@@ -127,7 +127,7 @@ function BigTable(baseUrl){
         $(".J_SmallSecondRow").each(function(index, value){
             var $value = $(value);
             if(!$value.hasClass("J_template")){
-                var item = [];
+                var item = {};
                 item.needleType = $value.find(".J_needleType").val();
                 item.partName = $value.find(".J_partName").val();
                 data.push(item);
