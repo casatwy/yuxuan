@@ -9,6 +9,11 @@ function BigTable(baseUrl){
     };
 
     function bindEvent(){
+
+        $(".record_error").live("click", function(){
+            $(this).removeClass("record_error");
+        });
+
         $(".J_addBigRow").live("click", function(){
             var html = $("#J_bigRowTemplate").html().toString();
             var next_id = $("#J_nextId").attr("next-id");
@@ -29,8 +34,7 @@ function BigTable(baseUrl){
             if (length != 2 )
                 $(this).closest(".J_bigRow").fadeOut(500,function(){
                     $(this).remove();
-                    });
-
+                });
         });
 
         $(".J_addSmallRow").live("click", function(){
@@ -83,28 +87,27 @@ function BigTable(baseUrl){
         });
 
         $("#J_saveData").bind("click", function(){
-            var data = getPlanData();
-            console.log(data);
-            if(data != false){
-                $.post(baseUrl+"/ajaxPlan/savePlanList", {
-                    data:data,
-                    goods_number:$("#J_goodsNumber").val(),
-                    needle_type:$("#J_needleType").val(),
-                    client_id:$("#J_selectProvider").attr("provider")
-                }, function(result){
-                    if(result == 0){
-                        $.jGrowl("提交失败。", {header:"错误"})
-                    }else if(result == 2){
-                        $.jGrowl("该产品对应的毛纱尚未入库。", {header:"错误"})
-                    }else{
-                        window.location.href = baseUrl+"/plan";
-                    }
+            var productData = getPlanData();
+            var partData = getPartitionData();
+            var data = {
+                productData:productData,
+                partData:partData,
+                goods_number:$("#J_goodsNumber").val(),
+                client_id:$("#J_selectProvider").attr("provider"),
+                deadline:$("#J_deadLine").val()
+            };
+
+            if(productData != false){
+                $.post(baseUrl+"/ajaxPlan/savePlanList", {data:data}, function(result){
+                    //if(result == 0){
+                    //    $.jGrowl("提交失败。", {header:"错误"})
+                    //}else if(result == 2){
+                    //    $.jGrowl("该产品对应的毛纱尚未入库。", {header:"错误"})
+                    //}else{
+                    //    window.location.href = baseUrl+"/plan";
+                    //}
                 }, 'json');
             }
-        });
-
-        $(".record_error").live("click", function(){
-            $(this).removeClass("record_error");
         });
     }
 
@@ -117,6 +120,20 @@ function BigTable(baseUrl){
             }
         });
         return true;
+    }
+
+    function getPartitionData(){
+        var data = [];
+        $(".J_SmallSecondRow").each(function(index, value){
+            var $value = $(value);
+            if(!$value.hasClass("J_template")){
+                var item = [];
+                item.needleType = $value.find(".J_needleType").val();
+                item.partName = $value.find(".J_partName").val();
+                data.push(item);
+            }
+        });
+        return data;
     }
 
     function getPlanData(){
@@ -142,7 +159,11 @@ function BigTable(baseUrl){
                 $.each($value.find(".J_countTable"), function(idx, val){
                     item.spec[idx].count = $(val).find("input").val();
                 });
-                console.log(item);
+
+                $.each($value.find(".J_diaoxian"), function(idx, val){
+                    item.spec[idx].diaoxian = $(val).find("input").val();
+                });
+
                 data.push(item);
             }
         });

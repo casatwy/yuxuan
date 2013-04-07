@@ -41,7 +41,7 @@
             <!-- 件数  -->
             <td class="J_countTable"><input type="text"></input></td>
             <!-- 尺码吊线  -->
-            <td class=""><input type="text"></input></td>
+            <td class="J_diaoxian"><input type="text"></input></td>
             <td><button class="J_addSmallRow">添加</button></td>
             <td><button class="J_delSmallRow">删除</button></td>
         </tr>
@@ -51,7 +51,7 @@
             <!-- 件数  -->
             <td class="J_countTable"><input type="text"></input></td>
             <!-- 尺码吊线  -->
-            <td class=""><input type="text"></input></td>
+            <td class="J_diaoxian"><input type="text"></input></td>
             <td><button class="J_addSmallRow">添加</button></td>
             <td><button class="J_delSmallRow">删除</button></td>
         </tr>
@@ -61,7 +61,7 @@
             <!-- 件数  -->
             <td class="J_countTable"><input type="text"></input></td>
             <!-- 尺码吊线  -->
-            <td class=""><input type="text"></input></td>
+            <td class="J_diaoxian"><input type="text"></input></td>
             <td><button class="J_addSmallRow">添加</button></td>
             <td><button class="J_delSmallRow">删除</button></td>
         </tr>
@@ -79,20 +79,20 @@
     </tbody>
     <tbody class="J_SecondRow">        
         <tr class="J_SmallSecondRow" data-id="1">
-            <td><input type="text"></input></td>
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_needleType"></input></td>
+            <td><input type="text" class="J_partName"></input></td>
             <td><button class="J_addSecondRow">添加</button></td>
             <td><button class="J_delSecondRow">删除</button></td>
         </tr>
         <tr class="J_SmallSecondRow" data-id="2">
-            <td><input type="text"></input></td>
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_needleType"></input></td>
+            <td><input type="text" class="J_partName"></input></td>
             <td><button class="J_addSecondRow">添加</button></td>
             <td><button class="J_delSecondRow">删除</button></td>
         </tr>
         <tr class="J_SmallSecondRow" data-id="3">
-            <td><input type="text"></input></td>
-            <td><input type="text"></input></td>
+            <td><input type="text" class="J_needleType"></input></td>
+            <td><input type="text" class="J_partName"></input></td>
             <td><button class="J_addSecondRow">添加</button></td>
             <td><button class="J_delSecondRow">删除</button></td>
         </tr>
@@ -123,7 +123,7 @@
             <td><button class="J_addSmallRow">添加</button></td>
             <td><button class="J_delSmallRow">删除</button></td>
         </tr>
-        <tr class="J_smallTable" data-id="">
+        <tr class="J_smallTable J_template" data-id="">
             <!-- 尺码  -->
             <td class="J_sizeTable"><input type="text"></input></td>
             <!-- 件数  -->
