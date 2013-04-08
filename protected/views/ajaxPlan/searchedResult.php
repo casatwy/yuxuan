@@ -1,3 +1,4 @@
+
 <?php foreach($planList as $plan): ?>
 
 <J_HEADER data-record-id="<?php echo $plan->id; ?>" data-record-type="<?php echo $type; ?>">

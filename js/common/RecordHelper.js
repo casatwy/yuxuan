@@ -26,6 +26,15 @@ function RecordHelper(baseUrl){
             deleteRecord($(this));
             return false;
         });
+
+        $("#J_showSummary").live("click", function(e){
+            showSummary($(this));
+            return false;
+        });
+    }
+
+    function showSummary(actionItem){
+        actionItem.nyroModal().nmCall();
     }
 
     function deleteRecord(actionItem){

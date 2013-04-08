@@ -1,4 +1,10 @@
 <?php if(!empty($recordList)): ?>
+
+    <?php
+    if($showingSummary): ?>
+        <a href="<?php echo $this->baseUrl; ?>/ajaxStorage/recordSummary?goodsNumber=<?php echo $goods_number; ?>&providerId=<?php echo $client_id; ?>&type=<?php echo $type; ?>" id="J_showSummary">查看合计数据</a>
+    <?php endif; ?>
+
     <?php foreach($recordList as $record): ?>
         <J_HEADER data-record-id="<?php echo $record->id; ?>" data-record-type="<?php echo $type; ?>">
             客户名:<?php echo $record->getClient(); ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

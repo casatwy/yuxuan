@@ -99,7 +99,7 @@ class AjaxStorageController extends Controller
     public function actionSearchRecord(){
         /*
             data:
-                goods_number
+                goodsNumber
                 recordId
                 providerId
                 start_time
@@ -125,8 +125,21 @@ class AjaxStorageController extends Controller
 
         $recordList = $record->findAll($criteria);
 
+        $showingSummary = false;
+        $goods_number = null;
+        $client_id = null;
+
+        if (!empty($_GET['data']['goodsNumber']) && !empty($_GET['data']['providerId'])){
+            $showingSummary = true;
+            $goods_number = $_GET['data']['goodsNumber'];
+            $client_id = $_GET['data']['providerId'];
+        }
+
         $this->renderPartial("recordList", array(
             "recordList" => $recordList,
+            "showingSummary" => $showingSummary,
+            "goods_number" => $goods_number,
+            "client_id" => $client_id,
             "pages" => $pages,
             "type" => $_GET['type']    
         ));
@@ -136,12 +149,29 @@ class AjaxStorageController extends Controller
         $criteria = new CDbCriteria();
         $criteria->order = "id desc";
 
+        $recordIdList = array();
+        $searchedRecordList = self::getSearchedRecordItemList($data, $type);
+
+        foreach($searchedRecordList as $searchedRecord){
+            array_push($recordIdList, $searchedRecord->record_id);
+        }
+        $recordIdList = implode(",", $recordIdList);
+
+        if(empty($recordIdList)){
+            $criteria->condition = "1=2";
+        }else{
+            $criteria->condition = "id in (".$recordIdList.")";
+        }
+
+        return $criteria;
+    }
+
+    public static function getSearchedRecordItemList($data, $type){
         $searchCriteria = new CDbCriteria();
         $searchCriteria->distinct = true;
         $searchCriteria->select = "record_id";
         $searchCriteria->condition = "1=1";
 
-        $recordIdList = array();
         if(!empty($data['goodsNumber'])){
             $searchCriteria->condition .= " and goods_number=";
             $searchCriteria->condition .= $data['goodsNumber'];
@@ -163,6 +193,7 @@ class AjaxStorageController extends Controller
         }
 
         $searchedRecordList = array();
+
         if($type == Record::OUT_RECORD){
             $searchedRecordList = DeliveredRecordItem::model()->findAll($searchCriteria); 
         }
@@ -170,18 +201,7 @@ class AjaxStorageController extends Controller
             $searchedRecordList = ReceivedRecordItem::model()->findAll($searchCriteria); 
         }
 
-        foreach($searchedRecordList as $searchedRecord){
-            array_push($recordIdList, $searchedRecord->record_id);
-        }
-        $recordIdList = implode(",", $recordIdList);
-
-        if(empty($recordIdList)){
-            $criteria->condition = "1=2";
-        }else{
-            $criteria->condition = "id in (".$recordIdList.")";
-        }
-
-        return $criteria;
+        return $searchedRecordList;
     }
 
     public static function getTime($date){
@@ -233,5 +253,16 @@ class AjaxStorageController extends Controller
                     <div class="J_recordContent" data-id=""></div>
                 </div>
             ';
+    }
+
+    public function actionRecordSummary(){
+        $searchedRecordList = $this->getSearchedRecordItemList($_GET, $_GET['type']);
+        $resultArray = array();
+
+        //foreach($searchedRecordList as $record){
+        //    $product = Product::model()->findByPk($record->product_id);
+        //}
+
+        $this->renderPartial("recordSummary");
     }
 }
