@@ -1,6 +1,6 @@
 <div class="contant-container">
-    <span class="span-7">客户：<span>casa</span></span>
-    <span class="span-8 last">货号：<span>123</span></span>
+<span class="span-7">客户：<span><?php echo $client_name; ?></span></span>
+<span class="span-8 last">货号：<span><?php echo $goods_number; ?></span></span>
     <table class="record">
         <tbody>
             <tr>
@@ -13,51 +13,22 @@
                 <th>总数量</th>
             </tr>
         </tbody>
+        <?php foreach($resultArray as $result): ?>
         <tbody>
             <tr>
-                <td rowspan="4">帽子</td>
-                <td rowspan="4">黑</td> 
-                <td rowspan="4">123</td>
-                <td rowspan="4">111</td>              
+                <td rowspan="<?php echo count($result['itemArray'])+1; ?>"><?php echo $result['product_type']; ?></td>
+                <td rowspan="<?php echo count($result['itemArray'])+1; ?>"><?php echo $result['color_name']; ?></td> 
+                <td rowspan="<?php echo count($result['itemArray'])+1; ?>"><?php echo $result['gang_number']; ?></td>
+                <td rowspan="<?php echo count($result['itemArray'])+1; ?>"><?php echo $result['color_number']; ?></td>              
             </tr>
-            <tr>
-                <td>S</td>
-                <td>10</td>
-                <td>13</td>
-            </td>
-            <tr>
-                <td>M</td>
-                <td>11</td>
-                <td>14</td>
-            </td>
-            <tr>
-                <td>L</td>
-                <td>12</td>
-                <td>15</td>
-            </td>
-    </tbody>
-    <tbody>
-            <tr>
-                <td rowspan="4">袖子</td>
-                <td rowspan="4">白</td>
-                <td rowspan="4">123</td>
-                <td rowspan="4">111</td>
-            </tr>
-            <tr>
-                <td>S</td>
-                <td>10</td>
-                <td>13</td>
-            </td>
-            <tr>
-                <td>M</td>
-                <td>11</td>
-                <td>14</td>
-            </td>
-            <tr>
-                <td>L</td>
-                <td>12</td>
-                <td>15</td>
-            </td>
-    </tbody>
-</table>
+            <?php foreach($result['itemArray'] as $item): ?>
+                <tr>
+                    <td><?php echo $item['size']; ?></td>
+                    <td><?php echo $item['weight']; ?></td>
+                    <td><?php echo $item['count']; ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+        <?php endforeach; ?>
+    </table>
 </div>

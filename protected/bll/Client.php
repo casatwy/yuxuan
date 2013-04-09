@@ -31,4 +31,9 @@ class Client extends ClientModel
 		);
 	}
 
+    public static function getClientNameById($id){
+        $client = self::model()->findByPk($id);
+        return $client->name;
+    }
+
 }

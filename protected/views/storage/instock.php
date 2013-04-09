@@ -47,6 +47,7 @@
     <?php
         $this->widget('CLinkPager', array(
             'pages' => $pages,
+            'htmlOptions' => array("class" => "casacasacasa")
         ));
     ?>
     </div>

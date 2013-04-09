@@ -169,7 +169,7 @@ class AjaxStorageController extends Controller
     public static function getSearchedRecordItemList($data, $type){
         $searchCriteria = new CDbCriteria();
         $searchCriteria->distinct = true;
-        $searchCriteria->select = "record_id";
+        $searchCriteria->select = "*";
         $searchCriteria->condition = "1=1";
 
         if(!empty($data['goodsNumber'])){
@@ -257,12 +257,30 @@ class AjaxStorageController extends Controller
 
     public function actionRecordSummary(){
         $searchedRecordList = $this->getSearchedRecordItemList($_GET, $_GET['type']);
-        $resultArray = array();
 
-        //foreach($searchedRecordList as $record){
-        //    $product = Product::model()->findByPk($record->product_id);
-        //}
+        $recordSummary = new RecordSummary();
 
-        $this->renderPartial("recordSummary");
+        $client_name = Client::getClientNameById($_GET['providerId']); 
+        $goods_number = $_GET['goodsNumber']; 
+
+        foreach($searchedRecordList as $record){
+            $product = Product::model()->findByPk($record->product_id);
+
+            $item['product_type'] = $product->product_type;
+            $item['color_name'] = $product->color_name;
+            $item['color_number'] = $product->color_number;
+            $item['gang_number'] = $product->gang_number;
+            $item['size'] = $product->size;
+            $item['weight'] = $record->weight;
+            $item['count'] = $record->count;
+
+            $recordSummary->addToResult($item);
+        }
+
+        $this->renderPartial("recordSummary", array(
+            "resultArray" => $recordSummary->getResult(),
+            "client_name" => $client_name,
+            "goods_number" => $goods_number
+        ));
     }
 }
