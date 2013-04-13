@@ -86,8 +86,9 @@ class Product extends ProductModel
     public static function format0($productList){
         $itemList = array();
         foreach($productList as $product){
-            if(!array_key_exists($product->goods_number, $itemList)){
-                $itemList[$product->goods_number] = array(
+            if(!array_key_exists($product->plan_id, $itemList)){
+                $itemList[$product->plan_id] = array(
+                    'goods_number' => $product->goods_number,
                     'client' => $product->getClientName($product->client_id),
                     'create_time' => date("Y-m-d H:i:s", $product->create_time),
                 );
@@ -126,10 +127,10 @@ class Product extends ProductModel
         }
     }
 
-    public static function setStatus($goods_number, $status){
+    public static function setStatus($plan_id, $status){
         $attributes = array("status" => $status);
-        $condition = "goods_number=:goods_number";
-        $params = array(":goods_number"=>$goods_number);
+        $condition = "plan_id=:plan_id";
+        $params = array(":plan_id"=>$plan_id);
 
         if($status != Product::PREPEARED){
             $condition = $condition." and status = :status";
@@ -139,9 +140,9 @@ class Product extends ProductModel
         self::model()->updateAll($attributes, $condition, $params);
     }
 
-    public static function deleteByGoodsNumber($goods_number){
-        $condition = "goods_number=:goods_number and status=0";
-        $params = array(":goods_number"=>$goods_number);
+    public static function deleteByPlanId($plan_id){
+        $condition = "plan_id=:plan_id and status=0";
+        $params = array(":plan_id"=>$plan_id);
         self::model()->deleteAll($condition, $params);
     }
 
@@ -237,10 +238,10 @@ class Product extends ProductModel
         Silk::getProductId($this->attributes);
     }
 
-    public static function getPlanByGoodsNumber($goods_number, $status){
-        $condition = "goods_number = :goods_number and status = :status";
+    public static function getPlanByPlanId($plan_id, $status){
+        $condition = "plan_id = :plan_id and status = :status";
         $params = array(
-            ":goods_number" => $goods_number,
+            ":plan_id" => $plan_id,
             ":status" => $status,
         );
 
@@ -250,7 +251,7 @@ class Product extends ProductModel
             return array();
         }else{
             $data = array(
-                "goods_number" => $goods_number,
+                "goods_number" => $productList[0]->goods_number,
                 "client" => $productList[0]->getClientName($productList[0]->client_id),
                 "create_time" => date("Y-m-d H:i:s", $productList[0]->create_time),
                 "data" => array()

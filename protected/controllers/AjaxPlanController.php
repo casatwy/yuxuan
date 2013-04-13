@@ -116,20 +116,20 @@ class AjaxPlanController extends Controller
     }
 
     public function actionSetShangji(){
-        Product::setStatus($_POST['goods_number'], Product::PROCESSING);
+        Product::setStatus($_POST['plan_id'], Product::PROCESSING);
     }
 
-    public function actionDeleteByGoodsNumber(){
-        Product::deleteByGoodsNumber($_POST['goods_number']);
+    public function actionDeleteByPlanId(){
+        Product::deleteByPlanId($_POST['plan_id']);
     }
 
     public function actionSetFinish(){
-        Product::setStatus($_POST['goods_number'], Product::FINISHED);
+        Product::setStatus($_POST['plan_id'], Product::FINISHED);
     }
 
-    public function actionGetPlanByGoodsNumber(){
-        $planData = Product::getPlanByGoodsNumber($_GET['goods_number'], $_GET['status']);
-        $this->renderPartial("getPlanByGoodsNumber", array("planData" => $planData));
+    public function actionGetPlanByPlanId(){
+        $planData = Product::getPlanByPlanId($_GET['plan_id'], $_GET['status']);
+        $this->renderPartial("getPlanByPlanId", array("planData" => $planData));
     }
 
     public function actionGetDeliveredTable(){

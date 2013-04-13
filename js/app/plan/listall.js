@@ -18,35 +18,28 @@ function ListAll(baseUrl){
 
     function bindEvent(){
         $(".J_shangji").bind("click", function(){
-            var goods_number = $(this).attr("data-goods-number");
-            $.post(baseUrl+"/ajaxPlan/setShangji", {goods_number:goods_number}, function(){
+            var plan_id = $(this).attr("data-plan-id");
+            $.post(baseUrl+"/ajaxPlan/setShangji", {plan_id:plan_id}, function(){
                 window.location.reload();
             });
         });
 
         $(".J_finish").bind("click", function(){
-            var goods_number = $(this).attr("data-goods-number");
-            $.post(baseUrl+"/ajaxPlan/setFinish", {goods_number:goods_number}, function(){
+            var plan_id = $(this).attr("data-plan-id");
+            $.post(baseUrl+"/ajaxPlan/setFinish", {plan_id:plan_id}, function(){
                 window.location.reload();
             });
         });
 
         $(".J_delete").bind("click", function(){
-            var goods_number = $(this).attr("data-goods-number");
-            $.post(baseUrl+"/ajaxPlan/deleteByGoodsNumber", {goods_number:goods_number}, function(){
-                $("#J_tab1 tr[data-goods-number="+goods_number+"]").remove();
+            var plan_id = $(this).attr("data-plan-id");
+            $.post(baseUrl+"/ajaxPlan/deleteByPlanId", {plan_id:plan_id}, function(){
+                $("#J_tab1 tr[data-plan-id="+plan_id+"]").remove();
             });
         });
 
-        //$(".J_showPlan").bind("click", function(){
-        //    showPlanByGoodsNumber($(this));
-        //});
         $(".J_showPlan").nyroModal();
     }
-
-    //function showPlanByGoodsNumber(actionItem){
-    //    $.nmTop.open();
-    //}
 
     function getFinishedPlan(){
         alert("not finished");

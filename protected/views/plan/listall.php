@@ -21,13 +21,13 @@
                        <th></th>
                 </tr>
 
-                <?php foreach($list1 as $goods_number=>$product): ?>
-                <tr data-goods-number="<?php echo $goods_number; ?>">
-                    <td><a class="J_showPlan" href="<?php echo $this->baseUrl; ?>/ajaxPlan/getPlanByGoodsNumber/goods_number/<?php echo $goods_number; ?>/status/1"><?php echo $goods_number; ?></a></td>
+                <?php foreach($list1 as $plan_id=>$product): ?>
+                <tr data-plan-id="<?php echo $plan_id; ?>">
+                    <td><a class="J_showPlan" href="<?php echo $this->baseUrl; ?>/ajaxPlan/getPlanByPlanId/plan_id/<?php echo $plan_id; ?>/status/1"><?php echo $product['goods_number']; ?></a></td>
                     <td><?php echo $product['client'] ?></td>
                     <td><?php echo $product['create_time'];?></td>
                     <td>
-                        <button data-goods-number="<?php echo $goods_number; ?>" class="J_finish">结束</button>
+                        <button data-plan-id="<?php echo $plan_id; ?>" class="J_finish">结束</button>
                     </td>
                     <td>
                     </td>
@@ -48,15 +48,16 @@
                     <th></th>
                     <th></th>
                 </tr>
-                <?php foreach($list0 as $goods_number=>$product): ?>
-                <tr data-goods-number="<?php echo $goods_number; ?>">
-                    <td><a class="J_showPlan" href="<?php echo $this->baseUrl; ?>/ajaxPlan/getPlanByGoodsNumber/goods_number/<?php echo $goods_number; ?>/status/0"><?php echo $goods_number; ?></a></td>
+                <?php foreach($list0 as $plan_id=>$product): ?>
+                <tr data-plan-id="<?php echo $plan_id; ?>">
+                    <td><a class="J_showPlan" href="<?php echo $this->baseUrl; ?>/ajaxPlan/getPlanByPlanId/plan_id/<?php echo $plan_id; ?>/status/0"><?php echo $product['goods_number']; ?></a></td>
                     <td><?php echo $product['client']; ?></td>
                     <td><?php echo $product['create_time']; ?></td>
                     <td>
-                        <button data-goods-number="<?php echo $goods_number; ?>" class="J_shangji">上机</button>                    </td>
+                        <button data-plan-id="<?php echo $plan_id; ?>" class="J_shangji">上机</button>
+                    </td>
                     <td>
-                        <button data-goods-number="<?php echo $goods_number; ?>" class="J_delete">删除</button>
+                        <button data-plan-id="<?php echo $plan_id; ?>" class="J_delete">删除</button>
                     </td>
                 </tr>
                 <?php endforeach; ?>
@@ -72,9 +73,9 @@
                     <th>客户</th>
                     <th>创建时间</th>
                 </tr>
-                <?php foreach($list2 as $goods_number=>$product): ?>
-                <tr data-goods-number="<?php echo $goods_number; ?>">
-                    <td><a class="J_showPlan" href="<?php echo $this->baseUrl; ?>/ajaxPlan/getPlanByGoodsNumber/goods_number/<?php echo $goods_number; ?>/status/2"><?php echo $goods_number; ?></a></td>
+                <?php foreach($list2 as $plan_id=>$product): ?>
+                <tr data-plan-id="<?php echo $plan_id; ?>">
+                    <td><a class="J_showPlan" href="<?php echo $this->baseUrl; ?>/ajaxPlan/getPlanByPlanId/plan_id/<?php echo $plan_id; ?>/status/2"><?php echo $product['goods_number']; ?></a></td>
                     <td><?php echo $product['client']; ?></td>
                     <td><?php echo $product['create_time']; ?></td>
                 </tr>
@@ -82,5 +83,4 @@
             </tbody>
         </table>
     </div>
-
 </div>
