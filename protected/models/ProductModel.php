@@ -17,9 +17,11 @@
  * @property integer $create_time
  * @property integer $finished_time
  * @property integer $finished_count
- * @property string $product_type
+ * @property integer $product_part_id
  * @property string $gang_number
  * @property integer $deadline_time
+ * @property string $diaoxian
+ * @property integer $plan_id
  */
 class ProductModel extends CActiveRecord
 {
@@ -49,14 +51,14 @@ class ProductModel extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('color_name, color_number, goods_number, size, status, create_time, gang_number', 'required'),
-			array('color_number, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, deadline_time', 'numerical', 'integerOnly'=>true),
+			array('color_name, color_number, goods_number, size, status, create_time, gang_number, diaoxian, plan_id', 'required'),
+			array('color_number, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, product_part_id, deadline_time, plan_id', 'numerical', 'integerOnly'=>true),
 			array('color_name, size', 'length', 'max'=>10),
-			array('goods_number', 'length', 'max'=>30),
-			array('product_type, gang_number', 'length', 'max'=>50),
+			array('goods_number, diaoxian', 'length', 'max'=>30),
+			array('gang_number', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, color_name, color_number, goods_number, size, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, product_type, gang_number, deadline_time', 'safe', 'on'=>'search'),
+			array('id, color_name, color_number, goods_number, size, order_id, price, total_count, client_id, status, create_time, finished_time, finished_count, product_part_id, gang_number, deadline_time, diaoxian, plan_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -90,9 +92,11 @@ class ProductModel extends CActiveRecord
 			'create_time' => 'Create Time',
 			'finished_time' => 'Finished Time',
 			'finished_count' => 'Finished Count',
-			'product_type' => 'Product Type',
+			'product_part_id' => 'Product Part',
 			'gang_number' => 'Gang Number',
 			'deadline_time' => 'Deadline Time',
+			'diaoxian' => 'Diaoxian',
+			'plan_id' => 'Plan',
 		);
 	}
 
@@ -120,9 +124,11 @@ class ProductModel extends CActiveRecord
 		$criteria->compare('create_time',$this->create_time);
 		$criteria->compare('finished_time',$this->finished_time);
 		$criteria->compare('finished_count',$this->finished_count);
-		$criteria->compare('product_type',$this->product_type,true);
+		$criteria->compare('product_part_id',$this->product_part_id);
 		$criteria->compare('gang_number',$this->gang_number,true);
 		$criteria->compare('deadline_time',$this->deadline_time);
+		$criteria->compare('diaoxian',$this->diaoxian,true);
+		$criteria->compare('plan_id',$this->plan_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

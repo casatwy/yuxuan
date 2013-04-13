@@ -104,7 +104,7 @@ function BigTable(baseUrl){
                     //}else if(result == 2){
                     //    $.jGrowl("该产品对应的毛纱尚未入库。", {header:"错误"})
                     //}else{
-                        window.location.href = baseUrl+"/plan";
+                        //window.location.href = baseUrl+"/plan";
                     //}
                 }, 'json');
             }

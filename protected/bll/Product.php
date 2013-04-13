@@ -42,6 +42,7 @@ class Product extends ProductModel
                 $product->diaoxian = $item['diaoxian'];
                 $product->plan_id = $plan->id;
                 $product->status = self::PREPEARED;
+                $product->product_part_id = -1;
                 if(!$product->save()){
                     self::model()->deleteByPk($idList);
                     return false;
