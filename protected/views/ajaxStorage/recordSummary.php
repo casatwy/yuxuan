@@ -9,7 +9,8 @@
                 <th>缸号</th>
                 <th>色号</th>
                 <th>尺寸</th>
-                <th>总重量</th>
+                <th>总来料重量</th>
+                <th>总实收重量</th>
                 <th>总数量</th>
             </tr>
         </tbody>
@@ -25,6 +26,7 @@
                 <tr>
                     <td><?php echo $item['size']; ?></td>
                     <td><?php echo $item['weight']; ?></td>
+                    <td><?php echo $item['actural_weight']; ?></td>
                     <td><?php echo $item['count']; ?></td>
                 </tr>
             <?php endforeach; ?>

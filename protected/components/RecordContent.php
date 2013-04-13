@@ -43,6 +43,7 @@ class RecordContent extends CController
                 'needle_type' => isset($product->needle_type)?$product->needle_type:"无",
                 'size' => isset($product->size)?$product->size:"无",
                 'weight' => $recordItem->weight,
+                'actural_weight' => $recordItem->actural_weight,
                 'count' => isset($product->size)?$recordItem->count:"无",
                 'product_type' => isset($product->product_type)?$product->product_type:"毛纱",
             );

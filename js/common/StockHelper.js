@@ -191,6 +191,7 @@ function StockHelper(baseUrl){
                 color_name : item.find(".J_colorName").val(),
                 gang_number : item.find(".J_gangNumber").val(),
                 weight : item.find(".J_weight").val(),
+                actural_weight : item.find(".J_acturalWeight").val(),
                 size : item.find(".J_size").val(),
                 needle_type : item.find(".J_needleType").val(),
                 count : item.find(".J_count").val(),

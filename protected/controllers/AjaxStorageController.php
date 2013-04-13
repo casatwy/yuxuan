@@ -272,6 +272,7 @@ class AjaxStorageController extends Controller
             $item['gang_number'] = $product->gang_number;
             $item['size'] = $product->size;
             $item['weight'] = $record->weight;
+            $item['actural_weight'] = $record->actural_weight;
             $item['count'] = $record->count;
 
             $recordSummary->addToResult($item);

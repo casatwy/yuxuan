@@ -49,10 +49,12 @@ class RecordSummary
             array_push($this->resultArray[$index]['itemArray'], array(
                 'size' => $item['size'],
                 'weight' => 0,
+                'actural_weight' => 0,
                 'count' => 0
             ));
         }
 
+        $this->resultArray[$index]['itemArray'][$detailIndex]['actural_weight'] += $item['actural_weight'];
         $this->resultArray[$index]['itemArray'][$detailIndex]['weight'] += $item['weight'];
         $this->resultArray[$index]['itemArray'][$detailIndex]['count'] += $item['count'];
     }

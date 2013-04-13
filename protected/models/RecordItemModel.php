@@ -14,19 +14,19 @@
  * @property integer $record_maker_id
  * @property integer $product_id
  * @property integer $client_id
+ * @property double $actural_weight
  */
 class RecordItemModel extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return DeliveredRecordItemModel the static model class
+	 * @return RecordItemModel the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
-
 
 	/**
 	 * @return array validation rules for model attributes.
@@ -36,14 +36,14 @@ class RecordItemModel extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'required'),
+			array('record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id, actural_weight', 'required'),
 			array('count, type, record_time, record_maker_id, product_id, client_id', 'numerical', 'integerOnly'=>true),
-			array('weight', 'numerical'),
+			array('weight, actural_weight', 'numerical'),
 			array('record_id', 'length', 'max'=>20),
 			array('goods_number', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id', 'safe', 'on'=>'search'),
+			array('id, record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id, actural_weight', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -74,6 +74,7 @@ class RecordItemModel extends CActiveRecord
 			'record_maker_id' => 'Record Maker',
 			'product_id' => 'Product',
 			'client_id' => 'Client',
+			'actural_weight' => 'Actural Weight',
 		);
 	}
 
@@ -98,6 +99,7 @@ class RecordItemModel extends CActiveRecord
 		$criteria->compare('record_maker_id',$this->record_maker_id);
 		$criteria->compare('product_id',$this->product_id);
 		$criteria->compare('client_id',$this->client_id);
+		$criteria->compare('actural_weight',$this->actural_weight);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

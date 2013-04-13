@@ -9,7 +9,6 @@
         <th>尺寸</th>
         <th>来料重量</th>
         <th>实收重量</th>
-        <th>成品重量</th>
         <th>数量</th>
     </tr>
     <?php foreach($recordList as $record): ?>
@@ -23,15 +22,14 @@
             <td><?php echo $record['product_type']; ?></td>
         <?php endif; ?>
 
-        <td><?php echo $record['color_number'];?></td>
-        <td><?php echo $record['color_name'];?></td>
-        <td><?php echo $record['gang_number'];?></td>
-        <td><?php echo $record['needle_type'];?></td>
-        <td><?php echo $record['size'];?></td>
-        <td> kg</td>
-        <td> kg</td>
-        <td><?php echo $record['weight'];?> kg</td>
-        <td><?php echo $record['count'];?></td>
+        <td><?php echo $record['color_number']; ?></td>
+        <td><?php echo $record['color_name']; ?></td>
+        <td><?php echo $record['gang_number']; ?></td>
+        <td><?php echo $record['needle_type']; ?></td>
+        <td><?php echo $record['size']; ?></td>
+        <td><?php echo $record['weight']; ?>kg</td>
+        <td><?php echo $record['actural_weight']; ?>kg</td>
+        <td><?php echo $record['count']; ?></td>
     </tr>
     <?php endforeach; ?>
 </table>

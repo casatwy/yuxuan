@@ -55,14 +55,10 @@ class Record extends RecordModel
         $this->record_maker_id = Yii::app()->user->getState("user_id");
         $this->client_id = $data['client_id'];
         if($this->save()){
-            $this->saveItem($data['data']);
-        }
-    }
-
-    private function saveItem($data){
-        foreach($data as $itemData){
-            $recordItem = new RecordItem($this->saveType);
-            $recordItem->saveItem($itemData, $this);
+            foreach($data['data'] as $itemData){
+                $recordItem = new RecordItem($this->saveType);
+                $recordItem->saveItem($itemData, $this);
+            }
         }
     }
 

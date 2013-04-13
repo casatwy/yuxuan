@@ -50,6 +50,7 @@ class RecordItem extends RecordItemModel
         $this->_new = true;
         $this->record_id = $record->id;
         $this->weight = $item['weight'];
+        $this->actural_weight = $item['actural_weight'];
         if(isset($item['count'])){
             $this->count = $item['count'];
         }else{
