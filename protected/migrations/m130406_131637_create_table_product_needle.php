@@ -7,13 +7,16 @@ class m130406_131637_create_table_product_needle extends CDbMigration
         $sql = "
             DROP TABLE IF EXISTS `product_part`;
             CREATE TABLE IF NOT EXISTS `product_part` (
-            `id` int(11) NOT NULL AUTO_INCREMENT,
-            `part_name` varchar(30) COLLATE utf8_bin NOT NULL,
-            `needle_type` varchar(30) COLLATE utf8_bin NOT NULL,
-            `plan_id` int(11) NOT NULL,
-            PRIMARY KEY (`id`),
-            KEY `plan_id` (`plan_id`)
-            ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;";
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `part_name` varchar(30) COLLATE utf8_bin NOT NULL,
+                `needle_type` varchar(30) COLLATE utf8_bin NOT NULL,
+                `plan_id` int(11) NOT NULL,
+                PRIMARY KEY (`id`),
+                KEY `plan_id` (`plan_id`)
+            ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+            INSERT INTO `product_part` (`id`, `part_name`, `needle_type`, `plan_id`) VALUES
+                (1, '毛纱', '无针型', -1);";
         return Yii::app()->db->createCommand($sql)->execute();
 	}
 

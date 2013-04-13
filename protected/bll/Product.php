@@ -185,7 +185,7 @@ class Product extends ProductModel
             foreach($product as $item){
                 if( $item->color_number == $data['color_number']
                     && $item->size == $data['size']
-                    && $item->product_type == $data['product_type']
+                    && $item->product_part_id == $data['product_type']
                     && $item->gang_number == $data['gang_number']
                     && $item->color_name == $data['color_name']
                 ){
@@ -212,9 +212,16 @@ class Product extends ProductModel
         $product->status = self::PREPEARED;
         $product->create_time = time();
         $product->gang_number = $data['gang_number'];
-        $product->product_type = $data['product_type'];
-        $product->save();
-        return $product;
+        $product->product_part_id = $data['product_type'];
+        $product->diaoxian = $data['diaoxian'];
+        $product->plan_id = Plan::getPlanId($data);
+        $product->client_id = $data['client_id'];
+        if($product->save()){
+            return $product;
+        }else{
+            var_dump($product->getErrors());
+            die();
+        }
     }
 
     public static function getByGoodsNumber($goods_number){
@@ -279,5 +286,13 @@ class Product extends ProductModel
 
     public static function deleteByIdList($idList){
         self::model()->deleteByPk($idList);
+    }
+
+    public function getPartListByPlanId(){
+        $condition = "plan_id=:plan_id";
+        $params = array(
+            ":plan_id" => $this->plan_id
+        );
+        return ProductPartModel::model()->findAll($condition, $params);
     }
 }

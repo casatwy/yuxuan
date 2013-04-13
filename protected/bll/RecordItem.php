@@ -50,7 +50,9 @@ class RecordItem extends RecordItemModel
         $this->_new = true;
         $this->record_id = $record->id;
         $this->weight = $item['weight'];
-        $this->actural_weight = $item['actural_weight'];
+        if(isset($item['actural_weight'])){
+            $this->actural_weight = $item['actural_weight'];
+        }
         if(isset($item['count'])){
             $this->count = $item['count'];
         }else{
@@ -62,7 +64,14 @@ class RecordItem extends RecordItemModel
         $this->record_maker_id = $record->record_maker_id;
         $this->product_id = $this->getProductId($item);
         $this->client_id = $record->client_id;
-        return $this->save();
+        if($this->save()){
+            return true;
+        }else{
+            self::model()->deleteAll("record_id=".$record->id);
+            $record->delete();
+            return false;
+            var_dump($this->getErrors());die();
+        }
     }
 
     public function getProductId($itemData){

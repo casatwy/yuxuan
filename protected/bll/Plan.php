@@ -21,4 +21,18 @@ class Plan extends PlanModel
             }
         }
     }
+
+    public static function getPlanId($data){
+        $condition = "client_id=:client_id and goods_number=:goods_number";
+        $params = array(
+            ":client_id" => $data['client_id'],
+            ":goods_number" => $data['goods_number'],
+        );
+        $plan = self::model()->find($condition, $params);
+        if(!is_null($plan)){
+            return $plan->id;
+        }else{
+            return null;
+        }
+    }
 }

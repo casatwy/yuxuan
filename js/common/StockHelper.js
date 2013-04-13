@@ -152,8 +152,11 @@ function StockHelper(baseUrl){
         $.post(url, {
             data:postData
         }, function(result){
-            console.log(result);
-            location.href = getRedirectUrl();
+            if(result == 0){
+                alert("此记录没有对应的生产计划，请检查填写是否正确。");
+            }else{
+                //location.href = getRedirectUrl();
+            }
         }, "json");
     }
 
@@ -196,7 +199,9 @@ function StockHelper(baseUrl){
                 needle_type : item.find(".J_needleType").val(),
                 count : item.find(".J_count").val(),
                 product_type : item.find(".J_productType").val(),
-                gang_number : item.find(".J_gangNumber").val()
+                gang_number : item.find(".J_gangNumber").val(),
+                diaoxian : item.find(".J_diaoxian").val(),
+                client_id : $("#J_selectProvider").attr("provider")
             };
             result.push(itemData);
         });

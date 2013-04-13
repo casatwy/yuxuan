@@ -36,7 +36,7 @@ class RecordItemModel extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('record_id, weight, count, goods_number, type, record_time, record_maker_id, product_id, client_id, actural_weight', 'required'),
+			array('record_id, goods_number, type, record_time, record_maker_id, product_id, client_id', 'required'),
 			array('count, type, record_time, record_maker_id, product_id, client_id', 'numerical', 'integerOnly'=>true),
 			array('weight, actural_weight', 'numerical'),
 			array('record_id', 'length', 'max'=>20),

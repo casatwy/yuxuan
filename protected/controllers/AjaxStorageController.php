@@ -78,7 +78,9 @@ class AjaxStorageController extends Controller
 
     private function saveRecord($saveType){
         $record = new Record($saveType);
-        $record->saveRecord($_POST['data']);
+        if(!$record->saveRecord($_POST['data'])){
+            echo 0;
+        }
     }
 
     //based on the record id
@@ -216,11 +218,11 @@ class AjaxStorageController extends Controller
         $goods_number = $_GET['goods_number'];
         $attributeList = Resource::getAttributesByGoodsNumber($goods_number, $data_type);
 
-        // check if product exists in database
-        //if(is_null($attributeList) && $data_type != Record::SILK){
-        //    echo 0;
-        //    Yii::app()->end();
-        //}
+        //check if product exists in database
+        if(is_null($attributeList) && $data_type != Record::SILK){
+            echo 0;
+            Yii::app()->end();
+        }
 
         if($data_type == Record::SILK){
             echo $this->renderPartial("silkStock", array("attributeList" => $attributeList));

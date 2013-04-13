@@ -47,6 +47,8 @@
         <span class="span-15 last">实收重量:
             <input type="text" class="J_acturalWeight"></input>
         </span>
+            <?php //毛纱的product type ?>
+            <input type="hidden" class="J_productType" value="1"></input>
     </div>
     <span class="prepend-10 span-5"><button class="J_deleteRecord">删除</button></span>
 </div>
