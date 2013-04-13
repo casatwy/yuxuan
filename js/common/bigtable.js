@@ -99,13 +99,13 @@ function BigTable(baseUrl){
 
             if(productData != false){
                 $.post(baseUrl+"/ajaxPlan/savePlanList", {data:data}, function(result){
-                    //if(result == 0){
-                    //    $.jGrowl("提交失败。", {header:"错误"})
                     //}else if(result == 2){
                     //    $.jGrowl("该产品对应的毛纱尚未入库。", {header:"错误"})
-                    //}else{
+                    if(result == 0){
+                        $.jGrowl("数据库中已存在相同的货号，请修改新的货号。", {header:"错误"})
+                    }else{
                         window.location.href = baseUrl+"/plan";
-                    //}
+                    }
                 }, 'json');
             }
         });
