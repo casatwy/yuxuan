@@ -155,7 +155,7 @@ function StockHelper(baseUrl){
             if(result == 0){
                 alert("此记录没有对应的生产计划，请检查填写是否正确。");
             }else{
-                //location.href = getRedirectUrl();
+                location.href = getRedirectUrl();
             }
         }, "json");
     }

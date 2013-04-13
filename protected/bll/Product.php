@@ -295,4 +295,13 @@ class Product extends ProductModel
         );
         return ProductPartModel::model()->findAll($condition, $params);
     }
+
+    public function getPartName(){
+        if($this->product_part_id == -1){
+            return "成品";
+        }else{
+            $part = ProductPartModel::model()->findByPk($this->product_part_id);
+            return $part->part_name;
+        }
+    }
 }

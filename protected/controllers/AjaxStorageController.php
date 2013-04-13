@@ -89,7 +89,6 @@ class AjaxStorageController extends Controller
             $recordContent = new RecordContent();
             $recordList = $recordContent->getRecordContent($_GET['record_id'],$_GET['record_type']);
 
-            //echo "record id is ".htmlspecialchars($_GET['record_id']);
             echo $this->renderPartial("recordContent", array(
                 "recordList" => $recordList,
                 "record_id" => $_GET['record_id'],
