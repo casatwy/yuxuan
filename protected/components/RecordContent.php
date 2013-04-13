@@ -45,7 +45,7 @@ class RecordContent extends CController
                 'weight' => $recordItem->weight,
                 'actural_weight' => $recordItem->actural_weight,
                 'count' => isset($product->size)?$recordItem->count:"无",
-                'product_type' => $product->getPartName(),
+                'product_type' => ($recordItem->type == Record::SILK)?"毛纱":$product->getPartName(),
             );
             array_push($recordList, $record);
         }

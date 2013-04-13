@@ -46,8 +46,10 @@ class Resource extends CComponent{
                 array_push($result['color_number'], $product->color_number);
             }
 
-            if(!in_array($product->diaoxian, $result['diaoxian'])){
-                array_push($result['diaoxian'], $product->diaoxian);
+            if(isset($product->diaoxian)){
+                if(!in_array($product->diaoxian, $result['diaoxian'])){
+                    array_push($result['diaoxian'], $product->diaoxian);
+                }
             }
         }
 
