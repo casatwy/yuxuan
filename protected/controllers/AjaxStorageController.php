@@ -267,7 +267,7 @@ class AjaxStorageController extends Controller
         foreach($searchedRecordList as $record){
             $product = Product::model()->findByPk($record->product_id);
 
-            $item['product_type'] = $product->product_type;
+            $item['product_type'] = $product->getPartName();
             $item['color_name'] = $product->color_name;
             $item['color_number'] = $product->color_number;
             $item['gang_number'] = $product->gang_number;
